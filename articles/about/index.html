@@ -4,57 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>О проекте — Кошка Шредингера</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b0b0d;
-      color: #f4f4f5;
-      line-height: 1.6;
-    }
-    header {
-      background: #111114;
-      border-bottom: 1px solid #2a2a33;
-      padding: 20px 0;
-    }
-    .wrap {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    nav a {
-      color: #ddd;
-      text-decoration: none;
-      margin-right: 18px;
-    }
-    nav a:hover {
-      color: #fff;
-    }
-    section {
-      padding: 40px 0;
-      border-bottom: 1px solid #2a2a33;
-    }
-    h1 {
-      font-size: 40px;
-      margin: 0 0 16px;
-    }
-    .lead {
-      font-size: 18px;
-      color: #ddd;
-      max-width: 760px;
-    }
-    .card {
-      background: #17171d;
-      border: 1px solid #2a2a33;
-      border-radius: 14px;
-      padding: 18px;
-      margin-bottom: 14px;
-    }
-    footer {
-      padding: 30px 0;
-      color: #aaa;
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/style.css" />
 </head>
 <body>
   <header>
@@ -63,6 +13,7 @@
       <nav style="margin-top: 10px;">
         <a href="/">Главная</a>
         <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
         <a href="/proza/">Проза</a>
         <a href="/poeziya/">Поэзия</a>
         <a href="/about/">О проекте</a>
@@ -71,39 +22,33 @@
   </header>
 
   <main>
-    <section>
+    <section class="hero-simple">
       <div class="wrap">
         <h1>О проекте</h1>
-        <p class="lead">
+        <p>
           Этот сайт собирает тексты в разных жанрах: статьи, прозу и поэзию,
           чтобы публиковать их в удобной и аккуратной форме.
         </p>
       </div>
     </section>
 
-    <section>
+    <section class="content">
       <div class="wrap">
-        <div class="card">
-          <strong>Что это за сайт</strong>
-          <div>
-            «Кошка Шредингера» — это литературно-публицистический проект,
-            в котором собраны статьи, художественные тексты и поэзия.
-          </div>
-        </div>
+        <p><strong>Что это за сайт</strong></p>
+        <p>
+          «Кошка Шредингера» — это литературно-публицистический проект,
+          в котором собраны статьи, художественные тексты и поэзия.
+        </p>
 
-        <div class="card">
-          <strong>Структура</strong>
-          <div>
-            Материалы распределяются по разделам: статьи, проза и поэзия.
-          </div>
-        </div>
+        <p><strong>Структура</strong></p>
+        <p>
+          Материалы распределяются по разделам: статьи, проза и поэзия.
+        </p>
 
-        <div class="card">
-          <strong>Идея</strong>
-          <div>
-            Не складывать всё в один беспорядочный ком, а выстроить сайт как ясную систему текстов.
-          </div>
-        </div>
+        <p><strong>Идея</strong></p>
+        <p>
+          Не складывать всё в один беспорядочный ком, а выстроить сайт как ясную систему текстов.
+        </p>
       </div>
     </section>
   </main>
