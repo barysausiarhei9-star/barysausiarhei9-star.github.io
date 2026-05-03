@@ -37,6 +37,10 @@ nav a:hover {
   padding: 72px 0 40px;
 }
 
+.about-hero {
+  padding-top: 24px;
+}
+
 h1 {
   font-size: 46px;
   line-height: 1.15;
@@ -53,6 +57,10 @@ h1 {
   display: block;
   margin: 24px 0;
   border-radius: 14px;
+}
+
+.about-hero .page-image {
+  margin-top: 0;
 }
 
 p {
