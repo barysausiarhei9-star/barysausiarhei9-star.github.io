@@ -6,12 +6,41 @@
   <title>TELENOR — Кошка Шрёдингера</title>
   <link rel="stylesheet" href="/assets/style.css" />
   <style>
+    .telenor-content {
+      padding-top: 24px;
+    }
+
+    .telenor-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .telenor-figure {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+    }
+
     .telenor-image {
-      width: auto;
-      max-width: 100%;
+      width: 100%;
+      max-width: 380px;
       max-height: 520px;
-      margin-left: auto;
-      margin-right: auto;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+    }
+
+    @media (max-width: 720px) {
+      .telenor-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .telenor-figure {
+        justify-content: flex-start;
+      }
     }
   </style>
 </head>
@@ -37,15 +66,10 @@
       </div>
     </section>
 
-    <section class="content">
+    <section class="content telenor-content">
       <div class="wrap">
-        <img
-          class="page-image telenor-image"
-          src="/assets/images/telenor.png"
-          alt="Черно-белый рисунок к стихотворению TELENOR"
-        />
-
-        <div class="poem">был телефонный разговор,
+        <div class="telenor-layout">
+          <div class="poem telenor-poem">был телефонный разговор,
 и новость ( шутит черт?):
 знакомый Беллы, Хенрик Бор,
 мои труды прочтет.
@@ -60,6 +84,15 @@
 там, может быть, повторно "luck"...
 
 или - наоборот.</div>
+
+          <figure class="telenor-figure">
+            <img
+              class="page-image telenor-image"
+              src="/assets/images/telenor.png"
+              alt="Черно-белый рисунок к стихотворению TELENOR"
+            />
+          </figure>
+        </div>
 
         <a class="back" href="/poeziya/">← Назад к поэзии</a>
       </div>
