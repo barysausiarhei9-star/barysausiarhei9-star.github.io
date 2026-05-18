@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>СТАРООБРЯДЦАМ — Кошка Шрёдингера</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    .staroobryadtsam-content {
+      padding-top: 24px;
+    }
+
+    .staroobryadtsam-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .staroobryadtsam-figure {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .staroobryadtsam-image {
+      width: 100%;
+      max-width: 340px;
+      max-height: 480px;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+    }
+
+    @media (max-width: 720px) {
+      .staroobryadtsam-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .staroobryadtsam-figure {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="font-size: 28px; font-weight: bold;">Кошка Шрёдингера</div>
+      <nav style="margin-top: 10px;">
+        <a href="/">Главная</a>
+        <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
+        <a href="/proza/">Проза</a>
+        <a href="/poeziya/">Поэзия</a>
+        <a href="/about/">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>СТАРООБРЯДЦАМ</h1>
+      </div>
+    </section>
+
+    <section class="content staroobryadtsam-content">
+      <div class="wrap">
+        <div class="staroobryadtsam-layout">
+          <div class="poem staroobryadtsam-poem">“СТАРООБРЯДЦАМ”
+  
+  сторонники научного застоя (стиль боевит, но лобик невысок),
+  поклонники “стандартного покроя” - те, в чьих мозгах не мысли, а песок,
+  дожившие до полного маразма любители заученных цитат,
+  сочувственно скажу вам, без сарказма - постройтесь строем и идите... в сад.
+  возьмите свой непревзойдённый диссер, в который без упрёка и стыда
+  собрали вы чужих стараний бисер, и впредь не мельтешите - никогда!</div>
+
+          <figure class="staroobryadtsam-figure">
+            <img
+              class="page-image staroobryadtsam-image"
+              src="/assets/images/to-the-old-believers.png"
+              alt="Черно-белый рисунок к стихотворению СТАРООБРЯДЦАМ"
+            />
+          </figure>
+        </div>
+
+        <a class="back" href="/poeziya/">← Назад к поэзии</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Кошка Шрёдингера
+    </div>
+  </footer>
+</body>
+</html>
