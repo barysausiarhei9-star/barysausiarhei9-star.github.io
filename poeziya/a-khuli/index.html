@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>А ХУЛИ — Кошка Шрёдингера</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    .a-khuli-content {
+      padding-top: 24px;
+    }
+
+    .a-khuli-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .a-khuli-figure {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .a-khuli-image {
+      width: 100%;
+      max-width: 340px;
+      max-height: 480px;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+    }
+
+    @media (max-width: 720px) {
+      .a-khuli-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .a-khuli-figure {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="font-size: 28px; font-weight: bold;">Кошка Шрёдингера</div>
+      <nav style="margin-top: 10px;">
+        <a href="/">Главная</a>
+        <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
+        <a href="/proza/">Проза</a>
+        <a href="/poeziya/">Поэзия</a>
+        <a href="/about/">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>А ХУЛИ</h1>
+      </div>
+    </section>
+
+    <section class="content a-khuli-content">
+      <div class="wrap">
+        <div class="a-khuli-layout">
+          <div class="poem a-khuli-poem">А ХУЛИ
+
+
+Глаз свой зеленый, третий,
+Два пальца, увы, шестых,
+Вырву - и не заметят,
+Что я - не вполне "из них".
+Хвост между ног упрячу - 
+Лисий, пушистый хвост,
+Приеду к друзьям на дачу
+И предложу им тост:
+Давайте сегодня выпьем
+За тех, кто средь бела дня
+Вопит полуночной выпью,
+Шального пасет коня.
+За то, чтоб не выли волком,
+Ощерившись на луну,
+Чтоб глаз... прикрывали чёлкой,
+В болоте не шли ко дну,
+Чтоб люди их привечали,
+Не гнали бы прочь, кляня...
+"А хули!" - мне отвечали.
+(А ХУЛИ - зовут меня).
+И что теперь остаётся, 
+Безропотно на погост?
+Друг - в беде познаётся.
+Это был - тест, не тост.</div>
+
+          <figure class="a-khuli-figure">
+            <img
+              class="page-image a-khuli-image"
+              src="/assets/images/a-khuli-fox.png"
+              alt="Черно-белый рисунок к стихотворению А ХУЛИ"
+            />
+          </figure>
+        </div>
+
+        <a class="back" href="/poeziya/">← Назад к поэзии</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Кошка Шрёдингера
+    </div>
+  </footer>
+</body>
+</html>
