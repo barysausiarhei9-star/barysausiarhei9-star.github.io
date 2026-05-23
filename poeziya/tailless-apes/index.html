@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>БЕСХВОСТЫЕ ОБЕЗЬЯНЫ — Кошка Шредингера</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    .tailless-apes-content {
+      padding-top: 24px;
+    }
+
+    .tailless-apes-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .tailless-apes-figure {
+      margin: 0;
+      margin-top: 82px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .tailless-apes-image {
+      width: 100%;
+      max-width: 340px;
+      max-height: 480px;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+    }
+
+    @media (max-width: 720px) {
+      .tailless-apes-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .tailless-apes-figure {
+        margin-top: 0;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="font-size: 28px; font-weight: bold;">Кошка Шредингера</div>
+      <nav style="margin-top: 10px;">
+        <a href="/">Главная</a>
+        <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
+        <a href="/proza/">Проза</a>
+        <a href="/poeziya/">Поэзия</a>
+        <a href="/about/">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>БЕСХВОСТЫЕ ОБЕЗЬЯНЫ</h1>
+      </div>
+    </section>
+
+    <section class="content tailless-apes-content">
+      <div class="wrap">
+        <div class="tailless-apes-layout">
+          <div class="poem tailless-apes-poem">БЕСХВОСТЫЕ ОБЕЗЬЯНЫ
+
+Распихали свои рыдваны
+В этой временных лет арбе
+Мы, бесхвостые обезьяны,
+Много мнящие о себе.
+И трясемся в ней по ухабам,
+Успевая рожать детей;
+Синяки наставляем слабым,
+Вяло трудимся, без затей.
+А затейники - те не глупы:
+Наклепали "священных" книг,
+Разделили трудяг на группы,
+И стригут, как овец своих.
+Хоть не считаны варианты
+Не работая, сладко жить -
+Даже вор должен все таланты, 
+Всё старание приложить.
+От минета до менуэта - 
+Все вмещает в себя арба,
+И не Бог нам судья за это,
+Дарвин выяснил: жизнь - борьба.
+Воздаянием не прельщайтесь -  
+Это сказочка для  глупцов,
+И на Бога не обижайтесь,
+Хороня своих мертвецов.
+Неизбежны, увы, изъяны
+В этой временных лет арбе,
+Где бесчинствуют обезьяны,
+Много мнящие о себе.
+Негодяев карайте строго:
+Здесь владыка - своя рука,
+А нарушить законы Бога
+Обезьянам кишка тонка.</div>
+
+          <figure class="tailless-apes-figure">
+            <img
+              class="page-image tailless-apes-image"
+              src="/assets/images/tailless-apes.png"
+              alt="Черно-белый рисунок к стихотворению БЕСХВОСТЫЕ ОБЕЗЬЯНЫ"
+            />
+          </figure>
+        </div>
+
+        <a class="back" href="/poeziya/">← Назад к поэзии</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Кошка Шредингера
+    </div>
+  </footer>
+</body>
+</html>
