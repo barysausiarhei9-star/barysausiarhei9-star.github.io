@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>А МОЖЕТ... — Кошка Шредингера</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    .a-mozhet-content {
+      padding-top: 24px;
+    }
+
+    .a-mozhet-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .a-mozhet-figure {
+      margin: 0;
+      margin-top: 82px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .a-mozhet-image {
+      width: 100%;
+      max-width: 340px;
+      max-height: 480px;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+    }
+
+    @media (max-width: 720px) {
+      .a-mozhet-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .a-mozhet-figure {
+        margin-top: 0;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="font-size: 28px; font-weight: bold;">Кошка Шредингера</div>
+      <nav style="margin-top: 10px;">
+        <a href="/">Главная</a>
+        <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
+        <a href="/proza/">Проза</a>
+        <a href="/poeziya/">Поэзия</a>
+        <a href="/about/">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>А МОЖЕТ...</h1>
+      </div>
+    </section>
+
+    <section class="content a-mozhet-content">
+      <div class="wrap">
+        <div class="a-mozhet-layout">
+          <div class="poem a-mozhet-poem">А МОЖЕТ... 
+
+ходить совсем  неплохо 
+в нибудь-какую церковь,
+а может быть, не в церковь,
+а может, не ходить.
+без церкви, чтоб вы знали, 
+мы б  злое  замышляли -
+украсть бы то- другое,
+а может быть,  убить
+
+без церкви, как два дважды, 
+грешил бы чуть ни каждый, 
+а может быть, не каждый, 
+а может, не грешил.
+отца и мать не чтил бы,
+кумиров натворил бы,
+ну,  скажем, пусть однажды, 
+но точно б  сотворил!
+
+Всевышнего, нахал бы, 
+он всуе поминал  бы,
+и Васей называл бы, 
+когда нетрезвым был.
+а  может, не назвал бы,
+тогда б  другой  скандал  был -
+псалмы и   дифирамбы
+не пел бы,  позабыл
+
+творя себе кумира,
+не пил бы он  кефира,
+осла бы непременно 
+чужого пожелал...
+свидетельствовал  ложно,
+а может, и не ложно,
+и даже -  всевозможно 
+прелюбо - действо - вал
+
+короче, всем солдатам,
+а может, не солдатам,
+а ихним командирам 
+пореко - мендо - вать
+нибудь-какую церковь,
+а может, и не церковь, 
+а может, никакую
+не стоит  посещать!</div>
+
+          <figure class="a-mozhet-figure">
+            <img
+              class="page-image a-mozhet-image"
+              src="/assets/images/a-mozhet.png"
+              alt="Черно-белый рисунок к стихотворению А МОЖЕТ..."
+            />
+          </figure>
+        </div>
+
+        <a class="back" href="/poeziya/">← Назад к поэзии</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Кошка Шредингера
+    </div>
+  </footer>
+</body>
+</html>
