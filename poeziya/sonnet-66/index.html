@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>66 СОНЕТ — Кошка Шредингера</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    .sonnet-66-content {
+      padding-top: 24px;
+    }
+
+    .sonnet-66-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .sonnet-66-figure {
+      margin: 0;
+      margin-top: 82px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .sonnet-66-image {
+      width: 100%;
+      max-width: 340px;
+      max-height: 480px;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+    }
+
+    @media (max-width: 720px) {
+      .sonnet-66-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .sonnet-66-figure {
+        margin-top: 0;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="font-size: 28px; font-weight: bold;">Кошка Шредингера</div>
+      <nav style="margin-top: 10px;">
+        <a href="/">Главная</a>
+        <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
+        <a href="/proza/">Проза</a>
+        <a href="/poeziya/">Поэзия</a>
+        <a href="/about/">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>66 СОНЕТ</h1>
+      </div>
+    </section>
+
+    <section class="content sonnet-66-content">
+      <div class="wrap">
+        <div class="sonnet-66-layout">
+          <div class="poem sonnet-66-poem">66 СОНЕТ
+
+И ложный приговор тому, что совершенно,
+И глупость, что вещает, не стыдясь,
+И спеси наглый взор, прищуренный надменно,
+Достоинство, поверженное в грязь...
+Невежда, что толпой венчается на царство,
+И - подлость, раболепье, жадность,ложь...
+И мракобесья плен; жестокость и коварство.
+И все же... все же этот мир - хорош!</div>
+
+          <figure class="sonnet-66-figure">
+            <img
+              class="page-image sonnet-66-image"
+              src="/assets/images/sonnet-66.png"
+              alt="Черно-белый рисунок к стихотворению 66 СОНЕТ"
+            />
+          </figure>
+        </div>
+
+        <a class="back" href="/poeziya/">← Назад к поэзии</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Кошка Шредингера
+    </div>
+  </footer>
+</body>
+</html>
