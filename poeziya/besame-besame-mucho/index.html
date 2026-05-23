@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>БЕСАМЕ, БЕСАМЕ МУЧО... — Кошка Шредингера</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    .besame-besame-mucho-content {
+      padding-top: 24px;
+    }
+
+    .besame-besame-mucho-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .besame-besame-mucho-figure {
+      margin: 0;
+      margin-top: 82px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .besame-besame-mucho-image {
+      width: 100%;
+      max-width: 340px;
+      max-height: 480px;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+    }
+
+    @media (max-width: 720px) {
+      .besame-besame-mucho-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .besame-besame-mucho-figure {
+        margin-top: 0;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="font-size: 28px; font-weight: bold;">Кошка Шредингера</div>
+      <nav style="margin-top: 10px;">
+        <a href="/">Главная</a>
+        <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
+        <a href="/proza/">Проза</a>
+        <a href="/poeziya/">Поэзия</a>
+        <a href="/about/">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>БЕСАМЕ, БЕСАМЕ МУЧО...</h1>
+      </div>
+    </section>
+
+    <section class="content besame-besame-mucho-content">
+      <div class="wrap">
+        <div class="besame-besame-mucho-layout">
+          <div class="poem besame-besame-mucho-poem">БЕСАМЕ, БЕСАМЕ МУЧО...
+
+Бесаме, бесаме мучо...
+Струны звенят и предательски голос дрожит.
+Бесаме... мотив певучий,
+Будто сквозь пальцы песок, вся просыпалась жизнь.
+
+Бесаме... Былые годы,
+Томные песни, и юность, и смех, и любовь.
+Бесаме... Закон природы:
+То, что ушло, никогда не воротится вновь.
+
+Бесаме, бесаме мучо...
+Смолкнет струна под безжалостной чьей-то рукой...
+Бесаме... Напев певучий
+Не потревожит усталого сердца покой.</div>
+
+          <figure class="besame-besame-mucho-figure">
+            <img
+              class="page-image besame-besame-mucho-image"
+              src="/assets/images/besame-besame-mucho.png"
+              alt="Черно-белый рисунок к стихотворению БЕСАМЕ, БЕСАМЕ МУЧО..."
+            />
+          </figure>
+        </div>
+
+        <a class="back" href="/poeziya/">← Назад к поэзии</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Кошка Шредингера
+    </div>
+  </footer>
+</body>
+</html>
