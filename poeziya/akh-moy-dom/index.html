@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>АХ, МОЙ ДОМ... — Кошка Шредингера</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    .akh-moy-dom-content {
+      padding-top: 24px;
+    }
+
+    .akh-moy-dom-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .akh-moy-dom-figure {
+      margin: 0;
+      margin-top: 82px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .akh-moy-dom-image {
+      width: 100%;
+      max-width: 360px;
+      max-height: 520px;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+    }
+
+    @media (max-width: 720px) {
+      .akh-moy-dom-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .akh-moy-dom-figure {
+        margin-top: 0;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="font-size: 28px; font-weight: bold;">Кошка Шредингера</div>
+      <nav style="margin-top: 10px;">
+        <a href="/">Главная</a>
+        <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
+        <a href="/proza/">Проза</a>
+        <a href="/poeziya/">Поэзия</a>
+        <a href="/about/">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>АХ, МОЙ ДОМ...</h1>
+      </div>
+    </section>
+
+    <section class="content akh-moy-dom-content">
+      <div class="wrap">
+        <div class="akh-moy-dom-layout">
+          <div class="poem akh-moy-dom-poem">АХ, МОЙ ДОМ...
+
+Ах, мой дом из стекла и озона!
+Я не Сталкер, а улица - Зона.
+Чтобы дом защитить, не смогу раздобыть
+Для себя ни ружья, ни патрона.
+
+Ах, мой дом - из бумаги и соли.
+Полон воздуха, света и боли...
+Огневое кольцо 
+Опалило крыльцо...
+А хозяйка - безумная, что ли?! 
+
+Ах, мой дом - из песка и тумана.
+Уязвим, как открытая рана.
+Я с утра, лишь проснусь, 
+В этом доме молюсь 
+Против Библии, Торы, Корана...
+
+Потому что, судя непредвзято,
+Не твержу, что Писание - свято.  
+Бог -  Солярис Идей,  
+Воплотился  в людей, 
+Каждый пятый - немножко распятый...</div>
+
+          <figure class="akh-moy-dom-figure">
+            <img
+              class="page-image akh-moy-dom-image"
+              src="/assets/images/akh-moy-dom.png"
+              alt="Черно-белый рисунок к стихотворению АХ, МОЙ ДОМ..."
+            />
+          </figure>
+        </div>
+
+        <a class="back" href="/poeziya/">← Назад к поэзии</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Кошка Шредингера
+    </div>
+  </footer>
+</body>
+</html>
