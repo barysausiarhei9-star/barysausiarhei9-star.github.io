@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>А В ДВЕРЬ СТУЧАТ... — Кошка Шрёдингера</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    .a-v-dver-stuchat-content {
+      padding-top: 24px;
+    }
+
+    .a-v-dver-stuchat-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 460px);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .a-v-dver-stuchat-figure {
+      margin: 0;
+      margin-top: 82px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .a-v-dver-stuchat-image {
+      width: 100%;
+      max-width: 460px;
+      max-height: 640px;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+    }
+
+    @media (max-width: 780px) {
+      .a-v-dver-stuchat-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .a-v-dver-stuchat-figure {
+        margin-top: 0;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="font-size: 28px; font-weight: bold;">Кошка Шрёдингера</div>
+      <nav style="margin-top: 10px;">
+        <a href="/">Главная</a>
+        <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
+        <a href="/proza/">Проза</a>
+        <a href="/poeziya/">Поэзия</a>
+        <a href="/about/">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>А В ДВЕРЬ СТУЧАТ...</h1>
+      </div>
+    </section>
+
+    <section class="content a-v-dver-stuchat-content">
+      <div class="wrap">
+        <div class="a-v-dver-stuchat-layout">
+          <div class="poem a-v-dver-stuchat-poem">А В ДВЕРЬ СТУЧАТ...
+
+лоялистская интеллигенция
+за штаны  и  запасы кацэ
+раздавала властям  индульгенции
+не скупей, чем сама  РПЦ.
+но безропотную академию
+разгоняют, как гнусный вертеп -
+разрушений в стране эпидемия
+и смолчит равнодушный госдеп.</div>
+
+          <figure class="a-v-dver-stuchat-figure">
+            <img
+              class="page-image a-v-dver-stuchat-image"
+              src="/assets/images/a-v-dver-stuchat.png"
+              alt="Черно-белый рисунок к стихотворению А В ДВЕРЬ СТУЧАТ..."
+            />
+          </figure>
+        </div>
+
+        <a class="back" href="/poeziya/">← Назад к поэзии</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Кошка Шрёдингера
+    </div>
+  </footer>
+</body>
+</html>
