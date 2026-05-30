@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>БЕЗУМНАЯ (НАЦ)ИДЕЯ — Кошка Шрёдингера</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    .mad-national-idea-content {
+      padding-top: 24px;
+    }
+
+    .mad-national-idea-wrap {
+      max-width: 1040px;
+    }
+
+    .mad-national-idea-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(460px, 520px);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .mad-national-idea-figure {
+      margin: 0;
+      margin-top: 82px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .mad-national-idea-image {
+      width: 100%;
+      max-width: 520px;
+      max-height: 680px;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+    }
+
+    @media (max-width: 860px) {
+      .mad-national-idea-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .mad-national-idea-figure {
+        margin-top: 0;
+        justify-content: flex-start;
+      }
+
+      .mad-national-idea-image {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="font-size: 28px; font-weight: bold;">Кошка Шрёдингера</div>
+      <nav style="margin-top: 10px;">
+        <a href="/">Главная</a>
+        <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
+        <a href="/proza/">Проза</a>
+        <a href="/poeziya/">Поэзия</a>
+        <a href="/about/">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap mad-national-idea-wrap">
+        <h1>БЕЗУМНАЯ (НАЦ)ИДЕЯ</h1>
+      </div>
+    </section>
+
+    <section class="content mad-national-idea-content">
+      <div class="wrap mad-national-idea-wrap">
+        <div class="mad-national-idea-layout">
+          <div class="poem mad-national-idea-poem">БЕЗУМНАЯ (НАЦ)ИДЕЯ
+
+всех мочить, затащив  в  сортир, 
+сотрясать  небесную  твердь,
+и  нещадно  кошмаря мир,
+воплощать  все замыслы в смерть.</div>
+
+          <figure class="mad-national-idea-figure">
+            <img
+              class="page-image mad-national-idea-image"
+              src="/assets/images/mad-national-idea.png"
+              alt="Черно-белый рисунок к стихотворению БЕЗУМНАЯ (НАЦ)ИДЕЯ"
+            />
+          </figure>
+        </div>
+
+        <a class="back" href="/poeziya/">← Назад к поэзии</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Кошка Шрёдингера
+    </div>
+  </footer>
+</body>
+</html>
