@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ОБМАНУТЫЕ — Кошка Шрёдингера</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    .obmanutye-content {
+      padding-top: 24px;
+    }
+
+    .obmanutye-wrap {
+      max-width: 1040px;
+    }
+
+    .obmanutye-figure {
+      margin: 0;
+    }
+
+    .obmanutye-image {
+      width: 100%;
+      max-width: min(100%, 760px);
+      max-height: 78vh;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 860px) {
+      .obmanutye-content {
+        padding-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="font-size: 28px; font-weight: bold;">Кошка Шрёдингера</div>
+      <nav style="margin-top: 10px;">
+        <a href="/">Главная</a>
+        <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
+        <a href="/proza/">Проза</a>
+        <a href="/poeziya/">Поэзия</a>
+        <a href="/about/">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap obmanutye-wrap">
+        <h1>ОБМАНУТЫЕ</h1>
+      </div>
+    </section>
+
+    <section class="content obmanutye-content">
+      <div class="wrap obmanutye-wrap">
+        <figure class="obmanutye-figure">
+          <img
+            class="page-image obmanutye-image"
+            src="/assets/images/obmanutye.png"
+            alt="Черно-белый постер к стихотворению ОБМАНУТЫЕ"
+          />
+        </figure>
+
+        <a class="back" href="/poeziya/">← Назад к поэзии</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Кошка Шрёдингера
+    </div>
+  </footer>
+</body>
+</html>
