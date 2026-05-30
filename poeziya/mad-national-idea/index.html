@@ -14,42 +14,22 @@
       max-width: 1040px;
     }
 
-    .mad-national-idea-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(460px, 520px);
-      gap: 36px;
-      align-items: start;
-    }
-
     .mad-national-idea-figure {
       margin: 0;
-      margin-top: 82px;
-      display: flex;
-      justify-content: center;
     }
 
     .mad-national-idea-image {
       width: 100%;
-      max-width: 520px;
-      max-height: 680px;
+      max-width: min(100%, 980px);
       height: auto;
       object-fit: contain;
-      margin: 0;
+      display: block;
+      margin: 0 auto;
     }
 
     @media (max-width: 860px) {
-      .mad-national-idea-layout {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .mad-national-idea-figure {
-        margin-top: 0;
-        justify-content: flex-start;
-      }
-
-      .mad-national-idea-image {
-        max-width: 100%;
+      .mad-national-idea-content {
+        padding-top: 20px;
       }
     }
   </style>
@@ -78,22 +58,13 @@
 
     <section class="content mad-national-idea-content">
       <div class="wrap mad-national-idea-wrap">
-        <div class="mad-national-idea-layout">
-          <div class="poem mad-national-idea-poem">БЕЗУМНАЯ (НАЦ)ИДЕЯ
-
-всех мочить, затащив  в  сортир, 
-сотрясать  небесную  твердь,
-и  нещадно  кошмаря мир,
-воплощать  все замыслы в смерть.</div>
-
-          <figure class="mad-national-idea-figure">
-            <img
-              class="page-image mad-national-idea-image"
-              src="/assets/images/mad-national-idea.png"
-              alt="Черно-белый рисунок к стихотворению БЕЗУМНАЯ (НАЦ)ИДЕЯ"
-            />
-          </figure>
-        </div>
+        <figure class="mad-national-idea-figure">
+          <img
+            class="page-image mad-national-idea-image"
+            src="/assets/images/mad-national-idea.png"
+            alt="Черно-белый сатирический рисунок к стихотворению БЕЗУМНАЯ (НАЦ)ИДЕЯ"
+          />
+        </figure>
 
         <a class="back" href="/poeziya/">← Назад к поэзии</a>
       </div>
