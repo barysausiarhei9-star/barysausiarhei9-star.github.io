@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>А СМЫСЛ? — Кошка Шрёдингера</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    .a-smysl-content {
+      padding-top: 24px;
+    }
+
+    .a-smysl-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 460px);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .a-smysl-figure {
+      margin: 0;
+      margin-top: 82px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .a-smysl-image {
+      width: 100%;
+      max-width: 460px;
+      max-height: 620px;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+    }
+
+    @media (max-width: 780px) {
+      .a-smysl-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .a-smysl-figure {
+        margin-top: 0;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="font-size: 28px; font-weight: bold;">Кошка Шрёдингера</div>
+      <nav style="margin-top: 10px;">
+        <a href="/">Главная</a>
+        <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
+        <a href="/proza/">Проза</a>
+        <a href="/poeziya/">Поэзия</a>
+        <a href="/about/">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>А СМЫСЛ?</h1>
+      </div>
+    </section>
+
+    <section class="content a-smysl-content">
+      <div class="wrap">
+        <div class="a-smysl-layout">
+          <div class="poem a-smysl-poem">А СМЫСЛ?
+
+Чтоб обтесаться-притереться,
+чтоб угадать и угодить,
+чтоб прозябать в тоске мертвецкой -
+не стоит жить!</div>
+
+          <figure class="a-smysl-figure">
+            <img
+              class="page-image a-smysl-image"
+              src="/assets/images/a-smysl.png"
+              alt="Черно-белый рисунок к стихотворению А СМЫСЛ?"
+            />
+          </figure>
+        </div>
+
+        <a class="back" href="/poeziya/">← Назад к поэзии</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Кошка Шрёдингера
+    </div>
+  </footer>
+</body>
+</html>
