@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>АХВОЙНА — Кошка Шрёдингера</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    .akhvoyna-content {
+      padding-top: 24px;
+    }
+
+    .akhvoyna-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .akhvoyna-figure {
+      margin: 0;
+      margin-top: 82px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .akhvoyna-image {
+      width: 100%;
+      max-width: 360px;
+      max-height: 520px;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+    }
+
+    @media (max-width: 720px) {
+      .akhvoyna-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .akhvoyna-figure {
+        margin-top: 0;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="font-size: 28px; font-weight: bold;">Кошка Шрёдингера</div>
+      <nav style="margin-top: 10px;">
+        <a href="/">Главная</a>
+        <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
+        <a href="/proza/">Проза</a>
+        <a href="/poeziya/">Поэзия</a>
+        <a href="/about/">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>АХВОЙНА</h1>
+      </div>
+    </section>
+
+    <section class="content akhvoyna-content">
+      <div class="wrap">
+        <div class="akhvoyna-layout">
+          <div class="poem akhvoyna-poem">АХВОЙНА
+
+окончилась пора для возвращений,
+залечены строптивости рубцы,
+вступает жизнь  в период отречений:
+шашлык, друзья, подруги, голубцы.    
+
+спасибо вам -  с поклоном - за поддержку
+в те дни, что были для меня черны.
+я  быть бы рада  с вами вперемешку,
+ребята... если б  не было войны.</div>
+
+          <figure class="akhvoyna-figure">
+            <img
+              class="page-image akhvoyna-image"
+              src="/assets/images/akhvoyna.png"
+              alt="Черно-белый рисунок к стихотворению АХВОЙНА"
+            />
+          </figure>
+        </div>
+
+        <a class="back" href="/poeziya/">← Назад к поэзии</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Кошка Шрёдингера
+    </div>
+  </footer>
+</body>
+</html>
