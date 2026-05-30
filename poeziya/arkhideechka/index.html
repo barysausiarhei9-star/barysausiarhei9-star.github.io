@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>АРХИДЕЕЧКА — Кошка Шрёдингера</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    .arkhideechka-content {
+      padding-top: 24px;
+    }
+
+    .arkhideechka-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .arkhideechka-figure {
+      margin: 0;
+      margin-top: 82px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .arkhideechka-image {
+      width: 100%;
+      max-width: 360px;
+      max-height: 520px;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+    }
+
+    @media (max-width: 720px) {
+      .arkhideechka-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .arkhideechka-figure {
+        margin-top: 0;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="font-size: 28px; font-weight: bold;">Кошка Шрёдингера</div>
+      <nav style="margin-top: 10px;">
+        <a href="/">Главная</a>
+        <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
+        <a href="/proza/">Проза</a>
+        <a href="/poeziya/">Поэзия</a>
+        <a href="/about/">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>АРХИДЕЕЧКА</h1>
+      </div>
+    </section>
+
+    <section class="content arkhideechka-content">
+      <div class="wrap">
+        <div class="arkhideechka-layout">
+          <div class="poem arkhideechka-poem">АРХИДЕЕЧКА
+
+орхидея моя,  архидевочка!
+ясноглазая,  своенравная.
+словно в компасе быстрая стрелочка,  
+благовестия  строчка заглавная.
+тонконогая,  непокорная...
+мысли светлые,  кудри черные.</div>
+
+          <figure class="arkhideechka-figure">
+            <img
+              class="page-image arkhideechka-image"
+              src="/assets/images/arkhideechka.png"
+              alt="Черно-белый рисунок к стихотворению АРХИДЕЕЧКА"
+            />
+          </figure>
+        </div>
+
+        <a class="back" href="/poeziya/">← Назад к поэзии</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Кошка Шрёдингера
+    </div>
+  </footer>
+</body>
+</html>
