@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>СВИНОПАС — Кошка Шрёдингера</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    .svinopas-content {
+      padding-top: 24px;
+    }
+
+    .svinopas-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .svinopas-figure {
+      margin: 0;
+      margin-top: 82px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .svinopas-image {
+      width: 100%;
+      max-width: 420px;
+      max-height: 620px;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+    }
+
+    @media (max-width: 760px) {
+      .svinopas-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .svinopas-figure {
+        margin-top: 0;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="font-size: 28px; font-weight: bold;">Кошка Шрёдингера</div>
+      <nav style="margin-top: 10px;">
+        <a href="/">Главная</a>
+        <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
+        <a href="/proza/">Проза</a>
+        <a href="/poeziya/">Поэзия</a>
+        <a href="/about/">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>СВИНОПАС</h1>
+      </div>
+    </section>
+
+    <section class="content svinopas-content">
+      <div class="wrap">
+        <div class="svinopas-layout">
+          <div class="poem svinopas-poem">СВИНОПАС
+
+  Я, как из сказки датской Свинопас, 
+  Для блиц-изготовленья рататуев
+  Горшочек глиняный сварганила на раз,
+  С улыбкой уклонясь от поцелуев.
+  Но тайну времени для множества из вас,
+  К несчастью, недалеких чистоплюев, 
+  Ослов ученых, оловянных глаз, 
+  Решала зря, и потому горюю.</div>
+
+          <figure class="svinopas-figure">
+            <img
+              class="page-image svinopas-image"
+              src="/assets/images/svinopas.png"
+              alt="Черно-белый рисунок к стихотворению СВИНОПАС"
+            />
+          </figure>
+        </div>
+
+        <a class="back" href="/poeziya/">← Назад к поэзии</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Кошка Шрёдингера
+    </div>
+  </footer>
+</body>
+</html>
