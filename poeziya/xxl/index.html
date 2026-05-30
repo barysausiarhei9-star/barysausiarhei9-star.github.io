@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XXL — Кошка Шрёдингера</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    .xxl-content {
+      padding-top: 24px;
+    }
+
+    .xxl-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .xxl-figure {
+      margin: 0;
+      margin-top: 82px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .xxl-image {
+      width: 100%;
+      max-width: 360px;
+      max-height: 520px;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+    }
+
+    @media (max-width: 720px) {
+      .xxl-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .xxl-figure {
+        margin-top: 0;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="font-size: 28px; font-weight: bold;">Кошка Шрёдингера</div>
+      <nav style="margin-top: 10px;">
+        <a href="/">Главная</a>
+        <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
+        <a href="/proza/">Проза</a>
+        <a href="/poeziya/">Поэзия</a>
+        <a href="/about/">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>XXL</h1>
+      </div>
+    </section>
+
+    <section class="content xxl-content">
+      <div class="wrap">
+        <div class="xxl-layout">
+          <div class="poem xxl-poem">XXL
+
+мы вырастаем из друзей: 
+казалось, в них ума  палаты,
+а на поверку - мелковаты,
+карьеру  предпочтут  Стезе.
+
+мы вырастаем из врагов:
+они глупы и подловаты,
+не стоят мести  и расплаты -
+здесь нет суда на дураков.
+
+мы вырастаем из себя:
+оболганы любым и каждым,
+то, что вчера казалось важным, 
+хороним  нынче,  не  скорбя.
+
+мы  вырастаем из Земли,
+из нашей старенькой планеты,
+пусть трудных судеб  кастаньеты
+звучат в космической пыли.
+
+ментальный  самохолокост: 
+на вшивость  целый  мир  проверив,
+в его разумность  не поверив,
+швыряем бисер  псу под хвост.</div>
+
+          <figure class="xxl-figure">
+            <img
+              class="page-image xxl-image"
+              src="/assets/images/xxl.png"
+              alt="Черно-белый рисунок к стихотворению XXL"
+            />
+          </figure>
+        </div>
+
+        <a class="back" href="/poeziya/">← Назад к поэзии</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Кошка Шрёдингера
+    </div>
+  </footer>
+</body>
+</html>
