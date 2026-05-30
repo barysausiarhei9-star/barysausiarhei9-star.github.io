@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>А КОРОНУ... — Кошка Шрёдингера</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    .a-koronu-content {
+      padding-top: 24px;
+    }
+
+    .a-koronu-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .a-koronu-figure {
+      margin: 0;
+      margin-top: 82px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .a-koronu-image {
+      width: 100%;
+      max-width: 420px;
+      max-height: 620px;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+    }
+
+    @media (max-width: 760px) {
+      .a-koronu-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .a-koronu-figure {
+        margin-top: 0;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="font-size: 28px; font-weight: bold;">Кошка Шрёдингера</div>
+      <nav style="margin-top: 10px;">
+        <a href="/">Главная</a>
+        <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
+        <a href="/proza/">Проза</a>
+        <a href="/poeziya/">Поэзия</a>
+        <a href="/about/">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>А КОРОНУ...</h1>
+      </div>
+    </section>
+
+    <section class="content a-koronu-content">
+      <div class="wrap">
+        <div class="a-koronu-layout">
+          <div class="poem a-koronu-poem">А КОРОНУ...
+
+Жил да был один король, даже - император,
+Он с солдатами дружил, как простой капрал,
+Королеве подарил фаллоимитатор,
+Потому что круглый год где-то воевал.
+
+Был отчаянным король: к северу и к югу
+Между ног коня носил  в слякоть и в мороз,
+И однажды повстречал верную подругу,
+Поначалу с ней гулял в шутку, не всерьез.
+
+Время шло, и прикипел королевским сердцем,
+Днем кокошили врага, а как ночевать - 
+То и фуги, и гавот, и бостон, и скерцо
+Пела с ночи до утра старая кровать.
+
+И забросил он войну, этот император,
+И простил своих врагов, и друзей забыл...
+А корону, говорят, фаллоимитатор
+С этих самых давних пор на себе носил.</div>
+
+          <figure class="a-koronu-figure">
+            <img
+              class="page-image a-koronu-image"
+              src="/assets/images/a-koronu.png"
+              alt="Черно-белый рисунок к стихотворению А КОРОНУ..."
+            />
+          </figure>
+        </div>
+
+        <a class="back" href="/poeziya/">← Назад к поэзии</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Кошка Шрёдингера
+    </div>
+  </footer>
+</body>
+</html>
