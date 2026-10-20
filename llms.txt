@@ -1,0 +1,31 @@
+# Кошка Шрёдингера / Schrödinger’s Cat
+
+> A bilingual Russian/English literary and philosophical website featuring poetry, articles, and a Russian-language book.
+
+Discussions of physics, time, cosmology, and philosophy present the author's reflections and hypotheses. Content availability differs between the Russian and English sections, as noted below.
+
+## Russian sections
+
+- [Кошка Шрёдингера](https://schrodingercat.org/): Russian homepage.
+- [Статьи](https://schrodingercat.org/articles/): Articles in Russian.
+- [Поэзия](https://schrodingercat.org/poeziya/): Poems in Russian; the listing spans three pages.
+- [Проза](https://schrodingercat.org/proza/): Prose section; currently contains only a heading, with no prose texts listed.
+- [Кошка Шрёдингера о теории всего в стиле «пэчворк»](https://schrodingercat.org/kniga/): Book by Елена Березина (Elena Berezina), with information and PDF links in Russian.
+- [О проекте](https://schrodingercat.org/about/): About text in Russian.
+
+## English sections
+
+- [Schrödinger’s Cat](https://schrodingercat.org/en/): English homepage; also links to Russian-language poetry and the book.
+- [Articles](https://schrodingercat.org/en/articles/): Existing English translations of articles.
+- [Poetry](https://schrodingercat.org/en/poetry/): Placeholder containing only a heading; no English poems are listed.
+- [Prose](https://schrodingercat.org/en/prose/): Prose section; currently contains only a heading, with no prose texts listed.
+- [Book](https://schrodingercat.org/en/book/): Placeholder containing only a heading; no English book translation is provided.
+- [About](https://schrodingercat.org/en/about/): About text in English.
+
+## Book PDF
+
+- [Original Russian-language PDF](https://schrodingercat.org/assets/books/koshka-shredingera.pdf): Кошка Шрёдингера о теории всего в стиле «пэчворк», by Елена Березина (Elena Berezina). The book is in Russian.
+
+## Site index
+
+- [Sitemap](https://schrodingercat.org/sitemap.xml): Public HTML page URLs, including individual articles, poems, and poetry pagination pages.
