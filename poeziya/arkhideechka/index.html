@@ -5,59 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>АРХИДЕЕЧКА — Кошка Шрёдингера</title>
   <link rel="stylesheet" href="/assets/style.css" />
-  <style>
-    .arkhideechka-content {
-      padding-top: 24px;
-    }
-
-    .arkhideechka-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(300px, 390px);
-      gap: 36px;
-      align-items: start;
-    }
-
-    .arkhideechka-figure {
-      margin: 0;
-      margin-top: 82px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .arkhideechka-image {
-      width: 100%;
-      max-width: 390px;
-      max-height: 660px;
-      height: auto;
-      object-fit: contain;
-      margin: 0;
-    }
-
-    @media (max-width: 720px) {
-      .arkhideechka-layout {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .arkhideechka-figure {
-        margin-top: 0;
-        justify-content: flex-start;
-      }
-    }
-  </style>
 </head>
-<body>
-  <header>
-    <div class="wrap">
-      <div style="font-size: 28px; font-weight: bold;">Кошка Шрёдингера</div>
-      <nav style="margin-top: 10px;">
+<body class="poetry-page">
+  <header class="site-header">
+    <div class="wrap header-row">
+      <div class="wordmark">Кошка Шрёдингера</div>
+      <nav class="site-nav" aria-label="Основная навигация">
         <a href="/">Главная</a>
         <a href="/articles/">Статьи</a>
         <a href="/kniga/">Книга</a>
         <a href="/proza/">Проза</a>
-        <a href="/poeziya/">Поэзия</a>
+        <a href="/poeziya/" aria-current="page">Поэзия</a>
         <a href="/about/">О проекте</a>
       </nav>
+      <div class="languages" aria-label="Язык">
+        <a href="/poeziya/arkhideechka/" lang="ru" hreflang="ru" aria-current="page">RU</a>
+        <span aria-hidden="true">/</span>
+        <a href="/en/poetry/" lang="en" hreflang="en" title="Английский раздел поэзии; перевод этой страницы отсутствует" aria-label="EN — Английский раздел поэзии; перевод этой страницы отсутствует">EN</a>
+      </div>
     </div>
   </header>
 
@@ -68,10 +33,10 @@
       </div>
     </section>
 
-    <section class="content arkhideechka-content">
+    <section class="content illustrated-content">
       <div class="wrap">
-        <div class="arkhideechka-layout">
-          <div class="poem arkhideechka-poem">АРХИДЕЕЧКА
+        <div class="poem-layout">
+          <div class="poem">АРХИДЕЕЧКА
 
 орхидея моя,  архидевочка!
 ясноглазая,  своенравная.
@@ -80,9 +45,9 @@
 тонконогая,  непокорная...
 мысли светлые,  кудри черные.</div>
 
-          <figure class="arkhideechka-figure">
+          <figure class="poem-art">
             <img
-              class="page-image arkhideechka-image"
+              class="page-image poem-illustration"
               src="/assets/images/arkhideechka.png"
               alt="Черно-белый рисунок к стихотворению АРХИДЕЕЧКА"
             />
@@ -94,9 +59,9 @@
     </section>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="wrap">
-      Кошка Шрёдингера
+      Кошка Шредингера
     </div>
   </footer>
 </body>

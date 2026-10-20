@@ -5,63 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ЭНДЕМИК — Кошка Шрёдингера</title>
   <link rel="stylesheet" href="/assets/style.css" />
-  <style>
-    .endemik-content {
-      padding-top: 24px;
-    }
-
-    .endemik-wrap {
-      max-width: 1040px;
-    }
-
-    .endemik-figure {
-      margin: 0;
-    }
-
-    .endemik-image {
-      width: 100%;
-      max-width: min(100%, 760px);
-      max-height: 78vh;
-      height: auto;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
-
-    @media (max-width: 860px) {
-      .endemik-content {
-        padding-top: 20px;
-      }
-    }
-  </style>
 </head>
-<body>
-  <header>
-    <div class="wrap">
-      <div style="font-size: 28px; font-weight: bold;">Кошка Шрёдингера</div>
-      <nav style="margin-top: 10px;">
+<body class="poetry-page">
+  <header class="site-header">
+    <div class="wrap header-row">
+      <div class="wordmark">Кошка Шрёдингера</div>
+      <nav class="site-nav" aria-label="Основная навигация">
         <a href="/">Главная</a>
         <a href="/articles/">Статьи</a>
         <a href="/kniga/">Книга</a>
         <a href="/proza/">Проза</a>
-        <a href="/poeziya/">Поэзия</a>
+        <a href="/poeziya/" aria-current="page">Поэзия</a>
         <a href="/about/">О проекте</a>
       </nav>
+      <div class="languages" aria-label="Язык">
+        <a href="/poeziya/endemik/" lang="ru" hreflang="ru" aria-current="page">RU</a>
+        <span aria-hidden="true">/</span>
+        <a href="/en/poetry/" lang="en" hreflang="en" title="Английский раздел поэзии; перевод этой страницы отсутствует" aria-label="EN — Английский раздел поэзии; перевод этой страницы отсутствует">EN</a>
+      </div>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="wrap endemik-wrap">
+      <div class="wrap">
         <h1>ЭНДЕМИК</h1>
       </div>
     </section>
 
-    <section class="content endemik-content">
-      <div class="wrap endemik-wrap">
-        <figure class="endemik-figure">
+    <section class="content illustrated-content">
+      <div class="wrap">
+        <figure class="poster-art">
           <img
-            class="page-image endemik-image"
+            class="page-image poster-image"
             src="/assets/images/endemik.png"
             alt="Черно-белый постер к стихотворению ЭНДЕМИК"
           />
@@ -72,9 +48,9 @@
     </section>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="wrap">
-      Кошка Шрёдингера
+      Кошка Шредингера
     </div>
   </footer>
 </body>

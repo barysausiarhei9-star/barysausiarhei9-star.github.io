@@ -28,20 +28,22 @@
     }
   </script>
 </head>
-<body>
-  <header>
-    <div class="wrap">
-      <div style="font-size: 28px; font-weight: bold;">Кошка Шредингера</div>
-      <nav style="margin-top: 10px;">
+<body class="reading-page">
+  <header class="site-header">
+    <div class="wrap header-row">
+      <div class="wordmark">Кошка Шрёдингера</div>
+      <nav class="site-nav" aria-label="Основная навигация">
         <a href="/">Главная</a>
         <a href="/articles/">Статьи</a>
-        <a href="/kniga/">Книга</a>
+        <a href="/kniga/" aria-current="page">Книга</a>
         <a href="/proza/">Проза</a>
         <a href="/poeziya/">Поэзия</a>
         <a href="/about/">О проекте</a>
       </nav>
-      <div style="margin-top: 10px;">
-        <a href="/kniga/">RU</a> | <a href="/en/book/">EN</a>
+      <div class="languages" aria-label="Язык">
+        <a href="/kniga/" lang="ru" hreflang="ru" aria-current="page">RU</a>
+        <span aria-hidden="true">/</span>
+        <a href="/en/book/" lang="en" hreflang="en">EN</a>
       </div>
     </div>
   </header>
@@ -49,7 +51,7 @@
   <main>
     <section class="hero-simple">
       <div class="wrap">
-        <h1 style="font-size: clamp(30px, 5vw, 46px); overflow-wrap: anywhere;">Кошка Шрёдингера о теории всего в стиле «пэчворк»</h1>
+        <h1>Кошка Шрёдингера о теории всего в стиле «пэчворк»</h1>
       </div>
     </section>
     <section class="content" aria-label="О книге">
@@ -62,7 +64,7 @@
     </section>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="wrap">
       Кошка Шредингера
     </div>

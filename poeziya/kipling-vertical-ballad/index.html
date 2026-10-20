@@ -5,63 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>БАЛЛАДА О КИПЛИНГЕ И ВЕРТИКАЛИ — Кошка Шредингера</title>
   <link rel="stylesheet" href="/assets/style.css" />
-  <style>
-    .kipling-vertical-ballad-content {
-      padding-top: 24px;
-    }
-
-    .kipling-vertical-ballad-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
-      gap: 36px;
-      align-items: start;
-    }
-
-    .kipling-vertical-ballad-poem {
-      white-space: pre-wrap;
-    }
-
-    .kipling-vertical-ballad-figure {
-      margin: 0;
-      margin-top: 82px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .kipling-vertical-ballad-image {
-      width: 100%;
-      max-width: 360px;
-      max-height: 520px;
-      height: auto;
-      object-fit: contain;
-      margin: 0;
-    }
-
-    @media (max-width: 720px) {
-      .kipling-vertical-ballad-layout {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .kipling-vertical-ballad-figure {
-        margin-top: 0;
-        justify-content: flex-start;
-      }
-    }
-  </style>
 </head>
-<body>
-  <header>
-    <div class="wrap">
-      <div style="font-size: 28px; font-weight: bold;">Кошка Шредингера</div>
-      <nav style="margin-top: 10px;">
+<body class="poetry-page">
+  <header class="site-header">
+    <div class="wrap header-row">
+      <div class="wordmark">Кошка Шрёдингера</div>
+      <nav class="site-nav" aria-label="Основная навигация">
         <a href="/">Главная</a>
         <a href="/articles/">Статьи</a>
         <a href="/kniga/">Книга</a>
         <a href="/proza/">Проза</a>
-        <a href="/poeziya/">Поэзия</a>
+        <a href="/poeziya/" aria-current="page">Поэзия</a>
         <a href="/about/">О проекте</a>
       </nav>
+      <div class="languages" aria-label="Язык">
+        <a href="/poeziya/kipling-vertical-ballad/" lang="ru" hreflang="ru" aria-current="page">RU</a>
+        <span aria-hidden="true">/</span>
+        <a href="/en/poetry/" lang="en" hreflang="en" title="Английский раздел поэзии; перевод этой страницы отсутствует" aria-label="EN — Английский раздел поэзии; перевод этой страницы отсутствует">EN</a>
+      </div>
     </div>
   </header>
 
@@ -72,10 +33,10 @@
       </div>
     </section>
 
-    <section class="content kipling-vertical-ballad-content">
+    <section class="content illustrated-content">
       <div class="wrap">
-        <div class="kipling-vertical-ballad-layout">
-          <div class="poem kipling-vertical-ballad-poem">БАЛЛАДА О КИПЛИНГЕ И ВЕРТИКАЛИ
+        <div class="poem-layout">
+          <div class="poem poem-indented">БАЛЛАДА О КИПЛИНГЕ И ВЕРТИКАЛИ
   
   Да, Запад есть Запад, Восток есть Восток.
   А есть еще север и юг...
@@ -128,9 +89,9 @@
   А мы посредине, мы взводим курок -
   Как врежем! Ну, заяц, держись!!!</div>
 
-          <figure class="kipling-vertical-ballad-figure">
+          <figure class="poem-art">
             <img
-              class="page-image kipling-vertical-ballad-image"
+              class="page-image poem-illustration"
               src="/assets/images/kipling-vertical-ballad.png"
               alt="Черно-белый рисунок к стихотворению БАЛЛАДА О КИПЛИНГЕ И ВЕРТИКАЛИ"
             />
@@ -142,7 +103,7 @@
     </section>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="wrap">
       Кошка Шредингера
     </div>

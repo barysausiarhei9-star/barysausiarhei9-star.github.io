@@ -5,59 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>АНТРОПОГЕННОЕ — Кошка Шрёдингера</title>
   <link rel="stylesheet" href="/assets/style.css" />
-  <style>
-    .antropogennoe-content {
-      padding-top: 24px;
-    }
-
-    .antropogennoe-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 460px);
-      gap: 36px;
-      align-items: start;
-    }
-
-    .antropogennoe-figure {
-      margin: 0;
-      margin-top: 82px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .antropogennoe-image {
-      width: 100%;
-      max-width: 460px;
-      max-height: 640px;
-      height: auto;
-      object-fit: contain;
-      margin: 0;
-    }
-
-    @media (max-width: 780px) {
-      .antropogennoe-layout {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .antropogennoe-figure {
-        margin-top: 0;
-        justify-content: flex-start;
-      }
-    }
-  </style>
 </head>
-<body>
-  <header>
-    <div class="wrap">
-      <div style="font-size: 28px; font-weight: bold;">Кошка Шрёдингера</div>
-      <nav style="margin-top: 10px;">
+<body class="poetry-page">
+  <header class="site-header">
+    <div class="wrap header-row">
+      <div class="wordmark">Кошка Шрёдингера</div>
+      <nav class="site-nav" aria-label="Основная навигация">
         <a href="/">Главная</a>
         <a href="/articles/">Статьи</a>
         <a href="/kniga/">Книга</a>
         <a href="/proza/">Проза</a>
-        <a href="/poeziya/">Поэзия</a>
+        <a href="/poeziya/" aria-current="page">Поэзия</a>
         <a href="/about/">О проекте</a>
       </nav>
+      <div class="languages" aria-label="Язык">
+        <a href="/poeziya/antropogennoe/" lang="ru" hreflang="ru" aria-current="page">RU</a>
+        <span aria-hidden="true">/</span>
+        <a href="/en/poetry/" lang="en" hreflang="en" title="Английский раздел поэзии; перевод этой страницы отсутствует" aria-label="EN — Английский раздел поэзии; перевод этой страницы отсутствует">EN</a>
+      </div>
     </div>
   </header>
 
@@ -68,19 +33,19 @@
       </div>
     </section>
 
-    <section class="content antropogennoe-content">
+    <section class="content illustrated-content">
       <div class="wrap">
-        <div class="antropogennoe-layout">
-          <div class="poem antropogennoe-poem">АНТРОПОГЕННОЕ
+        <div class="poem-layout">
+          <div class="poem">АНТРОПОГЕННОЕ
 
 даже  крик -  мощный триггер 
 смертоносных  сошедших лавин,
 тектонических  сдвигов  
 cтал причиной безумец один.</div>
 
-          <figure class="antropogennoe-figure">
+          <figure class="poem-art">
             <img
-              class="page-image antropogennoe-image"
+              class="page-image poem-illustration"
               src="/assets/images/antropogennoe.png"
               alt="Черно-белый рисунок к стихотворению АНТРОПОГЕННОЕ"
             />
@@ -92,9 +57,9 @@ cтал причиной безумец один.</div>
     </section>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="wrap">
-      Кошка Шрёдингера
+      Кошка Шредингера
     </div>
   </footer>
 </body>

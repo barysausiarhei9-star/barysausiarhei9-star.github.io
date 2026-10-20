@@ -6,20 +6,22 @@
   <title>Book — Schrödinger’s Cat</title>
   <link rel="stylesheet" href="/assets/style.css" />
 </head>
-<body>
-  <header>
-    <div class="wrap">
-      <div style="font-size: 28px; font-weight: bold;">Schrödinger’s Cat</div>
-      <nav style="margin-top: 10px;">
+<body class="reading-page">
+  <header class="site-header">
+    <div class="wrap header-row">
+      <div class="wordmark">Schrödinger’s Cat</div>
+      <nav class="site-nav" aria-label="Main navigation">
         <a href="/en/">Home</a>
         <a href="/en/articles/">Articles</a>
-        <a href="/en/book/">Book</a>
+        <a href="/en/book/" aria-current="page">Book</a>
         <a href="/en/prose/">Prose</a>
         <a href="/en/poetry/">Poetry</a>
         <a href="/en/about/">About</a>
       </nav>
-      <div style="margin-top: 10px;">
-        <a href="/kniga/">RU</a> | <a href="/en/book/">EN</a>
+      <div class="languages" aria-label="Language">
+        <a href="/kniga/" lang="ru" hreflang="ru">RU</a>
+        <span aria-hidden="true">/</span>
+        <a href="/en/book/" lang="en" hreflang="en" aria-current="page">EN</a>
       </div>
     </div>
   </header>
@@ -32,7 +34,7 @@
     </section>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="wrap">
       Schrödinger’s Cat
     </div>

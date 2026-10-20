@@ -5,67 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>А ХУЛИ — Кошка Шрёдингера</title>
   <link rel="stylesheet" href="/assets/style.css" />
-  <style>
-    .a-khuli-content {
-      padding-top: 24px;
-    }
-
-    .a-khuli-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
-      gap: 36px;
-      align-items: start;
-    }
-
-    .a-khuli-poem {
-      margin-top: -18px;
-    }
-
-    .a-khuli-figure {
-      margin: 0;
-      margin-top: 64px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .a-khuli-image {
-      width: 100%;
-      max-width: 340px;
-      max-height: 480px;
-      height: auto;
-      object-fit: contain;
-      margin: 0;
-    }
-
-    @media (max-width: 720px) {
-      .a-khuli-layout {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .a-khuli-poem {
-        margin-top: 0;
-      }
-
-      .a-khuli-figure {
-        margin-top: 0;
-        justify-content: flex-start;
-      }
-    }
-  </style>
 </head>
-<body>
-  <header>
-    <div class="wrap">
-      <div style="font-size: 28px; font-weight: bold;">Кошка Шрёдингера</div>
-      <nav style="margin-top: 10px;">
+<body class="poetry-page">
+  <header class="site-header">
+    <div class="wrap header-row">
+      <div class="wordmark">Кошка Шрёдингера</div>
+      <nav class="site-nav" aria-label="Основная навигация">
         <a href="/">Главная</a>
         <a href="/articles/">Статьи</a>
         <a href="/kniga/">Книга</a>
         <a href="/proza/">Проза</a>
-        <a href="/poeziya/">Поэзия</a>
+        <a href="/poeziya/" aria-current="page">Поэзия</a>
         <a href="/about/">О проекте</a>
       </nav>
+      <div class="languages" aria-label="Язык">
+        <a href="/poeziya/a-khuli/" lang="ru" hreflang="ru" aria-current="page">RU</a>
+        <span aria-hidden="true">/</span>
+        <a href="/en/poetry/" lang="en" hreflang="en" title="Английский раздел поэзии; перевод этой страницы отсутствует" aria-label="EN — Английский раздел поэзии; перевод этой страницы отсутствует">EN</a>
+      </div>
     </div>
   </header>
 
@@ -76,10 +33,10 @@
       </div>
     </section>
 
-    <section class="content a-khuli-content">
+    <section class="content illustrated-content">
       <div class="wrap">
-        <div class="a-khuli-layout">
-          <div class="poem a-khuli-poem">А ХУЛИ
+        <div class="poem-layout">
+          <div class="poem">А ХУЛИ
 
 
 Глаз свой зеленый, третий,
@@ -107,9 +64,9 @@
 Друг - в беде познаётся.
 Это был - тест, не тост.</div>
 
-          <figure class="a-khuli-figure">
+          <figure class="poem-art">
             <img
-              class="page-image a-khuli-image"
+              class="page-image poem-illustration"
               src="/assets/images/a-khuli-fox.png"
               alt="Черно-белый рисунок к стихотворению А ХУЛИ"
             />
@@ -121,9 +78,9 @@
     </section>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="wrap">
-      Кошка Шрёдингера
+      Кошка Шредингера
     </div>
   </footer>
 </body>
