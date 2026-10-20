@@ -1,39 +1,236 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://schrodingercat.org/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/" />
   </url>
   <url>
     <loc>https://schrodingercat.org/articles/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/" />
   </url>
   <url>
-    <loc>https://schrodingercat.org/book/</loc>
+    <loc>https://schrodingercat.org/kniga/</loc>
   </url>
   <url>
-    <loc>https://schrodingercat.org/prose/</loc>
+    <loc>https://schrodingercat.org/proza/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/proza/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/prose/" />
   </url>
   <url>
-    <loc>https://schrodingercat.org/poetry/</loc>
+    <loc>https://schrodingercat.org/poeziya/</loc>
   </url>
   <url>
     <loc>https://schrodingercat.org/about/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/about/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/about/" />
   </url>
   <url>
     <loc>https://schrodingercat.org/en/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/" />
   </url>
   <url>
     <loc>https://schrodingercat.org/en/articles/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/" />
   </url>
   <url>
     <loc>https://schrodingercat.org/en/book/</loc>
   </url>
   <url>
     <loc>https://schrodingercat.org/en/prose/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/proza/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/prose/" />
   </url>
   <url>
     <loc>https://schrodingercat.org/en/poetry/</loc>
   </url>
   <url>
     <loc>https://schrodingercat.org/en/about/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/about/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/about/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/about/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/bog-i-teoriya-sistem/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/bog-i-teoriya-sistem/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/god-and-systems-theory/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/formula-boga/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/formula-boga/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/the-formula-of-god/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/formula-of-everything-and-other-nice-things/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/formula-of-everything-and-other-nice-things/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/formula-of-everything-and-other-nice-things/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/kolchan-dlya-strel-vremeni/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/kolchan-dlya-strel-vremeni/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/quiver-of-time-arrows/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/memorandum-koshki-shredingera/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/memorandum-koshki-shredingera/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/memorandum-koshki-shredingera/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/multiplicity-of-worlds/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/multiplicity-of-worlds/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/multiplicity-of-worlds/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/prostoe-reshenie-paradoksa-bliznetsov/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/prostoe-reshenie-paradoksa-bliznetsov/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/simple-solution-to-the-twin-paradox/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/tale-of-temporal-milestones/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/tale-of-temporal-milestones/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/tale-of-temporal-milestones/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/vector-of-time-in-the-machinery-of-the-universe/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/vector-of-time-in-the-machinery-of-the-universe/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/vector-of-time-in-the-machinery-of-the-universe/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/zakon-antipodov-nobelevskaya-lektsiya/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/zakon-antipodov-nobelevskaya-lektsiya/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/zakon-antipodov-nobelevskaya-lektsiya/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/formula-of-everything-and-other-nice-things/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/formula-of-everything-and-other-nice-things/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/formula-of-everything-and-other-nice-things/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/god-and-systems-theory/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/bog-i-teoriya-sistem/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/god-and-systems-theory/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/memorandum-koshki-shredingera/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/memorandum-koshki-shredingera/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/memorandum-koshki-shredingera/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/multiplicity-of-worlds/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/multiplicity-of-worlds/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/multiplicity-of-worlds/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/quiver-of-time-arrows/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/kolchan-dlya-strel-vremeni/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/quiver-of-time-arrows/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/simple-solution-to-the-twin-paradox/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/prostoe-reshenie-paradoksa-bliznetsov/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/simple-solution-to-the-twin-paradox/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/tale-of-temporal-milestones/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/tale-of-temporal-milestones/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/tale-of-temporal-milestones/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/the-formula-of-god/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/formula-boga/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/the-formula-of-god/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/vector-of-time-in-the-machinery-of-the-universe/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/vector-of-time-in-the-machinery-of-the-universe/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/vector-of-time-in-the-machinery-of-the-universe/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/zakon-antipodov-nobelevskaya-lektsiya/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/zakon-antipodov-nobelevskaya-lektsiya/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/zakon-antipodov-nobelevskaya-lektsiya/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/a-khuli/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/a-koronu/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/a-mozhet/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/a-smysl/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/a-v-dver-stuchat/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/akh-moy-dom/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/akhvoyna/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/antropogennoe/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/arkhideechka/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/barcarola/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/benelux-cuckoo-nest/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/besame-besame-mucho/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/endemik/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/kipling-vertical-ballad/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/mad-national-idea/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/obmanutye/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/page-2/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/page-3/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/sonnet-66/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/staroobryadtsam/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/svinopas/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/tailless-apes/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/telenor/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/white-thread/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/white-white-white-verse/</loc>
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/poeziya/xxl/</loc>
   </url>
 </urlset>
