@@ -1,0 +1,573 @@
+{
+  "$schema": "https://schrodingercat.org/api/agent-feed/v1.schema.json",
+  "version": "1.0.0",
+  "entries": [
+    {
+      "id": "https://schrodingercat.org/",
+      "canonical_url": "https://schrodingercat.org/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Кошка Шрёдингера",
+      "page_type": "section_index",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/",
+      "canonical_url": "https://schrodingercat.org/articles/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Статьи — Кошка Шредингера",
+      "page_type": "section_index",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/kniga/",
+      "canonical_url": "https://schrodingercat.org/kniga/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Кошка Шрёдингера о теории всего в стиле «пэчворк»",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "resources": [
+        {
+          "id": "https://schrodingercat.org/assets/books/koshka-shredingera.pdf",
+          "url": "https://schrodingercat.org/assets/books/koshka-shredingera.pdf",
+          "language": "ru",
+          "content_type": "application/pdf",
+          "title": "Кошка Шрёдингера о теории всего в стиле «пэчворк»"
+        }
+      ]
+    },
+    {
+      "id": "https://schrodingercat.org/proza/",
+      "canonical_url": "https://schrodingercat.org/proza/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Проза — Кошка Шредингера",
+      "page_type": "placeholder",
+      "text_availability": "heading_only"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/",
+      "canonical_url": "https://schrodingercat.org/poeziya/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Поэзия — Кошка Шредингера",
+      "page_type": "section_index",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/about/",
+      "canonical_url": "https://schrodingercat.org/about/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "О проекте — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/",
+      "canonical_url": "https://schrodingercat.org/en/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "Schrödinger’s Cat",
+      "page_type": "section_index",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/",
+      "canonical_url": "https://schrodingercat.org/en/articles/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "Articles — Schrödinger’s Cat",
+      "page_type": "section_index",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/book/",
+      "canonical_url": "https://schrodingercat.org/en/book/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "Book — Schrödinger’s Cat",
+      "page_type": "placeholder",
+      "text_availability": "heading_only"
+    },
+    {
+      "id": "https://schrodingercat.org/en/prose/",
+      "canonical_url": "https://schrodingercat.org/en/prose/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "Prose — Schrödinger’s Cat",
+      "page_type": "placeholder",
+      "text_availability": "heading_only"
+    },
+    {
+      "id": "https://schrodingercat.org/en/poetry/",
+      "canonical_url": "https://schrodingercat.org/en/poetry/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "Poetry — Schrödinger’s Cat",
+      "page_type": "placeholder",
+      "text_availability": "heading_only"
+    },
+    {
+      "id": "https://schrodingercat.org/en/about/",
+      "canonical_url": "https://schrodingercat.org/en/about/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "About — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/about/",
+      "canonical_url": "https://schrodingercat.org/articles/about/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "О проекте — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/bog-i-teoriya-sistem/",
+      "canonical_url": "https://schrodingercat.org/articles/bog-i-teoriya-sistem/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Бог и теория систем — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/formula-boga/",
+      "canonical_url": "https://schrodingercat.org/articles/formula-boga/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Формула бога — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/formula-of-everything-and-other-nice-things/",
+      "canonical_url": "https://schrodingercat.org/articles/formula-of-everything-and-other-nice-things/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Формула Всего и другие ништяки — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/kolchan-dlya-strel-vremeni/",
+      "canonical_url": "https://schrodingercat.org/articles/kolchan-dlya-strel-vremeni/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Колчан для стрел времени — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/memorandum-koshki-shredingera/",
+      "canonical_url": "https://schrodingercat.org/articles/memorandum-koshki-shredingera/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Меморандум кошки Шредингера — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/multiplicity-of-worlds/",
+      "canonical_url": "https://schrodingercat.org/articles/multiplicity-of-worlds/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Множественность миров — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/prostoe-reshenie-paradoksa-bliznetsov/",
+      "canonical_url": "https://schrodingercat.org/articles/prostoe-reshenie-paradoksa-bliznetsov/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Простое решение парадокса близнецов — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/tale-of-temporal-milestones/",
+      "canonical_url": "https://schrodingercat.org/articles/tale-of-temporal-milestones/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Повесть временных вех — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/vector-of-time-in-the-machinery-of-the-universe/",
+      "canonical_url": "https://schrodingercat.org/articles/vector-of-time-in-the-machinery-of-the-universe/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Вектор времени во вселенской машинерии — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/zakon-antipodov-nobelevskaya-lektsiya/",
+      "canonical_url": "https://schrodingercat.org/articles/zakon-antipodov-nobelevskaya-lektsiya/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Закон антиподов (нобелевская лекция) — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/formula-of-everything-and-other-nice-things/",
+      "canonical_url": "https://schrodingercat.org/en/articles/formula-of-everything-and-other-nice-things/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "The Formula of Everything and Other Nice Things — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/god-and-systems-theory/",
+      "canonical_url": "https://schrodingercat.org/en/articles/god-and-systems-theory/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "God and Systems Theory — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/memorandum-koshki-shredingera/",
+      "canonical_url": "https://schrodingercat.org/en/articles/memorandum-koshki-shredingera/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "SCHRØDINGER CAT'S MEMO — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/multiplicity-of-worlds/",
+      "canonical_url": "https://schrodingercat.org/en/articles/multiplicity-of-worlds/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "Multiplicity of Worlds — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/quiver-of-time-arrows/",
+      "canonical_url": "https://schrodingercat.org/en/articles/quiver-of-time-arrows/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "Quiver of Time Arrows — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/simple-solution-to-the-twin-paradox/",
+      "canonical_url": "https://schrodingercat.org/en/articles/simple-solution-to-the-twin-paradox/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "A Simple Solution to the Twin Paradox — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/tale-of-temporal-milestones/",
+      "canonical_url": "https://schrodingercat.org/en/articles/tale-of-temporal-milestones/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "A Tale of Temporal Milestones — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/the-formula-of-god/",
+      "canonical_url": "https://schrodingercat.org/en/articles/the-formula-of-god/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "The Formula of God — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/vector-of-time-in-the-machinery-of-the-universe/",
+      "canonical_url": "https://schrodingercat.org/en/articles/vector-of-time-in-the-machinery-of-the-universe/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "The Vector of Time in the Machinery of the Universe — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/zakon-antipodov-nobelevskaya-lektsiya/",
+      "canonical_url": "https://schrodingercat.org/en/articles/zakon-antipodov-nobelevskaya-lektsiya/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "The Law of Antipodes (Nobel Lecture) — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/a-khuli/",
+      "canonical_url": "https://schrodingercat.org/poeziya/a-khuli/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "А ХУЛИ — Кошка Шрёдингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/a-koronu/",
+      "canonical_url": "https://schrodingercat.org/poeziya/a-koronu/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "А КОРОНУ... — Кошка Шрёдингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/a-mozhet/",
+      "canonical_url": "https://schrodingercat.org/poeziya/a-mozhet/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "А МОЖЕТ... — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/a-smysl/",
+      "canonical_url": "https://schrodingercat.org/poeziya/a-smysl/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "А СМЫСЛ? — Кошка Шрёдингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/a-v-dver-stuchat/",
+      "canonical_url": "https://schrodingercat.org/poeziya/a-v-dver-stuchat/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "А В ДВЕРЬ СТУЧАТ... — Кошка Шрёдингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/akh-moy-dom/",
+      "canonical_url": "https://schrodingercat.org/poeziya/akh-moy-dom/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "АХ, МОЙ ДОМ... — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/akhvoyna/",
+      "canonical_url": "https://schrodingercat.org/poeziya/akhvoyna/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "АХВОЙНА — Кошка Шрёдингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/antropogennoe/",
+      "canonical_url": "https://schrodingercat.org/poeziya/antropogennoe/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "АНТРОПОГЕННОЕ — Кошка Шрёдингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/arkhideechka/",
+      "canonical_url": "https://schrodingercat.org/poeziya/arkhideechka/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "АРХИДЕЕЧКА — Кошка Шрёдингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/barcarola/",
+      "canonical_url": "https://schrodingercat.org/poeziya/barcarola/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "БАРКАРОЛА — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/benelux-cuckoo-nest/",
+      "canonical_url": "https://schrodingercat.org/poeziya/benelux-cuckoo-nest/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "БЕНИЛЮКС - ГНЕЗДО ДЛЯ КУКУШЕК — Кошка Шрёдингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/besame-besame-mucho/",
+      "canonical_url": "https://schrodingercat.org/poeziya/besame-besame-mucho/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "БЕСАМЕ, БЕСАМЕ МУЧО... — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/endemik/",
+      "canonical_url": "https://schrodingercat.org/poeziya/endemik/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ЭНДЕМИК — Кошка Шрёдингера",
+      "page_type": "content",
+      "text_availability": "image_only",
+      "resources": [
+        {
+          "id": "https://schrodingercat.org/assets/images/endemik.png",
+          "url": "https://schrodingercat.org/assets/images/endemik.png",
+          "language": "ru",
+          "content_type": "image/png",
+          "title": "Черно-белый постер к стихотворению ЭНДЕМИК"
+        }
+      ]
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/kipling-vertical-ballad/",
+      "canonical_url": "https://schrodingercat.org/poeziya/kipling-vertical-ballad/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "БАЛЛАДА О КИПЛИНГЕ И ВЕРТИКАЛИ — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/mad-national-idea/",
+      "canonical_url": "https://schrodingercat.org/poeziya/mad-national-idea/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "БЕЗУМНАЯ (НАЦ)ИДЕЯ — Кошка Шрёдингера",
+      "page_type": "content",
+      "text_availability": "image_only",
+      "resources": [
+        {
+          "id": "https://schrodingercat.org/assets/images/mad-national-idea.png",
+          "url": "https://schrodingercat.org/assets/images/mad-national-idea.png",
+          "language": "ru",
+          "content_type": "image/png",
+          "title": "Черно-белый сатирический рисунок к стихотворению БЕЗУМНАЯ (НАЦ)ИДЕЯ"
+        }
+      ]
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/obmanutye/",
+      "canonical_url": "https://schrodingercat.org/poeziya/obmanutye/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ОБМАНУТЫЕ — Кошка Шрёдингера",
+      "page_type": "content",
+      "text_availability": "image_only",
+      "resources": [
+        {
+          "id": "https://schrodingercat.org/assets/images/obmanutye.png",
+          "url": "https://schrodingercat.org/assets/images/obmanutye.png",
+          "language": "ru",
+          "content_type": "image/png",
+          "title": "Черно-белый постер к стихотворению ОБМАНУТЫЕ"
+        }
+      ]
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/page-2/",
+      "canonical_url": "https://schrodingercat.org/poeziya/page-2/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Поэзия — Страница 2 — Кошка Шредингера",
+      "page_type": "section_index",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/page-3/",
+      "canonical_url": "https://schrodingercat.org/poeziya/page-3/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Поэзия — Страница 3 — Кошка Шрёдингера",
+      "page_type": "section_index",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/sonnet-66/",
+      "canonical_url": "https://schrodingercat.org/poeziya/sonnet-66/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "66 СОНЕТ — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/staroobryadtsam/",
+      "canonical_url": "https://schrodingercat.org/poeziya/staroobryadtsam/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "СТАРООБРЯДЦАМ — Кошка Шрёдингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/svinopas/",
+      "canonical_url": "https://schrodingercat.org/poeziya/svinopas/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "СВИНОПАС — Кошка Шрёдингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/tailless-apes/",
+      "canonical_url": "https://schrodingercat.org/poeziya/tailless-apes/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "БЕСХВОСТЫЕ ОБЕЗЬЯНЫ — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/telenor/",
+      "canonical_url": "https://schrodingercat.org/poeziya/telenor/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "TELENOR — Кошка Шрёдингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/white-thread/",
+      "canonical_url": "https://schrodingercat.org/poeziya/white-thread/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "БЕЛОЙ НИТКОЙ — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/white-white-white-verse/",
+      "canonical_url": "https://schrodingercat.org/poeziya/white-white-white-verse/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "БЕЛЫЙ, БЕЛЫЙ, БЕЛЫЙ СТИХ. — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/poeziya/xxl/",
+      "canonical_url": "https://schrodingercat.org/poeziya/xxl/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "XXL — Кошка Шрёдингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    }
+  ]
+}
