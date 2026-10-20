@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Кошка Шрёдингера</title>
+    <link>https://schrodingercat.org/</link>
+    <description>Книга Елены Березиной, поэзия и авторские размышления о мире, науке и человеке.</description>
+    <atom:link href="https://schrodingercat.org/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Кошка Шрёдингера о теории всего в стиле «пэчворк»</title>
+      <link>https://schrodingercat.org/kniga/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/kniga/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>Бог и теория систем — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/bog-i-teoriya-sistem/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/bog-i-teoriya-sistem/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>Формула бога — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/formula-boga/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/formula-boga/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>Формула Всего и другие ништяки — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/formula-of-everything-and-other-nice-things/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/formula-of-everything-and-other-nice-things/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>Колчан для стрел времени — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/kolchan-dlya-strel-vremeni/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/kolchan-dlya-strel-vremeni/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>Меморандум кошки Шредингера — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/memorandum-koshki-shredingera/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/memorandum-koshki-shredingera/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>Множественность миров — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/multiplicity-of-worlds/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/multiplicity-of-worlds/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>Простое решение парадокса близнецов — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/prostoe-reshenie-paradoksa-bliznetsov/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/prostoe-reshenie-paradoksa-bliznetsov/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>Повесть временных вех — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/tale-of-temporal-milestones/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/tale-of-temporal-milestones/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>Вектор времени во вселенской машинерии — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/vector-of-time-in-the-machinery-of-the-universe/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/vector-of-time-in-the-machinery-of-the-universe/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>Закон антиподов (нобелевская лекция) — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/zakon-antipodov-nobelevskaya-lektsiya/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/zakon-antipodov-nobelevskaya-lektsiya/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>The Formula of Everything and Other Nice Things — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/formula-of-everything-and-other-nice-things/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/formula-of-everything-and-other-nice-things/</guid>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>God and Systems Theory — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/god-and-systems-theory/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/god-and-systems-theory/</guid>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>SCHRØDINGER CAT'S MEMO — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/memorandum-koshki-shredingera/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/memorandum-koshki-shredingera/</guid>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Multiplicity of Worlds — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/multiplicity-of-worlds/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/multiplicity-of-worlds/</guid>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Quiver of Time Arrows — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/quiver-of-time-arrows/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/quiver-of-time-arrows/</guid>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>A Simple Solution to the Twin Paradox — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/simple-solution-to-the-twin-paradox/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/simple-solution-to-the-twin-paradox/</guid>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>A Tale of Temporal Milestones — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/tale-of-temporal-milestones/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/tale-of-temporal-milestones/</guid>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Formula of God — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/the-formula-of-god/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/the-formula-of-god/</guid>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Vector of Time in the Machinery of the Universe — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/vector-of-time-in-the-machinery-of-the-universe/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/vector-of-time-in-the-machinery-of-the-universe/</guid>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Law of Antipodes (Nobel Lecture) — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/zakon-antipodov-nobelevskaya-lektsiya/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/zakon-antipodov-nobelevskaya-lektsiya/</guid>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>А ХУЛИ — Кошка Шрёдингера</title>
+      <link>https://schrodingercat.org/poeziya/a-khuli/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/a-khuli/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>А КОРОНУ... — Кошка Шрёдингера</title>
+      <link>https://schrodingercat.org/poeziya/a-koronu/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/a-koronu/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>А МОЖЕТ... — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/poeziya/a-mozhet/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/a-mozhet/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>А СМЫСЛ? — Кошка Шрёдингера</title>
+      <link>https://schrodingercat.org/poeziya/a-smysl/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/a-smysl/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>А В ДВЕРЬ СТУЧАТ... — Кошка Шрёдингера</title>
+      <link>https://schrodingercat.org/poeziya/a-v-dver-stuchat/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/a-v-dver-stuchat/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>АХ, МОЙ ДОМ... — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/poeziya/akh-moy-dom/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/akh-moy-dom/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>АХВОЙНА — Кошка Шрёдингера</title>
+      <link>https://schrodingercat.org/poeziya/akhvoyna/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/akhvoyna/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>АНТРОПОГЕННОЕ — Кошка Шрёдингера</title>
+      <link>https://schrodingercat.org/poeziya/antropogennoe/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/antropogennoe/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>АРХИДЕЕЧКА — Кошка Шрёдингера</title>
+      <link>https://schrodingercat.org/poeziya/arkhideechka/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/arkhideechka/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>БАРКАРОЛА — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/poeziya/barcarola/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/barcarola/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>БЕНИЛЮКС - ГНЕЗДО ДЛЯ КУКУШЕК — Кошка Шрёдингера</title>
+      <link>https://schrodingercat.org/poeziya/benelux-cuckoo-nest/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/benelux-cuckoo-nest/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>БЕСАМЕ, БЕСАМЕ МУЧО... — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/poeziya/besame-besame-mucho/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/besame-besame-mucho/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>ЭНДЕМИК — Кошка Шрёдингера</title>
+      <link>https://schrodingercat.org/poeziya/endemik/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/endemik/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>БАЛЛАДА О КИПЛИНГЕ И ВЕРТИКАЛИ — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/poeziya/kipling-vertical-ballad/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/kipling-vertical-ballad/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>БЕЗУМНАЯ (НАЦ)ИДЕЯ — Кошка Шрёдингера</title>
+      <link>https://schrodingercat.org/poeziya/mad-national-idea/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/mad-national-idea/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>ОБМАНУТЫЕ — Кошка Шрёдингера</title>
+      <link>https://schrodingercat.org/poeziya/obmanutye/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/obmanutye/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>66 СОНЕТ — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/poeziya/sonnet-66/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/sonnet-66/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>СТАРООБРЯДЦАМ — Кошка Шрёдингера</title>
+      <link>https://schrodingercat.org/poeziya/staroobryadtsam/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/staroobryadtsam/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>СВИНОПАС — Кошка Шрёдингера</title>
+      <link>https://schrodingercat.org/poeziya/svinopas/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/svinopas/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>БЕСХВОСТЫЕ ОБЕЗЬЯНЫ — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/poeziya/tailless-apes/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/tailless-apes/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>TELENOR — Кошка Шрёдингера</title>
+      <link>https://schrodingercat.org/poeziya/telenor/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/telenor/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>БЕЛОЙ НИТКОЙ — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/poeziya/white-thread/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/white-thread/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>БЕЛЫЙ, БЕЛЫЙ, БЕЛЫЙ СТИХ. — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/poeziya/white-white-white-verse/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/white-white-white-verse/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>XXL — Кошка Шрёдингера</title>
+      <link>https://schrodingercat.org/poeziya/xxl/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/poeziya/xxl/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+  </channel>
+</rss>
