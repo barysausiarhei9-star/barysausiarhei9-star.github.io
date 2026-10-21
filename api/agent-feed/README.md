@@ -65,6 +65,12 @@ Russian PDF and three Russian poem posters.
 
 ## Validation and maintenance
 
+The reviewed metadata now lives in [`publication/catalog.json`](../../publication/catalog.json).
+Use the [local publication generator](../../publication/README.md) to check or
+explicitly regenerate the sitemap, Agent Feed and RSS together. It defaults to
+read-only checking, validates against this unchanged schema and existing
+HTML/media, and requires `--write` to modify those three output files.
+
 For an update, parse both JSON files and validate the feed against the
 versioned schema. The schema checks shape, allowed values and availability
 constraints. Also check these repository-level invariants, which JSON Schema

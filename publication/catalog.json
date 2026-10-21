@@ -1,0 +1,578 @@
+{
+  "format_version": 1,
+  "site_url": "https://schrodingercat.org",
+  "rss_channel": {
+    "title": "Кошка Шрёдингера",
+    "link": "https://schrodingercat.org/",
+    "description": "Книга Елены Березиной, поэзия и авторские размышления о мире, науке и человеке.",
+    "self_url": "https://schrodingercat.org/feed.xml"
+  },
+  "alternate_groups": [
+    {
+      "ru": "/",
+      "en": "/en/"
+    },
+    {
+      "ru": "/articles/",
+      "en": "/en/articles/"
+    },
+    {
+      "ru": "/proza/",
+      "en": "/en/prose/"
+    },
+    {
+      "ru": "/about/",
+      "en": "/en/about/"
+    },
+    {
+      "ru": "/articles/bog-i-teoriya-sistem/",
+      "en": "/en/articles/god-and-systems-theory/"
+    },
+    {
+      "ru": "/articles/formula-boga/",
+      "en": "/en/articles/the-formula-of-god/"
+    },
+    {
+      "ru": "/articles/formula-of-everything-and-other-nice-things/",
+      "en": "/en/articles/formula-of-everything-and-other-nice-things/"
+    },
+    {
+      "ru": "/articles/kolchan-dlya-strel-vremeni/",
+      "en": "/en/articles/quiver-of-time-arrows/"
+    },
+    {
+      "ru": "/articles/memorandum-koshki-shredingera/",
+      "en": "/en/articles/memorandum-koshki-shredingera/"
+    },
+    {
+      "ru": "/articles/multiplicity-of-worlds/",
+      "en": "/en/articles/multiplicity-of-worlds/"
+    },
+    {
+      "ru": "/articles/prostoe-reshenie-paradoksa-bliznetsov/",
+      "en": "/en/articles/simple-solution-to-the-twin-paradox/"
+    },
+    {
+      "ru": "/articles/tale-of-temporal-milestones/",
+      "en": "/en/articles/tale-of-temporal-milestones/"
+    },
+    {
+      "ru": "/articles/vector-of-time-in-the-machinery-of-the-universe/",
+      "en": "/en/articles/vector-of-time-in-the-machinery-of-the-universe/"
+    },
+    {
+      "ru": "/articles/zakon-antipodov-nobelevskaya-lektsiya/",
+      "en": "/en/articles/zakon-antipodov-nobelevskaya-lektsiya/"
+    }
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "title": "Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/articles/",
+      "title": "Статьи — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/kniga/",
+      "title": "Кошка Шрёдингера о теории всего в стиле «пэчворк»",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "resources": [
+        {
+          "id": "https://schrodingercat.org/assets/books/koshka-shredingera.pdf",
+          "url": "https://schrodingercat.org/assets/books/koshka-shredingera.pdf",
+          "language": "ru",
+          "content_type": "application/pdf",
+          "title": "Кошка Шрёдингера о теории всего в стиле «пэчворк»"
+        }
+      ]
+    },
+    {
+      "path": "/proza/",
+      "title": "Проза — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "placeholder",
+      "text_availability": "heading_only",
+      "rss": false
+    },
+    {
+      "path": "/poeziya/",
+      "title": "Поэзия — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/about/",
+      "title": "О проекте — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/en/",
+      "title": "Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/en/articles/",
+      "title": "Articles — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/en/book/",
+      "title": "Book — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "placeholder",
+      "text_availability": "heading_only",
+      "rss": false
+    },
+    {
+      "path": "/en/prose/",
+      "title": "Prose — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "placeholder",
+      "text_availability": "heading_only",
+      "rss": false
+    },
+    {
+      "path": "/en/poetry/",
+      "title": "Poetry — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "placeholder",
+      "text_availability": "heading_only",
+      "rss": false
+    },
+    {
+      "path": "/en/about/",
+      "title": "About — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/articles/about/",
+      "title": "О проекте — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/articles/bog-i-teoriya-sistem/",
+      "title": "Бог и теория систем — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/articles/formula-boga/",
+      "title": "Формула бога — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/articles/formula-of-everything-and-other-nice-things/",
+      "title": "Формула Всего и другие ништяки — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/articles/kolchan-dlya-strel-vremeni/",
+      "title": "Колчан для стрел времени — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/articles/memorandum-koshki-shredingera/",
+      "title": "Меморандум кошки Шредингера — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/articles/multiplicity-of-worlds/",
+      "title": "Множественность миров — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/articles/prostoe-reshenie-paradoksa-bliznetsov/",
+      "title": "Простое решение парадокса близнецов — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/articles/tale-of-temporal-milestones/",
+      "title": "Повесть временных вех — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/articles/vector-of-time-in-the-machinery-of-the-universe/",
+      "title": "Вектор времени во вселенской машинерии — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/articles/zakon-antipodov-nobelevskaya-lektsiya/",
+      "title": "Закон антиподов (нобелевская лекция) — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/formula-of-everything-and-other-nice-things/",
+      "title": "The Formula of Everything and Other Nice Things — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/god-and-systems-theory/",
+      "title": "God and Systems Theory — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/memorandum-koshki-shredingera/",
+      "title": "SCHRØDINGER CAT'S MEMO — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/multiplicity-of-worlds/",
+      "title": "Multiplicity of Worlds — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/quiver-of-time-arrows/",
+      "title": "Quiver of Time Arrows — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/simple-solution-to-the-twin-paradox/",
+      "title": "A Simple Solution to the Twin Paradox — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/tale-of-temporal-milestones/",
+      "title": "A Tale of Temporal Milestones — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/the-formula-of-god/",
+      "title": "The Formula of God — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/vector-of-time-in-the-machinery-of-the-universe/",
+      "title": "The Vector of Time in the Machinery of the Universe — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/zakon-antipodov-nobelevskaya-lektsiya/",
+      "title": "The Law of Antipodes (Nobel Lecture) — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/a-khuli/",
+      "title": "А ХУЛИ — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/a-koronu/",
+      "title": "А КОРОНУ... — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/a-mozhet/",
+      "title": "А МОЖЕТ... — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/a-smysl/",
+      "title": "А СМЫСЛ? — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/a-v-dver-stuchat/",
+      "title": "А В ДВЕРЬ СТУЧАТ... — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/akh-moy-dom/",
+      "title": "АХ, МОЙ ДОМ... — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/akhvoyna/",
+      "title": "АХВОЙНА — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/antropogennoe/",
+      "title": "АНТРОПОГЕННОЕ — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/arkhideechka/",
+      "title": "АРХИДЕЕЧКА — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/barcarola/",
+      "title": "БАРКАРОЛА — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/benelux-cuckoo-nest/",
+      "title": "БЕНИЛЮКС - ГНЕЗДО ДЛЯ КУКУШЕК — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/besame-besame-mucho/",
+      "title": "БЕСАМЕ, БЕСАМЕ МУЧО... — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/endemik/",
+      "title": "ЭНДЕМИК — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "image_only",
+      "rss": true,
+      "resources": [
+        {
+          "id": "https://schrodingercat.org/assets/images/endemik.png",
+          "url": "https://schrodingercat.org/assets/images/endemik.png",
+          "language": "ru",
+          "content_type": "image/png",
+          "title": "Черно-белый постер к стихотворению ЭНДЕМИК"
+        }
+      ]
+    },
+    {
+      "path": "/poeziya/kipling-vertical-ballad/",
+      "title": "БАЛЛАДА О КИПЛИНГЕ И ВЕРТИКАЛИ — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/mad-national-idea/",
+      "title": "БЕЗУМНАЯ (НАЦ)ИДЕЯ — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "image_only",
+      "rss": true,
+      "resources": [
+        {
+          "id": "https://schrodingercat.org/assets/images/mad-national-idea.png",
+          "url": "https://schrodingercat.org/assets/images/mad-national-idea.png",
+          "language": "ru",
+          "content_type": "image/png",
+          "title": "Черно-белый сатирический рисунок к стихотворению БЕЗУМНАЯ (НАЦ)ИДЕЯ"
+        }
+      ]
+    },
+    {
+      "path": "/poeziya/obmanutye/",
+      "title": "ОБМАНУТЫЕ — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "image_only",
+      "rss": true,
+      "resources": [
+        {
+          "id": "https://schrodingercat.org/assets/images/obmanutye.png",
+          "url": "https://schrodingercat.org/assets/images/obmanutye.png",
+          "language": "ru",
+          "content_type": "image/png",
+          "title": "Черно-белый постер к стихотворению ОБМАНУТЫЕ"
+        }
+      ]
+    },
+    {
+      "path": "/poeziya/page-2/",
+      "title": "Поэзия — Страница 2 — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/poeziya/page-3/",
+      "title": "Поэзия — Страница 3 — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/poeziya/sonnet-66/",
+      "title": "66 СОНЕТ — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/staroobryadtsam/",
+      "title": "СТАРООБРЯДЦАМ — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/svinopas/",
+      "title": "СВИНОПАС — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/tailless-apes/",
+      "title": "БЕСХВОСТЫЕ ОБЕЗЬЯНЫ — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/telenor/",
+      "title": "TELENOR — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/white-thread/",
+      "title": "БЕЛОЙ НИТКОЙ — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/white-white-white-verse/",
+      "title": "БЕЛЫЙ, БЕЛЫЙ, БЕЛЫЙ СТИХ. — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/poeziya/xxl/",
+      "title": "XXL — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    }
+  ]
+}
