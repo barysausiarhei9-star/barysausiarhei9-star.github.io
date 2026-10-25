@@ -1,7 +1,7 @@
 # Local publication catalog (M2.2)
 
 `catalog.json` is the single reviewed metadata source for `sitemap.xml`,
-`api/agent-feed/v1.json`, `feed.xml` and `assets/search-index.json`. The local generator has no deployment
+`api/agent-feed/v1.json`, `feed.xml`, `assets/search-index.json` and `assets/search-index-en.json`. The local generator has no deployment
 integration. HTML and media remain independently authored source files.
 
 The catalog was seeded directly from the verified M1 artifacts at commit
@@ -89,14 +89,15 @@ The existing Agent Feed schema, HTML, literary text, assets, both PDFs,
 
 ## Static full-text search
 
-The same `--write` command rebuilds `assets/search-index.json`; `--check`
+The same `--write` command rebuilds `assets/search-index.json` (Russian) and
+`assets/search-index-en.json` (English); `--check`
 detects stale text as well as publication metadata drift. No deployment,
 background job, network access, OCR or PDF extraction is added. Keep the
 generated index in the reviewed local publication diff after editing HTML.
 
-The index includes only catalog `content` pages with `language="ru"`, after
+Each index includes only catalog `content` pages with its own language (`ru` or `en`), after
 all existing HTML/resource/schema checks pass. Titles come from the verified
-catalog. The current inventory is 65 Russian entries and zero English entries.
+catalog. The current inventory is 65 Russian entries and 11 English entries.
 Text comes only from visible main content, excluding primary headings already
 represented by titles, navigation, back links, novel author labels, footers,
 scripts, forms and artwork captions. Image-only works have searchable titles
@@ -113,6 +114,11 @@ matches; canonical URL breaks ties. Snippets are limited to 220 source
 characters plus ellipses and rendered using text nodes. There is no stemming,
 typo correction or translation. The index is fetched
 once on the first query; searching then runs locally in the browser.
+
+The English `/en/search/` interface shares the same search logic and styles,
+with English status messages and its separate index. Both search routes appear
+in the sitemap and Agent Feed as section indexes, and are excluded from RSS
+and searchable content. English navigation links to `/en/search/` throughout.
 
 Focused checks (Node 18+ for the browser search functions):
 

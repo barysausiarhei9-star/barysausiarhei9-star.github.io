@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search — Schrödinger’s Cat</title>
+  <link rel="canonical" href="https://schrodingercat.org/en/search/" />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="/assets/search.css" />
+  <script src="/assets/search.js" defer></script>
+</head>
+<body class="reading-page search-page">
+  <header class="site-header">
+    <div class="wrap header-row">
+      <div class="wordmark">Schrödinger’s Cat</div>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="/en/">Home</a>
+        <a href="/en/articles/">Articles</a>
+        <a href="/en/book/">Book</a>
+        <a href="/en/prose/">Prose</a>
+        <a href="/en/poetry/">Poetry</a>
+        <a href="/en/about/">About</a>
+        <a href="/en/search/" aria-current="page">Search</a>
+      </nav>
+      <div class="languages" aria-label="Language">
+        <a href="/search/" lang="ru" hreflang="ru">RU</a>
+        <span aria-hidden="true">/</span>
+        <a href="/en/search/" lang="en" hreflang="en" aria-current="page">EN</a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="wrap">
+      <h1>Search</h1>
+      <p class="search-intro">Search published English titles and available text.</p>
+      <form id="search-form" class="search-form" role="search" action="/en/search/" method="get">
+        <label for="search-query">What would you like to find?</label>
+        <div class="search-controls">
+          <input id="search-query" name="q" type="search" aria-describedby="search-help" placeholder="Title or words from the text" />
+          <button class="button" type="submit">Search</button>
+        </div>
+      </form>
+      <p id="search-help" class="search-help">You can enter part of a word. Use quotation marks for an exact phrase. Text inside images and PDFs is not searched.</p>
+      <p id="search-status" class="search-status" role="status" aria-live="polite">Enter a title or words from the text.</p>
+      <noscript><p>Enable JavaScript in your browser to search.</p></noscript>
+      <ol id="search-results" class="search-results" aria-label="Search results"></ol>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">Schrödinger’s Cat</div>
+  </footer>
+</body>
+</html>

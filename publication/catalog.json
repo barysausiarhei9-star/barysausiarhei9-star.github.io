@@ -813,6 +813,14 @@
       "page_type": "section_index",
       "text_availability": "html_text",
       "rss": false
+    },
+    {
+      "path": "/en/search/",
+      "title": "Search — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
     }
   ]
 }

@@ -47,11 +47,11 @@ class SearchText(HTMLParser):
         return re.sub(r"\s+", " ", "".join(self.parts)).strip()
 
 
-def render_search(root, catalog):
+def render_search(root, catalog, language="ru"):
     pages, seen = [], set()
     # Stable path order chooses a repeatable canonical result for identical bodies.
     for page in sorted(catalog["pages"], key=lambda p: p["path"]):
-        if page["page_type"] != "content" or page["language"] != "ru":
+        if page["page_type"] != "content" or page["language"] != language:
             continue
         body = ""
         if page["text_availability"] == "html_text":

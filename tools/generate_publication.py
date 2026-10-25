@@ -11,7 +11,8 @@ from xml.etree import ElementTree as ET
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUTS = ("sitemap.xml", "api/agent-feed/v1.json", "feed.xml", "assets/search-index.json")
+OUTPUTS = ("sitemap.xml", "api/agent-feed/v1.json", "feed.xml", "assets/search-index.json",
+           "assets/search-index-en.json")
 SITE = "https://schrodingercat.org"
 SCHEMA_URL = SITE + "/api/agent-feed/v1.schema.json"
 VOID = set("area base br col embed hr img input link meta param source track wbr".split())
@@ -287,6 +288,7 @@ def render(root=ROOT):
     ET.fromstring(outputs["sitemap.xml"])
     ET.fromstring(outputs["feed.xml"])
     outputs["assets/search-index.json"] = render_search(root, catalog)
+    outputs["assets/search-index-en.json"] = render_search(root, catalog, "en")
     return outputs
 
 
@@ -302,7 +304,7 @@ def run(root=ROOT, write=False):
     if different:
         print("FAIL: publication outputs differ: " + ", ".join(different), file=sys.stderr)
         return 1
-    print("PASS: catalog, HTML, resources and schema valid; all 4 outputs match (read-only)")
+    print("PASS: catalog, HTML, resources and schema valid; all 5 outputs match (read-only)")
     return 0
 
 

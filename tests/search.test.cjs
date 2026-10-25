@@ -5,6 +5,27 @@ const { join } = require("node:path");
 const { search, snippet, renderResults } = require("../assets/search.js");
 const { pages } = JSON.parse(readFileSync(join(__dirname, "../assets/search-index.json"), "utf8"));
 const url = path => "https://schrodingercat.org" + path;
+const english = JSON.parse(readFileSync(join(__dirname, "../assets/search-index-en.json"), "utf8")).pages;
+
+test("English titles and available bodies are searchable with language isolation", () => {
+  assert.equal(english.length, 11);
+  assert.equal(search(english, "THE FORMULA OF GOD")[0].url, url("/en/articles/the-formula-of-god/"));
+  assert.ok(search(english, '"information possessing a binary code"').some(p =>
+    p.url === url("/en/articles/the-formula-of-god/")));
+  for (const page of english) {
+    assert.equal(page.language, "en");
+    assert.ok(page.url.startsWith(url("/en/")));
+    assert.ok(search(english, page.title).some(p => p.url === page.url));
+    const words = page.text.split(/\s+/).slice(0, 8).join(" ").replaceAll('"', '');
+    assert.ok(search(english, words).some(p => p.url === page.url));
+  }
+  assert.deepEqual(search(english, "ФОРМУЛА БОГА"), []);
+  assert.deepEqual(search(pages, "information possessing a binary code"), []);
+  assert.deepEqual(search(english, ""), []);
+  assert.deepEqual(search(english, "unfindablequeryxyz"), []);
+  assert.ok(search(pages, "cat").every(p => p.language === "ru"));
+  assert.equal(snippet("", "", "No body text."), "No body text.");
+});
 
 test("Russian title, case, Cyrillic partial text, ё/е and title relevance", () => {
   assert.equal(search(pages, "ФОРМУЛА БОГА")[0].url, url("/articles/formula-boga/"));

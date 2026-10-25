@@ -19,8 +19,8 @@
     }).sort((a, b) => b.score - a.score || (a.url < b.url ? -1 : a.url > b.url ? 1 : 0));
   }
 
-  function snippet(text, query) {
-    if (!text) return "Текст произведения представлен изображением. Поиск доступен по названию.";
+  function snippet(text, query, emptyText) {
+    if (!text) return emptyText || "Текст произведения представлен изображением. Поиск доступен по названию.";
     const terms = normalize(query).match(/[^\s"]+/g) || [];
     const positions = terms.map(term => normalize(text).indexOf(term)).filter(i => i >= 0);
     let start = Math.max(0, (positions.length ? Math.min(...positions) : 0) - 60);
@@ -32,7 +32,7 @@
     return (start ? "…" : "") + text.slice(start, end).trim() + (end < text.length ? "…" : "");
   }
 
-  function renderResults(document, container, results, query) {
+  function renderResults(document, container, results, query, emptyText) {
     container.replaceChildren();
     for (const page of results) {
       const item = document.createElement("li");
@@ -42,7 +42,7 @@
       link.textContent = page.title;
       const excerpt = document.createElement("p");
       // Text nodes escape both literary text and queries; never interpolate HTML.
-      excerpt.textContent = snippet(page.text, query);
+      excerpt.textContent = snippet(page.text, query, emptyText);
       heading.append(link);
       item.append(heading, excerpt);
       container.append(item);
@@ -55,6 +55,15 @@
   if (typeof document === "undefined") return;
   const form = document.getElementById("search-form");
   if (!form) return;
+  const english = document.documentElement.lang === "en";
+  const messages = english ? {
+    empty: "Enter a title or words from the text.",
+    loading: "Searching…",
+    found: count => `Found: ${count}`,
+    none: "No results. Try different words or part of a word.",
+    error: "Could not load search. Please try again.",
+    noText: "Body text is unavailable. Search is available by title."
+  } : null;
   const input = document.getElementById("search-query");
   const status = document.getElementById("search-status");
   const container = document.getElementById("search-results");
@@ -70,24 +79,24 @@
     history.replaceState(null, "", url);
     container.replaceChildren();
     if (!query) {
-      status.textContent = "Введите название или слова из текста.";
+      status.textContent = messages ? messages.empty : "Введите название или слова из текста.";
       return;
     }
-    status.textContent = "Поиск…";
+    status.textContent = messages ? messages.loading : "Поиск…";
     try {
-      if (!index) index = fetch("/assets/search-index.json").then(response => {
+      if (!index) index = fetch(english ? "/assets/search-index-en.json" : "/assets/search-index.json").then(response => {
         if (!response.ok) throw new Error("Index unavailable");
         return response.json();
       });
       const data = await index;
       if (current !== revision) return;
       const results = search(data.pages, query);
-      renderResults(document, container, results, query);
-      status.textContent = results.length ? `Найдено: ${results.length}` :
+      renderResults(document, container, results, query, messages && messages.noText);
+      status.textContent = messages ? (results.length ? messages.found(results.length) : messages.none) : results.length ? `Найдено: ${results.length}` :
         "Ничего не найдено. Попробуйте другие слова или часть слова.";
     } catch {
       index = null;
-      if (current === revision) status.textContent = "Не удалось загрузить поиск. Повторите попытку.";
+      if (current === revision) status.textContent = messages ? messages.error : "Не удалось загрузить поиск. Повторите попытку.";
     }
   }
   form.addEventListener("submit", event => {

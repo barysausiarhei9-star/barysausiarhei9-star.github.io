@@ -838,6 +838,15 @@
       "title": "Поиск — Кошка Шрёдингера",
       "page_type": "section_index",
       "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/search/",
+      "canonical_url": "https://schrodingercat.org/en/search/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "Search — Schrödinger’s Cat",
+      "page_type": "section_index",
+      "text_availability": "html_text"
     }
   ]
 }

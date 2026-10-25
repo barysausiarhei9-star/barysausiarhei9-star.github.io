@@ -60,6 +60,34 @@ class SearchIndexTests(unittest.TestCase):
         self.assertEqual({p["language"] for p in self.pages}, {"ru"})
         self.assertTrue(english.isdisjoint(p["url"] for p in self.pages))
 
+    def test_english_inventory_language_isolation_and_determinism(self):
+        data = render_search(generator.ROOT, self.catalog, "en")
+        pages = json.loads(data)["pages"]
+        expected = {generator.SITE + p["path"] for p in self.catalog["pages"]
+                    if p["language"] == "en" and p["page_type"] == "content"}
+        self.assertEqual(len(pages), 11)
+        self.assertEqual({p["url"] for p in pages}, expected)
+        self.assertEqual({p["language"] for p in pages}, {"en"})
+        self.assertTrue(all(p["text"] for p in pages))
+        self.assertTrue(expected.isdisjoint(p["url"] for p in self.pages))
+        shuffled = dict(self.catalog, pages=list(reversed(self.catalog["pages"])))
+        self.assertEqual(data, render_search(generator.ROOT, shuffled, "en"))
+        self.assertEqual(data, (generator.ROOT / "assets/search-index-en.json").read_bytes())
+        self.assertFalse(data.startswith(b"\xef\xbb\xbf"))
+        self.assertNotIn(b"\r", data)
+
+    def test_search_routes_publication_and_rss(self):
+        outputs = generator.render()
+        from xml.etree import ElementTree as ET
+        rss_links = {item.findtext("link") for item in ET.fromstring(outputs["feed.xml"]).findall("channel/item")}
+        feed = json.loads(outputs["api/agent-feed/v1.json"])
+        for path in ("/search/", "/en/search/"):
+            url = generator.SITE + path
+            self.assertNotIn(url, rss_links)
+            self.assertIn(url.encode(), outputs["sitemap.xml"])
+            entry = next(e for e in feed["entries"] if e["canonical_url"] == url)
+            self.assertEqual(entry["page_type"], "section_index")
+
     def test_duplicate_bodies_and_noncontent_pages_are_excluded(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -88,6 +116,9 @@ class SearchIndexTests(unittest.TestCase):
             if page["language"] == "ru":
                 self.assertEqual(sum(a.get("href") == "/search/" for a in html.matching("a")),
                                  2 if page["path"] == "/search/" else 1)
+            else:
+                nav = [a for a in html.matching("a") if a.get("href") == "/en/search/"]
+                self.assertEqual(len(nav), 2 if page["path"] == "/en/search/" else 1)
             for tag in ("a", "link", "script", "img"):
                 for attrs in html.matching(tag):
                     href = attrs.get("href", attrs.get("src", ""))

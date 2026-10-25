@@ -78,8 +78,46 @@ async function main() {
       assert.equal(await page.locator("h1").textContent(), "Формула бога");
       await page.locator('.site-nav a[href="/search/"]').click();
       await page.waitForURL("https://schrodingercat.org/search/");
+      const englishLoads = [];
+      page.on("request", request => {
+        if (/\/assets\/search-index.*\.json$/.test(request.url())) englishLoads.push(request.url());
+      });
+      await page.goto(base + "/en/search/");
+      const englishInput = page.getByLabel("What would you like to find?");
+      assert.equal(await status.textContent(), "Enter a title or words from the text.");
+      assert.deepEqual(englishLoads, []);
+      await noOverflow();
+      const englishNav = page.locator('.site-nav a[href="/en/search/"]');
+      assert.ok((await englishNav.boundingBox()).height >= 44);
+      await englishInput.fill("THE FORMULA OF GOD");
+      await page.getByRole("button", { name: "Search", exact: true }).click();
+      await page.waitForFunction(() => document.querySelector("#search-status").textContent.startsWith("Found:"));
+      assert.equal(await page.locator("#search-results a").first().getAttribute("href"),
+        "https://schrodingercat.org/en/articles/the-formula-of-god/");
+      assert.ok((await page.locator("#search-results a").evaluateAll(links => links.map(a => a.href)))
+        .every(url => url.startsWith("https://schrodingercat.org/en/")));
+      await noOverflow();
+      await page.screenshot({ path: path.join(os.tmpdir(), `schrodinger-search-en-${width}.png`), fullPage: true });
+      await englishInput.fill('"information possessing a binary code"');
+      await page.waitForFunction(() => document.querySelector("#search-status").textContent === "Found: 1");
+      for (const query of ["ФОРМУЛА БОГА", "unfindablequeryxyz"]) {
+        await englishInput.fill(query);
+        await page.waitForFunction(() => document.querySelector("#search-status").textContent.startsWith("No results."));
+        assert.equal(await page.locator("#search-results li").count(), 0);
+      }
+      await englishInput.fill("");
+      await page.waitForFunction(() => document.querySelector("#search-status").textContent.startsWith("Enter"));
+      assert.equal(englishLoads.length, 1);
+      assert.ok(englishLoads[0].endsWith("/assets/search-index-en.json"));
+      await page.goto(base + "/en/search/?q=" + encodeURIComponent("information possessing a binary code"));
+      await page.waitForFunction(() => document.querySelector("#search-status").textContent === "Found: 1");
+      await page.locator("#search-results a").click();
+      await page.waitForURL("https://schrodingercat.org/en/articles/the-formula-of-god/");
+      assert.equal(await page.locator("h1").textContent(), "The Formula of God");
+      await page.locator('.site-nav a[href="/en/search/"]').click();
+      await page.waitForURL("https://schrodingercat.org/en/search/");
       await context.close();
-      console.log(`PASS: ${width}px layout, search, empty state, canonical links and navigation`);
+      console.log(`PASS: RU/EN ${width}px layout, independent indexes, search, empty states, canonical links and navigation`);
     }
     const context = await browser.newContext();
     const page = await context.newPage();
