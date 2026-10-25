@@ -25,6 +25,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install publication validator
+        run: python -m pip install -r publication/requirements.txt
+
+      - name: Check publication outputs (read-only)
+        run: python -B tools/generate_publication.py --check
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 

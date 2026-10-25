@@ -4,6 +4,7 @@ import copy
 import hashlib
 import json
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -47,6 +48,7 @@ class PublicationTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
         files = {"publication/catalog.json", "api/agent-feed/v1.schema.json",
+                 "tools/generate_publication.py", "tools/search_index.py",
                  *generator.OUTPUTS, *self.pdfs}
         for page in self.catalog["pages"]:
             files.add(page["path"].lstrip("/") + "index.html")
@@ -66,6 +68,106 @@ class PublicationTests(unittest.TestCase):
         with self.assertRaises((ValueError, OSError, SchemaError, ValidationError, Unresolvable)):
             generator.run(self.root, write=True)
         self.assertEqual(snapshot(self.root), before)
+
+    def cli(self, mode):
+        return subprocess.run(
+            [sys.executable, "-B", "tools/generate_publication.py", mode],
+            cwd=self.root, capture_output=True, text=True, encoding="utf-8", check=False)
+
+    def check_cli_rejects_without_writes(self, *names):
+        before = snapshot(self.root)
+        result = self.cli("--check")
+        self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+        for name in names:
+            self.assertIn(name, result.stderr)
+        self.assertEqual(snapshot(self.root), before)
+
+    def new_publication(self, language, rss):
+        path = ("/en/articles/" if language == "en" else "/articles/")
+        path += "m2-probe-" + ("rss" if rss else "no-rss") + "/"
+        title = "M2 English probe" if language == "en" else "Пробная публикация M2"
+        body = ("A unique English publication." if language == "en"
+                else "Уникальный текст русской публикации.") + f" RSS={rss}."
+        target = self.root / path.lstrip("/") / "index.html"
+        target.parent.mkdir(parents=True)
+        target.write_text(
+            f'<html lang="{language}"><head><title>{title}</title></head>'
+            f'<body><main><h1>{title}</h1><p>{body}</p></main></body></html>', encoding="utf-8")
+        catalog = generator.load_json(self.root / "publication/catalog.json")
+        catalog["pages"].append({"path": path, "title": title, "language": language,
+                                 "page_type": "content", "text_availability": "html_text",
+                                 "rss": rss})
+        self.save_catalog(catalog)
+        return {"url": generator.SITE + path, "title": title, "language": language, "text": body}
+
+    def assert_new_publications(self, language):
+        own = "assets/search-index-en.json" if language == "en" else "assets/search-index.json"
+        other = "assets/search-index.json" if language == "en" else "assets/search-index-en.json"
+        for rss in (True, False):
+            with self.subTest(language=language, rss=rss):
+                original = {name: (self.root / name).read_bytes() for name in generator.OUTPUTS}
+                page = self.new_publication(language, rss)
+                changed = {"sitemap.xml", "api/agent-feed/v1.json", own}
+                if rss:
+                    changed.add("feed.xml")
+                self.check_cli_rejects_without_writes(*changed)
+                before = snapshot(self.root)
+                result = self.cli("--write")
+                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                after = snapshot(self.root)
+                self.assertEqual({name for name in after if after[name] != before[name]}, changed)
+                generated = {name: (self.root / name).read_bytes() for name in generator.OUTPUTS}
+                self.assertEqual(generated[other], original[other])
+                self.assertEqual(json.loads(generated[own])["pages"], sorted(
+                    json.loads(original[own])["pages"] + [page], key=lambda p: p["url"]))
+                before_feed = json.loads(original["api/agent-feed/v1.json"])
+                after_feed = json.loads(generated["api/agent-feed/v1.json"])
+                self.assertEqual(after_feed["entries"][:-1], before_feed["entries"])
+                self.assertEqual(after_feed["entries"][-1]["canonical_url"], page["url"])
+                ns = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+                before_urls = list(ET.fromstring(original["sitemap.xml"]))
+                after_urls = list(ET.fromstring(generated["sitemap.xml"]))
+                self.assertEqual([xml_semantics(ET.tostring(e)) for e in after_urls[:-1]],
+                                 [xml_semantics(ET.tostring(e)) for e in before_urls])
+                self.assertEqual(after_urls[-1].findtext(ns + "loc"), page["url"])
+                before_items = ET.fromstring(original["feed.xml"]).findall("channel/item")
+                after_items = ET.fromstring(generated["feed.xml"]).findall("channel/item")
+                self.assertEqual([xml_semantics(ET.tostring(e)) for e in after_items[:len(before_items)]],
+                                 [xml_semantics(ET.tostring(e)) for e in before_items])
+                self.assertEqual(len(after_items), len(before_items) + int(rss))
+                if rss:
+                    self.assertEqual(after_items[-1].findtext("link"), page["url"])
+                for mode in ("--check", "--write"):
+                    result = self.cli(mode)
+                    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                    self.assertEqual(snapshot(self.root), after)
+
+    def test_new_russian_publications_update_only_relevant_outputs(self):
+        self.assert_new_publications("ru")
+
+    def test_new_english_publications_update_only_relevant_outputs(self):
+        self.assert_new_publications("en")
+
+    def test_cli_rejects_stale_missing_and_corrupted_outputs_read_only(self):
+        for name in generator.OUTPUTS:
+            target = self.root / name
+            original = target.read_bytes()
+            for state in ("stale", "missing", "corrupted"):
+                with self.subTest(output=name, state=state):
+                    try:
+                        if state == "missing":
+                            target.unlink()
+                        elif state == "corrupted":
+                            target.write_bytes(b"{")
+                        elif name.endswith(".json"):
+                            data = json.loads(original)
+                            data["pages" if "search-index" in name else "entries"][0]["title"] = "Stale title"
+                            target.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+                        else:
+                            target.write_bytes(original + b"\n")
+                        self.check_cli_rejects_without_writes(name)
+                    finally:
+                        target.write_bytes(original)
 
     def test_m1_preservation_and_reviewed_novel_inventory(self):
         outputs = generator.render(self.root)
@@ -255,16 +357,19 @@ class PublicationTests(unittest.TestCase):
         self.reject_without_writes()
 
     def test_html_text_edit_changes_only_search_output_and_check_detects_drift(self):
-        generator.run(self.root, write=True)
-        original = generator.render(self.root)
-        target = self.root / "articles/formula-boga/index.html"
-        target.write_bytes(target.read_bytes().replace(b"</main>", b"<p>search drift probe</p></main>"))
-        updated = generator.render(self.root)
-        self.assertEqual([name for name in original if original[name] != updated[name]],
-                         ["assets/search-index.json"])
-        before = snapshot(self.root)
-        self.assertEqual(generator.run(self.root), 1)
-        self.assertEqual(snapshot(self.root), before)
+        for route, index in (("articles/formula-boga/index.html", "assets/search-index.json"),
+                             ("en/articles/the-formula-of-god/index.html", "assets/search-index-en.json")):
+            with self.subTest(route=route):
+                original = generator.render(self.root)
+                target = self.root / route
+                source = target.read_bytes()
+                try:
+                    target.write_bytes(source.replace(b"</main>", b"<p>search drift probe</p></main>"))
+                    updated = generator.render(self.root)
+                    self.assertEqual([name for name in original if original[name] != updated[name]], [index])
+                    self.check_cli_rejects_without_writes(index)
+                finally:
+                    target.write_bytes(source)
 
     def test_remote_schema_reference_fails_without_network(self):
         (self.root / "api/agent-feed/v1.schema.json").write_text(
@@ -277,6 +382,22 @@ class PublicationTests(unittest.TestCase):
         page = self.root / "en/index.html"
         page.write_bytes(page.read_bytes().replace(b'hreflang="ru"', b'hreflang="de"'))
         self.reject_without_writes()
+
+
+class PagesWorkflowTests(unittest.TestCase):
+    def test_read_only_gate_precedes_upload_and_deployment_without_bypasses(self):
+        workflow = (ROOT / ".github/workflows/pages.yml").read_text(encoding="utf-8")
+        steps = re.split(r"(?m)^      - name: ", workflow)[1:]
+        names = [step.splitlines()[0] for step in steps]
+        order = [names.index(name) for name in (
+            "Checkout", "Set up Python", "Install publication validator",
+            "Check publication outputs (read-only)", "Configure Pages", "Upload artifact",
+            "Deploy to GitHub Pages")]
+        self.assertEqual(order, sorted(order))
+        self.assertIn("run: python -m pip install -r publication/requirements.txt\n", steps[order[2]])
+        self.assertIn("run: python -B tools/generate_publication.py --check\n", steps[order[3]])
+        self.assertNotIn("--write", workflow)
+        self.assertNotRegex(workflow, r"(?m)^\s*(if|continue-on-error):")
 
 
 if __name__ == "__main__":

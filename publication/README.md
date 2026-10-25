@@ -1,8 +1,9 @@
 # Local publication catalog (M2.2)
 
 `catalog.json` is the single reviewed metadata source for `sitemap.xml`,
-`api/agent-feed/v1.json`, `feed.xml`, `assets/search-index.json` and `assets/search-index-en.json`. The local generator has no deployment
-integration. HTML and media remain independently authored source files.
+`api/agent-feed/v1.json`, `feed.xml`, `assets/search-index.json` and
+`assets/search-index-en.json`. The Pages workflow checks these same five outputs
+before artifact upload. HTML and media remain independently authored source files.
 
 The catalog was seeded directly from the verified M1 artifacts at commit
 `28b0ff50e92c7ca2a3f216c2dc38770c244a5d43`. It preserves 59 ordered pages,
@@ -25,13 +26,13 @@ python -m venv .venv
 ```
 
 Omitting a mode is identical to `--check`: validate all inputs, compare all
-four outputs and exit without writing. Exit status is 0 for matching
-outputs, 1 for invalid input or output drift, and 2 for invalid CLI arguments.
+five outputs and exit without writing. Exit status is 0 for matching
+outputs, 1 for invalid input, missing outputs or byte drift, and 2 for invalid CLI arguments.
 After reviewing an intentional catalog change, regenerate explicitly:
 
 ```powershell
 .venv\Scripts\python.exe -B tools/generate_publication.py --write
-git diff -- sitemap.xml api/agent-feed/v1.json feed.xml assets/search-index.json publication tools tests
+git diff -- sitemap.xml api/agent-feed/v1.json feed.xml assets/search-index.json assets/search-index-en.json publication tools tests .github/workflows/pages.yml
 ```
 
 Serialization uses UTF-8 without BOM, LF, fixed indentation and catalog order.
@@ -73,7 +74,7 @@ The unchanged Draft 2020-12 Agent Feed schema validates the assembled feed
 offline, with remote reference retrieval disabled.
 
 Before any write, the entire catalog, referenced HTML/media, schema, generated
-serializations and all four existing output paths must pass. A late invalid
+serializations and all five existing output paths must pass. A late invalid
 page or resource cannot cause partial output changes. Writes then replace only
 changed output bytes. This is a local operation, not a multi-file transaction:
 an OS write failure or process interruption during writing may leave a subset
@@ -87,13 +88,32 @@ regenerate, inspect the scoped diff and reassess the M1 regression expectations.
 The existing Agent Feed schema, HTML, literary text, assets, both PDFs,
 `llms.txt` and GitHub Pages workflow are outside the generator's write scope.
 
+## Pages deployment gate
+
+The existing Pages workflow installs the validator from
+`publication/requirements.txt` and runs
+`python -B tools/generate_publication.py --check` after checkout, before Pages
+configuration and artifact upload. This is the same read-only local check:
+invalid inputs or a stale, missing or corrupted output (including either search
+index) fail the job, so artifact upload and deployment cannot proceed. CI never
+regenerates outputs or commits changes. Validator setup or installation failures
+also stop the job. Existing push-to-`main` and manual workflow triggers are unchanged;
+the Operator controls generation, review, commits and pushes.
+
 ## Static full-text search
 
 The same `--write` command rebuilds `assets/search-index.json` (Russian) and
 `assets/search-index-en.json` (English); `--check`
-detects stale text as well as publication metadata drift. No deployment,
-background job, network access, OCR or PDF extraction is added. Keep the
-generated index in the reviewed local publication diff after editing HTML.
+detects stale text as well as publication metadata drift. The generator runs
+offline, with no background job, OCR or PDF extraction. Keep both generated
+indexes in the reviewed local publication diff after editing HTML.
+
+To publish new RU or EN content, author its HTML and add its reviewed metadata
+to the catalog, then run `--write`, review the five-output diff and run `--check`.
+The matching language index updates automatically; the other index stays unchanged.
+RSS inclusion still requires the page's explicit `rss: true` setting. Do not edit
+search indexes manually. A missing output fails before any writes; restore it from
+Git, then regenerate and check.
 
 Each index includes only catalog `content` pages with its own language (`ru` or `en`), after
 all existing HTML/resource/schema checks pass. Titles come from the verified
