@@ -71,10 +71,13 @@ class PublicationTests(unittest.TestCase):
         outputs = generator.render(self.root)
         prefix = generator.SITE + "/proza/pereborsh/"
         for name, data in outputs.items():
+            if name == "assets/search-index.json":
+                continue  # New derived output has its own extraction and coverage tests.
             original = subprocess.check_output(["git", "show", BASELINE + ":" + name], cwd=ROOT)
             if name.endswith(".json"):
                 current, baseline = json.loads(data), json.loads(original)
-                current["entries"] = [e for e in current["entries"] if not e["id"].startswith(prefix)]
+                current["entries"] = [e for e in current["entries"] if not e["id"].startswith(prefix)
+                                      and e["id"] != generator.SITE + "/search/"]
                 # The prose placeholder is now a real section; every other M1 field survives.
                 prose = next(e for e in current["entries"] if e["id"] == generator.SITE + "/proza/")
                 prose.update(page_type="placeholder", text_availability="heading_only")
@@ -84,11 +87,12 @@ class PublicationTests(unittest.TestCase):
                 parent = current.find("channel") if name == "feed.xml" else current
                 link_tag = "link" if name == "feed.xml" else "{http://www.sitemaps.org/schemas/sitemap/0.9}loc"
                 for child in list(parent):
-                    if (child.findtext(link_tag) or "").startswith(prefix):
+                    link = child.findtext(link_tag) or ""
+                    if link.startswith(prefix) or link == generator.SITE + "/search/":
                         parent.remove(child)
                 self.assertEqual(xml_semantics(ET.tostring(current)), xml_semantics(original))
         catalog, feed, groups = generator.prepare(self.root)
-        self.assertEqual(len(feed["entries"]), 88)
+        self.assertEqual(len(feed["entries"]), 89)
         self.assertEqual(sum(p["rss"] for p in catalog["pages"]), 73)
         novel = [p for p in catalog["pages"] if p["path"].startswith("/proza/pereborsh/")]
         self.assertEqual(len(novel), 29)
@@ -135,7 +139,7 @@ class PublicationTests(unittest.TestCase):
                 generator.main()
             self.assertEqual(result.exception.code, 2)
 
-    def test_write_is_deterministic_and_touches_only_three_outputs(self):
+    def test_write_is_deterministic_and_touches_only_four_outputs(self):
         before = snapshot(self.root)
         self.assertEqual(generator.run(self.root, write=True), 0)
         first = snapshot(self.root)
@@ -249,6 +253,18 @@ class PublicationTests(unittest.TestCase):
     def test_missing_output_prevents_all_writes(self):
         (self.root / "feed.xml").unlink()
         self.reject_without_writes()
+
+    def test_html_text_edit_changes_only_search_output_and_check_detects_drift(self):
+        generator.run(self.root, write=True)
+        original = generator.render(self.root)
+        target = self.root / "articles/formula-boga/index.html"
+        target.write_bytes(target.read_bytes().replace(b"</main>", b"<p>search drift probe</p></main>"))
+        updated = generator.render(self.root)
+        self.assertEqual([name for name in original if original[name] != updated[name]],
+                         ["assets/search-index.json"])
+        before = snapshot(self.root)
+        self.assertEqual(generator.run(self.root), 1)
+        self.assertEqual(snapshot(self.root), before)
 
     def test_remote_schema_reference_fails_without_network(self):
         (self.root / "api/agent-feed/v1.schema.json").write_text(

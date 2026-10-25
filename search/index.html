@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Поиск — Кошка Шрёдингера</title>
+  <link rel="canonical" href="https://schrodingercat.org/search/" />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="/assets/search.css" />
+  <script src="/assets/search.js" defer></script>
+</head>
+<body class="reading-page search-page">
+  <header class="site-header">
+    <div class="wrap header-row">
+      <div class="wordmark">Кошка Шрёдингера</div>
+      <nav class="site-nav" aria-label="Основная навигация">
+        <a href="/">Главная</a>
+        <a href="/articles/">Статьи</a>
+        <a href="/kniga/">Книга</a>
+        <a href="/proza/">Проза</a>
+        <a href="/poeziya/">Поэзия</a>
+        <a href="/about/">О проекте</a>
+        <a href="/search/" aria-current="page">Поиск</a>
+      </nav>
+      <div class="languages" aria-label="Язык">
+        <a href="/search/" lang="ru" hreflang="ru" aria-current="page">RU</a>
+        <span aria-hidden="true">/</span>
+        <a href="/en/" lang="en" hreflang="en" title="Английская главная страница; перевод поиска отсутствует">EN</a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="wrap">
+      <h1>Поиск</h1>
+      <p class="search-intro">По названиям и текстам статей, стихов и прозы.</p>
+      <form id="search-form" class="search-form" role="search" action="/search/" method="get">
+        <label for="search-query">Что найти?</label>
+        <div class="search-controls">
+          <input id="search-query" name="q" type="search" aria-describedby="search-help" placeholder="Название или слова из текста" />
+          <button class="button" type="submit">Найти</button>
+        </div>
+      </form>
+      <p id="search-help" class="search-help">Можно ввести часть слова. Для точной фразы используйте кавычки. Текст внутри изображений и PDF не участвует в поиске.</p>
+      <p id="search-status" class="search-status" role="status" aria-live="polite">Введите название или слова из текста.</p>
+      <noscript><p>Для поиска включите JavaScript в браузере.</p></noscript>
+      <ol id="search-results" class="search-results" aria-label="Результаты поиска"></ol>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">Кошка Шредингера</div>
+  </footer>
+</body>
+</html>

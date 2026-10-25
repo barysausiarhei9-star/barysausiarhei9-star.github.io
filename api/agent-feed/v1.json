@@ -829,6 +829,15 @@
       "title": "XXL — Кошка Шрёдингера",
       "page_type": "content",
       "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/search/",
+      "canonical_url": "https://schrodingercat.org/search/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Поиск — Кошка Шрёдингера",
+      "page_type": "section_index",
+      "text_availability": "html_text"
     }
   ]
 }

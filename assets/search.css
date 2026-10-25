@@ -1,0 +1,19 @@
+.search-page .wrap { max-width: 1120px; }
+.search-page main > .wrap { max-width: 900px; padding-block: 56px; }
+.search-intro { margin-top: 24px; }
+.search-form label { display: block; margin-bottom: 8px; }
+.search-controls { display: flex; gap: 12px; }
+.search-controls input { min-width: 0; flex: 1; border: 1px solid #8a785a; background: #171613; color: #eee9df; padding: 12px; font: inherit; border-radius: 0; }
+.search-controls input:focus-visible { outline: 2px solid #d6bd92; outline-offset: 3px; }
+.search-controls button { background: #171613; cursor: pointer; font-family: inherit; }
+.search-controls button:focus-visible { outline: 2px solid #d6bd92; outline-offset: 3px; }
+.search-help, .search-status { margin-block: 18px; color: #b7b1a7; font-size: 16px; }
+.search-results { list-style: none; padding: 0; margin: 0; }
+.search-results li { padding-block: 24px; border-top: 1px solid #34312b; }
+.search-results h2 { margin: 0 0 12px; font-size: 25px; line-height: 1.4; overflow-wrap: anywhere; }
+.search-results p { margin: 0; font-size: 16px; overflow-wrap: anywhere; }
+@media (max-width: 620px) {
+  .search-page main > .wrap { padding-block: 36px; }
+  .search-controls { flex-wrap: wrap; }
+  .search-controls input { flex-basis: 100%; }
+}

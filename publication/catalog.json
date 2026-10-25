@@ -805,6 +805,14 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/search/",
+      "title": "Поиск — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
     }
   ]
 }

@@ -11,7 +11,7 @@ from xml.etree import ElementTree as ET
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUTS = ("sitemap.xml", "api/agent-feed/v1.json", "feed.xml")
+OUTPUTS = ("sitemap.xml", "api/agent-feed/v1.json", "feed.xml", "assets/search-index.json")
 SITE = "https://schrodingercat.org"
 SCHEMA_URL = SITE + "/api/agent-feed/v1.schema.json"
 VOID = set("area base br col embed hr img input link meta param source track wbr".split())
@@ -252,6 +252,10 @@ def xml_bytes(element):
 
 
 def render(root=ROOT):
+    if __package__:
+        from .search_index import render_search
+    else:
+        from search_index import render_search
     catalog, feed, alternates = prepare(root)
     sitemap = ET.Element("urlset", {"xmlns": "http://www.sitemaps.org/schemas/sitemap/0.9",
                                     "xmlns:xhtml": "http://www.w3.org/1999/xhtml"})
@@ -276,12 +280,13 @@ def render(root=ROOT):
             ET.SubElement(item, "link").text = entry["canonical_url"]
             ET.SubElement(item, "guid", {"isPermaLink": "true"}).text = entry["id"]
             ET.SubElement(item, "dc:language").text = page["language"]
-    outputs = dict(zip(OUTPUTS, (xml_bytes(sitemap),
+    outputs = dict(zip(OUTPUTS[:3], (xml_bytes(sitemap),
                    (json.dumps(feed, ensure_ascii=False, indent=2) + "\n").encode("utf-8"),
                    xml_bytes(rss))))
     # Detect serialization errors before touching any output.
     ET.fromstring(outputs["sitemap.xml"])
     ET.fromstring(outputs["feed.xml"])
+    outputs["assets/search-index.json"] = render_search(root, catalog)
     return outputs
 
 
@@ -297,7 +302,7 @@ def run(root=ROOT, write=False):
     if different:
         print("FAIL: publication outputs differ: " + ", ".join(different), file=sys.stderr)
         return 1
-    print("PASS: catalog, HTML, resources and schema valid; all 3 outputs match (read-only)")
+    print("PASS: catalog, HTML, resources and schema valid; all 4 outputs match (read-only)")
     return 0
 
 
