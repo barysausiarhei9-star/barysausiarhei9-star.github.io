@@ -1,0 +1,13 @@
+/* Reading components used only by the Russian novel. */
+.novel-text { padding-top: 28px; }
+.novel-text h1 { margin-bottom: 28px; }
+.novel-text h2 { font-size: clamp(23px, 3vw, 32px); line-height: 1.4; white-space: pre-wrap; overflow-wrap: anywhere; }
+.novel-text p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.novel-text .verse-line { margin-bottom: 0; font-family: Georgia, 'Times New Roman', serif; }
+.novel-text .empty-line { margin: 0; min-height: 1.2em; }
+.novel-text .source-subtitle { font-style: italic; }
+.novel-toc { padding-left: 1.4em; }
+.novel-toc li { margin-bottom: 12px; }
+.novel-toc a { overflow-wrap: anywhere; }
+.novel-nav { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+.novel-nav .back { margin: 0; }

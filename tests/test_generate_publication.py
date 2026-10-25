@@ -67,23 +67,36 @@ class PublicationTests(unittest.TestCase):
             generator.run(self.root, write=True)
         self.assertEqual(snapshot(self.root), before)
 
-    def test_m1_equivalence_and_inventory(self):
+    def test_m1_preservation_and_reviewed_novel_inventory(self):
         outputs = generator.render(self.root)
+        prefix = generator.SITE + "/proza/pereborsh/"
         for name, data in outputs.items():
             original = subprocess.check_output(["git", "show", BASELINE + ":" + name], cwd=ROOT)
             if name.endswith(".json"):
-                self.assertEqual(json.loads(data), json.loads(original))
+                current, baseline = json.loads(data), json.loads(original)
+                current["entries"] = [e for e in current["entries"] if not e["id"].startswith(prefix)]
+                # The prose placeholder is now a real section; every other M1 field survives.
+                prose = next(e for e in current["entries"] if e["id"] == generator.SITE + "/proza/")
+                prose.update(page_type="placeholder", text_availability="heading_only")
+                self.assertEqual(current, baseline)
             else:
-                self.assertEqual(xml_semantics(data), xml_semantics(original))
-            # Stronger than semantic equivalence for this seed: canonical bytes match M1.
-            self.assertEqual(data, original)
+                current = ET.fromstring(data)
+                parent = current.find("channel") if name == "feed.xml" else current
+                link_tag = "link" if name == "feed.xml" else "{http://www.sitemaps.org/schemas/sitemap/0.9}loc"
+                for child in list(parent):
+                    if (child.findtext(link_tag) or "").startswith(prefix):
+                        parent.remove(child)
+                self.assertEqual(xml_semantics(ET.tostring(current)), xml_semantics(original))
         catalog, feed, groups = generator.prepare(self.root)
-        self.assertEqual(len(feed["entries"]), 59)
-        self.assertEqual(sum(p["rss"] for p in catalog["pages"]), 45)
+        self.assertEqual(len(feed["entries"]), 88)
+        self.assertEqual(sum(p["rss"] for p in catalog["pages"]), 73)
+        novel = [p for p in catalog["pages"] if p["path"].startswith("/proza/pereborsh/")]
+        self.assertEqual(len(novel), 29)
+        self.assertEqual(sum(p["page_type"] == "content" and p["rss"] for p in novel), 28)
         self.assertEqual(len(catalog["alternate_groups"]), 14)
         self.assertEqual(len(groups), 28)
         self.assertEqual(sum(len(p.get("resources", [])) for p in catalog["pages"]), 4)
-        self.assertEqual(sum(p["page_type"] == "placeholder" for p in catalog["pages"]), 4)
+        self.assertEqual(sum(p["page_type"] == "placeholder" for p in catalog["pages"]), 3)
         self.assertEqual(sum(p["text_availability"] == "image_only" for p in catalog["pages"]), 3)
 
     def test_schema_validates_generated_and_original_feeds(self):

@@ -103,9 +103,241 @@
       "path": "/proza/",
       "title": "Проза — Кошка Шредингера",
       "language": "ru",
-      "page_type": "placeholder",
-      "text_availability": "heading_only",
+      "page_type": "section_index",
+      "text_availability": "html_text",
       "rss": false
+    },
+    {
+      "path": "/proza/pereborsh/",
+      "title": "Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/proza/pereborsh/vstuplenie/",
+      "title": "Вступление — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-01/",
+      "title": "ГЛАВА ПЕРВАЯ. \"АВА\" — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-02/",
+      "title": "ГЛАВА ВТОРАЯ. 'НЕЖЕЛАННАЯ' — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-03/",
+      "title": "ГЛАВА ТРЕТЬЯ. ПРАКТИКАНТКА. — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-04/",
+      "title": "ГЛАВА ЧЕТВЕРТАЯ. НЕУЛОВИМЫЙ ДЖО. — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-05/",
+      "title": "ГЛАВА ПЯТАЯ. В ОГОРОДЕ БУЗИНА — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-06/",
+      "title": "ГЛАВА ШЕСТАЯ. СОН, НАПРОЧУД ДЫВНЫЙ. — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-07/",
+      "title": "ГЛАВА СЕДЬМАЯ. ПУСТЬ КОМУ-ТО ПОВЕЗЛО... — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-08/",
+      "title": "ГЛАВА ВОСЬМАЯ. ЧИРГЁРЛЫ. — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-09/",
+      "title": "ГЛАВА ДЕВЯТАЯ. ХМУРАЯ СУТРА. — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-10/",
+      "title": "ГЛАВА ДЕСЯТАЯ. МАЛЬТУС ВСЕГДА ПРАВ. — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-11/",
+      "title": "ГЛАВА ОДИННАДЦАТАЯ. ДОРОГА В ПЕКЛО. — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-12/",
+      "title": "ГЛАВА ДВЕНАДЦАТАЯ. ПАНГОЛИНЫ, ГОВОРИШЬ? — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-13/",
+      "title": "ГЛАВА ТРИНАДЦАТАЯ. РЫДАЮТ ВСЕ. — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-14/",
+      "title": "ГЛАВА ЧЕТЫРНАДЦАТАЯ. ПАНДЕМОНИЧЕСКОЕ — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-15/",
+      "title": "ГЛАВА ПЯТНАДЦАТАЯ. КРЕАТИНОКРАТИЯ — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-16/",
+      "title": "ГЛАВА ШЕСТНАДЦАТАЯ. ТЩЕТА ФРАНКЕНШТЕЙНА. — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-17/",
+      "title": "ГЛАВА СЕМНАДЦАТАЯ. ДА УБОИТСЯ. — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-18/",
+      "title": "ГЛАВА КИБЕРНАДЦАТАЯ. ОТ УЛИЦКОЙ И РОЗОВА ДЛЯ ПЕТРОВЫХ И СИДОРОВЫХ. — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-19/",
+      "title": "ГЛАВА ВОСЕМНАДЦАТАЯ. МАГАТЭ НЕВМОГОТУ. — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-20/",
+      "title": "ГЛАВА ДЕВЯТНАДЦАТАЯ. ВИНОВАТАЯ Я — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-21/",
+      "title": "ГЛАВА ДВАДЦАТАЯ. ОТРИЦАНИЕ ОТРИЦАНИЯ — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-22/",
+      "title": "ГЛАВА ДВАДЦАТЬ ПЕРВАЯ. РАССКАЗ РЫСЯ. — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-23/",
+      "title": "ГЛАВА ДВАДЦАТЬ ВТОРАЯ. МИР, ГДЕ МОЖНО ПЕТЬ — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-24/",
+      "title": "ГЛАВА ДВАДЦАТЬ ТРЕТЬЯ. РЕШЕНИЕ НЕРЕШАЕМОГО — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-25/",
+      "title": "ГЛАВА ДВАДЦАТЬ ЧЕТВЕРТАЯ. АВА И ХРОМОЙ СИЛЬФИД. — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-26/",
+      "title": "ГЛАВА ДВАДЦАТЬ ПЯТАЯ. ПЕРО ИЗ ШЛЯПЫ И ШАХМАТЫ. — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/proza/pereborsh/glava-27/",
+      "title": "ГЛАВА МИНУС ПЕРВАЯ. ПОСТМОРТУМ — Переборщ — Елена Березина",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     },
     {
       "path": "/poeziya/",

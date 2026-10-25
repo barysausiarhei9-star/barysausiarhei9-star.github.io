@@ -44,8 +44,269 @@
       "language": "ru",
       "content_type": "text/html",
       "title": "Проза — Кошка Шредингера",
-      "page_type": "placeholder",
-      "text_availability": "heading_only"
+      "page_type": "section_index",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Переборщ — Елена Березина",
+      "page_type": "section_index",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/vstuplenie/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/vstuplenie/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Вступление — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-01/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-01/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ПЕРВАЯ. \"АВА\" — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-02/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-02/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ВТОРАЯ. 'НЕЖЕЛАННАЯ' — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-03/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-03/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ТРЕТЬЯ. ПРАКТИКАНТКА. — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-04/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-04/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ЧЕТВЕРТАЯ. НЕУЛОВИМЫЙ ДЖО. — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-05/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-05/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ПЯТАЯ. В ОГОРОДЕ БУЗИНА — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-06/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-06/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ШЕСТАЯ. СОН, НАПРОЧУД ДЫВНЫЙ. — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-07/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-07/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА СЕДЬМАЯ. ПУСТЬ КОМУ-ТО ПОВЕЗЛО... — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-08/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-08/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ВОСЬМАЯ. ЧИРГЁРЛЫ. — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-09/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-09/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ДЕВЯТАЯ. ХМУРАЯ СУТРА. — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-10/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-10/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ДЕСЯТАЯ. МАЛЬТУС ВСЕГДА ПРАВ. — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-11/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-11/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ОДИННАДЦАТАЯ. ДОРОГА В ПЕКЛО. — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-12/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-12/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ДВЕНАДЦАТАЯ. ПАНГОЛИНЫ, ГОВОРИШЬ? — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-13/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-13/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ТРИНАДЦАТАЯ. РЫДАЮТ ВСЕ. — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-14/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-14/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ЧЕТЫРНАДЦАТАЯ. ПАНДЕМОНИЧЕСКОЕ — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-15/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-15/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ПЯТНАДЦАТАЯ. КРЕАТИНОКРАТИЯ — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-16/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-16/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ШЕСТНАДЦАТАЯ. ТЩЕТА ФРАНКЕНШТЕЙНА. — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-17/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-17/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА СЕМНАДЦАТАЯ. ДА УБОИТСЯ. — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-18/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-18/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА КИБЕРНАДЦАТАЯ. ОТ УЛИЦКОЙ И РОЗОВА ДЛЯ ПЕТРОВЫХ И СИДОРОВЫХ. — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-19/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-19/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ВОСЕМНАДЦАТАЯ. МАГАТЭ НЕВМОГОТУ. — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-20/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-20/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ДЕВЯТНАДЦАТАЯ. ВИНОВАТАЯ Я — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-21/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-21/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ДВАДЦАТАЯ. ОТРИЦАНИЕ ОТРИЦАНИЯ — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-22/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-22/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ДВАДЦАТЬ ПЕРВАЯ. РАССКАЗ РЫСЯ. — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-23/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-23/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ДВАДЦАТЬ ВТОРАЯ. МИР, ГДЕ МОЖНО ПЕТЬ — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-24/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-24/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ДВАДЦАТЬ ТРЕТЬЯ. РЕШЕНИЕ НЕРЕШАЕМОГО — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-25/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-25/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ДВАДЦАТЬ ЧЕТВЕРТАЯ. АВА И ХРОМОЙ СИЛЬФИД. — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-26/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-26/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА ДВАДЦАТЬ ПЯТАЯ. ПЕРО ИЗ ШЛЯПЫ И ШАХМАТЫ. — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/proza/pereborsh/glava-27/",
+      "canonical_url": "https://schrodingercat.org/proza/pereborsh/glava-27/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ГЛАВА МИНУС ПЕРВАЯ. ПОСТМОРТУМ — Переборщ — Елена Березина",
+      "page_type": "content",
+      "text_availability": "html_text"
     },
     {
       "id": "https://schrodingercat.org/poeziya/",
