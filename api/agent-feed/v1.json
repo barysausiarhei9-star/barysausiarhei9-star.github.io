@@ -350,8 +350,8 @@
       "language": "en",
       "content_type": "text/html",
       "title": "Book — Schrödinger’s Cat",
-      "page_type": "placeholder",
-      "text_availability": "heading_only"
+      "page_type": "section_index",
+      "text_availability": "html_text"
     },
     {
       "id": "https://schrodingercat.org/en/prose/",
@@ -359,8 +359,8 @@
       "language": "en",
       "content_type": "text/html",
       "title": "Prose — Schrödinger’s Cat",
-      "page_type": "placeholder",
-      "text_availability": "heading_only"
+      "page_type": "section_index",
+      "text_availability": "html_text"
     },
     {
       "id": "https://schrodingercat.org/en/poetry/",
@@ -368,8 +368,8 @@
       "language": "en",
       "content_type": "text/html",
       "title": "Poetry — Schrödinger’s Cat",
-      "page_type": "placeholder",
-      "text_availability": "heading_only"
+      "page_type": "section_index",
+      "text_availability": "html_text"
     },
     {
       "id": "https://schrodingercat.org/en/about/",

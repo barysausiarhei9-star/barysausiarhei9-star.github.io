@@ -375,24 +375,24 @@
       "path": "/en/book/",
       "title": "Book — Schrödinger’s Cat",
       "language": "en",
-      "page_type": "placeholder",
-      "text_availability": "heading_only",
+      "page_type": "section_index",
+      "text_availability": "html_text",
       "rss": false
     },
     {
       "path": "/en/prose/",
       "title": "Prose — Schrödinger’s Cat",
       "language": "en",
-      "page_type": "placeholder",
-      "text_availability": "heading_only",
+      "page_type": "section_index",
+      "text_availability": "html_text",
       "rss": false
     },
     {
       "path": "/en/poetry/",
       "title": "Poetry — Schrödinger’s Cat",
       "language": "en",
-      "page_type": "placeholder",
-      "text_availability": "heading_only",
+      "page_type": "section_index",
+      "text_availability": "html_text",
       "rss": false
     },
     {
