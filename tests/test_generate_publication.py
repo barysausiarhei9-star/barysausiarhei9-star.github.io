@@ -383,6 +383,7 @@ class PublicationTests(unittest.TestCase):
 
     def test_works_absence_preserves_legacy_publication_behavior(self):
         legacy = copy.deepcopy(self.catalog)
+        legacy.pop("navigation", None)  # Legacy routes do not include navigation's Works targets.
         legacy["pages"] = [p for p in legacy["pages"] if p["path"] not in generator.WORK_ROUTES.values()]
         legacy["alternate_groups"].remove(generator.WORK_ROUTES)
         for name in generator.WORK_OUTPUTS:
@@ -412,6 +413,234 @@ class PublicationTests(unittest.TestCase):
         updated = generator.render(self.root)
         self.assertEqual({name for name in original if original[name] != updated[name]},
                          set(generator.WORK_OUTPUTS))
+
+    def test_navigation_contract_and_renderer_are_ready_but_inactive(self):
+        catalog, _, _ = generator.prepare(self.root)
+        navigation = catalog["navigation"]
+        self.assertEqual(navigation["version"], 1)
+        self.assertEqual([i["id"] for i in navigation["items"]],
+                         ["home", "articles", "book", "prose", "poetry", "about", "search", "works"])
+        for page in catalog["pages"]:
+            with self.subTest(path=page["path"]):
+                data = generator.render_navigation(catalog, page["path"])
+                source = data.decode("utf-8")
+                html = generator.PageHTML(source)
+                self.assertEqual(html.matching("nav"), [{"class": "site-nav",
+                                 "aria-label": navigation["aria_label"][page["language"]]}])
+                self.assertEqual([a["href"] for a in html.matching("a")],
+                                 [i["targets"][page["language"]] for i in navigation["items"]])
+                self.assertEqual([unescape(t) for t in re.findall(r'<a[^>]*>([^<]*)</a>', source)],
+                                 [i["labels"][page["language"]] for i in navigation["items"]])
+                self.assertEqual(len([a for a in html.matching("a") if "aria-current" in a]), 1)
+        before = snapshot(self.root)
+        with patch.object(generator, "render_navigation", side_effect=AssertionError("migration inactive")), \
+             patch.object(generator, "replace_navigation_region", side_effect=AssertionError("migration inactive")):
+            self.assertEqual(generator.run(self.root, write=True), 0)
+        self.assertEqual(snapshot(self.root), before)
+        outputs = generator.render(self.root)
+        self.assertEqual(set(outputs), set(generator.OUTPUTS + generator.WORK_OUTPUTS))
+        for name, data in outputs.items():
+            self.assertEqual(data, (self.root / name).read_bytes(), name)
+
+    def test_navigation_active_pages_sections_overrides_and_longest_prefix(self):
+        cases = {
+            "/": ("/", "page"), "/en/": ("/en/", "page"),
+            "/works/": ("/works/", "page"), "/en/works/": ("/en/works/", "page"),
+            "/articles/": ("/articles/", "page"),
+            "/articles/about/": ("/about/", "location"),
+            "/articles/formula-boga/": ("/articles/", "location"),
+            "/en/articles/the-formula-of-god/": ("/en/articles/", "location"),
+            "/poeziya/page-2/": ("/poeziya/", "location"),
+            "/poeziya/white-thread/": ("/poeziya/", "location"),
+            "/proza/pereborsh/glava-14/": ("/proza/", "location"),
+        }
+        for path, expected in cases.items():
+            with self.subTest(path=path):
+                html = generator.PageHTML(generator.render_navigation(self.catalog, path).decode("utf-8"))
+                active = [a for a in html.matching("a") if "aria-current" in a]
+                self.assertEqual([(a["href"], a["aria-current"]) for a in active], [expected])
+        catalog = copy.deepcopy(self.catalog)
+        catalog["navigation"]["items"].append({"id": "deeper", "labels": {"ru": "Подраздел", "en": "Subsection"},
+            "targets": {"ru": "/proza/pereborsh/", "en": "/en/articles/the-formula-of-god/"}, "match": "section"})
+        html = generator.PageHTML(generator.render_navigation(catalog, "/proza/pereborsh/glava-14/").decode("utf-8"))
+        self.assertEqual([a for a in html.matching("a") if "aria-current" in a],
+                         [{"href": "/proza/pereborsh/", "aria-current": "location"}])
+        catalog["pages"].append({"path": "/navigation-probe/", "language": "ru"})
+        html = generator.PageHTML(generator.render_navigation(catalog, "/navigation-probe/").decode("utf-8"))
+        self.assertFalse(any("aria-current" in a for a in html.matching("a")))
+        with self.assertRaises(generator.Invalid):
+            generator.render_navigation(catalog, "/unregistered/")
+
+    def test_navigation_is_escaped_utf8_deterministic_and_preserves_item_order(self):
+        catalog = copy.deepcopy(self.catalog)
+        catalog["navigation"]["aria_label"]["ru"] = 'Меню <сайта> & "ссылки"'
+        catalog["navigation"]["items"][0]["labels"]["ru"] = 'Главная <script>alert("x")</script> & ещё'
+        before = copy.deepcopy(catalog)
+        data = generator.render_navigation(catalog, "/")
+        self.assertEqual(generator.render_navigation(catalog, "/"), data)
+        self.assertNotIn(b"\r", data)
+        self.assertTrue(data.endswith(b"\n"))
+        html = generator.PageHTML(data.decode("utf-8"))
+        self.assertEqual(html.matching("script"), [])
+        self.assertIn("&lt;script&gt;", data.decode("utf-8"))
+        self.assertEqual(catalog, before)
+        catalog["navigation"]["aria_label"] = dict(reversed(list(catalog["navigation"]["aria_label"].items())))
+        for item in catalog["navigation"]["items"]:
+            for field in ("labels", "targets"):
+                item[field] = dict(reversed(list(item[field].items())))
+        self.assertEqual(generator.render_navigation(catalog, "/"), data)
+        catalog["navigation"]["items"].reverse()
+        html = generator.PageHTML(generator.render_navigation(catalog, "/").decode("utf-8"))
+        self.assertEqual([a["href"] for a in html.matching("a")],
+                         [i["targets"]["ru"] for i in catalog["navigation"]["items"]])
+
+    def test_navigation_absence_preserves_legacy_seven_output_behavior(self):
+        original = generator.render(self.root)
+        catalog = copy.deepcopy(self.catalog)
+        catalog.pop("navigation")
+        self.save_catalog(catalog)
+        before = snapshot(self.root)
+        self.assertEqual(generator.render(self.root), original)
+        self.assertEqual(self.cli().returncode, 0)
+        self.assertEqual(self.cli("--write").returncode, 0)
+        self.assertEqual(snapshot(self.root), before)
+        with self.assertRaises(generator.Invalid):
+            generator.render_navigation(catalog, "/")
+
+    def test_invalid_navigation_fails_before_writes(self):
+        def nav(c):
+            return c["navigation"]
+
+        def home(c):
+            return nav(c)["items"][0]
+
+        def about(c):
+            return next(i for i in nav(c)["items"] if i["id"] == "about")
+
+        mutations = {
+            "null": lambda c: c.update(navigation=None),
+            "array": lambda c: c.update(navigation=[]),
+            "version": lambda c: nav(c).update(version=2),
+            "boolean version": lambda c: nav(c).update(version=True),
+            "string version": lambda c: nav(c).update(version="1"),
+            "missing field": lambda c: nav(c).pop("aria_label"),
+            "unknown field": lambda c: nav(c).update(enabled=True),
+            "items empty": lambda c: nav(c).update(items=[]),
+            "items object": lambda c: nav(c).update(items={}),
+            "null item": lambda c: nav(c)["items"].append(None),
+            "missing ID": lambda c: home(c).pop("id"),
+            "bad ID": lambda c: home(c).update(id="Home page"),
+            "boolean ID": lambda c: home(c).update(id=True),
+            "duplicate ID": lambda c: nav(c)["items"][1].update(id=home(c)["id"]),
+            "unknown item field": lambda c: home(c).update(order=1),
+            "missing label locale": lambda c: home(c)["labels"].pop("en"),
+            "unknown label locale": lambda c: home(c)["labels"].update(be="Дом"),
+            "empty label": lambda c: home(c)["labels"].update(ru=" "),
+            "label padding": lambda c: home(c)["labels"].update(ru=" Главная"),
+            "label type": lambda c: home(c)["labels"].update(ru=1),
+            "label newline": lambda c: home(c)["labels"].update(ru="Главная\nстраница"),
+            "label unicode separator": lambda c: home(c)["labels"].update(ru="Главная\u2028страница"),
+            "label NEL": lambda c: home(c)["labels"].update(ru="Главная\x85страница"),
+            "label control": lambda c: home(c)["labels"].update(ru="Главная\x00"),
+            "label DEL": lambda c: home(c)["labels"].update(ru="Главная\x7f"),
+            "missing landmark locale": lambda c: nav(c)["aria_label"].pop("en"),
+            "landmark type": lambda c: nav(c).update(aria_label="Navigation"),
+            "empty landmark": lambda c: nav(c)["aria_label"].update(ru=""),
+            "missing target locale": lambda c: home(c)["targets"].pop("en"),
+            "unknown target locale": lambda c: home(c)["targets"].update(be="/"),
+            "unknown target": lambda c: home(c)["targets"].update(ru="/missing/"),
+            "target URL": lambda c: home(c)["targets"].update(ru=generator.SITE + "/"),
+            "target fragment": lambda c: home(c)["targets"].update(ru="/#main"),
+            "target query": lambda c: home(c)["targets"].update(ru="/?q=x"),
+            "target traversal": lambda c: home(c)["targets"].update(ru="/../"),
+            "target type": lambda c: home(c)["targets"].update(ru=1),
+            "target language": lambda c: home(c)["targets"].update(ru="/en/"),
+            "duplicate target": lambda c: nav(c)["items"][1]["targets"].update(ru="/"),
+            "bad match": lambda c: home(c).update(match="prefix"),
+            "home section match": lambda c: home(c).update(match="section"),
+            "exceptions object": lambda c: about(c).update(active_pages=[]),
+            "missing exception locale": lambda c: about(c)["active_pages"].pop("en"),
+            "exception list type": lambda c: about(c)["active_pages"].update(en=None),
+            "unknown exception": lambda c: about(c)["active_pages"]["ru"].append("/missing/"),
+            "exception language": lambda c: about(c)["active_pages"]["ru"].append("/en/articles/"),
+            "duplicate exception": lambda c: about(c)["active_pages"]["ru"].append("/articles/about/"),
+            "exception collision": lambda c: home(c).update(active_pages={"ru": ["/articles/about/"], "en": []}),
+            "exception shadows target": lambda c: about(c)["active_pages"]["ru"].append("/articles/"),
+        }
+        for name, mutate in mutations.items():
+            with self.subTest(name=name):
+                catalog = copy.deepcopy(self.catalog)
+                mutate(catalog)
+                self.save_catalog(catalog)
+                self.reject_without_writes()
+        self.assertEqual(self.cli("--check").returncode, 1)
+
+    def navigation_region_fixture(self):
+        old = re.search(rb'<nav class="site-nav"[^>]*>[\s\S]*?</nav>',
+                        (self.root / "index.html").read_bytes()).group()
+        prefix = '<!DOCTYPE html>\r\n<html lang="ru"><body><header><div class="wrap">\r\n'.encode("utf-8") + generator.NAV_START
+        suffix = generator.NAV_END + ('\r\n<div class="languages"><a href="/en/" lang="en">EN</a></div>'
+                  '</div></header><main><p>Авторский текст:  ё — &amp; \u2028\t конец.  </p>\r\n'
+                  '<nav aria-label="По стихам"><a href="/poeziya/">Назад</a></nav></main></body></html>').encode("utf-8")
+        return prefix, old, suffix
+
+    def test_navigation_region_preserves_surrounding_bytes_and_is_idempotent(self):
+        prefix, old, suffix = self.navigation_region_fixture()
+        source = prefix + b"\r\n  " + old + b"\r\n" + suffix
+        replacement = generator.render_navigation(self.catalog, "/articles/about/")
+        before = snapshot(self.root)
+        with patch.object(Path, "write_bytes", side_effect=AssertionError("pure helper must not write")):
+            updated = generator.replace_navigation_region(source, replacement)
+        self.assertEqual(updated, prefix + b"\n" + replacement + suffix)
+        self.assertEqual(generator.replace_navigation_region(updated, replacement), updated)
+        self.assertEqual(snapshot(self.root), before)
+
+    def test_navigation_region_rejects_missing_duplicate_and_ambiguous_boundaries(self):
+        prefix, old, suffix = self.navigation_region_fixture()
+        start, end = generator.NAV_START, generator.NAV_END
+        source = prefix + b"\n" + old + b"\n" + suffix
+        variants = {
+            "missing markers": source.replace(start, b"").replace(end, b""),
+            "missing start": source.replace(start, b""),
+            "missing end": source.replace(end, b""),
+            "duplicate start": source.replace(start, start + start),
+            "duplicate end": source.replace(end, end + end),
+            "reversed": source.replace(start, b"PROBE").replace(end, start).replace(b"PROBE", end),
+            "not header": b"<main>" + start + old + end + b"</main>",
+            "script strings": b"<header><script>var html='" + start + old + end + b"';</script></header>",
+            "template": b"<header><template>" + start + old + end + b"</template></header>",
+            "noscript": b"<header><noscript>" + start + old + end + b"</noscript></header>",
+            "duplicate primary": source.replace(end, end + old),
+            "malformed nav": source.replace(b"</nav>", b"</div>", 1),
+            "extra owned content": source.replace(end, b"<p>Do not delete</p>" + end),
+            "language block inside region": source.replace(end, b'<div class="languages">EN</div>' + end),
+            "different parents": source.replace(end, b"<div>" + end + b"</div>"),
+            "markers inside nav": b"<header>" + old.replace(b">", b">" + start, 1).replace(b"</nav>", end + b"</nav>") + b"</header>",
+            "invalid UTF8": source + b"\xff",
+        }
+        replacement = generator.render_navigation(self.catalog, "/")
+        for name, data in variants.items():
+            with self.subTest(name=name), self.assertRaises((generator.Invalid, UnicodeError)):
+                generator.replace_navigation_region(data, replacement)
+
+    def test_navigation_region_rejects_unsafe_replacement_markup(self):
+        prefix, old, suffix = self.navigation_region_fixture()
+        source = prefix + old + suffix
+        valid = generator.render_navigation(self.catalog, "/")
+        variants = [valid.rstrip(b"\n"), valid.replace(b"\n", b"\r\n"), valid + valid,
+                    valid.replace(b'site-nav', b'other-nav'),
+                    valid.replace(b'</nav>', b'<script>alert(1)</script></nav>'),
+                    valid.replace(b'<a ', b'<a onclick="x" ', 1),
+                    valid.replace(b'href="/"', b'href="javascript:alert(1)"', 1),
+                    valid.replace(b'aria-current="page"', b'aria-current="true"'),
+                    valid.replace(b'<a href="/articles/"', b'<a aria-current="location" href="/articles/"'),
+                    valid.replace(b'</nav>', b'<!-- extra --></nav>'),
+                    b'<!DOCTYPE html>' + valid, b'<?xml version="1.0"?>' + valid,
+                    valid.replace(b'</nav>', b'extra text</nav>'),
+                    valid.replace(b'</nav>', b'<span>extra</span></nav>'), b"\xff\n"]
+        for data in variants:
+            with self.subTest(data=data[:50]), self.assertRaises((generator.Invalid, UnicodeError)):
+                generator.replace_navigation_region(source, data)
 
     def test_invalid_works_fail_before_any_writes(self):
         def novel(c):

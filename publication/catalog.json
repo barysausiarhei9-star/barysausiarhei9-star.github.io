@@ -1026,5 +1026,116 @@
       "/articles/about/",
       "/en/about/"
     ]
+  },
+  "navigation": {
+    "version": 1,
+    "aria_label": {
+      "ru": "Основная навигация",
+      "en": "Main navigation"
+    },
+    "items": [
+      {
+        "id": "home",
+        "labels": {
+          "ru": "Главная",
+          "en": "Home"
+        },
+        "targets": {
+          "ru": "/",
+          "en": "/en/"
+        },
+        "match": "exact"
+      },
+      {
+        "id": "articles",
+        "labels": {
+          "ru": "Статьи",
+          "en": "Articles"
+        },
+        "targets": {
+          "ru": "/articles/",
+          "en": "/en/articles/"
+        },
+        "match": "section"
+      },
+      {
+        "id": "book",
+        "labels": {
+          "ru": "Книга",
+          "en": "Book"
+        },
+        "targets": {
+          "ru": "/kniga/",
+          "en": "/en/book/"
+        },
+        "match": "section"
+      },
+      {
+        "id": "prose",
+        "labels": {
+          "ru": "Проза",
+          "en": "Prose"
+        },
+        "targets": {
+          "ru": "/proza/",
+          "en": "/en/prose/"
+        },
+        "match": "section"
+      },
+      {
+        "id": "poetry",
+        "labels": {
+          "ru": "Поэзия",
+          "en": "Poetry"
+        },
+        "targets": {
+          "ru": "/poeziya/",
+          "en": "/en/poetry/"
+        },
+        "match": "section"
+      },
+      {
+        "id": "about",
+        "labels": {
+          "ru": "О проекте",
+          "en": "About"
+        },
+        "targets": {
+          "ru": "/about/",
+          "en": "/en/about/"
+        },
+        "match": "section",
+        "active_pages": {
+          "ru": [
+            "/articles/about/"
+          ],
+          "en": []
+        }
+      },
+      {
+        "id": "search",
+        "labels": {
+          "ru": "Поиск",
+          "en": "Search"
+        },
+        "targets": {
+          "ru": "/search/",
+          "en": "/en/search/"
+        },
+        "match": "exact"
+      },
+      {
+        "id": "works",
+        "labels": {
+          "ru": "Все произведения",
+          "en": "All works"
+        },
+        "targets": {
+          "ru": "/works/",
+          "en": "/en/works/"
+        },
+        "match": "exact"
+      }
+    ]
   }
 }

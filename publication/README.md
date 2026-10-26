@@ -182,6 +182,66 @@ authored sources outside this generator's write scope. To add or reclassify a wo
 review `pages`, `works`, and any translation group, then use the same explicit
 `--write`, diff review and read-only `--check` workflow. Do not edit generated HTML.
 
+## Centralized navigation contract (A3.3.1; migration inactive)
+
+The optional top-level `navigation` object is version `1`. It has exactly
+`version`, `aria_label` (nonempty RU/EN landmark names), and an ordered `items`
+array. Each item has a unique lowercase slug `id`, localized `labels`, localized
+registered `targets`, and `match` (`exact` or `section`). All localized objects
+contain exactly `ru` and `en`. Labels are trimmed single-line text and are escaped
+when rendered. Targets must use the existing slash-delimited page-path grammar,
+exist in `pages`, match their declared locale, and be unique within that locale.
+External URLs, fragments, queries, unknown fields and unsupported versions fail.
+An updated generator still accepts catalogs without `navigation`; older generators
+reject the new field, so ship metadata and validator together.
+
+The initial eight-item order is Home, Articles, Book, Prose, Poetry, About, Search,
+Works, with the existing localized labels and destinations. The home destinations
+must use exact matching. Optional `active_pages`, with explicit RU/EN arrays,
+assigns registered pages to an item; exceptions cannot collide or shadow a menu
+destination. About owns `/articles/about/` as an explicit exception.
+
+`render_navigation(catalog, path)` validates the contract and registered page
+context, then returns semantic `<nav class="site-nav">` HTML as UTF-8/LF bytes.
+Selection uses an explicit exception first, an exact destination next, then the
+longest matching section path. Exact destinations receive `aria-current="page"`;
+selected parent/related sections receive `aria-current="location"`. Unmatched
+pages receive no active marker. Item order is authoritative; localized object-key
+order is not. Rendering is pure and deterministic, with escaped labels/attributes,
+a named landmark and ordinary anchors using the existing CSS and keyboard behavior.
+
+`replace_navigation_region(source, replacement)` is a separate pure byte helper
+for the future explicit migration. It requires exactly one pair of literal markers:
+
+```html
+<!-- site-nav:start -->
+<nav class="site-nav" aria-label="…">…</nav>
+<!-- site-nav:end -->
+```
+
+Both markers must be real HTML comments in the same header context, outside other
+navigation or inactive content. The page must contain exactly one primary menu.
+The owned content and replacement must each contain only a named `site-nav` with
+direct, named anchors and at most one valid active marker. Duplicate/reversed or
+missing boundaries, malformed markup, extra owned content (including language
+controls), unsafe attributes/links and invalid UTF-8 fail closed. Replacement
+bytes use canonical LF with a final newline. Only bytes between the markers are
+replaced; the markers and all surrounding bytes, including original line endings,
+entities, literary text and language switches, remain unchanged. Replacing an
+already-current region is idempotent. The helper never discovers/adopts unmarked
+menus and never writes files.
+
+**Inactive in this slice:** publication generation validates navigation metadata
+before any writes, but does not call either helper. All seven generated outputs,
+all authored HTML and the write allowlist remain unchanged. Existing works-page
+menu rendering is retained until A3.3.2 switches both generated catalogs and the
+90 authored pages to the shared renderer together. Current `--check` does not yet
+require ownership markers or detect authored-menu drift. A3.3.2 needs explicit
+marker migration, region-drift checks, target preflight and outside-region byte
+preservation before enabling authored-page writes. Language fallbacks, poetry
+pagination/sequences and novel controls are outside the owned menu. No runtime
+JavaScript, second publication registry or deployment-workflow change is introduced.
+
 ## Pages deployment gate
 
 The existing Pages workflow installs the validator from

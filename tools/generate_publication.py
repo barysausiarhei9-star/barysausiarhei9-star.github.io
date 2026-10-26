@@ -16,6 +16,8 @@ OUTPUTS = ("sitemap.xml", "api/agent-feed/v1.json", "feed.xml", "assets/search-i
            "assets/search-index-en.json")
 WORK_ROUTES = {"ru": "/works/", "en": "/en/works/"}
 WORK_OUTPUTS = tuple(path.lstrip("/") + "index.html" for path in WORK_ROUTES.values())
+NAV_START = b"<!-- site-nav:start -->"
+NAV_END = b"<!-- site-nav:end -->"
 SITE = "https://schrodingercat.org"
 SCHEMA_URL = SITE + "/api/agent-feed/v1.schema.json"
 VOID = set("area base br col embed hr img input link meta param source track wbr".split())
@@ -258,6 +260,185 @@ def validate_works(catalog, html_pages, alternates):
     require(not missing, "unclassified content pages: " + repr(missing))
 
 
+def validate_navigation(catalog):
+    """Validate the optional contract; page migration remains inactive in A3.3.1."""
+    if "navigation" not in catalog:
+        return
+    navigation = catalog["navigation"]
+    fields(navigation, ("version", "aria_label", "items"))
+    require(type(navigation["version"]) is int and navigation["version"] == 1,
+            "unsupported navigation version")
+    fields(navigation["aria_label"], ("ru", "en"))
+    require(isinstance(navigation["items"], list) and navigation["items"],
+            "navigation items must be a nonempty ordered array")
+    pages = {p["path"]: p for p in catalog["pages"]}
+    ids, targets = set(), {"ru": set(), "en": set()}
+
+    def label(value):
+        text(value)
+        require(value == value.strip() and len(value.splitlines()) == 1 and
+                not any(c in "\r\n\t\x7f" for c in value),
+                "navigation labels must be trimmed single-line text")
+
+    def reference(value, language):
+        page_path(value)
+        require(value in pages and pages[value]["language"] == language,
+                "navigation target must be registered in its language: " + value)
+
+    for value in navigation["aria_label"].values():
+        label(value)
+    for item in navigation["items"]:
+        fields(item, ("id", "labels", "targets", "match"), ("active_pages",))
+        require(isinstance(item["id"], str) and re.fullmatch(r"[a-z][a-z0-9-]*", item["id"]),
+                "invalid navigation item ID")
+        require(item["id"] not in ids, "duplicate navigation item ID")
+        ids.add(item["id"])
+        fields(item["labels"], ("ru", "en"))
+        fields(item["targets"], ("ru", "en"))
+        require(item["match"] in ("exact", "section"), "invalid navigation match mode")
+        for language in ("ru", "en"):
+            label(item["labels"][language])
+            target = item["targets"][language]
+            reference(target, language)
+            require(target not in targets[language], "duplicate navigation target: " + target)
+            targets[language].add(target)
+            require(item["match"] != "section" or target not in ("/", "/en/"),
+                    "language home must use exact navigation matching")
+
+    exceptions = {"ru": set(), "en": set()}
+    for item in navigation["items"]:
+        if "active_pages" not in item:
+            continue
+        fields(item["active_pages"], ("ru", "en"))
+        for language, paths in item["active_pages"].items():
+            require(isinstance(paths, list), "navigation active_pages must be arrays")
+            for path in paths:
+                reference(path, language)
+                require(path not in targets[language], "active exception shadows a menu destination")
+                require(path not in exceptions[language], "duplicate navigation active-page exception")
+                exceptions[language].add(path)
+
+
+def render_navigation(catalog, path):
+    """Pure shared renderer, deliberately not called by publication rendering yet."""
+    validate_navigation(catalog)
+    require("navigation" in catalog, "navigation rendering requires navigation metadata")
+    page_path(path)
+    pages = {p["path"]: p for p in catalog["pages"]}
+    require(path in pages, "unregistered navigation context: " + path)
+    language = pages[path]["language"]
+    require(language in ("ru", "en"), "unsupported navigation language")
+    navigation = catalog["navigation"]
+    items = navigation["items"]
+    selected = next((item for item in items
+                     if path in item.get("active_pages", {}).get(language, [])), None)
+    if selected is None:
+        selected = next((item for item in items if item["targets"][language] == path), None)
+    if selected is None:
+        candidates = [item for item in items if item["match"] == "section"
+                      and path.startswith(item["targets"][language])]
+        selected = max(candidates, key=lambda item: len(item["targets"][language]), default=None)
+    lines = ['<nav class="site-nav" aria-label="' + escape(navigation["aria_label"][language]) + '">']
+    for item in items:
+        target = item["targets"][language]
+        current = ''
+        if item is selected:
+            current = ' aria-current="' + ('page' if target == path else 'location') + '"'
+        lines.append(f'  <a href="{escape(target)}"{current}>{escape(item["labels"][language])}</a>')
+    lines.append('</nav>')
+    return ("\n".join(lines) + "\n").encode("utf-8")
+
+
+class _NavigationMarkup(PageHTML):
+    """Owned markup is one named nav with direct, text-only anchors."""
+
+    def __init__(self, source):
+        self.labels = []
+        super().__init__(source)
+
+    def handle_starttag(self, tag, attrs):
+        require((tag == "nav" and not self.stack) or
+                (tag == "a" and self.stack and self.stack[-1][0] == "nav"),
+                "owned navigation may contain only one nav and direct anchors")
+        if tag == "a":
+            self.labels.append("")
+        super().handle_starttag(tag, attrs)
+
+    def handle_data(self, data):
+        if self.stack and self.stack[-1][0] == "a":
+            self.labels[-1] += data
+        else:
+            require(not data.strip(), "text outside owned navigation anchors")
+
+    def handle_comment(self, data):
+        raise Invalid("comments inside owned navigation markup")
+
+    def handle_decl(self, decl):
+        raise Invalid("declarations inside owned navigation markup")
+
+    def unknown_decl(self, data):
+        raise Invalid("unknown declarations inside owned navigation markup")
+
+    def handle_pi(self, data):
+        raise Invalid("processing instructions inside owned navigation markup")
+
+
+def _validate_navigation_markup(source):
+    html = _NavigationMarkup(source)
+    navs = html.matching("nav")
+    require(len(navs) == 1, "owned region must contain exactly one navigation")
+    fields(navs[0], ("class", "aria-label"))
+    require(navs[0]["class"] == "site-nav", "owned region must contain site-nav")
+    text(navs[0]["aria-label"])
+    links = html.matching("a")
+    require(links and all(s.strip() for s in html.labels), "owned navigation requires named links")
+    targets = set()
+    for link in links:
+        fields(link, ("href",), ("aria-current",))
+        page_path(link["href"])
+        require(link["href"] not in targets, "duplicate owned navigation link")
+        targets.add(link["href"])
+        require("aria-current" not in link or link["aria-current"] in ("page", "location"),
+                "invalid owned navigation active state")
+    require(sum("aria-current" in a for a in links) <= 1, "multiple owned navigation active states")
+
+
+class _NavigationRegionHTML(PageHTML):
+    def __init__(self, source):
+        self.boundaries = []
+        super().__init__(source)
+
+    def handle_comment(self, data):
+        if data not in (" site-nav:start ", " site-nav:end "):
+            return
+        tags = [tag for tag, _ in self.stack]
+        require("header" in tags and not any(t in tags for t in ("nav", "main", "script", "style", "template", "noscript")),
+                "owned navigation markers must be in the header outside navigation")
+        self.boundaries.append((data, self.stack.copy()))
+
+
+def replace_navigation_region(source, replacement):
+    """Pure byte splice; never discovers regions, serializes a page, or writes files."""
+    require(isinstance(source, bytes) and isinstance(replacement, bytes), "navigation replacement requires bytes")
+    require(source.count(NAV_START) == 1 and source.count(NAV_END) == 1,
+            "expected exactly one owned navigation marker pair")
+    begin = source.index(NAV_START) + len(NAV_START)
+    end = source.index(NAV_END)
+    require(begin <= end, "reversed owned navigation markers")
+    document = _NavigationRegionHTML(source.decode("utf-8"))
+    require(len(document.boundaries) == 2 and
+            [b[0] for b in document.boundaries] == [" site-nav:start ", " site-nav:end "] and
+            document.boundaries[0][1] == document.boundaries[1][1],
+            "owned navigation markers must be real comments in the same header context")
+    require(sum("site-nav" in a.get("class", "").split() for a in document.matching("nav")) == 1,
+            "page must contain exactly one primary navigation")
+    _validate_navigation_markup(source[begin:end].decode("utf-8"))
+    require(replacement.endswith(b"\n") and b"\r" not in replacement,
+            "replacement must use canonical LF with a final newline")
+    _validate_navigation_markup(replacement.decode("utf-8"))
+    return source[:begin] + b"\n" + replacement + source[end:]
+
+
 def registered_work_routes(catalog):
     """Only the explicitly registered RU/EN pair enables generated HTML."""
     pages = {p["path"]: p for p in catalog["pages"]}
@@ -367,7 +548,7 @@ def prepare(root):
 
     catalog = load_json(root / "publication/catalog.json")
     fields(catalog, ("format_version", "site_url", "rss_channel", "alternate_groups", "pages"),
-           ("works",))
+           ("works", "navigation"))
     require(type(catalog["format_version"]) is int and catalog["format_version"] == 1,
             "unsupported catalog format_version")
     require(catalog["site_url"] == SITE, "site_url must match existing Agent Feed contract")
@@ -435,6 +616,7 @@ def prepare(root):
             require(path not in alternates, "overlapping alternate groups")
             alternates[path] = group
     validate_works(catalog, html_pages, alternates)
+    validate_navigation(catalog)
     for name, data in render_work_pages(catalog, alternates).items():
         path = "/" + name.removesuffix("index.html")
         html_pages[path] = validate_html(root, by_path[path], data.decode("utf-8"))
