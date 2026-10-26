@@ -100,6 +100,11 @@ class PublicationTests(unittest.TestCase):
                                  "rss": rss})
         if "works" in catalog:
             catalog["works"]["items"].append({"path": path, "type": "article"})
+        if "navigation" in catalog:
+            nav = generator.render_navigation(catalog, path)
+            target.write_bytes(target.read_bytes().replace(b"<body><main>",
+                b"<body><header>" + generator.NAV_START + b"\n" + nav +
+                generator.NAV_END + b"</header><main>"))
         self.save_catalog(catalog)
         return {"url": generator.SITE + path, "title": title, "language": language, "text": body}
 
@@ -414,7 +419,7 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual({name for name in original if original[name] != updated[name]},
                          set(generator.WORK_OUTPUTS))
 
-    def test_navigation_contract_and_renderer_are_ready_but_inactive(self):
+    def test_navigation_contract_and_renderer_are_shared_by_all_pages(self):
         catalog, _, _ = generator.prepare(self.root)
         navigation = catalog["navigation"]
         self.assertEqual(navigation["version"], 1)
@@ -433,9 +438,12 @@ class PublicationTests(unittest.TestCase):
                                  [i["labels"][page["language"]] for i in navigation["items"]])
                 self.assertEqual(len([a for a in html.matching("a") if "aria-current" in a]), 1)
         before = snapshot(self.root)
-        with patch.object(generator, "render_navigation", side_effect=AssertionError("migration inactive")), \
-             patch.object(generator, "replace_navigation_region", side_effect=AssertionError("migration inactive")):
+        with patch.object(generator, "render_navigation", wraps=generator.render_navigation) as renderer, \
+             patch.object(generator, "replace_navigation_region", wraps=generator.replace_navigation_region) as replacer:
             self.assertEqual(generator.run(self.root, write=True), 0)
+            self.assertEqual({call.args[1] for call in renderer.call_args_list},
+                             {p["path"] for p in catalog["pages"]})
+            self.assertEqual(replacer.call_count, 90)
         self.assertEqual(snapshot(self.root), before)
         outputs = generator.render(self.root)
         self.assertEqual(set(outputs), set(generator.OUTPUTS + generator.WORK_OUTPUTS))
@@ -499,6 +507,11 @@ class PublicationTests(unittest.TestCase):
         catalog = copy.deepcopy(self.catalog)
         catalog.pop("navigation")
         self.save_catalog(catalog)
+        # Legacy A3.2 catalogs have no ownership comments in generated pages.
+        for name in generator.WORK_OUTPUTS:
+            original[name] = original[name].replace(b"      " + generator.NAV_START + b"\n", b"").replace(
+                b"      " + generator.NAV_END + b"\n", b"")
+            (self.root / name).write_bytes(original[name])
         before = snapshot(self.root)
         self.assertEqual(generator.render(self.root), original)
         self.assertEqual(self.cli().returncode, 0)
@@ -506,6 +519,106 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(snapshot(self.root), before)
         with self.assertRaises(generator.Invalid):
             generator.render_navigation(catalog, "/")
+
+    def test_navigation_metadata_change_propagates_to_all_92_pages_only(self):
+        pages = [p["path"].lstrip("/") + "index.html" for p in self.catalog["pages"]]
+        originals = {name: (self.root / name).read_bytes() for name in pages}
+        protected = {name: (self.root / name).read_bytes() for name in generator.OUTPUTS}
+        catalog = copy.deepcopy(self.catalog)
+        catalog["navigation"]["items"].reverse()
+        self.save_catalog(catalog)
+        for mode in (None, "--check"):
+            before = snapshot(self.root)
+            self.assertEqual(self.cli(mode).returncode, 1)
+            self.assertEqual(snapshot(self.root), before)
+        before = snapshot(self.root)
+        self.assertEqual(generator.run(self.root, write=True), 0)
+        after = snapshot(self.root)
+        self.assertEqual({p for p in after if after[p] != before.get(p)}, set(pages))
+        for name, original in originals.items():
+            updated = (self.root / name).read_bytes()
+            self.assertEqual(updated.split(generator.NAV_START)[0], original.split(generator.NAV_START)[0])
+            self.assertEqual(updated.split(generator.NAV_END)[1], original.split(generator.NAV_END)[1])
+            menu = generator.PageHTML(re.search(rb'<nav class="site-nav"[^>]*>[\s\S]*?</nav>', updated).group().decode("utf-8"))
+            locale = next(p["language"] for p in catalog["pages"] if p["path"].lstrip("/") + "index.html" == name)
+            self.assertEqual([a["href"] for a in menu.matching("a")],
+                             [i["targets"][locale] for i in catalog["navigation"]["items"]])
+        for name, data in protected.items():
+            self.assertEqual((self.root / name).read_bytes(), data)
+        self.assertEqual(self.cli("--check").returncode, 0)
+        stable = snapshot(self.root)
+        self.assertEqual(generator.run(self.root, write=True), 0)
+        self.assertEqual(snapshot(self.root), stable)
+
+    def test_authored_navigation_drift_is_read_only_then_repairs_only_owned_region(self):
+        name = "poeziya/white-thread/index.html"
+        target = self.root / name
+        original = target.read_bytes()
+        target.write_bytes(original.replace("Главная".encode("utf-8"), b"Menu drift probe", 1))
+        for mode in (None, "--check"):
+            before = snapshot(self.root)
+            result = self.cli(mode)
+            self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+            self.assertIn(name, result.stderr)
+            self.assertEqual(snapshot(self.root), before)
+        before = snapshot(self.root)
+        self.assertEqual(generator.run(self.root, write=True), 0)
+        after = snapshot(self.root)
+        self.assertEqual({p for p in after if after[p] != before[p]}, {name})
+        self.assertEqual(target.read_bytes(), original)
+
+    def test_missing_duplicate_or_malformed_authored_regions_prevent_all_writes(self):
+        early = self.root / "index.html"
+        early.write_bytes(early.read_bytes().replace("Главная".encode("utf-8"), b"Early drift", 1))
+        generated = self.root / generator.WORK_OUTPUTS[0]
+        generated.write_bytes(generated.read_bytes() + b"stale output")
+        target = self.root / "en/search/index.html"
+        original = target.read_bytes()
+        variants = [original.replace(generator.NAV_START, b""),
+                    original.replace(generator.NAV_END, b""),
+                    original.replace(generator.NAV_START, generator.NAV_START * 2),
+                    original.replace(generator.NAV_END, generator.NAV_END * 2),
+                    original.replace(b'<nav class="site-nav"', b'<nav class="other-nav"'),
+                    original.replace(generator.NAV_END, b'<p>Unowned content</p>' + generator.NAV_END),
+                    original.replace(b'</nav>', b'</div>', 1)]
+        for number, source in enumerate(variants):
+            with self.subTest(variant=number):
+                target.write_bytes(source)
+                self.reject_without_writes()
+                before = snapshot(self.root)
+                for mode in (None, "--check", "--write"):
+                    self.assertEqual(self.cli(mode).returncode, 1)
+                    self.assertEqual(snapshot(self.root), before)
+
+    def test_all_authored_targets_are_preflighted_before_navigation_writes(self):
+        early = self.root / "index.html"
+        early.write_bytes(early.read_bytes().replace("Главная".encode("utf-8"), b"Early drift", 1))
+        target = self.root / "en/search/index.html"
+        original_resolve = Path.resolve
+
+        def resolve(path, *args, **kwargs):
+            return self.root / "index.html" if path == target else original_resolve(path, *args, **kwargs)
+
+        with patch.object(Path, "resolve", resolve):
+            self.reject_without_writes()
+
+    def test_authored_file_changed_after_planning_is_not_overwritten(self):
+        target = self.root / "en/search/index.html"
+        original = target.read_bytes()
+        plan = generator.authored_navigation_plan
+
+        def concurrent_edit(root, catalog):
+            result = plan(root, catalog)
+            target.write_bytes(original + b"<!-- concurrent edit -->")
+            return result
+
+        before = snapshot(self.root)
+        with patch.object(generator, "authored_navigation_plan", concurrent_edit), \
+             self.assertRaisesRegex(generator.Invalid, "changed during validation"):
+            generator.run(self.root, write=True)
+        after = snapshot(self.root)
+        self.assertEqual({p for p in after if after[p] != before[p]}, {"en/search/index.html"})
+        self.assertEqual(target.read_bytes(), original + b"<!-- concurrent edit -->")
 
     def test_invalid_navigation_fails_before_writes(self):
         def nav(c):

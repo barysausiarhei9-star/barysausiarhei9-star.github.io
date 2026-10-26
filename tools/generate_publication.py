@@ -320,7 +320,7 @@ def validate_navigation(catalog):
 
 
 def render_navigation(catalog, path):
-    """Pure shared renderer, deliberately not called by publication rendering yet."""
+    """Pure shared renderer for registered authored and generated page menus."""
     validate_navigation(catalog)
     require("navigation" in catalog, "navigation rendering requires navigation metadata")
     page_path(path)
@@ -486,12 +486,18 @@ def render_work_pages(catalog, alternates):
                      for lang, path in WORK_ROUTES.items())
         lines.extend(['  <link rel="stylesheet" href="/assets/style.css" />', '</head>',
                       '<body class="reading-page">', '  <header class="site-header">',
-                      '    <div class="wrap header-row">', f'      <div class="wordmark">{brand}</div>',
-                      '      <nav class="site-nav" aria-label="' +
-                      ('Основная навигация' if ru else 'Main navigation') + '">'])
-        lines.extend(f'        <a href="{path}">{label}</a>' for path, label in navigation)
-        lines.extend([f'        <a href="{route}" aria-current="page">{heading}</a>', '      </nav>',
-                      '      <div class="languages" aria-label="' + ('Язык' if ru else 'Language') + '">'])
+                      '    <div class="wrap header-row">', f'      <div class="wordmark">{brand}</div>'])
+        if "navigation" in catalog:
+            lines.append('      ' + NAV_START.decode("ascii"))
+            lines.extend('      ' + line for line in render_navigation(catalog, route).decode("utf-8").splitlines())
+            lines.append('      ' + NAV_END.decode("ascii"))
+        else:
+            # Frozen A3.2 fallback for legacy catalogs without the optional contract.
+            lines.append('      <nav class="site-nav" aria-label="' +
+                         ('Основная навигация' if ru else 'Main navigation') + '">')
+            lines.extend(f'        <a href="{path}">{label}</a>' for path, label in navigation)
+            lines.extend([f'        <a href="{route}" aria-current="page">{heading}</a>', '      </nav>'])
+        lines.append('      <div class="languages" aria-label="' + ('Язык' if ru else 'Language') + '">')
         for lang, path in WORK_ROUTES.items():
             current = ' aria-current="page"' if lang == language else ''
             lines.append(f'        <a href="{path}" lang="{lang}" hreflang="{lang}"{current}>{lang.upper()}</a>')
@@ -635,12 +641,11 @@ def xml_bytes(element):
             ET.tostring(element, encoding="unicode") + "\n").encode("utf-8")
 
 
-def render(root=ROOT):
+def _render_outputs(root, catalog, feed, alternates):
     if __package__:
         from .search_index import render_search
     else:
         from search_index import render_search
-    catalog, feed, alternates = prepare(root)
     sitemap = ET.Element("urlset", {"xmlns": "http://www.sitemaps.org/schemas/sitemap/0.9",
                                     "xmlns:xhtml": "http://www.w3.org/1999/xhtml"})
     rss = ET.Element("rss", {"xmlns:atom": "http://www.w3.org/2005/Atom",
@@ -676,17 +681,49 @@ def render(root=ROOT):
     return outputs
 
 
+def render(root=ROOT):
+    """Return the seven derived outputs; authored navigation is planned by run."""
+    return _render_outputs(root, *prepare(root))
+
+
+def authored_navigation_plan(root, catalog):
+    """Plan only registered, existing authored files and their owned regions."""
+    if "navigation" not in catalog:
+        return {}
+    generated = registered_work_routes(catalog)
+    plan = {}
+    for page in catalog["pages"]:
+        if page["path"] in generated:
+            continue
+        name = page["path"].lstrip("/") + "index.html"
+        source = local_file(root, name).read_bytes()
+        try:
+            expected = replace_navigation_region(source, render_navigation(catalog, page["path"]))
+        except (Invalid, UnicodeError) as error:
+            raise Invalid(name + ": " + str(error)) from error
+        plan[name] = (source, expected)
+    return plan
+
+
 def run(root=ROOT, write=False):
-    outputs = render(root)
+    catalog, feed, alternates = prepare(root)
+    outputs = _render_outputs(root, catalog, feed, alternates)
+    authored = authored_navigation_plan(root, catalog)
+    require(not outputs.keys() & authored.keys(), "overlapping generated and authored outputs")
+    outputs.update({name: expected for name, (_, expected) in authored.items()})
     targets = {name: local_file(root, name) for name in OUTPUTS}
     for name in outputs.keys() - targets.keys():
-        require(name in WORK_OUTPUTS, "unauthorized generated output")
-        target = root / name
+        require(name in WORK_OUTPUTS or name in authored, "unauthorized publication output")
+        target = local_file(root, name) if name in authored else root / name
         require(target.resolve() == root.resolve() / name, "generated output alias: " + name)
         require(not target.exists() or target.is_file(), "generated output is not a file: " + name)
         require(all(not p.exists() or p.is_dir() for p in target.parents),
                 "generated output parent is not a directory: " + name)
         targets[name] = target
+    # All targets and ownership have passed before any write. Refuse to overwrite
+    # an authored file changed since its byte-preserving projection was planned.
+    for name, (source, _) in authored.items():
+        require(targets[name].read_bytes() == source, "authored HTML changed during validation: " + name)
     different = [name for name, data in outputs.items()
                  if not targets[name].is_file() or targets[name].read_bytes() != data]
     if write:
@@ -694,12 +731,13 @@ def run(root=ROOT, write=False):
             if name in WORK_OUTPUTS:
                 targets[name].parent.mkdir(parents=True, exist_ok=True)
             targets[name].write_bytes(outputs[name])
-        print("PASS: validated; wrote " + str(len(different)) + " publication outputs")
+        print("PASS: validated; wrote " + str(len(different)) + " publication/navigation files")
         return 0
     if different:
         print("FAIL: publication outputs differ: " + ", ".join(different), file=sys.stderr)
         return 1
-    print(f"PASS: catalog, HTML, resources and schema valid; all {len(outputs)} outputs match (read-only)")
+    print(f"PASS: catalog, HTML, resources and schema valid; {len(outputs) - len(authored)} generated outputs "
+          f"and {len(authored)} authored navigation regions match (read-only)")
     return 0
 
 

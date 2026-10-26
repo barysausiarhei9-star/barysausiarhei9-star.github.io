@@ -3,8 +3,9 @@
 `catalog.json` is the single reviewed metadata source for `sitemap.xml`,
 `api/agent-feed/v1.json`, `feed.xml`, `assets/search-index.json` and
 `assets/search-index-en.json`, plus the registered `/works/` and `/en/works/`
-HTML catalogs. The Pages workflow checks these same seven outputs
-before artifact upload. HTML and media remain independently authored source files.
+HTML catalogs. The Pages workflow checks these same seven outputs and the owned
+primary-navigation regions on registered authored pages before artifact upload.
+All HTML outside those regions and the generated catalogs remains authored source.
 
 The catalog was seeded directly from the verified M1 artifacts at commit
 `28b0ff50e92c7ca2a3f216c2dc38770c244a5d43`. It preserves 59 ordered pages,
@@ -86,7 +87,7 @@ text still require human review. Checks verify structural evidence and metadata
 agreement; they do not OCR images or infer classifications or translations.
 When intentionally editing content, update and review the catalog explicitly,
 regenerate, inspect the scoped diff and reassess the M1 regression expectations.
-The existing Agent Feed schema, authored HTML, literary text, assets, both PDFs,
+The existing Agent Feed schema, authored HTML outside owned navigation, literary text, assets, both PDFs,
 `llms.txt` and GitHub Pages workflow are outside the generator's write scope.
 
 ## Work-level discovery metadata (A3.1)
@@ -182,7 +183,7 @@ authored sources outside this generator's write scope. To add or reclassify a wo
 review `pages`, `works`, and any translation group, then use the same explicit
 `--write`, diff review and read-only `--check` workflow. Do not edit generated HTML.
 
-## Centralized navigation contract (A3.3.1; migration inactive)
+## Centralized navigation (A3.3.1 contract; A3.3.2 migration active)
 
 The optional top-level `navigation` object is version `1`. It has exactly
 `version`, `aria_label` (nonempty RU/EN landmark names), and an ordered `items`
@@ -210,8 +211,8 @@ pages receive no active marker. Item order is authoritative; localized object-ke
 order is not. Rendering is pure and deterministic, with escaped labels/attributes,
 a named landmark and ordinary anchors using the existing CSS and keyboard behavior.
 
-`replace_navigation_region(source, replacement)` is a separate pure byte helper
-for the future explicit migration. It requires exactly one pair of literal markers:
+`replace_navigation_region(source, replacement)` is the pure byte helper used by
+authored-page generation. It requires exactly one pair of literal markers:
 
 ```html
 <!-- site-nav:start -->
@@ -231,16 +232,43 @@ entities, literary text and language switches, remain unchanged. Replacing an
 already-current region is idempotent. The helper never discovers/adopts unmarked
 menus and never writes files.
 
-**Inactive in this slice:** publication generation validates navigation metadata
-before any writes, but does not call either helper. All seven generated outputs,
-all authored HTML and the write allowlist remain unchanged. Existing works-page
-menu rendering is retained until A3.3.2 switches both generated catalogs and the
-90 authored pages to the shared renderer together. Current `--check` does not yet
-require ownership markers or detect authored-menu drift. A3.3.2 needs explicit
-marker migration, region-drift checks, target preflight and outside-region byte
-preservation before enabling authored-page writes. Language fallbacks, poetry
-pagination/sequences and novel controls are outside the owned menu. No runtime
-JavaScript, second publication registry or deployment-workflow change is introduced.
+The A3.3.2 one-time migration placed markers around the original menu spans of
+90 authored pages. The two works catalogs now call the same shared renderer and
+emit markers too. All 92 pages use the eight-item menu. No catalog records, work
+metadata or translation mappings changed. The existing five feed/search outputs
+remain byte-identical; the works catalogs change only at their menu spans.
+
+Default/`--check` validates all inputs, renders the seven derived outputs and
+projects every registered authored menu from `navigation`. It reports stale menus
+without touching files. Missing, duplicate, misplaced or malformed authored
+ownership regions fail closed, including in `--write`; they are never adopted or
+repaired by guessing. A newly registered authored page must already contain a
+valid marked menu. Missing authored HTML still fails. The two wholly generated
+catalog pages retain A3.2's explicit-write creation/repair behavior; their actual
+bytes, including menus and markers, must match generation for checks to pass.
+
+Explicit `--write` preflights all targets before any writes. Its only additional
+targets are registered, existing authored HTML files; each expected file is built
+by byte-splicing its owned menu. Directory/alias targets are rejected, and an
+authored file changed since planning is not overwritten. Only differing files
+are written. Repeated generation is idempotent, including unchanged mtimes.
+Unregistered files are never written or silently registered. Writes retain M2's
+existing nontransactional limitation against OS failure, interruption or edits
+made after preflight; review and rerun after resolving such a failure.
+
+`render()` retains the seven-output API for existing callers; `run()` and the CLI
+add the authored-navigation plan to their checks/write preflight. The unchanged
+Pages `--check` command now gates both the seven outputs and 90 owned regions.
+A RU-only label change updates applicable RU menus; shared ordering changes
+propagate to all 92 pages during explicit local generation, without per-page menu
+edits. Legacy catalogs without optional `navigation` retain the seven-output
+behavior and frozen A3.2 works-menu fallback.
+
+Language switches and their honest fallbacks, poetry pagination/sequences, novel
+controls, literary content and all bytes outside owned regions are preserved.
+There is no runtime JavaScript, second publication registry or deployment-workflow
+change. Do not manually edit managed menus; edit the reviewed navigation contract,
+run `--write`, inspect the HTML-region diff and run read-only `--check`.
 
 ## Pages deployment gate
 
