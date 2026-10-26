@@ -11,3 +11,12 @@
 .novel-toc a { overflow-wrap: anywhere; }
 .novel-nav { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
 .novel-nav .back { margin: 0; }
+
+.novel-nav-compact { display: none; }
+.novel-start { margin-bottom: 24px; }
+@media (max-width: 768px) {
+  .novel-nav { gap: 8px; }
+  .novel-nav .back { padding-inline: 8px; }
+  .novel-nav-full { display: none; }
+  .novel-nav-compact { display: inline; }
+}

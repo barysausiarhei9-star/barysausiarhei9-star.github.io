@@ -138,7 +138,7 @@ def verify(root=ROOT):
                     nodes.extend([("start", tag), *inline_nodes(child), ("end", tag)])
                 return nodes
             require(block["inline"] == inline_nodes(section[i]), f"inline formatting changed at {i}")
-        require(sum(a.get("href") == BASE for a in page.links) >= 2, path + ": missing TOC links")
+        require(sum(a.get("href") in (BASE, BASE + "#toc") for a in page.links) >= 2, path + ": missing TOC links")
         for rel, neighbor in (("prev", n - 1), ("next", n + 1)):
             links = [a["href"] for a in page.links if a.get("rel") == rel]
             target = BASE + entries[neighbor][0] + "/" if 0 <= neighbor < len(entries) else None
