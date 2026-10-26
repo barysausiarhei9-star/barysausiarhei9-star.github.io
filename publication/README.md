@@ -2,7 +2,8 @@
 
 `catalog.json` is the single reviewed metadata source for `sitemap.xml`,
 `api/agent-feed/v1.json`, `feed.xml`, `assets/search-index.json` and
-`assets/search-index-en.json`. The Pages workflow checks these same five outputs
+`assets/search-index-en.json`, plus the registered `/works/` and `/en/works/`
+HTML catalogs. The Pages workflow checks these same seven outputs
 before artifact upload. HTML and media remain independently authored source files.
 
 The catalog was seeded directly from the verified M1 artifacts at commit
@@ -26,13 +27,13 @@ python -m venv .venv
 ```
 
 Omitting a mode is identical to `--check`: validate all inputs, compare all
-five outputs and exit without writing. Exit status is 0 for matching
+registered outputs and exit without writing. Exit status is 0 for matching
 outputs, 1 for invalid input, missing outputs or byte drift, and 2 for invalid CLI arguments.
 After reviewing an intentional catalog change, regenerate explicitly:
 
 ```powershell
 .venv\Scripts\python.exe -B tools/generate_publication.py --write
-git diff -- sitemap.xml api/agent-feed/v1.json feed.xml assets/search-index.json assets/search-index-en.json publication tools tests .github/workflows/pages.yml
+git diff -- sitemap.xml api/agent-feed/v1.json feed.xml assets/search-index.json assets/search-index-en.json works en/works publication tools tests
 ```
 
 Serialization uses UTF-8 without BOM, LF, fixed indentation and catalog order.
@@ -85,7 +86,7 @@ text still require human review. Checks verify structural evidence and metadata
 agreement; they do not OCR images or infer classifications or translations.
 When intentionally editing content, update and review the catalog explicitly,
 regenerate, inspect the scoped diff and reassess the M1 regression expectations.
-The existing Agent Feed schema, HTML, literary text, assets, both PDFs,
+The existing Agent Feed schema, authored HTML, literary text, assets, both PDFs,
 `llms.txt` and GitHub Pages workflow are outside the generator's write scope.
 
 ## Work-level discovery metadata (A3.1)
@@ -105,8 +106,8 @@ supplies its language versions; fallback links do not create translations. A
 translation group can belong to only one principal item. There is no separate
 work registry, duplicated translation map, or numeric ordering field.
 
-Array order is editorial display order within categories, shared by both future
-interfaces. The planned category order is Books (`book`), Prose (`novel`), Poetry,
+Array order is editorial display order within categories, shared by both
+interfaces. The category order is Books (`book`), Prose (`novel`), Poetry,
 Articles. The initial 36 items cover one PDF book, Pereborsh, 24 poems in their
 existing 10/10/4 catalog order, and ten articles in existing listing order. The
 ten article translation groups yield 46 principal language versions. Display
@@ -138,11 +139,48 @@ field, so metadata and validator changes must travel together. Malformed or
 incomplete `works` metadata never falls back to legacy behavior. Existing HTML,
 resource, schema, translation-evidence and public-route coverage checks remain.
 
-A3.1 validates metadata only: it creates no `/works/` or `/en/works/` pages and
-does not change the five-output write allowlist or deployment configuration.
-Future rendering requires a separate implementation; it must use this same
-catalog, explicitly register its output routes, and preserve read-only default
-checks and fail-closed validation. No unregistered file is automatically published.
+A3.1 introduced metadata validation without changing the original five outputs.
+A3.2 adds the two generated HTML outputs below; deployment configuration is unchanged.
+No unregistered file is automatically published.
+
+## Generated RU/EN works catalogs (A3.2)
+
+`works/index.html` and `en/works/index.html` are generated, not manually authored.
+Both routes must be explicitly registered as `section_index` / `html_text`, with
+their correct document languages, `rss: false`, no resources, and their own
+`alternate_groups` pair. Neither is searchable content. Registering only one
+route, omitting `works` metadata, or classifying a catalog as a work fails closed.
+Legacy catalogs without these routes retain the original five-output behavior.
+
+Each page lists every principal work once, grouped and ordered from `works.items`.
+The interface language selects an existing translation when present; otherwise
+the principal page is linked with an accurate unavailable-language notice.
+Titles are the exact existing page titles, escaped as HTML and marked with their
+actual `lang`. Other-language links retain `hreflang` for their destination while
+their localized labels inherit the interface language. No fallback becomes a
+translation; parts and excluded information pages are not separate rows.
+
+Rendering uses fixed templates and category order, UTF-8, LF and no timestamps.
+All source HTML, metadata, resources and relationships are validated first.
+Expected catalog HTML is built and validated in memory; existing generated HTML
+is never a source of work metadata. This allows initial generation and repair
+without bypassing authored-page checks. Default/`--check` compares both actual
+catalog files with expected bytes and rejects missing, malformed or stale output
+without writing. The existing Pages check automatically covers these outputs.
+
+Explicit `--write` may create only these two registered HTML targets and their
+parent directories. All original five output files must already exist, and every
+output target must pass preflight before writes. Catalog targets that are
+directories or resolve through aliases are rejected. All other public HTML must
+still exist and match registration; unregistered files remain errors. As with M2,
+writes are not a multi-file transaction against OS failures or interruption.
+
+Initial A3.2 registration raises sitemap and Agent Feed counts from 90 to 92.
+RSS and both search indexes remain byte-identical. The homepages contain localized
+catalog entry links; existing section catalogs, search and literary pages remain
+authored sources outside this generator's write scope. To add or reclassify a work,
+review `pages`, `works`, and any translation group, then use the same explicit
+`--write`, diff review and read-only `--check` workflow. Do not edit generated HTML.
 
 ## Pages deployment gate
 
@@ -151,7 +189,7 @@ The existing Pages workflow installs the validator from
 `python -B tools/generate_publication.py --check` after checkout, before Pages
 configuration and artifact upload. This is the same read-only local check:
 invalid inputs or a stale, missing or corrupted output (including either search
-index) fail the job, so artifact upload and deployment cannot proceed. CI never
+index or generated works page) fail the job, so artifact upload and deployment cannot proceed. CI never
 regenerates outputs or commits changes. Validator setup or installation failures
 also stop the job. Existing push-to-`main` and manual workflow triggers are unchanged;
 the Operator controls generation, review, commits and pushes.

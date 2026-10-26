@@ -2,6 +2,7 @@
 
 import copy
 import hashlib
+from html import unescape
 import json
 from pathlib import Path
 import re
@@ -69,9 +70,9 @@ class PublicationTests(unittest.TestCase):
             generator.run(self.root, write=True)
         self.assertEqual(snapshot(self.root), before)
 
-    def cli(self, mode):
+    def cli(self, mode=None):
         return subprocess.run(
-            [sys.executable, "-B", "tools/generate_publication.py", mode],
+            [sys.executable, "-B", "tools/generate_publication.py"] + ([mode] if mode else []),
             cwd=self.root, capture_output=True, text=True, encoding="utf-8", check=False)
 
     def check_cli_rejects_without_writes(self, *names):
@@ -110,6 +111,7 @@ class PublicationTests(unittest.TestCase):
                 original = {name: (self.root / name).read_bytes() for name in generator.OUTPUTS}
                 page = self.new_publication(language, rss)
                 changed = {"sitemap.xml", "api/agent-feed/v1.json", own}
+                changed.update(generator.WORK_OUTPUTS)
                 if rss:
                     changed.add("feed.xml")
                 self.check_cli_rejects_without_writes(*changed)
@@ -174,14 +176,16 @@ class PublicationTests(unittest.TestCase):
     def test_m1_preservation_and_reviewed_novel_inventory(self):
         outputs = generator.render(self.root)
         prefix = generator.SITE + "/proza/pereborsh/"
+        added_indexes = {generator.SITE + p for p in
+                         ("/search/", "/en/search/", "/works/", "/en/works/")}
         for name, data in outputs.items():
-            if name in ("assets/search-index.json", "assets/search-index-en.json"):
+            if name in ("assets/search-index.json", "assets/search-index-en.json", *generator.WORK_OUTPUTS):
                 continue  # New derived output has its own extraction and coverage tests.
             original = subprocess.check_output(["git", "show", BASELINE + ":" + name], cwd=ROOT)
             if name.endswith(".json"):
                 current, baseline = json.loads(data), json.loads(original)
                 current["entries"] = [e for e in current["entries"] if not e["id"].startswith(prefix)
-                                      and e["id"] not in {generator.SITE + "/search/", generator.SITE + "/en/search/"}]
+                                      and e["id"] not in added_indexes]
                 # Approved novel/N1 sections replaced four M1 placeholders.
                 # Restore only these two historical fields for the M1 comparison.
                 sections = {"/proza/", "/en/book/", "/en/prose/", "/en/poetry/"}
@@ -195,17 +199,17 @@ class PublicationTests(unittest.TestCase):
                 link_tag = "link" if name == "feed.xml" else "{http://www.sitemaps.org/schemas/sitemap/0.9}loc"
                 for child in list(parent):
                     link = child.findtext(link_tag) or ""
-                    if link.startswith(prefix) or link in {generator.SITE + "/search/", generator.SITE + "/en/search/"}:
+                    if link.startswith(prefix) or link in added_indexes:
                         parent.remove(child)
                 self.assertEqual(xml_semantics(ET.tostring(current)), xml_semantics(original))
         catalog, feed, groups = generator.prepare(self.root)
-        self.assertEqual(len(feed["entries"]), 90)
+        self.assertEqual(len(feed["entries"]), 92)
         self.assertEqual(sum(p["rss"] for p in catalog["pages"]), 73)
         novel = [p for p in catalog["pages"] if p["path"].startswith("/proza/pereborsh/")]
         self.assertEqual(len(novel), 29)
         self.assertEqual(sum(p["page_type"] == "content" and p["rss"] for p in novel), 28)
-        self.assertEqual(len(catalog["alternate_groups"]), 14)
-        self.assertEqual(len(groups), 28)
+        self.assertEqual(len(catalog["alternate_groups"]), 15)
+        self.assertEqual(len(groups), 30)
         self.assertEqual(sum(len(p.get("resources", [])) for p in catalog["pages"]), 4)
         self.assertEqual(sum(p["page_type"] == "placeholder" for p in catalog["pages"]), 0)
         for path in ("/proza/", "/en/book/", "/en/prose/", "/en/poetry/"):
@@ -243,9 +247,150 @@ class PublicationTests(unittest.TestCase):
         for name, data in generator.render(self.root).items():
             self.assertEqual(data, (self.root / name).read_bytes(), name)
 
+    def test_generated_catalogs_have_exact_work_titles_versions_and_order(self):
+        catalog, _, groups = generator.prepare(self.root)
+        pages = {p["path"]: p for p in catalog["pages"]}
+        expected_order = [w["path"] for kind in ("book", "novel", "poem", "article")
+                          for w in catalog["works"]["items"] if w["type"] == kind]
+        outputs = generator.render(self.root)
+        self.assertEqual(set(outputs), set(generator.OUTPUTS + generator.WORK_OUTPUTS))
+        for language, route in generator.WORK_ROUTES.items():
+            source = outputs[route.lstrip("/") + "index.html"].decode("utf-8")
+            html = generator.PageHTML(source)
+            rows = [a["data-work-path"] for a in html.matching("div") if "data-work-path" in a]
+            self.assertEqual(rows, expected_order)
+            self.assertEqual(len(set(rows)), 36)
+            self.assertEqual(len(html.matching("h1")), 1)
+            self.assertEqual(len(html.matching("h2")), 4)
+            self.assertEqual(len(html.matching("h3")), 36)
+            self.assertEqual(html.matching("script"), [])
+            self.assertEqual(html.matching("html"), [{"lang": language}])
+            primary = [attrs for i, (tag, attrs) in enumerate(html.tags)
+                       if tag == "a" and html.tags[i - 1][0] == "h3"]
+            titles = [unescape(t) for t in re.findall(r'<h3><a[^>]*>([^<]*)</a></h3>', source)]
+            expected_paths = [groups.get(p, {}).get(language, p) for p in expected_order]
+            self.assertEqual([a["href"] for a in primary], expected_paths)
+            self.assertEqual(titles, [pages[p]["title"] for p in expected_paths])
+            for a in primary:
+                self.assertEqual((a["lang"], a["hreflang"]),
+                                 (pages[a["href"]]["language"], pages[a["href"]]["language"]))
+            translations = [a for a in html.matching("a") if "data-translation" in a]
+            self.assertEqual(len(translations), 10)
+            self.assertTrue(all("lang" not in a for a in translations))
+            for work_path, a in zip([p for p in expected_order if p in groups], translations):
+                other = "en" if language == "ru" else "ru"
+                self.assertEqual((a["href"], a["hreflang"]), (groups[work_path][other], other))
+            if language == "en":
+                self.assertEqual(source.count("Russian only. An English version is not available on this site."), 26)
+                self.assertEqual(source.count("Available in Russian and English."), 10)
+
+    def test_catalog_html_is_escaped(self):
+        catalog = copy.deepcopy(self.catalog)
+        page = next(p for p in catalog["pages"] if p["path"] == "/articles/formula-boga/")
+        old_title = page["title"]
+        page["title"] = 'A <script>alert("x")</script> & "quote"'
+        encoded = 'A &lt;script&gt;alert(&quot;x&quot;)&lt;/script&gt; &amp; &quot;quote&quot;'
+        target = self.root / "articles/formula-boga/index.html"
+        target.write_text(target.read_text(encoding="utf-8").replace(
+            "<title>" + old_title + "</title>", "<title>" + encoded + "</title>"), encoding="utf-8")
+        self.save_catalog(catalog)
+        source = generator.render(self.root)["works/index.html"].decode("utf-8")
+        self.assertIn(encoded, source)
+        self.assertEqual(generator.PageHTML(source).matching("script"), [])
+
+    def test_catalog_registration_is_explicit_and_fail_closed(self):
+        def page(c):
+            return next(p for p in c["pages"] if p["path"] == "/works/")
+
+        mutations = {
+            "no works": lambda c: c.pop("works"),
+            "one route": lambda c: c["pages"].remove(next(p for p in c["pages"] if p["path"] == "/en/works/")),
+            "no group": lambda c: c["alternate_groups"].remove(generator.WORK_ROUTES),
+            "invalid group container": lambda c: c.update(alternate_groups=None),
+            "content": lambda c: page(c).update(page_type="content"),
+            "RSS": lambda c: page(c).update(rss=True),
+            "language": lambda c: page(c).update(language="en"),
+            "availability": lambda c: page(c).update(text_availability="heading_only"),
+            "resources": lambda c: page(c).update(resources=[]),
+            "catalog as work": lambda c: c["works"]["items"].append({"path": "/works/", "type": "novel"}),
+        }
+        for name, mutate in mutations.items():
+            with self.subTest(name=name):
+                catalog = copy.deepcopy(self.catalog)
+                mutate(catalog)
+                self.save_catalog(catalog)
+                self.reject_without_writes()
+
+    def test_catalog_missing_and_stale_checks_are_read_only_and_write_repairs_only_outputs(self):
+        for name in generator.WORK_OUTPUTS:
+            target = self.root / name
+            original = target.read_bytes()
+            for state in ("missing", "stale", "malformed"):
+                with self.subTest(name=name, state=state):
+                    if state == "missing":
+                        target.unlink()
+                    else:
+                        target.write_bytes(original + b"stale" if state == "stale" else b"<broken>")
+                    for mode in (None, "--check"):
+                        before = snapshot(self.root)
+                        result = self.cli(mode)
+                        self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+                        self.assertIn(name, result.stderr)
+                        self.assertEqual(snapshot(self.root), before)
+                    before = snapshot(self.root)
+                    result = self.cli("--write")
+                    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                    after = snapshot(self.root)
+                    self.assertEqual({p for p in after if after[p] != before.get(p)}, {name})
+                    self.assertEqual(target.read_bytes(), original)
+        before = snapshot(self.root)
+        self.assertEqual(self.cli("--write").returncode, 0)
+        self.assertEqual(snapshot(self.root), before)
+
+    def test_catalog_creation_still_requires_valid_inputs_and_all_five_old_outputs(self):
+        original = {name: (self.root / name).read_bytes() for name in generator.WORK_OUTPUTS}
+        for name in generator.WORK_OUTPUTS:
+            (self.root / name).unlink()
+            (self.root / name).parent.rmdir()
+        before = snapshot(self.root)
+        self.assertEqual(generator.run(self.root, write=True), 0)
+        after = snapshot(self.root)
+        self.assertEqual({p for p in after if after[p] != before.get(p)}, set(generator.WORK_OUTPUTS))
+        for name, data in original.items():
+            self.assertEqual((self.root / name).read_bytes(), data)
+            (self.root / name).unlink()
+        catalog = copy.deepcopy(self.catalog)
+        catalog["works"]["items"].pop()
+        self.save_catalog(catalog)
+        self.reject_without_writes()
+        self.save_catalog(self.catalog)
+        (self.root / "feed.xml").unlink()
+        self.reject_without_writes()
+
+    def test_catalog_write_rejects_directory_and_alias_targets_before_writes(self):
+        target = self.root / generator.WORK_OUTPUTS[0]
+        target.unlink()
+        target.mkdir()
+        self.reject_without_writes()
+        target.rmdir()
+        original_resolve = Path.resolve
+
+        def resolve(path, *args, **kwargs):
+            return self.root / "index.html" if path == target else original_resolve(path, *args, **kwargs)
+
+        with patch.object(Path, "resolve", resolve):
+            self.reject_without_writes()
+
     def test_works_absence_preserves_legacy_publication_behavior(self):
-        original = generator.render(self.root)
         legacy = copy.deepcopy(self.catalog)
+        legacy["pages"] = [p for p in legacy["pages"] if p["path"] not in generator.WORK_ROUTES.values()]
+        legacy["alternate_groups"].remove(generator.WORK_ROUTES)
+        for name in generator.WORK_OUTPUTS:
+            (self.root / name).unlink()
+        self.save_catalog(legacy)
+        original = generator.render(self.root)
+        for name, data in original.items():
+            (self.root / name).write_bytes(data)
         legacy.pop("works")
         self.save_catalog(legacy)
         before = snapshot(self.root)
@@ -257,14 +402,16 @@ class PublicationTests(unittest.TestCase):
         outputs = generator.render(self.root)
         self.assertIn(page, json.loads(outputs["assets/search-index-en.json"])["pages"])
 
-    def test_work_display_order_is_explicit_and_does_not_change_m2_outputs(self):
+    def test_work_display_order_changes_only_generated_catalogs(self):
         original = generator.render(self.root)
         catalog = copy.deepcopy(self.catalog)
         catalog["works"]["items"].reverse()
         self.save_catalog(catalog)
         prepared, _, _ = generator.prepare(self.root)
         self.assertEqual(prepared["works"]["items"], catalog["works"]["items"])
-        self.assertEqual(generator.render(self.root), original)
+        updated = generator.render(self.root)
+        self.assertEqual({name for name in original if original[name] != updated[name]},
+                         set(generator.WORK_OUTPUTS))
 
     def test_invalid_works_fail_before_any_writes(self):
         def novel(c):
@@ -418,7 +565,7 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(generator.run(self.root, write=True), 0)
         first = snapshot(self.root)
         self.assertLessEqual({name for name in first if first[name] != before[name]},
-                             set(generator.OUTPUTS))
+                             set(generator.OUTPUTS + generator.WORK_OUTPUTS))
         self.assertEqual(generator.render(self.root), generator.render(self.root))
         self.assertEqual(generator.run(self.root, write=True), 0)
         self.assertEqual(snapshot(self.root), first)

@@ -63,6 +63,10 @@
     {
       "ru": "/articles/zakon-antipodov-nobelevskaya-lektsiya/",
       "en": "/en/articles/zakon-antipodov-nobelevskaya-lektsiya/"
+    },
+    {
+      "ru": "/works/",
+      "en": "/en/works/"
     }
   ],
   "pages": [
@@ -817,6 +821,22 @@
     {
       "path": "/en/search/",
       "title": "Search — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/works/",
+      "title": "Все произведения — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/en/works/",
+      "title": "All works — Schrödinger’s Cat",
       "language": "en",
       "page_type": "section_index",
       "text_availability": "html_text",

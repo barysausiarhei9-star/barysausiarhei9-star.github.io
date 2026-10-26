@@ -847,6 +847,24 @@
       "title": "Search — Schrödinger’s Cat",
       "page_type": "section_index",
       "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/works/",
+      "canonical_url": "https://schrodingercat.org/works/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Все произведения — Кошка Шрёдингера",
+      "page_type": "section_index",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/works/",
+      "canonical_url": "https://schrodingercat.org/en/works/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "All works — Schrödinger’s Cat",
+      "page_type": "section_index",
+      "text_availability": "html_text"
     }
   ]
 }
