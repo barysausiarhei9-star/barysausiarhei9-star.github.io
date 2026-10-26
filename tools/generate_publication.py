@@ -168,13 +168,100 @@ def validate_resource(root, page, resource, html):
                     for book in books), "PDF Book metadata mismatch")
 
 
+def validate_works(catalog, html_pages, alternates):
+    """Validate optional discovery metadata without changing publication outputs."""
+    if "works" not in catalog:
+        return
+    works = catalog["works"]
+    fields(works, ("version", "items", "excluded_content"))
+    require(type(works["version"]) is int and works["version"] == 1,
+            "unsupported works version")
+    require(isinstance(works["items"], list) and works["items"],
+            "works items must be a nonempty ordered array")
+    require(isinstance(works["excluded_content"], list), "excluded_content must be an array")
+    pages = {p["path"]: p for p in catalog["pages"]}
+    roles = {}
+
+    def reference(value):
+        page_path(value)
+        require(value in pages, "unregistered works reference: " + value)
+        return value
+
+    def versions(value):
+        return list(alternates[value].values()) if value in alternates else [value]
+
+    def claim(value, role):
+        require(value not in roles, "duplicate/conflicting works role: " + value)
+        roles[value] = role
+
+    # Claim every principal version first, so parts can never be other roots,
+    # their translations, or members of a cycle, regardless of item order.
+    for work in works["items"]:
+        fields(work, ("path", "type"), ("parts",))
+        principal = reference(work["path"])
+        require(work["type"] in ("book", "novel", "poem", "article"), "invalid work type")
+        if "parts" in work:
+            require(work["type"] in ("book", "novel") and
+                    isinstance(work["parts"], list) and work["parts"],
+                    "parts require a book/novel and a nonempty ordered array")
+        for variant in versions(principal):
+            page = pages[variant]
+            require(page["page_type"] in ("content", "section_index"),
+                    "invalid principal page classification: " + variant)
+            if work["type"] in ("poem", "article"):
+                require(page["page_type"] == "content", "poem/article must be content: " + variant)
+            elif page["page_type"] == "section_index":
+                require(work.get("parts") or any(r["content_type"] == "application/pdf"
+                        for r in page.get("resources", [])),
+                        "book/novel index lacks parts or PDF: " + variant)
+            claim(variant, "principal")
+
+    for work in works["items"]:
+        principal = work["path"]
+        parts = work.get("parts", [])
+        parent_languages = {pages[p]["language"] for p in versions(principal)}
+        for part in parts:
+            reference(part)
+            require(pages[part]["language"] == pages[principal]["language"],
+                    "primary part language differs from principal: " + part)
+            for variant in versions(part):
+                require(pages[variant]["page_type"] == "content", "part must be content: " + variant)
+                require(pages[variant]["language"] in parent_languages,
+                        "part language has no parent version: " + variant)
+                claim(variant, "part")
+        # Match each parent's language to its ordered part versions. Fallback
+        # links never establish a translation or a parent/child relationship.
+        for parent in versions(principal):
+            expected = []
+            for part in parts:
+                matches = [p for p in versions(part)
+                           if pages[p]["language"] == pages[parent]["language"]]
+                require(len(matches) == 1, "part has no matching parent-language version: " + part)
+                expected.append(SITE + matches[0])
+            expected_set = set(expected)
+            actual = []
+            for link in html_pages[parent].matching("a"):
+                target = urljoin(SITE + parent, link.get("href", "")).split("#", 1)[0]
+                if target in expected_set and target not in actual:
+                    actual.append(target)
+            require(actual == expected, "parts links/order disagree with parent: " + parent)
+
+    for excluded in works["excluded_content"]:
+        reference(excluded)
+        require(pages[excluded]["page_type"] == "content", "excluded page must be content: " + excluded)
+        claim(excluded, "excluded")
+    missing = [p for p, page in pages.items() if page["page_type"] == "content" and p not in roles]
+    require(not missing, "unclassified content pages: " + repr(missing))
+
+
 def prepare(root):
     # Import on demand so a missing validator cannot silently skip validation.
     from jsonschema import Draft202012Validator
     from referencing import Registry
 
     catalog = load_json(root / "publication/catalog.json")
-    fields(catalog, ("format_version", "site_url", "rss_channel", "alternate_groups", "pages"))
+    fields(catalog, ("format_version", "site_url", "rss_channel", "alternate_groups", "pages"),
+           ("works",))
     require(type(catalog["format_version"]) is int and catalog["format_version"] == 1,
             "unsupported catalog format_version")
     require(catalog["site_url"] == SITE, "site_url must match existing Agent Feed contract")
@@ -243,6 +330,7 @@ def prepare(root):
                             urljoin(SITE + path, a.get("href", "")) == SITE + target
                             for a in html_pages[path].matching("a") + html_pages[path].matching("link")),
                         "alternate not supported by HTML: " + path)
+    validate_works(catalog, html_pages, alternates)
     return catalog, feed, alternates
 
 

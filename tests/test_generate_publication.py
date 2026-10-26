@@ -97,6 +97,8 @@ class PublicationTests(unittest.TestCase):
         catalog["pages"].append({"path": path, "title": title, "language": language,
                                  "page_type": "content", "text_availability": "html_text",
                                  "rss": rss})
+        if "works" in catalog:
+            catalog["works"]["items"].append({"path": path, "type": "article"})
         self.save_catalog(catalog)
         return {"url": generator.SITE + path, "title": title, "language": language, "text": body}
 
@@ -180,9 +182,12 @@ class PublicationTests(unittest.TestCase):
                 current, baseline = json.loads(data), json.loads(original)
                 current["entries"] = [e for e in current["entries"] if not e["id"].startswith(prefix)
                                       and e["id"] not in {generator.SITE + "/search/", generator.SITE + "/en/search/"}]
-                # The prose placeholder is now a real section; every other M1 field survives.
-                prose = next(e for e in current["entries"] if e["id"] == generator.SITE + "/proza/")
-                prose.update(page_type="placeholder", text_availability="heading_only")
+                # Approved novel/N1 sections replaced four M1 placeholders.
+                # Restore only these two historical fields for the M1 comparison.
+                sections = {"/proza/", "/en/book/", "/en/prose/", "/en/poetry/"}
+                for entry in current["entries"]:
+                    if entry["id"] in {generator.SITE + p for p in sections}:
+                        entry.update(page_type="placeholder", text_availability="heading_only")
                 self.assertEqual(current, baseline)
             else:
                 current = ET.fromstring(data)
@@ -202,8 +207,175 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(len(catalog["alternate_groups"]), 14)
         self.assertEqual(len(groups), 28)
         self.assertEqual(sum(len(p.get("resources", [])) for p in catalog["pages"]), 4)
-        self.assertEqual(sum(p["page_type"] == "placeholder" for p in catalog["pages"]), 3)
+        self.assertEqual(sum(p["page_type"] == "placeholder" for p in catalog["pages"]), 0)
+        for path in ("/proza/", "/en/book/", "/en/prose/", "/en/poetry/"):
+            page = next(p for p in catalog["pages"] if p["path"] == path)
+            self.assertEqual((page["page_type"], page["text_availability"], page["rss"]),
+                             ("section_index", "html_text", False))
         self.assertEqual(sum(p["text_availability"] == "image_only" for p in catalog["pages"]), 3)
+
+    def test_works_inventory_and_five_output_bytes_are_preserved(self):
+        catalog, _, groups = generator.prepare(self.root)
+        works = catalog["works"]
+        self.assertEqual(catalog["format_version"], 1)
+        self.assertEqual(works["version"], 1)
+        self.assertEqual(len(works["items"]), 36)
+        self.assertEqual({kind: sum(w["type"] == kind for w in works["items"])
+                          for kind in ("book", "novel", "poem", "article")},
+                         {"book": 1, "novel": 1, "poem": 24, "article": 10})
+        novel = next(w for w in works["items"] if w["type"] == "novel")
+        self.assertEqual(novel["path"], "/proza/pereborsh/")
+        self.assertEqual(novel["parts"], ["/proza/pereborsh/vstuplenie/"] +
+                         [f"/proza/pereborsh/glava-{n:02}/" for n in range(1, 28)])
+        self.assertEqual(works["excluded_content"], ["/about/", "/articles/about/", "/en/about/"])
+        variants = {p for w in works["items"]
+                    for p in groups.get(w["path"], {"own": w["path"]}).values()}
+        self.assertEqual(len(variants), 46)
+        self.assertNotIn("/en/book/", variants)
+        self.assertNotIn("/en/prose/", variants)
+        self.assertNotIn("/en/poetry/", variants)
+        poems = [w["path"] for w in works["items"] if w["type"] == "poem"]
+        expected = []
+        for path in ("poeziya/index.html", "poeziya/page-2/index.html", "poeziya/page-3/index.html"):
+            expected.extend(re.findall(r'<a href="(/poeziya/(?!page-)[a-z0-9-]+/)"',
+                                       (self.root / path).read_text(encoding="utf-8")))
+        self.assertEqual(poems, expected)
+        for name, data in generator.render(self.root).items():
+            self.assertEqual(data, (self.root / name).read_bytes(), name)
+
+    def test_works_absence_preserves_legacy_publication_behavior(self):
+        original = generator.render(self.root)
+        legacy = copy.deepcopy(self.catalog)
+        legacy.pop("works")
+        self.save_catalog(legacy)
+        before = snapshot(self.root)
+        self.assertEqual(generator.render(self.root), original)
+        self.assertEqual(generator.run(self.root), 0)
+        self.assertEqual(snapshot(self.root), before)
+        # Legacy catalogs can still register content without discovery metadata.
+        page = self.new_publication("en", False)
+        outputs = generator.render(self.root)
+        self.assertIn(page, json.loads(outputs["assets/search-index-en.json"])["pages"])
+
+    def test_work_display_order_is_explicit_and_does_not_change_m2_outputs(self):
+        original = generator.render(self.root)
+        catalog = copy.deepcopy(self.catalog)
+        catalog["works"]["items"].reverse()
+        self.save_catalog(catalog)
+        prepared, _, _ = generator.prepare(self.root)
+        self.assertEqual(prepared["works"]["items"], catalog["works"]["items"])
+        self.assertEqual(generator.render(self.root), original)
+
+    def test_invalid_works_fail_before_any_writes(self):
+        def novel(c):
+            return next(w for w in c["works"]["items"] if w["type"] == "novel")
+
+        mutations = {
+            "null works": lambda c: c.update(works=None),
+            "works array": lambda c: c.update(works=[]),
+            "missing field": lambda c: c["works"].pop("excluded_content"),
+            "unknown field": lambda c: c["works"].update(translations=[]),
+            "version": lambda c: c["works"].update(version=2),
+            "boolean version": lambda c: c["works"].update(version=True),
+            "empty items": lambda c: c["works"].update(items=[]),
+            "items object": lambda c: c["works"].update(items={}),
+            "null item": lambda c: c["works"]["items"].append(None),
+            "item missing path": lambda c: c["works"]["items"][0].pop("path"),
+            "item missing type": lambda c: c["works"]["items"][0].pop("type"),
+            "item unknown field": lambda c: c["works"]["items"][0].update(order=1),
+            "invalid type": lambda c: c["works"]["items"][0].update(type="chapter"),
+            "type array": lambda c: c["works"]["items"][0].update(type=[]),
+            "unknown root": lambda c: c["works"]["items"][0].update(path="/missing/"),
+            "root traversal": lambda c: c["works"]["items"][0].update(path="/../"),
+            "root URL": lambda c: c["works"]["items"][0].update(path=generator.SITE + "/kniga/"),
+            "root fragment": lambda c: c["works"]["items"][0].update(path="/kniga/#book"),
+            "duplicate root": lambda c: c["works"]["items"].append(c["works"]["items"][0]),
+            "duplicate translation": lambda c: c["works"]["items"].append(
+                {"path": "/en/articles/the-formula-of-god/", "type": "article"}),
+            "index as poem": lambda c: c["works"]["items"].append({"path": "/poeziya/", "type": "poem"}),
+            "unsupported book index": lambda c: c["works"]["items"].append({"path": "/en/book/", "type": "book"}),
+            "missing novel evidence": lambda c: novel(c).pop("parts"),
+            "parts empty": lambda c: novel(c).update(parts=[]),
+            "parts string": lambda c: novel(c).update(parts="/proza/pereborsh/vstuplenie/"),
+            "parts on poem": lambda c: next(w for w in c["works"]["items"] if w["type"] == "poem").update(
+                parts=["/proza/pereborsh/vstuplenie/"]),
+            "unknown part": lambda c: novel(c)["parts"].append("/missing/"),
+            "duplicate part": lambda c: novel(c)["parts"].append(novel(c)["parts"][0]),
+            "part index": lambda c: novel(c)["parts"].append("/proza/"),
+            "foreign part language": lambda c: novel(c)["parts"].append("/en/articles/the-formula-of-god/"),
+            "self parent": lambda c: novel(c)["parts"].append(novel(c)["path"]),
+            "cycle": lambda c: c["works"]["items"][0].update(parts=[novel(c)["path"]]),
+            "shared part": lambda c: c["works"]["items"].append(
+                {"path": "/about/", "type": "novel", "parts": [novel(c)["parts"][0]]}),
+            "part also principal": lambda c: c["works"]["items"].append(
+                {"path": "/proza/pereborsh/glava-01/", "type": "article"}),
+            "part order": lambda c: novel(c)["parts"].reverse(),
+            "missing part": lambda c: novel(c)["parts"].pop(),
+            "missing principal": lambda c: c["works"]["items"].pop(),
+            "excluded not array": lambda c: c["works"].update(excluded_content={}),
+            "unknown exclusion": lambda c: c["works"]["excluded_content"].append("/missing/"),
+            "index exclusion": lambda c: c["works"]["excluded_content"].append("/poeziya/"),
+            "duplicate exclusion": lambda c: c["works"]["excluded_content"].append("/about/"),
+            "principal exclusion": lambda c: c["works"]["excluded_content"].append("/kniga/"),
+            "translated exclusion": lambda c: c["works"]["excluded_content"].append("/en/articles/the-formula-of-god/"),
+            "part exclusion": lambda c: c["works"]["excluded_content"].append("/proza/pereborsh/glava-01/"),
+            "missing exclusion": lambda c: c["works"]["excluded_content"].pop(),
+        }
+        for name, mutate in mutations.items():
+            with self.subTest(name=name):
+                catalog = copy.deepcopy(self.catalog)
+                mutate(catalog)
+                self.save_catalog(catalog)
+                self.reject_without_writes()
+
+    def test_new_content_requires_explicit_work_classification(self):
+        self.new_publication("ru", False)
+        catalog = generator.load_json(self.root / "publication/catalog.json")
+        catalog["works"]["items"].pop()
+        self.save_catalog(catalog)
+        self.reject_without_writes()
+
+    def test_parts_require_parent_link_evidence(self):
+        parent = self.root / "proza/pereborsh/index.html"
+        parent.write_text(parent.read_text(encoding="utf-8").replace(
+            '/proza/pereborsh/glava-05/', '/proza/pereborsh/glava-06/'), encoding="utf-8")
+        self.reject_without_writes()
+
+    def test_bilingual_parts_use_existing_translation_groups(self):
+        catalog = copy.deepcopy(self.catalog)
+        roots = {"ru": "/novel-probe/", "en": "/en/novel-probe/"}
+        parts = {language: path + "part/" for language, path in roots.items()}
+        for group, page_type in ((roots, "section_index"), (parts, "content")):
+            catalog["alternate_groups"].append(group)
+            for language, path in group.items():
+                title = "Novel probe " + language + " " + page_type
+                links = "".join(f'<a href="{target}" hreflang="{lang}">{lang}</a>'
+                                for lang, target in group.items())
+                if page_type == "section_index":
+                    links += f'<a href="{parts[language]}">Part</a>'
+                html = (f'<html lang="{language}"><head><title>{title}</title></head>'
+                        f'<body><main><h1>{title}</h1><p>{title}</p>{links}</main></body></html>')
+                target = self.root / path.lstrip("/") / "index.html"
+                target.parent.mkdir(parents=True)
+                target.write_text(html, encoding="utf-8")
+                catalog["pages"].append({"path": path, "title": title, "language": language,
+                                         "page_type": page_type, "text_availability": "html_text",
+                                         "rss": False})
+        catalog["works"]["items"].append({"path": roots["ru"], "type": "novel", "parts": [parts["ru"]]})
+        self.save_catalog(catalog)
+        prepared, _, groups = generator.prepare(self.root)
+        self.assertEqual(len(prepared["works"]["items"]), 37)
+        self.assertEqual(groups[parts["ru"]], parts)
+        for missing, message in ((roots, "part language has no parent"),
+                                 (parts, "part has no matching parent-language")):
+            with self.subTest(missing=missing):
+                invalid = copy.deepcopy(catalog)
+                invalid["alternate_groups"].remove(missing)
+                self.save_catalog(invalid)
+                before = snapshot(self.root)
+                with self.assertRaisesRegex(generator.Invalid, message):
+                    generator.run(self.root, write=True)
+                self.assertEqual(snapshot(self.root), before)
 
     def test_schema_validates_generated_and_original_feeds(self):
         from jsonschema import Draft202012Validator

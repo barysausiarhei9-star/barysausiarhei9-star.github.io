@@ -88,6 +88,62 @@ regenerate, inspect the scoped diff and reassess the M1 regression expectations.
 The existing Agent Feed schema, HTML, literary text, assets, both PDFs,
 `llms.txt` and GitHub Pages workflow are outside the generator's write scope.
 
+## Work-level discovery metadata (A3.1)
+
+The optional top-level `works` object extends catalog format version `1` without
+changing any of the five generated outputs. Its exact fields are:
+
+- `version`: integer `1` (not a boolean).
+- `items`: a nonempty ordered array of objects with registered page `path`,
+  `type` (`book`, `novel`, `poem`, or `article`), and optional `parts`.
+- `excluded_content`: an array of registered content-page paths intentionally
+  excluded from work discovery.
+
+An item's path identifies one principal work. Titles, languages, canonical URLs
+and resources remain in the existing page records. `alternate_groups` alone
+supplies its language versions; fallback links do not create translations. A
+translation group can belong to only one principal item. There is no separate
+work registry, duplicated translation map, or numeric ordering field.
+
+Array order is editorial display order within categories, shared by both future
+interfaces. The planned category order is Books (`book`), Prose (`novel`), Poetry,
+Articles. The initial 36 items cover one PDF book, Pereborsh, 24 poems in their
+existing 10/10/4 catalog order, and ten articles in existing listing order. The
+ten article translation groups yield 46 principal language versions. Display
+order is preserved, not inferred from paths, titles, dates or JSON object keys.
+
+Only book/novel items may have `parts`, a nonempty ordered array referencing
+content pages. Pereborsh's index remains a `section_index`; its 28 parts are the
+introduction and 27 chapters in existing TOC order. Primary parts must match the
+principal's language. Translated parts must have matching parent versions, and
+each parent must link to all its own-language part versions in metadata order.
+Repeated links and fragments on links to the same part do not duplicate it.
+Parts cannot also be roots, belong to multiple parents, or form nested cycles.
+Poem/article roots must be content pages; book/novel index roots need registered
+parts or their existing validated PDF resource.
+
+Every content page must have exactly one role: principal language version, part
+language version, or explicit exclusion. The three initial exclusions are
+`/about/`, `/articles/about/`, and `/en/about/`. Other section indexes are not
+implicitly works. New content requires an explicit classification when `works`
+is present, even if it is already registered in `pages`. Unknown fields,
+unsupported versions, invalid/unregistered paths, duplicate or conflicting roles,
+missing coverage, and unsupported part links/order fail before any output writes.
+Work boundaries, genre, exclusions and editorial display order still need review;
+validation does not infer literary meaning.
+
+An updated generator still accepts legacy catalogs with no `works` block and
+preserves their existing publication behavior. Older generators reject the new
+field, so metadata and validator changes must travel together. Malformed or
+incomplete `works` metadata never falls back to legacy behavior. Existing HTML,
+resource, schema, translation-evidence and public-route coverage checks remain.
+
+A3.1 validates metadata only: it creates no `/works/` or `/en/works/` pages and
+does not change the five-output write allowlist or deployment configuration.
+Future rendering requires a separate implementation; it must use this same
+catalog, explicitly register its output routes, and preserve read-only default
+checks and fail-closed validation. No unregistered file is automatically published.
+
 ## Pages deployment gate
 
 The existing Pages workflow installs the validator from

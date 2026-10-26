@@ -822,5 +822,189 @@
       "text_availability": "html_text",
       "rss": false
     }
-  ]
+  ],
+  "works": {
+    "version": 1,
+    "items": [
+      {
+        "path": "/kniga/",
+        "type": "book"
+      },
+      {
+        "path": "/proza/pereborsh/",
+        "type": "novel",
+        "parts": [
+          "/proza/pereborsh/vstuplenie/",
+          "/proza/pereborsh/glava-01/",
+          "/proza/pereborsh/glava-02/",
+          "/proza/pereborsh/glava-03/",
+          "/proza/pereborsh/glava-04/",
+          "/proza/pereborsh/glava-05/",
+          "/proza/pereborsh/glava-06/",
+          "/proza/pereborsh/glava-07/",
+          "/proza/pereborsh/glava-08/",
+          "/proza/pereborsh/glava-09/",
+          "/proza/pereborsh/glava-10/",
+          "/proza/pereborsh/glava-11/",
+          "/proza/pereborsh/glava-12/",
+          "/proza/pereborsh/glava-13/",
+          "/proza/pereborsh/glava-14/",
+          "/proza/pereborsh/glava-15/",
+          "/proza/pereborsh/glava-16/",
+          "/proza/pereborsh/glava-17/",
+          "/proza/pereborsh/glava-18/",
+          "/proza/pereborsh/glava-19/",
+          "/proza/pereborsh/glava-20/",
+          "/proza/pereborsh/glava-21/",
+          "/proza/pereborsh/glava-22/",
+          "/proza/pereborsh/glava-23/",
+          "/proza/pereborsh/glava-24/",
+          "/proza/pereborsh/glava-25/",
+          "/proza/pereborsh/glava-26/",
+          "/proza/pereborsh/glava-27/"
+        ]
+      },
+      {
+        "path": "/poeziya/telenor/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/staroobryadtsam/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/a-khuli/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/sonnet-66/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/tailless-apes/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/besame-besame-mucho/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/a-mozhet/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/white-thread/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/white-white-white-verse/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/akh-moy-dom/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/kipling-vertical-ballad/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/barcarola/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/mad-national-idea/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/arkhideechka/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/akhvoyna/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/xxl/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/benelux-cuckoo-nest/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/a-smysl/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/a-v-dver-stuchat/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/a-koronu/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/antropogennoe/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/endemik/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/svinopas/",
+        "type": "poem"
+      },
+      {
+        "path": "/poeziya/obmanutye/",
+        "type": "poem"
+      },
+      {
+        "path": "/articles/kolchan-dlya-strel-vremeni/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/prostoe-reshenie-paradoksa-bliznetsov/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/memorandum-koshki-shredingera/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/bog-i-teoriya-sistem/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/formula-boga/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/formula-of-everything-and-other-nice-things/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/multiplicity-of-worlds/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/vector-of-time-in-the-machinery-of-the-universe/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/tale-of-temporal-milestones/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/zakon-antipodov-nobelevskaya-lektsiya/",
+        "type": "article"
+      }
+    ],
+    "excluded_content": [
+      "/about/",
+      "/articles/about/",
+      "/en/about/"
+    ]
+  }
 }
