@@ -4,6 +4,7 @@
 .search-form label { display: block; margin-bottom: 8px; }
 .search-controls { display: flex; gap: 12px; }
 .search-controls input { min-width: 0; flex: 1; border: 1px solid #8a785a; background: #171613; color: #eee9df; padding: 12px; font: inherit; border-radius: 0; }
+.search-controls input::placeholder { color: #b7b1a7; opacity: 1; }
 .search-controls input:focus-visible { outline: 2px solid #d6bd92; outline-offset: 3px; }
 .search-controls button { background: #171613; cursor: pointer; font-family: inherit; }
 .search-controls button:focus-visible { outline: 2px solid #d6bd92; outline-offset: 3px; }
