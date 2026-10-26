@@ -14,6 +14,21 @@
 
 .novel-nav-compact { display: none; }
 .novel-start { margin-bottom: 24px; }
+
+.reading-preferences { color: #eee9df; }
+.reading-preferences summary { min-height: 44px; padding-block: 8px; cursor: pointer; }
+.reading-preferences-fields { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px; padding-block: 12px; }
+.reading-preferences label { display: flex; flex-direction: column; gap: 4px; max-width: 100%; }
+.reading-preferences select, .reading-preferences button { min-height: 44px; max-width: 100%; padding: 8px 12px; border: 1px solid #ae9671; background: #171613; color: #eee9df; font: inherit; }
+.reading-preferences button { cursor: pointer; }
+.reading-preferences :is(summary, select, button):focus-visible { outline: 2px solid #d6bd92; outline-offset: 3px; }
+.reading-preferences .reading-preferences-note { font-size: 14px; margin-bottom: 12px; }
+.novel-text[data-reading-size="larger"] p { font-size: 20px; }
+.novel-text[data-reading-size="largest"] p { font-size: 22px; }
+@media (min-width: 941px) {
+  .novel-page .content .novel-text[data-reading-width="narrower"] { max-width: 760px; }
+}
+
 @media (max-width: 768px) {
   .novel-nav { gap: 8px; }
   .novel-nav .back { padding-inline: 8px; }

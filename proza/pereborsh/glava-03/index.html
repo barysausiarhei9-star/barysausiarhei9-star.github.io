@@ -7,6 +7,7 @@
   <link rel="canonical" href="https://schrodingercat.org/proza/pereborsh/glava-03/" />
   <link rel="stylesheet" href="/assets/style.css" />
   <link rel="stylesheet" href="/assets/pereborsh.css" />
+  <script src="/assets/pereborsh-reading.js" defer></script>
 </head>
 <body class="reading-page article-page novel-page">
   <header class="site-header">
@@ -38,6 +39,26 @@
           <a class="back" href="/proza/pereborsh/#toc">Оглавление</a>
           <a class="back" rel="next" href="/proza/pereborsh/glava-04/" aria-label="Далее: ГЛАВА ЧЕТВЕРТАЯ. НЕУЛОВИМЫЙ ДЖО. →"><span class="novel-nav-full" aria-hidden="true">ГЛАВА ЧЕТВЕРТАЯ. НЕУЛОВИМЫЙ ДЖО. →</span><span class="novel-nav-compact" aria-hidden="true">Далее →</span></a>
         </nav>
+        <details class="reading-preferences" id="reading-preferences" hidden>
+          <summary>Настройки чтения</summary>
+          <div class="reading-preferences-fields">
+            <label for="reading-size">Размер текста
+              <select id="reading-size">
+                <option value="original">Исходный — 18 px</option>
+                <option value="larger">Крупнее — 20 px</option>
+                <option value="largest">Самый крупный — 22 px</option>
+              </select>
+            </label>
+            <label for="reading-width">Ширина текста
+              <select id="reading-width" aria-describedby="reading-width-note">
+                <option value="original">Исходная</option>
+                <option value="narrower">Уже</option>
+              </select>
+            </label>
+            <button type="button" id="reading-reset">Сбросить настройки</button>
+          </div>
+          <p class="reading-preferences-note" id="reading-width-note">Ширина меняется только на широком экране.</p>
+        </details>
       </div>
       <article class="wrap novel-text" id="novel-text" aria-label="Авторский текст">
         <h1 data-fb2-p="89">ГЛАВА ТРЕТЬЯ. ПРАКТИКАНТКА.</h1>
