@@ -100,6 +100,15 @@ p { margin: 0 0 22px; font-size: 18px; color: #c7c0b4; }
 .poster-art { margin: 0; }
 .poster-image { display: block; width: 100%; max-width: 980px; height: auto; margin: 0 auto; object-fit: contain; }
 .footer-note { margin: 8px 0 0; font-size: 14px; color: #a49b8c; }
+/* Generated works catalogs only; authored reading pages keep their layout. */
+.works-catalog .catalog-intro { max-width: 65ch; font-size: 16px; margin-bottom: 0; }
+.works-catalog .content { padding-top: 20px; }
+.works-catalog .home-section { margin-bottom: 36px; }
+.works-catalog .item { padding: 12px 0; }
+.works-catalog .item h3 { margin: 0; }
+.works-catalog .item h3 a { font-size: clamp(20px, 2.1vw, 24px); line-height: 1.4; }
+.works-catalog .work-languages { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; margin-top: 4px; color: #b7b1a7; font: 14px/1.5 Arial, sans-serif; }
+.works-catalog .item .work-language-link { display: inline-flex; align-items: center; min-height: 44px; color: #d1ba94; font: inherit; text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 940px) {
   .poem-layout { grid-template-columns: minmax(0, 1fr); gap: 28px; }
   .poem-art { justify-content: flex-start; }

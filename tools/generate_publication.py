@@ -485,7 +485,7 @@ def render_work_pages(catalog, alternates):
         lines.extend(f'  <link rel="alternate" hreflang="{lang}" href="{SITE + path}" />'
                      for lang, path in WORK_ROUTES.items())
         lines.extend(['  <link rel="stylesheet" href="/assets/style.css" />', '</head>',
-                      '<body class="reading-page">', '  <header class="site-header">',
+                      '<body class="reading-page works-catalog">', '  <header class="site-header">',
                       '    <div class="wrap header-row">', f'      <div class="wordmark">{brand}</div>'])
         if "navigation" in catalog:
             lines.append('      ' + NAV_START.decode("ascii"))
@@ -503,9 +503,11 @@ def render_work_pages(catalog, alternates):
             lines.append(f'        <a href="{path}" lang="{lang}" hreflang="{lang}"{current}>{lang.upper()}</a>')
         lines.extend(['      </div>', '    </div>', '  </header>', '  <main>',
                       '    <section class="hero-simple">', '      <div class="wrap">',
-                      f'        <h1>{heading}</h1>', '        <p>' +
+                      f'        <h1>{heading}</h1>', '        <p class="catalog-intro">' +
                       ('Всего произведений: ' if ru else 'Total works: ') +
-                      str(len(catalog["works"]["items"])) + '</p>',
+                      str(len(catalog["works"]["items"])) + '. ' +
+                      ('Русские оригиналы и доступные переводы; язык указан под названием.' if ru else
+                       'English translations are linked where available. “Russian only” marks untranslated originals.') + '</p>',
                       '        <nav class="pagination" aria-label="' +
                       ('Разделы каталога' if ru else 'Catalog sections') + '">'])
         lines.extend(f'          <a class="back" href="#{anchor}">{label}</a>'
@@ -521,24 +523,23 @@ def render_work_pages(catalog, alternates):
                 variants = alternates.get(work["path"], {pages[work["path"]]["language"]: work["path"]})
                 primary = variants.get(language, work["path"])
                 page = pages[primary]
+                title = re.sub(r" — (?:Кошка Шр[её]дингера|Schrödinger[’']s Cat)$", "", page["title"])
                 lines.extend([f'        <div class="item" data-work-path="{work["path"]}">',
                               f'          <h3><a href="{primary}" lang="{page["language"]}" '
-                              f'hreflang="{page["language"]}">{escape(page["title"])}</a></h3>'])
-                if len(variants) == 2:
-                    note = "Доступно на русском и английском." if ru else "Available in Russian and English."
-                elif page["language"] == "ru":
-                    note = ("На русском; английская версия на сайте отсутствует." if ru else
-                            "Russian only. An English version is not available on this site.")
-                else:
-                    note = ("На английском; русская версия на сайте отсутствует." if ru else
-                            "English only. A Russian version is not available on this site.")
-                lines.append(f'          <p class="footer-note">{note}</p>')
+                              f'hreflang="{page["language"]}">{escape(title)}</a></h3>',
+                              '          <div class="work-languages">'])
+                label = (("На русском" if page["language"] == "ru" else "На английском") if ru else
+                         ("Russian" if page["language"] == "ru" else "English"))
+                if not ru and len(variants) == 1:
+                    label += " only"
+                lines.append(f'            <span>{label}</span>')
                 for lang, path in variants.items():
                     if path != primary:
                         label = (("Русская версия" if lang == "ru" else "Английская версия") if ru else
                                  ("Russian version" if lang == "ru" else "English version"))
-                        lines.append(f'          <a class="back" data-translation="{lang}" '
+                        lines.append(f'            <a class="work-language-link" data-translation="{lang}" '
                                      f'href="{path}" hreflang="{lang}">{label}</a>')
+                lines.append('          </div>')
                 lines.append('        </div>')
             lines.append('      </section>')
         lines.extend(['      </div>', '    </div>', '  </main>', '  <footer class="site-footer">',

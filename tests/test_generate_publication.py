@@ -275,19 +275,55 @@ class PublicationTests(unittest.TestCase):
             titles = [unescape(t) for t in re.findall(r'<h3><a[^>]*>([^<]*)</a></h3>', source)]
             expected_paths = [groups.get(p, {}).get(language, p) for p in expected_order]
             self.assertEqual([a["href"] for a in primary], expected_paths)
-            self.assertEqual(titles, [pages[p]["title"] for p in expected_paths])
+            expected_titles = []
+            for path in expected_paths:
+                title = pages[path]["title"]
+                for suffix in (" — Кошка Шредингера", " — Кошка Шрёдингера", " — Schrödinger’s Cat"):
+                    title = title.removesuffix(suffix)
+                expected_titles.append(title)
+            self.assertEqual(titles, expected_titles)
             for a in primary:
                 self.assertEqual((a["lang"], a["hreflang"]),
                                  (pages[a["href"]]["language"], pages[a["href"]]["language"]))
             translations = [a for a in html.matching("a") if "data-translation" in a]
             self.assertEqual(len(translations), 10)
             self.assertTrue(all("lang" not in a for a in translations))
+            self.assertTrue(all(a["class"] == "work-language-link" for a in translations))
             for work_path, a in zip([p for p in expected_order if p in groups], translations):
                 other = "en" if language == "ru" else "ru"
                 self.assertEqual((a["href"], a["hreflang"]), (groups[work_path][other], other))
+            self.assertEqual(html.matching("body"), [{"class": "reading-page works-catalog"}])
+            self.assertEqual(source.count('class="catalog-intro"'), 1)
+            self.assertNotIn('class="footer-note"', source)
             if language == "en":
-                self.assertEqual(source.count("Russian only. An English version is not available on this site."), 26)
-                self.assertEqual(source.count("Available in Russian and English."), 10)
+                self.assertEqual(source.count("<span>Russian only</span>"), 26)
+                self.assertEqual(source.count("<span>English</span>"), 10)
+                self.assertIn('“Russian only” marks untranslated originals.', source)
+            else:
+                self.assertEqual(source.count("<span>На русском</span>"), 36)
+                self.assertIn("Русские оригиналы и доступные переводы", source)
+
+    def test_catalog_display_titles_strip_only_terminal_site_branding(self):
+        catalog, _, groups = generator.prepare(self.root)
+        page = next(p for p in catalog["pages"] if p["path"] == "/articles/formula-boga/")
+        cases = (
+            ("Название — подзаголовок — Кошка Шрёдингера", "Название — подзаголовок"),
+            ("Название — Кошка Шредингера", "Название"),
+            ("Title — Schrödinger’s Cat", "Title"),
+            ("Title — Schrödinger's Cat", "Title"),
+            ("Кошка Шрёдингера о теории всего", "Кошка Шрёдингера о теории всего"),
+            ("Название — Кошка Шрёдингера — продолжение", "Название — Кошка Шрёдингера — продолжение"),
+            ("Переборщ — Елена Березина", "Переборщ — Елена Березина"),
+        )
+        for original, expected in cases:
+            with self.subTest(title=original):
+                page["title"] = original
+                before = copy.deepcopy(catalog)
+                source = generator.render_work_pages(catalog, groups)["works/index.html"].decode("utf-8")
+                titles = dict((path, unescape(title)) for path, title in re.findall(
+                    r'<h3><a href="([^"]+)"[^>]*>([^<]*)</a></h3>', source))
+                self.assertEqual(titles[page["path"]], expected)
+                self.assertEqual(catalog, before)
 
     def test_catalog_html_is_escaped(self):
         catalog = copy.deepcopy(self.catalog)
