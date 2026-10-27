@@ -14,6 +14,14 @@ from zipfile import ZipFile
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = "source-books/berezina_e_l--gthtjho.fb2.zip"
 SOURCE_SHA256 = "95a60f7257a121fa323164eab30b78081ee50b99cc7ef72d300848ccb23315b7"
+# Authorized publication-only corrections; values are exact, unmodified FB2 text.
+PUBLICATION_CORRECTIONS = {
+    614: "Цi душу загубi╝,",
+    615: "цi вянец разрушы╝.",
+    620: "галасочкi ╝ iх",
+    622: "\u2028Галасочкi ╝ iх",
+    624: "да ╝ спеснi яны",
+}
 BASE = "/proza/pereborsh/"
 # Reviewed boundaries: FB2 section/p offsets, zero-based; end is exclusive.
 STARTS = (29, 69, 89, 95, 110, 123, 133, 146, 158, 184, 220, 252, 302,
@@ -89,9 +97,23 @@ def digest(paragraphs):
                                     separators=(",", ":")).encode("utf-8")).hexdigest()
 
 
+def publication_paragraphs(paragraphs):
+    expected = list(paragraphs)
+    for index, original in PUBLICATION_CORRECTIONS.items():
+        require(paragraphs[index] == original and original.count("╝") == 1,
+                f"correction source text mismatch at paragraph {index}")
+        expected[index] = original.replace("╝", "ў", 1)
+    return expected
+
+
+class SourceUnavailable(ValueError):
+    pass
+
+
 def verify(root=ROOT):
     source = root / SOURCE
-    require(source.is_file(), "missing source ZIP; text must not be reconstructed")
+    if not source.is_file():
+        raise SourceUnavailable("missing source ZIP; text must not be reconstructed")
     require(hashlib.sha256(source.read_bytes()).hexdigest() == SOURCE_SHA256,
             "source ZIP differs from reviewed source")
     with ZipFile(source) as archive:
@@ -104,6 +126,7 @@ def verify(root=ROOT):
     require(len(section) == 738 and all(p.tag.endswith("}p") for p in section),
             "unexpected FB2 paragraph structure")
     paragraphs = ["".join(p.itertext()) for p in section]
+    publication = publication_paragraphs(paragraphs)
     require(tuple(i for i, p in enumerate(paragraphs) if p.startswith("ГЛАВА ")) == STARTS,
             "chapter boundaries differ from reviewed source")
     require(paragraphs[357].startswith("ГЛАВА КИБЕРНАДЦАТАЯ.") and
@@ -126,7 +149,7 @@ def verify(root=ROOT):
                     path + ": chapter heading mismatch")
         for block in page.blocks:
             i = block["index"]
-            require(block["text"] == paragraphs[i], f"{path}: exact text mismatch at paragraph {i}")
+            require(block["text"] == publication[i], f"{path}: exact text mismatch at paragraph {i}")
             if any(a <= i < b for a, b in VERSE_RANGES):
                 require("verse-line" in block["attrs"].get("class", "").split(),
                         f"verse formatting lost at paragraph {i}")
@@ -146,10 +169,11 @@ def verify(root=ROOT):
         all_blocks.extend(page.blocks)
     require([p["index"] for p in all_blocks] == expected_indices, "coverage/order mismatch")
     source_text = [paragraphs[i] for i in expected_indices]
+    publication_text = [publication[i] for i in expected_indices]
     html_text = [p["text"] for p in all_blocks]
-    require(source_text == html_text, "source/HTML paragraph sequence mismatch")
-    require([normalized(p) for p in source_text] == [normalized(p) for p in html_text],
-            "normalized source/HTML text differs")
+    require(publication_text == html_text, "corrected publication/HTML paragraph sequence mismatch")
+    require([normalized(p) for p in publication_text] == [normalized(p) for p in html_text],
+            "normalized corrected publication/HTML text differs")
     toc = ReadingHTML((root / "proza/pereborsh/index.html").read_text(encoding="utf-8"))
     parsed[BASE] = toc
     toc_chapters = [a["href"] for a in toc.links
@@ -194,12 +218,17 @@ def verify(root=ROOT):
             "paragraphs": len(source_text), "nonblank_paragraphs": sum(bool(p.strip()) for p in source_text),
             "coverage_percent": 100, "raw_paragraphs_sha256": digest(source_text),
             "normalized_paragraphs_sha256": digest([normalized(p) for p in source_text]),
+            "corrected_publication_paragraphs_sha256": digest(publication_text),
+            "corrected_publication_normalized_sha256": digest([normalized(p) for p in publication_text]),
+            "corrected_blocks": sorted(PUBLICATION_CORRECTIONS),
             "fb2_sha256": hashlib.sha256(fb2).hexdigest(), "zip_sha256": SOURCE_SHA256}
 
 
 if __name__ == "__main__":
     try:
         print(json.dumps(verify(), ensure_ascii=False, indent=2))
-        print("PASS: exact and normalized text, paragraph order, headings, verse, TOC, links, navigation, private source exclusion")
+        print("PASS: exact corrected publication and normalized text, five source-checked corrections, paragraph order, headings, verse, TOC, links, navigation, private source exclusion")
+    except SourceUnavailable as error:
+        raise SystemExit("BLOCKED: " + str(error))
     except (ValueError, OSError, ET.ParseError) as error:
         raise SystemExit("FAIL: " + str(error))

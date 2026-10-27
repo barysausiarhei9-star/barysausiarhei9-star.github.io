@@ -93,3 +93,26 @@ The read-only proof is reproducible with the private ZIP present:
 - Local-only ignored material: the original ZIP, extracted FB2, virtual environment and browser screenshots.
 
 Result: **PASS**. No content or validation blockers. Safe to proceed: **yes**. Safe to commit the scoped publication changes: **yes**. No commit, push or deployment was performed. The next step is owner review of the contents and scoped diff before any separately authorized commit.
+
+## Correction addendum — 2026-10-27
+
+The historical source evidence above remains unchanged. Five publication-only `╝` → `ў` substitutions in `glava-27/index.html` match the approved EPUB's mapped blocks and PDF page 139:
+
+| Source block | Original source text | Corrected publication text |
+| --- | --- | --- |
+| 614 | `Цi душу загубi╝,` | `Цi душу загубiў,` |
+| 615 | `цi вянец разрушы╝.` | `цi вянец разрушыў.` |
+| 620 | `галасочкi ╝ iх` | `галасочкi ў iх` |
+| 622 | `\u2028Галасочкi ╝ iх` | `\u2028Галасочкi ў iх` |
+| 624 | `да ╝ спеснi яны` | `да ў спеснi яны` |
+
+Here `\u2028` denotes the preserved leading U+2028 character. All other HTML bytes, including literary text, whitespace, markup and language metadata, are unchanged. The verifier requires each complete original block to match the index-specific map before deriving its corrected expectation; strict comparison, all 720 blocks, order, verse and inline checks remain in force. There is no global character normalization. A missing private ZIP now reports **BLOCKED**; source-backed tests no longer skip it.
+
+- Original-source raw paragraph-array SHA-256 remains `ea3e4b78905223078863fa13ef6363ab1d3486f3b5ae62a51712a08adfea53de`; its normalized hash remains `dab0b688073dd00247f30129aba8c1cf6892c01124fe73abd7cbbf4ee2286c1f`.
+- Corrected-publication raw paragraph-array SHA-256: `8ca8777757918d46801cef3cb2bf4fab155f75fba5d3968a3e0369a2951dc51f`; normalized: `e72a5c15fbac113b1ad7d2c504051b62ddc13d931c183c4df1641db8f62a9c85`.
+- Original ZIP/FB2 hashes above remain unchanged. Download SHA-256 remains PDF `d44ab53e0fe4a5795014cd7eaf5eb9d49ec19effecda1418a838b8c3c9f7d18e`, EPUB `1021a381ccec0b338a3575724419518f803534453c09354d22bbe891835b0a56`.
+- The existing generator changed only `assets/search-index.json`: exactly five substitutions in the final chapter's text; the other six generated outputs are byte-identical. Backups and the baseline hash manifest are outside the repository at `C:\Users\USER\AppData\Local\Temp\pereborsh-short-u-ozbrcjr4`.
+
+Validation: **PASS** with the private ZIP present, all 720 source-backed blocks, all 14 focused tests (including full/partial reverts, unrelated text/whitespace edits and existing tampering checks), publication `--check`, and `git diff --check`. Chromium screenshots at 320px/1280px show all five `ў` glyphs correctly, with preserved Belarusian metadata/verse formatting, no horizontal overflow and no script errors. Missing-ZIP CLI behavior was separately confirmed as **BLOCKED**. Final diff reviewed separately.
+
+Next: Operator review. Safe to proceed: **yes**. Safe to commit: **yes**, subject to operator review and separate authorization. No commit, push, deployment or SDS edits.
