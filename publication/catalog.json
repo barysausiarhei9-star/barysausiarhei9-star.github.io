@@ -117,7 +117,23 @@
       "language": "ru",
       "page_type": "section_index",
       "text_availability": "html_text",
-      "rss": false
+      "rss": false,
+      "resources": [
+        {
+          "id": "https://schrodingercat.org/assets/books/pereborsh.pdf",
+          "url": "https://schrodingercat.org/assets/books/pereborsh.pdf",
+          "language": "ru",
+          "content_type": "application/pdf",
+          "title": "Переборщ"
+        },
+        {
+          "id": "https://schrodingercat.org/assets/books/pereborsh.epub",
+          "url": "https://schrodingercat.org/assets/books/pereborsh.epub",
+          "language": "ru",
+          "content_type": "application/epub+zip",
+          "title": "Переборщ"
+        }
+      ]
     },
     {
       "path": "/proza/pereborsh/vstuplenie/",

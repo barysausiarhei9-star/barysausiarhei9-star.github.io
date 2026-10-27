@@ -13,6 +13,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 from xml.etree import ElementTree as ET
+from zipfile import ZIP_DEFLATED, ZIP_STORED, ZipFile
 
 from jsonschema.exceptions import SchemaError, ValidationError
 from referencing.exceptions import Unresolvable
@@ -43,6 +44,9 @@ class PublicationTests(unittest.TestCase):
         cls.catalog = generator.load_json(ROOT / "publication/catalog.json")
         cls.pdfs = [p.decode("utf-8") for p in subprocess.check_output(
             ["git", "ls-files", "-z", "*.pdf"], cwd=ROOT).split(b"\0") if p]
+        cls.pdfs = sorted(set(cls.pdfs) | {
+            r["url"].removeprefix(generator.SITE + "/") for p in cls.catalog["pages"]
+            for r in p.get("resources", []) if r["content_type"] == "application/pdf"})
 
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -215,7 +219,7 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(sum(p["page_type"] == "content" and p["rss"] for p in novel), 28)
         self.assertEqual(len(catalog["alternate_groups"]), 15)
         self.assertEqual(len(groups), 30)
-        self.assertEqual(sum(len(p.get("resources", [])) for p in catalog["pages"]), 4)
+        self.assertEqual(sum(len(p.get("resources", [])) for p in catalog["pages"]), 6)
         self.assertEqual(sum(p["page_type"] == "placeholder" for p in catalog["pages"]), 0)
         for path in ("/proza/", "/en/book/", "/en/prose/", "/en/poetry/"):
             page = next(p for p in catalog["pages"] if p["path"] == path)
@@ -947,7 +951,7 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(generator.render(self.root), generator.render(self.root))
         self.assertEqual(generator.run(self.root, write=True), 0)
         self.assertEqual(snapshot(self.root), first)
-        self.assertEqual(len(self.pdfs), 2)
+        self.assertEqual(len(self.pdfs), 3)
         for pdf in self.pdfs:
             self.assertEqual(first[pdf], before[pdf])
 
@@ -1079,6 +1083,219 @@ class PublicationTests(unittest.TestCase):
         page = self.root / "en/index.html"
         page.write_bytes(page.read_bytes().replace(b'hreflang="ru"', b'hreflang="de"'))
         self.reject_without_writes()
+
+
+class ResourceTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        self.file = self.root / "assets/books/probe.epub"
+        self.file.parent.mkdir(parents=True)
+        self.page = {"path": "/proza/pereborsh/", "language": "ru"}
+        self.resource = {"id": generator.SITE + "/assets/books/probe.epub",
+                         "url": generator.SITE + "/assets/books/probe.epub",
+                         "content_type": "application/epub+zip", "language": "ru",
+                         "title": "EPUB probe"}
+        self.book = {"@type": "Book", "name": "EPUB probe", "inLanguage": "ru",
+                     "encoding": {"contentUrl": self.resource["url"],
+                                  "encodingFormat": "application/epub+zip"}}
+        self.entries = [
+            ("mimetype", b"application/epub+zip", ZIP_STORED),
+            ("META-INF/container.xml", b'<container version="1.0" '
+             b'xmlns="urn:oasis:names:tc:opendocument:xmlns:container"><rootfiles>'
+             b'<rootfile full-path="EPUB/package.opf" media-type="application/oebps-package+xml"/>'
+             b'</rootfiles></container>', ZIP_DEFLATED),
+            ("EPUB/package.opf", b'<package xmlns="http://www.idpf.org/2007/opf" version="3.0" '
+             b'unique-identifier="id"><metadata xmlns:dc="http://purl.org/dc/elements/1.1/">'
+             b'<dc:identifier id="id">urn:uuid:42e2624c-32d6-4f4b-8c17-394d87431461</dc:identifier>'
+             b'<dc:title>EPUB probe</dc:title><dc:language>ru</dc:language>'
+             b'<meta property="dcterms:modified">2026-10-27T00:00:00Z</meta></metadata><manifest>'
+             b'<item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>'
+             b'<item id="chapter" href="chapter.xhtml" media-type="application/xhtml+xml"/>'
+             b'</manifest><spine><itemref idref="chapter"/></spine></package>', ZIP_DEFLATED),
+            ("EPUB/nav.xhtml", b'<html xmlns="http://www.w3.org/1999/xhtml" '
+             b'xmlns:epub="http://www.idpf.org/2007/ops"><head><title>Contents</title></head>'
+             b'<body><nav epub:type="toc"><ol><li><a href="chapter.xhtml">Probe</a></li>'
+             b'</ol></nav></body></html>', ZIP_DEFLATED),
+            ("EPUB/chapter.xhtml", b'<html xmlns="http://www.w3.org/1999/xhtml">'
+             b'<head><title>Probe</title></head><body><p>EPUB probe text.</p></body></html>', ZIP_STORED),
+        ]
+        self.write_epub()
+
+    def write_epub(self, entries=None):
+        with ZipFile(self.file, "w") as archive:
+            for name, data, compression in self.entries if entries is None else entries:
+                archive.writestr(name, data, compress_type=compression)
+
+    def html(self, book=None, href="/assets/books/probe.epub", mime="application/epub+zip"):
+        return generator.PageHTML(
+            f'<a href="{href}" type="{mime}">Download</a>'
+            '<script type="application/ld+json">' +
+            json.dumps(self.book if book is None else book) + '</script>')
+
+    def reject(self, resource=None, html=None, message=None):
+        before = snapshot(self.root)
+        with self.assertRaisesRegex(generator.Invalid, message or "."):
+            generator.validate_resource(self.root, self.page,
+                                        self.resource if resource is None else resource,
+                                        self.html() if html is None else html)
+        self.assertEqual(snapshot(self.root), before)
+
+    def test_valid_epub_is_inspected_in_place_without_extraction(self):
+        before = snapshot(self.root)
+        with patch.object(ZipFile, "extract", side_effect=AssertionError("extraction forbidden")), \
+                patch.object(ZipFile, "extractall", side_effect=AssertionError("extraction forbidden")):
+            for href in ("/assets/books/probe.epub", "../../assets/books/probe.epub",
+                         self.resource["url"]):
+                with self.subTest(href=href):
+                    generator.validate_resource(self.root, self.page, self.resource, self.html(href=href))
+        self.assertEqual(snapshot(self.root), before)
+
+    def test_epub_passes_publication_preparation_and_invalid_resource_prevents_writes(self):
+        catalog = generator.load_json(ROOT / "publication/catalog.json")
+        catalog.pop("works", None)
+        catalog.pop("navigation", None)
+        catalog["alternate_groups"] = []
+        self.page.update(path="/", title="Probe", page_type="content",
+                         text_availability="html_text", rss=False, resources=[self.resource])
+        catalog["pages"] = [self.page]
+        (self.root / "publication").mkdir()
+        (self.root / "publication/catalog.json").write_text(json.dumps(catalog), encoding="utf-8")
+        schema = self.root / "api/agent-feed/v1.schema.json"
+        schema.parent.mkdir(parents=True)
+        shutil.copyfile(ROOT / "api/agent-feed/v1.schema.json", schema)
+        (self.root / "index.html").write_text(
+            '<html lang="ru"><head><title>Probe</title></head><body><main><p>Probe text.</p>'
+            '<a href="/assets/books/probe.epub" type="application/epub+zip">Download</a>'
+            '<script type="application/ld+json">' + json.dumps(self.book) +
+            '</script></main></body></html>', encoding="utf-8")
+        before = snapshot(self.root)
+        _, feed, _ = generator.prepare(self.root)
+        self.assertEqual(feed["entries"][0]["resources"], [self.resource])
+        self.assertEqual(snapshot(self.root), before)
+        self.file.write_bytes(b"invalid EPUB")
+        before = snapshot(self.root)
+        with self.assertRaises(generator.Invalid):
+            generator.run(self.root, write=True)
+        self.assertEqual(snapshot(self.root), before)
+
+    def test_epub_rejects_malformed_zip_and_mimetype(self):
+        for data in (b"not a ZIP", self.file.read_bytes()[:-22],
+                     b"prefix" + self.file.read_bytes(),
+                     self.file.read_bytes().replace(b"EPUB probe text.", b"EPUB wrong text."),
+                     self.file.read_bytes()[:8] + b"\x08\x00" + self.file.read_bytes()[10:]):
+            with self.subTest(data=data[:20]):
+                self.file.write_bytes(data)
+                self.reject()
+        variants = {
+            "empty ZIP": [],
+            "missing mimetype": self.entries[1:],
+            "mimetype not first": [self.entries[1], self.entries[0], *self.entries[2:]],
+            "compressed mimetype": [("mimetype", b"application/epub+zip", ZIP_DEFLATED), *self.entries[1:]],
+            "wrong mimetype": [("mimetype", b"application/zip", ZIP_STORED), *self.entries[1:]],
+            "mimetype whitespace": [("mimetype", b"application/epub+zip\n", ZIP_STORED), *self.entries[1:]],
+            "duplicate member": [*self.entries, self.entries[2]],
+        }
+        for name, entries in variants.items():
+            with self.subTest(name=name):
+                if name == "duplicate member":
+                    with self.assertWarns(UserWarning):
+                        self.write_epub(entries)
+                else:
+                    self.write_epub(entries)
+                self.reject()
+
+    def test_epub_rejects_missing_or_malformed_container_and_package(self):
+        variants = {"missing container": [self.entries[0], *self.entries[2:]],
+                    "missing package": [*self.entries[:2], *self.entries[3:]]}
+        for index, label, replacements in (
+            (1, "container", [(None, b"<"), (b"container", b"wrong"),
+                              (b"<rootfile full-path=", b"<other full-path="),
+                              (b'full-path="EPUB/package.opf"', b'full-path=""'),
+                              (b"EPUB/package.opf", b"../package.opf"),
+                              (b"EPUB/package.opf", b"/EPUB/package.opf"),
+                              (b"EPUB/package.opf", b"EPUB\\package.opf"),
+                              (b"EPUB/package.opf", b"https://example.org/package.opf"),
+                              (b"application/oebps-package+xml", b"application/xml")]),
+            (2, "package", [(None, b"<"), (b"package", b"wrong"),
+                            (b"http://www.idpf.org/2007/opf", b"urn:wrong")]),
+        ):
+            for number, (old, new) in enumerate(replacements):
+                entries = list(self.entries)
+                name, data, compression = entries[index]
+                entries[index] = (name, new if old is None else data.replace(old, new), compression)
+                variants[f"{label} {number}"] = entries
+        for name, entries in variants.items():
+            with self.subTest(name=name):
+                self.write_epub(entries)
+                self.reject()
+
+    def test_epub_requires_local_file_language_id_and_safe_url(self):
+        self.file.unlink()
+        self.reject(message="missing file")
+        self.write_epub()
+        for change in ({"language": "en"}, {"id": generator.SITE + "/assets/other.epub"}):
+            with self.subTest(change=change):
+                self.reject(resource={**self.resource, **change})
+        for url in ("https://example.org/assets/books/probe.epub",
+                    generator.SITE + "/assets/../probe.epub",
+                    generator.SITE + "/assets/%2e%2e/probe.epub",
+                    self.resource["url"] + "?download=1", self.resource["url"] + "#book"):
+            with self.subTest(url=url):
+                self.reject(resource={**self.resource, "id": url, "url": url},
+                            message="invalid resource URL")
+        outside = Path(self.temp.name + "-outside")
+        # Check the existing containment guard without creating an external file/link.
+        with patch.object(Path, "resolve", side_effect=[outside, self.root]):
+            self.reject(message="file escapes repository")
+
+    def test_epub_requires_matching_typed_link_and_book_metadata(self):
+        for html in (generator.PageHTML(""), self.html(href="/assets/books/other.epub"),
+                     self.html(href="https://example.org/assets/books/probe.epub"),
+                     self.html(mime=""), self.html(mime="application/pdf")):
+            self.reject(html=html, message="missing typed EPUB link")
+        for field, value in (("@type", "CreativeWork"), ("name", "Wrong title"),
+                             ("inLanguage", "en"), ("encoding", None)):
+            with self.subTest(field=field):
+                self.reject(html=self.html(book={**self.book, field: value}), message="Book metadata")
+        for field, value in (("contentUrl", generator.SITE + "/assets/books/other.epub"),
+                             ("encodingFormat", "application/pdf")):
+            book = {**self.book, "encoding": {**self.book["encoding"], field: value}}
+            self.reject(html=self.html(book=book), message="Book metadata")
+        for field in self.book:
+            book = {key: value for key, value in self.book.items() if key != field}
+            self.reject(html=self.html(book=book), message="Book metadata")
+        self.reject(html=self.html(book=[]), message="Book metadata")
+
+    def test_resource_schema_and_validator_reject_mime_extension_mismatches(self):
+        from jsonschema import Draft202012Validator
+        from referencing import Registry
+        schema = generator.load_json(ROOT / "api/agent-feed/v1.schema.json")
+        Draft202012Validator.check_schema(schema)
+        validator = Draft202012Validator(schema, registry=Registry())
+        entry = {"id": generator.SITE + self.page["path"],
+                 "canonical_url": generator.SITE + self.page["path"], "language": "ru",
+                 "content_type": "text/html", "title": "Probe", "page_type": "content",
+                 "text_availability": "html_text"}
+        for extension in ("pdf", "png", "epub", "zip"):
+            for mime in ("application/pdf", "image/png", "application/epub+zip", "application/zip"):
+                with self.subTest(extension=extension, mime=mime):
+                    url = generator.SITE + "/assets/books/probe." + extension
+                    resource = {**self.resource, "id": url, "url": url, "content_type": mime}
+                    feed = {"$schema": generator.SCHEMA_URL, "version": "1.0.0",
+                            "entries": [{**entry, "resources": [resource]}]}
+                    if (extension, mime) in (("pdf", "application/pdf"), ("png", "image/png"),
+                                             ("epub", "application/epub+zip")):
+                        validator.validate(feed)
+                    else:
+                        with self.assertRaises(ValidationError):
+                            validator.validate(feed)
+                        target = self.file.with_suffix("." + extension)
+                        if target != self.file:
+                            target.write_bytes(b"%PDF-\x89PNG\r\n\x1a\n")
+                            self.addCleanup(target.unlink, missing_ok=True)
+                        self.reject(resource=resource)
 
 
 class PagesWorkflowTests(unittest.TestCase):

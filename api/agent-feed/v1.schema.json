@@ -63,13 +63,27 @@
         "id": { "$ref": "#/$defs/resourceUrl" },
         "url": { "$ref": "#/$defs/resourceUrl" },
         "language": { "enum": ["ru", "en"] },
-        "content_type": { "enum": ["application/pdf", "image/png"] },
+        "content_type": { "enum": ["application/pdf", "image/png", "application/epub+zip"] },
         "title": { "type": "string", "minLength": 1 }
-      }
+      },
+      "oneOf": [
+        { "properties": {
+          "content_type": { "const": "application/pdf" },
+          "id": { "pattern": "\\.pdf$" }, "url": { "pattern": "\\.pdf$" }
+        } },
+        { "properties": {
+          "content_type": { "const": "image/png" },
+          "id": { "pattern": "\\.png$" }, "url": { "pattern": "\\.png$" }
+        } },
+        { "properties": {
+          "content_type": { "const": "application/epub+zip" },
+          "id": { "pattern": "\\.epub$" }, "url": { "pattern": "\\.epub$" }
+        } }
+      ]
     },
     "resourceUrl": {
       "type": "string",
-      "pattern": "^https://schrodingercat\\.org/assets/[a-z0-9/-]+\\.(?:pdf|png)$"
+      "pattern": "^https://schrodingercat\\.org/assets/[a-z0-9/-]+\\.(?:pdf|png|epub)$"
     }
   }
 }

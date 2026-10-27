@@ -4,11 +4,13 @@ import argparse
 import json
 import re
 import sys
+import zlib
 from html import escape
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urljoin
 from xml.etree import ElementTree as ET
+from zipfile import BadZipFile, ZIP_STORED, ZipFile
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -147,7 +149,7 @@ def validate_resource(root, page, resource, html):
     require(resource["id"] == resource["url"], "resource ID must equal URL")
     relative = resource["url"].removeprefix(SITE + "/")
     require(resource["url"].startswith(SITE + "/assets/") and
-            re.fullmatch(r"assets/[a-z0-9/-]+\.(pdf|png)", relative), "invalid resource URL")
+            re.fullmatch(r"assets/[a-z0-9/-]+\.(pdf|png|epub)", relative), "invalid resource URL")
     file = local_file(root, relative)
     require(resource["language"] == page["language"], "resource language mismatch")
     if resource["content_type"] == "image/png":
@@ -157,7 +159,7 @@ def validate_resource(root, page, resource, html):
         require(any(urljoin(SITE + page["path"], img.get("src", "")) == resource["url"]
                     and img.get("alt") == resource["title"] for img in html.matching("img")),
                 "PNG link/alt mismatch")
-    else:
+    elif resource["content_type"] == "application/pdf":
         with file.open("rb") as stream:
             require(stream.read(5) == b"%PDF-", "invalid PDF signature")
         require(relative.endswith(".pdf"), "PDF extension mismatch")
@@ -171,6 +173,55 @@ def validate_resource(root, page, resource, html):
                     and book.get("encoding", {}).get("contentUrl") == resource["url"]
                     and book.get("encoding", {}).get("encodingFormat") == "application/pdf"
                     for book in books), "PDF Book metadata mismatch")
+    elif resource["content_type"] == "application/epub+zip":
+        require(relative.endswith(".epub"), "EPUB extension mismatch")
+        with file.open("rb") as stream:
+            header = stream.read(10)
+        require(header[:4] == b"PK\x03\x04" and header[8:10] == b"\x00\x00",
+                "EPUB must start with an uncompressed ZIP member")
+        try:
+            with ZipFile(file) as archive:
+                members = archive.infolist()
+                require(members and members[0].filename == "mimetype" and
+                        members[0].header_offset == 0 and
+                        members[0].compress_type == ZIP_STORED,
+                        "EPUB mimetype must be first and uncompressed")
+                require(len({member.filename for member in members}) == len(members),
+                        "duplicate EPUB archive member")
+                require(archive.read("mimetype") == b"application/epub+zip",
+                        "invalid EPUB mimetype")
+                require(archive.testzip() is None, "corrupt EPUB archive member")
+                container = ET.fromstring(archive.read("META-INF/container.xml"))
+                namespace = "{urn:oasis:names:tc:opendocument:xmlns:container}"
+                require(container.tag == namespace + "container", "invalid EPUB container")
+                rootfiles = container.findall(namespace + "rootfiles/" + namespace + "rootfile")
+                require(rootfiles, "missing EPUB rootfile")
+                for rootfile in rootfiles:
+                    package_path = rootfile.get("full-path", "")
+                    require(rootfile.get("media-type") == "application/oebps-package+xml" and
+                            not package_path.startswith("/") and
+                            not any(c in package_path for c in "\\:") and
+                            all(part not in ("", ".", "..") for part in package_path.split("/")),
+                            "invalid EPUB package path/type")
+                    package = ET.fromstring(archive.read(package_path))
+                    require(package.tag == "{http://www.idpf.org/2007/opf}package",
+                            "invalid EPUB OPF package")
+        except (BadZipFile, KeyError, ET.ParseError, RuntimeError, zlib.error) as error:
+            raise Invalid("invalid EPUB archive/package: " + str(error)) from error
+        require(any(urljoin(SITE + page["path"], a.get("href", "")) == resource["url"]
+                    and a.get("type") == "application/epub+zip" for a in html.matching("a")),
+                "missing typed EPUB link")
+        books = [json.loads("".join(script), object_pairs_hook=unique_object)
+                 for script in html.scripts]
+        require(any(isinstance(book, dict) and book.get("@type") == "Book"
+                    and book.get("name") == resource["title"]
+                    and book.get("inLanguage") == resource["language"]
+                    and isinstance(book.get("encoding"), dict)
+                    and book["encoding"].get("contentUrl") == resource["url"]
+                    and book["encoding"].get("encodingFormat") == "application/epub+zip"
+                    for book in books), "EPUB Book metadata mismatch")
+    else:
+        raise Invalid("unsupported resource content type: " + str(resource["content_type"]))
 
 
 def validate_works(catalog, html_pages, alternates):
