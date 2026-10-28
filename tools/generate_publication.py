@@ -533,6 +533,23 @@ def render_work_pages(catalog, alternates):
                  '  <meta name="viewport" content="width=device-width, initial-scale=1.0" />',
                  f'  <title>{escape(pages[route]["title"])}</title>',
                  f'  <link rel="canonical" href="{SITE + route}" />']
+        description = ("Книги, проза, поэзия и статьи: русские оригиналы и доступные переводы. "
+                       "Язык указан под названием." if ru else
+                       "Books, prose, poetry and articles: Russian originals and English translations where available. "
+                       "Untranslated works are marked Russian only.")
+        image = SITE + "/assets/images/cat-atom-logo.png"
+        image_alt = ("Оригинальный логотип: кошка с атомной орбитой" if ru else
+                     "Original logo: a cat with an atomic orbit")
+        lines.append(f'  <meta name="description" content="{escape(description)}" />')
+        og = {"title": pages[route]["title"], "description": description, "url": SITE + route,
+              "type": "website", "site_name": brand, "locale": "ru_RU" if ru else "en_US",
+              "image": image, "image:type": "image/png", "image:width": "256",
+              "image:height": "256", "image:alt": image_alt}
+        twitter = {"card": "summary_large_image", "title": pages[route]["title"],
+                   "description": description, "image": image, "image:alt": image_alt}
+        for prefix, values, attribute in (("og", og, "property"), ("twitter", twitter, "name")):
+            lines.extend(f'  <meta {attribute}="{prefix}:{key}" content="{escape(value)}" />'
+                         for key, value in values.items())
         lines.extend(f'  <link rel="alternate" hreflang="{lang}" href="{SITE + path}" />'
                      for lang, path in WORK_ROUTES.items())
         lines.extend(['  <link rel="stylesheet" href="/assets/style.css" />', '</head>',

@@ -264,9 +264,35 @@ class PublicationTests(unittest.TestCase):
                           for w in catalog["works"]["items"] if w["type"] == kind]
         outputs = generator.render(self.root)
         self.assertEqual(set(outputs), set(generator.OUTPUTS + generator.WORK_OUTPUTS))
+        self.assertEqual(generator.render_work_pages(catalog, groups),
+                         {name: outputs[name] for name in generator.WORK_OUTPUTS})
         for language, route in generator.WORK_ROUTES.items():
             source = outputs[route.lstrip("/") + "index.html"].decode("utf-8")
             html = generator.PageHTML(source)
+            head = generator.PageHTML(source.split("</head>", 1)[0] + "</head></html>")
+            ru = language == "ru"
+            description = ("Книги, проза, поэзия и статьи: русские оригиналы и доступные переводы. "
+                           "Язык указан под названием." if ru else
+                           "Books, prose, poetry and articles: Russian originals and English translations where available. "
+                           "Untranslated works are marked Russian only.")
+            image = generator.SITE + "/assets/images/cat-atom-logo.png"
+            alt = ("Оригинальный логотип: кошка с атомной орбитой" if ru else
+                   "Original logo: a cat with an atomic orbit")
+            expected = {"description": description, "og:title": pages[route]["title"],
+                        "og:description": description, "og:url": generator.SITE + route,
+                        "og:type": "website", "og:site_name": "Кошка Шрёдингера" if ru else "Schrödinger’s Cat",
+                        "og:locale": "ru_RU" if ru else "en_US", "og:image": image,
+                        "og:image:type": "image/png", "og:image:width": "256", "og:image:height": "256",
+                        "og:image:alt": alt, "twitter:card": "summary_large_image",
+                        "twitter:title": pages[route]["title"], "twitter:description": description,
+                        "twitter:image": image, "twitter:image:alt": alt}
+            metadata = [a for a in head.matching("meta") if "content" in a]
+            self.assertEqual(len(metadata), len(expected) + 1)  # Existing viewport.
+            for key, value in expected.items():
+                self.assertEqual([a["content"] for a in metadata
+                                  if a.get("property", a.get("name")) == key], [value])
+            self.assertEqual([a["href"] for a in head.matching("link")
+                              if a.get("rel") == "canonical"], [generator.SITE + route])
             rows = [a["data-work-path"] for a in html.matching("div") if "data-work-path" in a]
             self.assertEqual(rows, expected_order)
             self.assertEqual(len(set(rows)), 36)
@@ -343,6 +369,17 @@ class PublicationTests(unittest.TestCase):
         source = generator.render(self.root)["works/index.html"].decode("utf-8")
         self.assertIn(encoded, source)
         self.assertEqual(generator.PageHTML(source).matching("script"), [])
+        for route in generator.WORK_ROUTES.values():
+            next(p for p in catalog["pages"] if p["path"] == route)["title"] = page["title"]
+        _, _, groups = generator.prepare(self.root)
+        for data in generator.render_work_pages(catalog, groups).values():
+            source = data.decode("utf-8")
+            html = generator.PageHTML(source)
+            for key in ("og:title", "twitter:title"):
+                self.assertEqual([a["content"] for a in html.matching("meta")
+                                  if a.get("property", a.get("name")) == key], [page["title"]])
+            self.assertIn('content="' + encoded + '"', source)
+            self.assertEqual(html.matching("script"), [])
 
     def test_catalog_registration_is_explicit_and_fail_closed(self):
         def page(c):
