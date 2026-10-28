@@ -881,6 +881,24 @@
       "title": "All works — Schrödinger’s Cat",
       "page_type": "section_index",
       "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/help/",
+      "canonical_url": "https://schrodingercat.org/help/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Как читать и слушать — Кошка Шрёдингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/help/",
+      "canonical_url": "https://schrodingercat.org/en/help/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "How to read and listen — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
     }
   ]
 }

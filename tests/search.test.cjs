@@ -8,7 +8,7 @@ const url = path => "https://schrodingercat.org" + path;
 const english = JSON.parse(readFileSync(join(__dirname, "../assets/search-index-en.json"), "utf8")).pages;
 
 test("English titles and available bodies are searchable with language isolation", () => {
-  assert.equal(english.length, 11);
+  assert.equal(english.length, 12);
   assert.equal(search(english, "THE FORMULA OF GOD")[0].url, url("/en/articles/the-formula-of-god/"));
   assert.ok(search(english, '"information possessing a binary code"').some(p =>
     p.url === url("/en/articles/the-formula-of-god/")));
@@ -57,9 +57,11 @@ test("every Pereborsh chapter and introduction searchable by actual body text", 
 test("image-only works have title search without fabricated text; no boilerplate", () => {
   const page = search(pages, "ЭНДЕМИК").find(p => p.url === url("/poeziya/endemik/"));
   assert.equal(page.text, "");
-  for (const query of ["Основная навигация", "Назад к поэзии", "Оглавление", "Черно-белый постер"]) {
+  for (const query of ["Основная навигация", "Назад к поэзии", "Черно-белый постер"]) {
     assert.deepEqual(search(pages, query), [], query);
   }
+  // Help explains the contents links; chapter navigation remains excluded.
+  assert.deepEqual(search(pages, "Оглавление").map(p => p.url), [url("/help/")]);
 });
 
 test("brief snippets centered on matches and literal escaping through textContent", () => {

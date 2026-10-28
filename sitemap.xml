@@ -336,4 +336,14 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/works/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/works/" />
   </url>
+  <url>
+    <loc>https://schrodingercat.org/help/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/help/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/help/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/help/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/help/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/help/" />
+  </url>
 </urlset>

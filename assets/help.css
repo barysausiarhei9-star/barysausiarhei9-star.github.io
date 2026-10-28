@@ -1,0 +1,7 @@
+/* Reader help only. Native disclosures work without JavaScript. */
+.help-page h2 { font-size: clamp(24px, 3vw, 32px); line-height: 1.4; }
+.help-page details { margin-bottom: 16px; border-bottom: 1px solid #34312b; }
+.help-page summary { min-height: 44px; padding-block: 10px; cursor: pointer; }
+.help-page summary:focus-visible { outline: 2px solid #d6bd92; outline-offset: 3px; }
+.help-page details p { margin-top: 16px; }
+.help-page li { margin-bottom: 12px; overflow-wrap: anywhere; }

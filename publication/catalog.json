@@ -67,6 +67,10 @@
     {
       "ru": "/works/",
       "en": "/en/works/"
+    },
+    {
+      "ru": "/help/",
+      "en": "/en/help/"
     }
   ],
   "pages": [
@@ -857,6 +861,22 @@
       "page_type": "section_index",
       "text_availability": "html_text",
       "rss": false
+    },
+    {
+      "path": "/help/",
+      "title": "Как читать и слушать — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/en/help/",
+      "title": "How to read and listen — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": false
     }
   ],
   "works": {
@@ -1040,7 +1060,9 @@
     "excluded_content": [
       "/about/",
       "/articles/about/",
-      "/en/about/"
+      "/en/about/",
+      "/help/",
+      "/en/help/"
     ]
   },
   "navigation": {
@@ -1149,6 +1171,18 @@
         "targets": {
           "ru": "/works/",
           "en": "/en/works/"
+        },
+        "match": "exact"
+      },
+      {
+        "id": "help",
+        "labels": {
+          "ru": "Как читать и слушать",
+          "en": "How to read and listen"
+        },
+        "targets": {
+          "ru": "/help/",
+          "en": "/en/help/"
         },
         "match": "exact"
       }

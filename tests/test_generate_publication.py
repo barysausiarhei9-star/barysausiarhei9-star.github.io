@@ -186,7 +186,7 @@ class PublicationTests(unittest.TestCase):
         outputs = generator.render(self.root)
         prefix = generator.SITE + "/proza/pereborsh/"
         added_indexes = {generator.SITE + p for p in
-                         ("/search/", "/en/search/", "/works/", "/en/works/")}
+                         ("/search/", "/en/search/", "/works/", "/en/works/", "/help/", "/en/help/")}
         for name, data in outputs.items():
             if name in ("assets/search-index.json", "assets/search-index-en.json", *generator.WORK_OUTPUTS):
                 continue  # New derived output has its own extraction and coverage tests.
@@ -212,13 +212,13 @@ class PublicationTests(unittest.TestCase):
                         parent.remove(child)
                 self.assertEqual(xml_semantics(ET.tostring(current)), xml_semantics(original))
         catalog, feed, groups = generator.prepare(self.root)
-        self.assertEqual(len(feed["entries"]), 92)
+        self.assertEqual(len(feed["entries"]), 94)
         self.assertEqual(sum(p["rss"] for p in catalog["pages"]), 73)
         novel = [p for p in catalog["pages"] if p["path"].startswith("/proza/pereborsh/")]
         self.assertEqual(len(novel), 29)
         self.assertEqual(sum(p["page_type"] == "content" and p["rss"] for p in novel), 28)
-        self.assertEqual(len(catalog["alternate_groups"]), 15)
-        self.assertEqual(len(groups), 30)
+        self.assertEqual(len(catalog["alternate_groups"]), 16)
+        self.assertEqual(len(groups), 32)
         self.assertEqual(sum(len(p.get("resources", [])) for p in catalog["pages"]), 6)
         self.assertEqual(sum(p["page_type"] == "placeholder" for p in catalog["pages"]), 0)
         for path in ("/proza/", "/en/book/", "/en/prose/", "/en/poetry/"):
@@ -240,7 +240,8 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(novel["path"], "/proza/pereborsh/")
         self.assertEqual(novel["parts"], ["/proza/pereborsh/vstuplenie/"] +
                          [f"/proza/pereborsh/glava-{n:02}/" for n in range(1, 28)])
-        self.assertEqual(works["excluded_content"], ["/about/", "/articles/about/", "/en/about/"])
+        self.assertEqual(works["excluded_content"],
+                         ["/about/", "/articles/about/", "/en/about/", "/help/", "/en/help/"])
         variants = {p for w in works["items"]
                     for p in groups.get(w["path"], {"own": w["path"]}).values()}
         self.assertEqual(len(variants), 46)
@@ -464,7 +465,7 @@ class PublicationTests(unittest.TestCase):
         navigation = catalog["navigation"]
         self.assertEqual(navigation["version"], 1)
         self.assertEqual([i["id"] for i in navigation["items"]],
-                         ["home", "articles", "book", "prose", "poetry", "about", "search", "works"])
+                         ["home", "articles", "book", "prose", "poetry", "about", "search", "works", "help"])
         for page in catalog["pages"]:
             with self.subTest(path=page["path"]):
                 data = generator.render_navigation(catalog, page["path"])
@@ -477,23 +478,65 @@ class PublicationTests(unittest.TestCase):
                 self.assertEqual([unescape(t) for t in re.findall(r'<a[^>]*>([^<]*)</a>', source)],
                                  [i["labels"][page["language"]] for i in navigation["items"]])
                 self.assertEqual(len([a for a in html.matching("a") if "aria-current" in a]), 1)
+                actual = (self.root / (page["path"].lstrip("/") + "index.html")).read_bytes()
+                owned = actual.split(generator.NAV_START)[1].split(generator.NAV_END)[0]
+                self.assertEqual([line.strip() for line in owned.decode("utf-8").splitlines() if line.strip()],
+                                 [line.strip() for line in source.splitlines()])
+                self.assertEqual(len(html.matching("a")), 9)
         before = snapshot(self.root)
         with patch.object(generator, "render_navigation", wraps=generator.render_navigation) as renderer, \
              patch.object(generator, "replace_navigation_region", wraps=generator.replace_navigation_region) as replacer:
             self.assertEqual(generator.run(self.root, write=True), 0)
             self.assertEqual({call.args[1] for call in renderer.call_args_list},
                              {p["path"] for p in catalog["pages"]})
-            self.assertEqual(replacer.call_count, 90)
+            self.assertEqual(replacer.call_count, 92)
         self.assertEqual(snapshot(self.root), before)
         outputs = generator.render(self.root)
         self.assertEqual(set(outputs), set(generator.OUTPUTS + generator.WORK_OUTPUTS))
         for name, data in outputs.items():
             self.assertEqual(data, (self.root / name).read_bytes(), name)
 
+    def test_bilingual_help_registration_metadata_and_routes(self):
+        catalog, _, groups = generator.prepare(self.root)
+        pair = {"ru": "/help/", "en": "/en/help/"}
+        sources = {
+            "https://support.microsoft.com/en-us/accessibility/edge/accessibility-features-in-microsoft-edge",
+            "https://support.google.com/chrome/answer/14768725",
+            "https://support.google.com/chrome/answer/14218344",
+            "https://support.apple.com/guide/iphone/iph449fc616c/ios",
+        }
+        registered = {p["path"] for p in catalog["pages"]}
+        for language, path in pair.items():
+            with self.subTest(language=language):
+                page = next(p for p in catalog["pages"] if p["path"] == path)
+                self.assertEqual((page["page_type"], page["text_availability"], page["rss"]),
+                                 ("content", "html_text", False))
+                self.assertIn(path, catalog["works"]["excluded_content"])
+                self.assertEqual(groups[path], pair)
+                html = generator.validate_html(self.root, page)
+                self.assertEqual(len(html.matching("h1")), 1)
+                self.assertEqual([h["id"] for h in html.matching("h2")],
+                                 ["reading", "downloads", "listening", "site-icon"])
+                self.assertEqual(len(html.matching("summary")), 5)
+                self.assertFalse(html.matching("script"))
+                self.assertIn({"rel": "canonical", "href": generator.SITE + path}, html.matching("link"))
+                for locale, target in pair.items():
+                    self.assertIn({"rel": "alternate", "hreflang": locale,
+                                   "href": generator.SITE + target}, html.matching("link"))
+                    switches = [a for a in html.matching("a") if a.get("hreflang") == locale
+                                and a["href"] == target]
+                    self.assertEqual(len(switches), 1)
+                    self.assertEqual(switches[0].get("aria-current"), "page" if locale == language else None)
+                links = {a["href"] for a in html.matching("a")}
+                self.assertTrue(sources <= links)
+                self.assertTrue({"/kniga/", "/proza/pereborsh/", "/works/" if language == "ru" else "/en/works/"} <= links)
+                self.assertTrue(all(link in registered for link in links if link.startswith("/")))
+
     def test_navigation_active_pages_sections_overrides_and_longest_prefix(self):
         cases = {
             "/": ("/", "page"), "/en/": ("/en/", "page"),
             "/works/": ("/works/", "page"), "/en/works/": ("/en/works/", "page"),
+            "/help/": ("/help/", "page"), "/en/help/": ("/en/help/", "page"),
             "/articles/": ("/articles/", "page"),
             "/articles/about/": ("/about/", "location"),
             "/articles/formula-boga/": ("/articles/", "location"),
@@ -551,6 +594,9 @@ class PublicationTests(unittest.TestCase):
         for name in generator.WORK_OUTPUTS:
             original[name] = original[name].replace(b"      " + generator.NAV_START + b"\n", b"").replace(
                 b"      " + generator.NAV_END + b"\n", b"")
+            # The legacy fallback remains the frozen A3.2 eight-item menu.
+            original[name] = re.sub(rb'^        <a href="/(?:en/)?help/">[^\n]*</a>\n',
+                                    b"", original[name], flags=re.M)
             (self.root / name).write_bytes(original[name])
         before = snapshot(self.root)
         self.assertEqual(generator.render(self.root), original)
@@ -560,7 +606,7 @@ class PublicationTests(unittest.TestCase):
         with self.assertRaises(generator.Invalid):
             generator.render_navigation(catalog, "/")
 
-    def test_navigation_metadata_change_propagates_to_all_92_pages_only(self):
+    def test_navigation_metadata_change_propagates_to_all_94_pages_only(self):
         pages = [p["path"].lstrip("/") + "index.html" for p in self.catalog["pages"]]
         originals = {name: (self.root / name).read_bytes() for name in pages}
         protected = {name: (self.root / name).read_bytes() for name in generator.OUTPUTS}
