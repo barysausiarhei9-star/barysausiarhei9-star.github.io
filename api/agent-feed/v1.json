@@ -899,6 +899,24 @@
       "title": "How to read and listen — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/kolchan-dlya-strel-vremeni/atlas/",
+      "canonical_url": "https://schrodingercat.org/articles/kolchan-dlya-strel-vremeni/atlas/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Колчан для стрел времени — Визуальное эссе — Кошка Шрёдингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/quiver-of-time-arrows/atlas/",
+      "canonical_url": "https://schrodingercat.org/en/articles/quiver-of-time-arrows/atlas/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "Quiver of Time Arrows — Visual essay — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
     }
   ]
 }

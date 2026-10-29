@@ -346,4 +346,14 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/help/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/help/" />
   </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/kolchan-dlya-strel-vremeni/atlas/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/kolchan-dlya-strel-vremeni/atlas/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/quiver-of-time-arrows/atlas/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/quiver-of-time-arrows/atlas/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/kolchan-dlya-strel-vremeni/atlas/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/quiver-of-time-arrows/atlas/" />
+  </url>
 </urlset>

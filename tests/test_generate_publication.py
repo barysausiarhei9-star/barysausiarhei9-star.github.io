@@ -186,7 +186,9 @@ class PublicationTests(unittest.TestCase):
         outputs = generator.render(self.root)
         prefix = generator.SITE + "/proza/pereborsh/"
         added_indexes = {generator.SITE + p for p in
-                         ("/search/", "/en/search/", "/works/", "/en/works/", "/help/", "/en/help/")}
+                         ("/search/", "/en/search/", "/works/", "/en/works/", "/help/", "/en/help/",
+                          "/articles/kolchan-dlya-strel-vremeni/atlas/",
+                          "/en/articles/quiver-of-time-arrows/atlas/")}
         for name, data in outputs.items():
             if name in ("assets/search-index.json", "assets/search-index-en.json", *generator.WORK_OUTPUTS):
                 continue  # New derived output has its own extraction and coverage tests.
@@ -212,13 +214,13 @@ class PublicationTests(unittest.TestCase):
                         parent.remove(child)
                 self.assertEqual(xml_semantics(ET.tostring(current)), xml_semantics(original))
         catalog, feed, groups = generator.prepare(self.root)
-        self.assertEqual(len(feed["entries"]), 94)
+        self.assertEqual(len(feed["entries"]), 96)
         self.assertEqual(sum(p["rss"] for p in catalog["pages"]), 73)
         novel = [p for p in catalog["pages"] if p["path"].startswith("/proza/pereborsh/")]
         self.assertEqual(len(novel), 29)
         self.assertEqual(sum(p["page_type"] == "content" and p["rss"] for p in novel), 28)
-        self.assertEqual(len(catalog["alternate_groups"]), 16)
-        self.assertEqual(len(groups), 32)
+        self.assertEqual(len(catalog["alternate_groups"]), 17)
+        self.assertEqual(len(groups), 34)
         self.assertEqual(sum(len(p.get("resources", [])) for p in catalog["pages"]), 6)
         self.assertEqual(sum(p["page_type"] == "placeholder" for p in catalog["pages"]), 0)
         for path in ("/proza/", "/en/book/", "/en/prose/", "/en/poetry/"):
@@ -241,7 +243,9 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(novel["parts"], ["/proza/pereborsh/vstuplenie/"] +
                          [f"/proza/pereborsh/glava-{n:02}/" for n in range(1, 28)])
         self.assertEqual(works["excluded_content"],
-                         ["/about/", "/articles/about/", "/en/about/", "/help/", "/en/help/"])
+                         ["/about/", "/articles/about/", "/en/about/", "/help/", "/en/help/",
+                          "/articles/kolchan-dlya-strel-vremeni/atlas/",
+                          "/en/articles/quiver-of-time-arrows/atlas/"])
         variants = {p for w in works["items"]
                     for p in groups.get(w["path"], {"own": w["path"]}).values()}
         self.assertEqual(len(variants), 46)
@@ -256,6 +260,37 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(poems, expected)
         for name, data in generator.render(self.root).items():
             self.assertEqual(data, (self.root / name).read_bytes(), name)
+
+    def test_atlas_companions_keep_source_quotations_and_are_not_principal_works(self):
+        catalog, _, groups = generator.prepare(self.root)
+        routes = ("/articles/kolchan-dlya-strel-vremeni/atlas/",
+                  "/en/articles/quiver-of-time-arrows/atlas/")
+        images = []
+        for language, route in zip(("ru", "en"), routes):
+            page = next(p for p in catalog["pages"] if p["path"] == route)
+            self.assertEqual((page["language"], page["page_type"], page["text_availability"], page["rss"]),
+                             (language, "content", "html_text", False))
+            self.assertEqual(groups[route], dict(zip(("ru", "en"), routes)))
+            self.assertIn(route, catalog["works"]["excluded_content"])
+            self.assertNotIn(route, [w["path"] for w in catalog["works"]["items"]])
+            source_route = route.removesuffix("atlas/")
+            source = (self.root / source_route.lstrip("/") / "index.html").read_text(encoding="utf-8")
+            atlas = (self.root / route.lstrip("/") / "index.html").read_text(encoding="utf-8")
+            normalize = lambda value: re.sub(r"\s+", " ", unescape(re.sub(r"<[^>]+>", " ", value))).strip()
+            literary_body = normalize(source.split('<section class="content">')[1].split('<a class="back"')[0])
+            quotations = re.findall(r'<blockquote cite="([^"]+)">(.*?)</blockquote>', atlas, re.S)
+            self.assertEqual(len(quotations), 18)
+            for cite, quotation in quotations:
+                self.assertEqual(cite, source_route)
+                self.assertIn(normalize(quotation), literary_body)
+            headings = re.findall(r'<h2 id="scene-title-\d">(.*?)</h2>', atlas)
+            self.assertEqual(len(headings), 6)
+            for heading in headings:
+                self.assertIn(normalize(heading), literary_body)
+            self.assertEqual(source.count('href="' + route + '"'), 1)
+            images.append([i["src"] for i in generator.PageHTML(atlas).matching("img") if "src" in i])
+        self.assertEqual(images[0], images[1])
+        self.assertEqual(len(set(images[0])), 6)
 
     def test_generated_catalogs_have_exact_work_titles_versions_and_order(self):
         catalog, _, groups = generator.prepare(self.root)
@@ -526,7 +561,7 @@ class PublicationTests(unittest.TestCase):
             self.assertEqual(generator.run(self.root, write=True), 0)
             self.assertEqual({call.args[1] for call in renderer.call_args_list},
                              {p["path"] for p in catalog["pages"]})
-            self.assertEqual(replacer.call_count, 92)
+            self.assertEqual(replacer.call_count, 94)
         self.assertEqual(snapshot(self.root), before)
         outputs = generator.render(self.root)
         self.assertEqual(set(outputs), set(generator.OUTPUTS + generator.WORK_OUTPUTS))
@@ -643,7 +678,7 @@ class PublicationTests(unittest.TestCase):
         with self.assertRaises(generator.Invalid):
             generator.render_navigation(catalog, "/")
 
-    def test_navigation_metadata_change_propagates_to_all_94_pages_only(self):
+    def test_navigation_metadata_change_propagates_to_all_96_pages_only(self):
         pages = [p["path"].lstrip("/") + "index.html" for p in self.catalog["pages"]]
         originals = {name: (self.root / name).read_bytes() for name in pages}
         protected = {name: (self.root / name).read_bytes() for name in generator.OUTPUTS}

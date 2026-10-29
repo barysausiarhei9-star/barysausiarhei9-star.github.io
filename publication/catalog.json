@@ -71,6 +71,10 @@
     {
       "ru": "/help/",
       "en": "/en/help/"
+    },
+    {
+      "ru": "/articles/kolchan-dlya-strel-vremeni/atlas/",
+      "en": "/en/articles/quiver-of-time-arrows/atlas/"
     }
   ],
   "pages": [
@@ -877,6 +881,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": false
+    },
+    {
+      "path": "/articles/kolchan-dlya-strel-vremeni/atlas/",
+      "title": "Колчан для стрел времени — Визуальное эссе — Кошка Шрёдингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/en/articles/quiver-of-time-arrows/atlas/",
+      "title": "Quiver of Time Arrows — Visual essay — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": false
     }
   ],
   "works": {
@@ -1062,7 +1082,9 @@
       "/articles/about/",
       "/en/about/",
       "/help/",
-      "/en/help/"
+      "/en/help/",
+      "/articles/kolchan-dlya-strel-vremeni/atlas/",
+      "/en/articles/quiver-of-time-arrows/atlas/"
     ]
   },
   "navigation": {
