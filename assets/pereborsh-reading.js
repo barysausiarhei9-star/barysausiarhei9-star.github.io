@@ -2,6 +2,64 @@
 (() => {
   "use strict";
 
+  // Bookmarks are independent of article typography controls.
+  const bookmarkKey = "schrodinger:pereborsh-bookmark:v1";
+  const chapterPath = /^\/proza\/pereborsh\/glava-(0[1-9]|1[0-9]|2[0-7])\/$/;
+  const resume = document.getElementById("novel-resume");
+
+  function refreshBookmark() {
+    const chapter = location.pathname.match(chapterPath);
+    if (chapter && document.querySelector("article#novel-text")) {
+      try {
+        localStorage.setItem(bookmarkKey, String(Number(chapter[1])));
+      } catch {
+        // Reading remains available when storage cannot be written.
+      }
+    }
+    if (!resume || location.pathname !== "/proza/pereborsh/") return;
+    resume.hidden = true;
+    resume.replaceChildren();
+    let stored;
+    try {
+      stored = localStorage.getItem(bookmarkKey);
+    } catch {
+      return;
+    }
+    // Accept only the canonical integer representation written above.
+    if (!/^(?:[1-9]|1[0-9]|2[0-7])$/.test(stored)) return;
+    const destination = `/proza/pereborsh/glava-${stored.padStart(2, "0")}/`;
+    const entry = Array.from(document.querySelectorAll(".novel-toc > li > a"))
+      .find(link => link.getAttribute("href") === destination);
+    if (!entry || !entry.textContent.trim()) return;
+
+    const link = document.createElement("a");
+    link.href = destination + "#novel-text";
+    link.textContent = "Продолжить чтение";
+    const title = document.createElement("p");
+    title.textContent = entry.textContent;
+    const note = document.createElement("p");
+    note.textContent = "Последняя открытая глава сохранена в этом браузере.";
+    const reset = document.createElement("button");
+    reset.type = "button";
+    reset.textContent = "Сбросить";
+    reset.setAttribute("aria-label", "Сбросить последнюю открытую главу");
+    reset.addEventListener("click", () => {
+      try {
+        localStorage.removeItem(bookmarkKey);
+      } catch {
+        // Re-read storage so a failed reset never falsely reports success.
+      }
+      refreshBookmark();
+      const focusTarget = resume.hidden
+        ? document.querySelector(".novel-start a") : resume.querySelector("button");
+      if (focusTarget) focusTarget.focus();
+    });
+    resume.append(link, title, note, reset);
+    resume.hidden = false;
+  }
+  refreshBookmark();
+  window.addEventListener("pageshow", refreshBookmark);
+
   const article = document.getElementById("novel-text");
   const controls = document.getElementById("reading-preferences");
   if (!article || !controls) return;

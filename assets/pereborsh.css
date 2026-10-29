@@ -35,3 +35,8 @@
   .novel-nav-full { display: none; }
   .novel-nav-compact { display: inline; }
 }
+
+.novel-resume { margin-bottom: 24px; overflow-wrap: anywhere; }
+.novel-resume p { margin-block: 8px; }
+.novel-resume button { min-height: 44px; padding: 8px 12px; border: 1px solid #ae9671; background: #171613; color: #eee9df; font: inherit; cursor: pointer; }
+.novel-resume button:focus-visible { outline: 2px solid #d6bd92; outline-offset: 3px; }
