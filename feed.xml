@@ -443,5 +443,17 @@
       <guid isPermaLink="true">https://schrodingercat.org/poeziya/xxl/</guid>
       <dc:language>ru</dc:language>
     </item>
+    <item>
+      <title>ПЯТЬ ПРИНЦИПОВ МИРОЗДАНИЯ — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/five-principles-of-the-universe/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/five-principles-of-the-universe/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>FIVE PRINCIPLES OF THE UNIVERSE — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/five-principles-of-the-universe/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/five-principles-of-the-universe/</guid>
+      <dc:language>en</dc:language>
+    </item>
   </channel>
 </rss>

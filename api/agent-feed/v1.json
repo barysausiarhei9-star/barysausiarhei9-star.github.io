@@ -917,6 +917,24 @@
       "title": "Quiver of Time Arrows — Visual essay — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/five-principles-of-the-universe/",
+      "canonical_url": "https://schrodingercat.org/articles/five-principles-of-the-universe/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ПЯТЬ ПРИНЦИПОВ МИРОЗДАНИЯ — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/five-principles-of-the-universe/",
+      "canonical_url": "https://schrodingercat.org/en/articles/five-principles-of-the-universe/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "FIVE PRINCIPLES OF THE UNIVERSE — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
     }
   ]
 }

@@ -75,6 +75,10 @@
     {
       "ru": "/articles/kolchan-dlya-strel-vremeni/atlas/",
       "en": "/en/articles/quiver-of-time-arrows/atlas/"
+    },
+    {
+      "ru": "/articles/five-principles-of-the-universe/",
+      "en": "/en/articles/five-principles-of-the-universe/"
     }
   ],
   "pages": [
@@ -897,6 +901,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": false
+    },
+    {
+      "path": "/articles/five-principles-of-the-universe/",
+      "title": "ПЯТЬ ПРИНЦИПОВ МИРОЗДАНИЯ — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/five-principles-of-the-universe/",
+      "title": "FIVE PRINCIPLES OF THE UNIVERSE — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1074,6 +1094,10 @@
       },
       {
         "path": "/articles/zakon-antipodov-nobelevskaya-lektsiya/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/five-principles-of-the-universe/",
         "type": "article"
       }
     ],
