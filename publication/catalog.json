@@ -79,6 +79,10 @@
     {
       "ru": "/articles/five-principles-of-the-universe/",
       "en": "/en/articles/five-principles-of-the-universe/"
+    },
+    {
+      "ru": "/articles/page-2/",
+      "en": "/en/articles/page-2/"
     }
   ],
   "pages": [
@@ -917,6 +921,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/page-2/",
+      "title": "Статьи — Страница 2 — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/en/articles/page-2/",
+      "title": "Articles — Page 2 — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
     }
   ],
   "works": {

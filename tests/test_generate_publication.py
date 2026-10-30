@@ -190,7 +190,8 @@ class PublicationTests(unittest.TestCase):
                           "/articles/kolchan-dlya-strel-vremeni/atlas/",
                           "/en/articles/quiver-of-time-arrows/atlas/",
                           "/articles/five-principles-of-the-universe/",
-                          "/en/articles/five-principles-of-the-universe/")}
+                          "/en/articles/five-principles-of-the-universe/",
+                          "/articles/page-2/", "/en/articles/page-2/")}
         for name, data in outputs.items():
             if name in ("assets/search-index.json", "assets/search-index-en.json", *generator.WORK_OUTPUTS):
                 continue  # New derived output has its own extraction and coverage tests.
@@ -216,13 +217,13 @@ class PublicationTests(unittest.TestCase):
                         parent.remove(child)
                 self.assertEqual(xml_semantics(ET.tostring(current)), xml_semantics(original))
         catalog, feed, groups = generator.prepare(self.root)
-        self.assertEqual(len(feed["entries"]), 98)
+        self.assertEqual(len(feed["entries"]), 100)
         self.assertEqual(sum(p["rss"] for p in catalog["pages"]), 75)
         novel = [p for p in catalog["pages"] if p["path"].startswith("/proza/pereborsh/")]
         self.assertEqual(len(novel), 29)
         self.assertEqual(sum(p["page_type"] == "content" and p["rss"] for p in novel), 28)
-        self.assertEqual(len(catalog["alternate_groups"]), 18)
-        self.assertEqual(len(groups), 36)
+        self.assertEqual(len(catalog["alternate_groups"]), 19)
+        self.assertEqual(len(groups), 38)
         self.assertEqual(sum(len(p.get("resources", [])) for p in catalog["pages"]), 6)
         self.assertEqual(sum(p["page_type"] == "placeholder" for p in catalog["pages"]), 0)
         for path in ("/proza/", "/en/book/", "/en/prose/", "/en/poetry/"):
@@ -262,6 +263,56 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(poems, expected)
         for name, data in generator.render(self.root).items():
             self.assertEqual(data, (self.root / name).read_bytes(), name)
+
+    def test_article_pagination_covers_principal_versions_and_return_destinations(self):
+        catalog, _, groups = generator.prepare(self.root)
+        pages = {p["path"]: p for p in catalog["pages"]}
+        articles = [w["path"] for w in catalog["works"]["items"] if w["type"] == "article"]
+        self.assertEqual(len(articles), 11)
+        pair = {"ru": "/articles/page-2/", "en": "/en/articles/page-2/"}
+        self.assertEqual(groups[pair["ru"]], pair)
+        for language, base in (("ru", "/articles/"), ("en", "/en/articles/")):
+            expected = {groups[p][language] for p in articles}
+            listed = []
+            for number, route in ((1, base), (2, pair[language])):
+                source = (self.root / route.lstrip("/") / "index.html").read_text(encoding="utf-8")
+                html = generator.PageHTML(source)
+                page = pages[route]
+                self.assertEqual((page["language"], page["page_type"], page["text_availability"], page["rss"]),
+                                 (language, "section_index", "html_text", False))
+                items = re.findall(r'<div class="item">\s*<a href="([^"]+)"', source)
+                self.assertEqual(len(items), 10 if number == 1 else 1)
+                listed.extend(items)
+                self.assertEqual([a["href"] for a in html.matching("link") if a.get("rel") == "canonical"],
+                                 [generator.SITE + route])
+                alternates = {a["hreflang"]: a["href"] for a in html.matching("link")
+                              if a.get("rel") == "alternate"}
+                self.assertEqual(alternates, {lang: generator.SITE + path for lang, path in groups[route].items()})
+                navs = re.findall(r'<nav class="pagination"[^>]*>.*?</nav>', source, re.S)
+                self.assertEqual(len(navs), 2)
+                self.assertLess(source.index(navs[0]), source.index('<div class="item">'))
+                self.assertGreater(source.index(navs[1], source.index(navs[0]) + len(navs[0])),
+                                   source.rindex('<div class="item">'))
+                for nav in navs:
+                    parsed = generator.PageHTML(nav)
+                    self.assertTrue(parsed.matching("nav")[0].get("aria-label"))
+                    self.assertEqual(parsed.matching("strong"), [{"aria-current": "page"}])
+                    self.assertIn(("Страница " if language == "ru" else "Page ") + str(number), nav)
+                    other_route = pair[language] if number == 1 else base
+                    self.assertEqual([a["href"] for a in parsed.matching("a")], [other_route, other_route])
+                    self.assertEqual([a["rel"] for a in parsed.matching("a") if "rel" in a],
+                                     ["next" if number == 1 else "prev"])
+                switches = [a for a in html.matching("a") if "hreflang" in a]
+                self.assertEqual({a["hreflang"]: a["href"] for a in switches}, groups[route])
+                for article in items:
+                    literary = (self.root / article.lstrip("/") / "index.html").read_text(encoding="utf-8")
+                    self.assertIn('<a class="back" href="' + route + '"', literary)
+                for name in ("assets/search-index.json", "assets/search-index-en.json"):
+                    urls = {p["url"] for p in json.loads((self.root / name).read_bytes())["pages"]}
+                    self.assertNotIn(generator.SITE + route, urls)
+            self.assertEqual(set(listed), expected)
+            self.assertEqual(len(listed), len(set(listed)))
+            self.assertEqual(listed[-1], base + "five-principles-of-the-universe/")
 
     def test_atlas_companions_keep_source_quotations_and_are_not_principal_works(self):
         catalog, _, groups = generator.prepare(self.root)
@@ -563,7 +614,7 @@ class PublicationTests(unittest.TestCase):
             self.assertEqual(generator.run(self.root, write=True), 0)
             self.assertEqual({call.args[1] for call in renderer.call_args_list},
                              {p["path"] for p in catalog["pages"]})
-            self.assertEqual(replacer.call_count, 96)
+            self.assertEqual(replacer.call_count, 98)
         self.assertEqual(snapshot(self.root), before)
         outputs = generator.render(self.root)
         self.assertEqual(set(outputs), set(generator.OUTPUTS + generator.WORK_OUTPUTS))

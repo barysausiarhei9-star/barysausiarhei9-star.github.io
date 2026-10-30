@@ -935,6 +935,24 @@
       "title": "FIVE PRINCIPLES OF THE UNIVERSE — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/page-2/",
+      "canonical_url": "https://schrodingercat.org/articles/page-2/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Статьи — Страница 2 — Кошка Шредингера",
+      "page_type": "section_index",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/page-2/",
+      "canonical_url": "https://schrodingercat.org/en/articles/page-2/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "Articles — Page 2 — Schrödinger’s Cat",
+      "page_type": "section_index",
+      "text_availability": "html_text"
     }
   ]
 }
