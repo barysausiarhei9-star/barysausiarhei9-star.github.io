@@ -455,5 +455,17 @@
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/five-principles-of-the-universe/</guid>
       <dc:language>en</dc:language>
     </item>
+    <item>
+      <title>Антивселенная - равноправный партнёр Вселенной в космосе — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/anti-universe/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/anti-universe/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>The Anti-Universe — an Equal Partner of the Universe in the Cosmos — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/anti-universe/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/anti-universe/</guid>
+      <dc:language>en</dc:language>
+    </item>
   </channel>
 </rss>

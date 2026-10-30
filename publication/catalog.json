@@ -83,6 +83,10 @@
     {
       "ru": "/articles/page-2/",
       "en": "/en/articles/page-2/"
+    },
+    {
+      "ru": "/articles/anti-universe/",
+      "en": "/en/articles/anti-universe/"
     }
   ],
   "pages": [
@@ -937,6 +941,22 @@
       "page_type": "section_index",
       "text_availability": "html_text",
       "rss": false
+    },
+    {
+      "path": "/articles/anti-universe/",
+      "title": "Антивселенная - равноправный партнёр Вселенной в космосе — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/anti-universe/",
+      "title": "The Anti-Universe — an Equal Partner of the Universe in the Cosmos — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1118,6 +1138,10 @@
       },
       {
         "path": "/articles/five-principles-of-the-universe/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/anti-universe/",
         "type": "article"
       }
     ],

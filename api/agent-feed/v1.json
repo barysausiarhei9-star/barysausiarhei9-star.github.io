@@ -953,6 +953,24 @@
       "title": "Articles — Page 2 — Schrödinger’s Cat",
       "page_type": "section_index",
       "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/anti-universe/",
+      "canonical_url": "https://schrodingercat.org/articles/anti-universe/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Антивселенная - равноправный партнёр Вселенной в космосе — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/anti-universe/",
+      "canonical_url": "https://schrodingercat.org/en/articles/anti-universe/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "The Anti-Universe — an Equal Partner of the Universe in the Cosmos — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
     }
   ]
 }
