@@ -446,4 +446,14 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/paradigm-for-a-pair-of-diggers/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/paradigm-for-a-pair-of-diggers/" />
   </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/once-more-on-the-evolution-of-the-universe/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/once-more-on-the-evolution-of-the-universe/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/once-more-on-the-evolution-of-the-universe/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/once-more-on-the-evolution-of-the-universe/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/once-more-on-the-evolution-of-the-universe/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/once-more-on-the-evolution-of-the-universe/" />
+  </url>
 </urlset>

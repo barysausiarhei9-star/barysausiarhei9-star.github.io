@@ -1079,6 +1079,24 @@
       "title": "A Paradigm for a Pair of “Diggers” — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/once-more-on-the-evolution-of-the-universe/",
+      "canonical_url": "https://schrodingercat.org/articles/once-more-on-the-evolution-of-the-universe/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ЕЩЕ РАЗ ОБ ЭВОЛЮЦИИ ВСЕЛЕННОЙ — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/once-more-on-the-evolution-of-the-universe/",
+      "canonical_url": "https://schrodingercat.org/en/articles/once-more-on-the-evolution-of-the-universe/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "Once More on the Evolution of the Universe — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
     }
   ]
 }
