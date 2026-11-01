@@ -396,4 +396,14 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/paths-into-the-anti-world/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/paths-into-the-anti-world/" />
   </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/principle-of-causality/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/principle-of-causality/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/principle-of-causality/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/principle-of-causality/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/principle-of-causality/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/principle-of-causality/" />
+  </url>
 </urlset>

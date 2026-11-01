@@ -91,6 +91,10 @@
     {
       "ru": "/articles/paths-into-the-anti-world/",
       "en": "/en/articles/paths-into-the-anti-world/"
+    },
+    {
+      "ru": "/articles/principle-of-causality/",
+      "en": "/en/articles/principle-of-causality/"
     }
   ],
   "pages": [
@@ -977,6 +981,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/principle-of-causality/",
+      "title": "ПРИНЦИП ПРИЧИННОСТИ - ПРИЧИНА ПРИНЦИПИАЛЬНОСТИ — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/principle-of-causality/",
+      "title": "The Principle of Causality — a Reason to Stand on Principle — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1166,6 +1186,10 @@
       },
       {
         "path": "/articles/paths-into-the-anti-world/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/principle-of-causality/",
         "type": "article"
       }
     ],
