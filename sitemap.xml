@@ -386,4 +386,14 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/anti-universe/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/anti-universe/" />
   </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/paths-into-the-anti-world/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/paths-into-the-anti-world/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/paths-into-the-anti-world/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/paths-into-the-anti-world/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/paths-into-the-anti-world/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/paths-into-the-anti-world/" />
+  </url>
 </urlset>

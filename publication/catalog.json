@@ -87,6 +87,10 @@
     {
       "ru": "/articles/anti-universe/",
       "en": "/en/articles/anti-universe/"
+    },
+    {
+      "ru": "/articles/paths-into-the-anti-world/",
+      "en": "/en/articles/paths-into-the-anti-world/"
     }
   ],
   "pages": [
@@ -957,6 +961,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/paths-into-the-anti-world/",
+      "title": "ТРОПКИ ЕЩЕ В АНТИМИР НЕ ПРОТОПТАНЫ — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/paths-into-the-anti-world/",
+      "title": "Paths into the Anti-World Have Yet to Be Trodden — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1142,6 +1162,10 @@
       },
       {
         "path": "/articles/anti-universe/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/paths-into-the-anti-world/",
         "type": "article"
       }
     ],

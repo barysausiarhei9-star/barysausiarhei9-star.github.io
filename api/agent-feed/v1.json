@@ -971,6 +971,24 @@
       "title": "The Anti-Universe — an Equal Partner of the Universe in the Cosmos — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/paths-into-the-anti-world/",
+      "canonical_url": "https://schrodingercat.org/articles/paths-into-the-anti-world/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ТРОПКИ ЕЩЕ В АНТИМИР НЕ ПРОТОПТАНЫ — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/paths-into-the-anti-world/",
+      "canonical_url": "https://schrodingercat.org/en/articles/paths-into-the-anti-world/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "Paths into the Anti-World Have Yet to Be Trodden — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
     }
   ]
 }
