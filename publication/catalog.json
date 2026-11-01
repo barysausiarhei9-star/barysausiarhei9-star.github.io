@@ -103,6 +103,10 @@
     {
       "ru": "/articles/secret-of-eternity/",
       "en": "/en/articles/secret-of-eternity/"
+    },
+    {
+      "ru": "/articles/monitoring-time-in-space/",
+      "en": "/en/articles/monitoring-time-in-space/"
     }
   ],
   "pages": [
@@ -1037,6 +1041,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/monitoring-time-in-space/",
+      "title": "МОНИТОРИНГ ВРЕМЕНИ В ПРОСТРАНСТВЕ — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/monitoring-time-in-space/",
+      "title": "Monitoring Time in Space — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1238,6 +1258,10 @@
       },
       {
         "path": "/articles/secret-of-eternity/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/monitoring-time-in-space/",
         "type": "article"
       }
     ],

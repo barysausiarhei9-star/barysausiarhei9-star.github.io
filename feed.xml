@@ -515,5 +515,17 @@
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/secret-of-eternity/</guid>
       <dc:language>en</dc:language>
     </item>
+    <item>
+      <title>МОНИТОРИНГ ВРЕМЕНИ В ПРОСТРАНСТВЕ — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/monitoring-time-in-space/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/monitoring-time-in-space/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>Monitoring Time in Space — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/monitoring-time-in-space/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/monitoring-time-in-space/</guid>
+      <dc:language>en</dc:language>
+    </item>
   </channel>
 </rss>

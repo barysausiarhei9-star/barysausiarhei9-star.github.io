@@ -426,4 +426,14 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/secret-of-eternity/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/secret-of-eternity/" />
   </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/monitoring-time-in-space/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/monitoring-time-in-space/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/monitoring-time-in-space/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/monitoring-time-in-space/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/monitoring-time-in-space/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/monitoring-time-in-space/" />
+  </url>
 </urlset>
