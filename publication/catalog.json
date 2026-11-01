@@ -107,6 +107,10 @@
     {
       "ru": "/articles/monitoring-time-in-space/",
       "en": "/en/articles/monitoring-time-in-space/"
+    },
+    {
+      "ru": "/articles/paradigm-for-a-pair-of-diggers/",
+      "en": "/en/articles/paradigm-for-a-pair-of-diggers/"
     }
   ],
   "pages": [
@@ -1057,6 +1061,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/paradigm-for-a-pair-of-diggers/",
+      "title": "ПАРАДИГМА ДЛЯ ПАРЫ \"ДИГГЕРОВ\" — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/paradigm-for-a-pair-of-diggers/",
+      "title": "A Paradigm for a Pair of “Diggers” — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1262,6 +1282,10 @@
       },
       {
         "path": "/articles/monitoring-time-in-space/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/paradigm-for-a-pair-of-diggers/",
         "type": "article"
       }
     ],

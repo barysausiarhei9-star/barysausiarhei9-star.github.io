@@ -436,4 +436,14 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/monitoring-time-in-space/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/monitoring-time-in-space/" />
   </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/paradigm-for-a-pair-of-diggers/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/paradigm-for-a-pair-of-diggers/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/paradigm-for-a-pair-of-diggers/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/paradigm-for-a-pair-of-diggers/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/paradigm-for-a-pair-of-diggers/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/paradigm-for-a-pair-of-diggers/" />
+  </url>
 </urlset>
