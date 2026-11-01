@@ -95,6 +95,10 @@
     {
       "ru": "/articles/principle-of-causality/",
       "en": "/en/articles/principle-of-causality/"
+    },
+    {
+      "ru": "/articles/celestial-clock-face/",
+      "en": "/en/articles/celestial-clock-face/"
     }
   ],
   "pages": [
@@ -997,6 +1001,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/celestial-clock-face/",
+      "title": "НЕБЕСНЫЙ ЦИФЕРБЛАТ — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/celestial-clock-face/",
+      "title": "The Celestial Clock Face — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1190,6 +1210,10 @@
       },
       {
         "path": "/articles/principle-of-causality/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/celestial-clock-face/",
         "type": "article"
       }
     ],

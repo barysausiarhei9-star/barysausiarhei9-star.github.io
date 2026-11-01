@@ -1007,6 +1007,24 @@
       "title": "The Principle of Causality — a Reason to Stand on Principle — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/celestial-clock-face/",
+      "canonical_url": "https://schrodingercat.org/articles/celestial-clock-face/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "НЕБЕСНЫЙ ЦИФЕРБЛАТ — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/celestial-clock-face/",
+      "canonical_url": "https://schrodingercat.org/en/articles/celestial-clock-face/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "The Celestial Clock Face — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
     }
   ]
 }
