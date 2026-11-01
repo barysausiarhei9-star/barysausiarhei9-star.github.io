@@ -456,4 +456,14 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/once-more-on-the-evolution-of-the-universe/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/once-more-on-the-evolution-of-the-universe/" />
   </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/lemniscate/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/lemniscate/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/lemniscate/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/lemniscate/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/lemniscate/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/lemniscate/" />
+  </url>
 </urlset>

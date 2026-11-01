@@ -115,6 +115,10 @@
     {
       "ru": "/articles/once-more-on-the-evolution-of-the-universe/",
       "en": "/en/articles/once-more-on-the-evolution-of-the-universe/"
+    },
+    {
+      "ru": "/articles/lemniscate/",
+      "en": "/en/articles/lemniscate/"
     }
   ],
   "pages": [
@@ -1097,6 +1101,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/lemniscate/",
+      "title": "Лемниската — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/lemniscate/",
+      "title": "The Lemniscate — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1310,6 +1330,10 @@
       },
       {
         "path": "/articles/once-more-on-the-evolution-of-the-universe/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/lemniscate/",
         "type": "article"
       }
     ],

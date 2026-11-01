@@ -551,5 +551,17 @@
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/once-more-on-the-evolution-of-the-universe/</guid>
       <dc:language>en</dc:language>
     </item>
+    <item>
+      <title>Лемниската — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/lemniscate/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/lemniscate/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>The Lemniscate — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/lemniscate/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/lemniscate/</guid>
+      <dc:language>en</dc:language>
+    </item>
   </channel>
 </rss>

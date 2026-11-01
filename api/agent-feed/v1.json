@@ -1097,6 +1097,24 @@
       "title": "Once More on the Evolution of the Universe — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/lemniscate/",
+      "canonical_url": "https://schrodingercat.org/articles/lemniscate/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Лемниската — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/lemniscate/",
+      "canonical_url": "https://schrodingercat.org/en/articles/lemniscate/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "The Lemniscate — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
     }
   ]
 }
