@@ -503,5 +503,17 @@
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/celestial-clock-face/</guid>
       <dc:language>en</dc:language>
     </item>
+    <item>
+      <title>СЕКРЕТ ВЕЧНОСТИ — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/secret-of-eternity/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/secret-of-eternity/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>The Secret of Eternity — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/secret-of-eternity/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/secret-of-eternity/</guid>
+      <dc:language>en</dc:language>
+    </item>
   </channel>
 </rss>

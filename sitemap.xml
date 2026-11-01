@@ -416,4 +416,14 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/celestial-clock-face/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/celestial-clock-face/" />
   </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/secret-of-eternity/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/secret-of-eternity/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/secret-of-eternity/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/secret-of-eternity/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/secret-of-eternity/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/secret-of-eternity/" />
+  </url>
 </urlset>

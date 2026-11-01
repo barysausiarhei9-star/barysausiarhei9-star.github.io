@@ -31,7 +31,7 @@ class SearchIndexTests(unittest.TestCase):
 
     def test_inventory_and_no_duplicate_bodies(self):
         by_url = {p["url"]: p for p in self.pages}
-        self.assertEqual(len(by_url), 72)
+        self.assertEqual(len(by_url), 73)
         catalog = {generator.SITE + p["path"]: p for p in self.catalog["pages"]}
         for url, page in by_url.items():
             with self.subTest(url=url):
@@ -56,7 +56,7 @@ class SearchIndexTests(unittest.TestCase):
     def test_published_english_content_is_excluded(self):
         english = {generator.SITE + p["path"] for p in self.catalog["pages"]
                    if p["language"] == "en" and p["page_type"] == "content"}
-        self.assertEqual(len(english), 18)  # Includes reader help, the companion atlas and all five cosmology articles.
+        self.assertEqual(len(english), 19)  # Includes reader help, the companion atlas and all six cosmology articles.
         self.assertEqual({p["language"] for p in self.pages}, {"ru"})
         self.assertTrue(english.isdisjoint(p["url"] for p in self.pages))
 
@@ -65,7 +65,7 @@ class SearchIndexTests(unittest.TestCase):
         pages = json.loads(data)["pages"]
         expected = {generator.SITE + p["path"] for p in self.catalog["pages"]
                     if p["language"] == "en" and p["page_type"] == "content"}
-        self.assertEqual(len(pages), 18)
+        self.assertEqual(len(pages), 19)
         self.assertEqual({p["url"] for p in pages}, expected)
         self.assertEqual({p["language"] for p in pages}, {"en"})
         self.assertTrue(all(p["text"] for p in pages))

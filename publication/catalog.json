@@ -99,6 +99,10 @@
     {
       "ru": "/articles/celestial-clock-face/",
       "en": "/en/articles/celestial-clock-face/"
+    },
+    {
+      "ru": "/articles/secret-of-eternity/",
+      "en": "/en/articles/secret-of-eternity/"
     }
   ],
   "pages": [
@@ -1017,6 +1021,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/secret-of-eternity/",
+      "title": "СЕКРЕТ ВЕЧНОСТИ — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/secret-of-eternity/",
+      "title": "The Secret of Eternity — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1214,6 +1234,10 @@
       },
       {
         "path": "/articles/celestial-clock-face/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/secret-of-eternity/",
         "type": "article"
       }
     ],
