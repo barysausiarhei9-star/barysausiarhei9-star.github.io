@@ -127,6 +127,10 @@
     {
       "ru": "/articles/epilogue/",
       "en": "/en/articles/epilogue/"
+    },
+    {
+      "ru": "/articles/twins-without-a-paradox/",
+      "en": "/en/articles/twins-without-a-paradox/"
     }
   ],
   "pages": [
@@ -1157,6 +1161,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/twins-without-a-paradox/",
+      "title": "БЛИЗНЕЦЫ БЕЗ ПАРАДОКСА — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/twins-without-a-paradox/",
+      "title": "TWINS WITHOUT A PARADOX — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1378,6 +1398,10 @@
       },
       {
         "path": "/articles/epilogue/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/twins-without-a-paradox/",
         "type": "article"
       }
     ],

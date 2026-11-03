@@ -486,4 +486,14 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/epilogue/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/epilogue/" />
   </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/twins-without-a-paradox/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/twins-without-a-paradox/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/twins-without-a-paradox/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/twins-without-a-paradox/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/twins-without-a-paradox/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/twins-without-a-paradox/" />
+  </url>
 </urlset>

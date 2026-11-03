@@ -575,5 +575,17 @@
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/epilogue/</guid>
       <dc:language>en</dc:language>
     </item>
+    <item>
+      <title>БЛИЗНЕЦЫ БЕЗ ПАРАДОКСА — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/twins-without-a-paradox/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/twins-without-a-paradox/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>TWINS WITHOUT A PARADOX — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/twins-without-a-paradox/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/twins-without-a-paradox/</guid>
+      <dc:language>en</dc:language>
+    </item>
   </channel>
 </rss>
