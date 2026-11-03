@@ -563,5 +563,17 @@
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/lemniscate/</guid>
       <dc:language>en</dc:language>
     </item>
+    <item>
+      <title>ЭПИЛОГ — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/epilogue/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/epilogue/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>EPILOGUE — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/epilogue/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/epilogue/</guid>
+      <dc:language>en</dc:language>
+    </item>
   </channel>
 </rss>

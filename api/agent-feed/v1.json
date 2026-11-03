@@ -1115,6 +1115,42 @@
       "title": "The Lemniscate — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/page-3/",
+      "canonical_url": "https://schrodingercat.org/articles/page-3/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Статьи — Страница 3 — Кошка Шредингера",
+      "page_type": "section_index",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/page-3/",
+      "canonical_url": "https://schrodingercat.org/en/articles/page-3/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "Articles — Page 3 — Schrödinger’s Cat",
+      "page_type": "section_index",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/epilogue/",
+      "canonical_url": "https://schrodingercat.org/articles/epilogue/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ЭПИЛОГ — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/epilogue/",
+      "canonical_url": "https://schrodingercat.org/en/articles/epilogue/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "EPILOGUE — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
     }
   ]
 }

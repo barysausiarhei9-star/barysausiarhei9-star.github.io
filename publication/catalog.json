@@ -119,6 +119,14 @@
     {
       "ru": "/articles/lemniscate/",
       "en": "/en/articles/lemniscate/"
+    },
+    {
+      "ru": "/articles/page-3/",
+      "en": "/en/articles/page-3/"
+    },
+    {
+      "ru": "/articles/epilogue/",
+      "en": "/en/articles/epilogue/"
     }
   ],
   "pages": [
@@ -1117,6 +1125,38 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/page-3/",
+      "title": "Статьи — Страница 3 — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/en/articles/page-3/",
+      "title": "Articles — Page 3 — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/articles/epilogue/",
+      "title": "ЭПИЛОГ — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/epilogue/",
+      "title": "EPILOGUE — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1334,6 +1374,10 @@
       },
       {
         "path": "/articles/lemniscate/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/epilogue/",
         "type": "article"
       }
     ],

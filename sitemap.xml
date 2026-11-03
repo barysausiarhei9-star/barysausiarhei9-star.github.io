@@ -466,4 +466,24 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/lemniscate/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/lemniscate/" />
   </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/page-3/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/page-3/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/page-3/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/page-3/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/page-3/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/page-3/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/epilogue/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/epilogue/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/epilogue/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/epilogue/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/epilogue/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/epilogue/" />
+  </url>
 </urlset>
