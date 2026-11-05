@@ -1,31 +1,40 @@
 # Кошка Шрёдингера / Schrödinger’s Cat
 
-> A bilingual Russian/English literary and philosophical website featuring poetry, articles, and a Russian-language book.
+> A Russian/English literary and philosophical website by Elena Berezina, with articles in both languages, Russian poetry, and Russian-language books.
 
-Discussions of physics, time, cosmology, and philosophy present the author's reflections and hypotheses. Content availability differs between the Russian and English sections, as noted below.
+Discussions of physics, time, cosmology, and philosophy present the author's reflections and hypotheses, not established scientific conclusions. Language availability differs by work, as noted below. This file is a guide to published content and does not grant permission for AI indexing or training.
 
-## Russian sections
+## Articles in Russian and English
+
+- [Статьи](https://schrodingercat.org/articles/): Russian article collection, with 26 articles across three listing pages and links to their English versions.
+- [Articles](https://schrodingercat.org/en/articles/): English versions of the same 26 articles, across three listing pages.
+
+## Переборщ / Pereborsh (Russian only)
+
+- [Переборщ](https://schrodingercat.org/proza/pereborsh/): Elena Berezina's unfinished autofiction novel, published on this site in Russian. The table of contents links to the introduction and 27 chapters. No English translation is available on this site.
+- [Вступление — start reading online](https://schrodingercat.org/proza/pereborsh/vstuplenie/): Russian introduction, with chapter navigation.
+- [Download Pereborsh as PDF](https://schrodingercat.org/assets/books/pereborsh.pdf): Russian-language novel.
+- [Download Pereborsh as EPUB](https://schrodingercat.org/assets/books/pereborsh.epub): Russian-language novel.
+
+## Other Russian sections and book
 
 - [Кошка Шрёдингера](https://schrodingercat.org/): Russian homepage.
-- [Статьи](https://schrodingercat.org/articles/): Articles in Russian.
 - [Поэзия](https://schrodingercat.org/poeziya/): Poems in Russian; the listing spans three pages.
-- [Проза](https://schrodingercat.org/proza/): Prose section; currently contains only a heading, with no prose texts listed.
-- [Кошка Шрёдингера о теории всего в стиле «пэчворк»](https://schrodingercat.org/kniga/): Book by Елена Березина (Elena Berezina), with information and PDF links in Russian.
+- [Проза](https://schrodingercat.org/proza/): Prose section featuring «Переборщ».
+- [Кошка Шрёдингера о теории всего в стиле «пэчворк»](https://schrodingercat.org/kniga/): Elena Berezina's Russian-language collection of reflections on physics, cosmology, and philosophy, with a PDF download.
+- [Download the Russian-language collection as PDF](https://schrodingercat.org/assets/books/koshka-shredingera.pdf): «Кошка Шрёдингера о теории всего в стиле “пэчворк”».
 - [О проекте](https://schrodingercat.org/about/): About text in Russian.
 
-## English sections
+## English navigation and availability
 
-- [Schrödinger’s Cat](https://schrodingercat.org/en/): English homepage; also links to Russian-language poetry and the book.
-- [Articles](https://schrodingercat.org/en/articles/): Existing English translations of articles.
-- [Poetry](https://schrodingercat.org/en/poetry/): Placeholder containing only a heading; no English poems are listed.
-- [Prose](https://schrodingercat.org/en/prose/): Prose section; currently contains only a heading, with no prose texts listed.
-- [Book](https://schrodingercat.org/en/book/): Placeholder containing only a heading; no English book translation is provided.
+- [Schrödinger’s Cat](https://schrodingercat.org/en/): English homepage.
+- [Poetry](https://schrodingercat.org/en/poetry/): English availability page linking to Russian poems; English poetry translations are not available on this site.
+- [Prose](https://schrodingercat.org/en/prose/): English availability page linking to the Russian prose and «Переборщ»; no English novel translation is available.
+- [Book](https://schrodingercat.org/en/book/): English availability page linking to the Russian-language collection and its PDF; no English book translation is available.
 - [About](https://schrodingercat.org/en/about/): About text in English.
 
-## Book PDF
+## Site indexes
 
-- [Original Russian-language PDF](https://schrodingercat.org/assets/books/koshka-shredingera.pdf): Кошка Шрёдингера о теории всего в стиле «пэчворк», by Елена Березина (Elena Berezina). The book is in Russian.
-
-## Site index
-
-- [Sitemap](https://schrodingercat.org/sitemap.xml): Public HTML page URLs, including individual articles, poems, and poetry pagination pages.
+- [Все произведения](https://schrodingercat.org/works/): Russian work catalog.
+- [All works](https://schrodingercat.org/en/works/): English work catalog, noting when a work is available only in Russian.
+- [Sitemap](https://schrodingercat.org/sitemap.xml): Public HTML page URLs, including articles, poems, novel chapters, and pagination pages.
