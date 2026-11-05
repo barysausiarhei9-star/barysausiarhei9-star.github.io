@@ -8,7 +8,7 @@ const url = path => "https://schrodingercat.org" + path;
 const english = JSON.parse(readFileSync(join(__dirname, "../assets/search-index-en.json"), "utf8")).pages;
 
 test("English titles and available bodies are searchable with language isolation", () => {
-  assert.equal(english.length, 28);
+  assert.equal(english.length, 29);
   assert.equal(search(english, "THE FORMULA OF GOD")[0].url, url("/en/articles/the-formula-of-god/"));
   assert.ok(search(english, '"information possessing a binary code"').some(p =>
     p.url === url("/en/articles/the-formula-of-god/")));
@@ -39,6 +39,13 @@ test("A HINT is searchable by title and supplied text in both languages", () => 
   assert.ok(search(pages, '"координата этой точки МИНУС ОДИН"').some(p => p.url === url("/articles/a-hint/")));
   assert.equal(search(english, "A HINT")[0].url, url("/en/articles/a-hint/"));
   assert.ok(search(english, '"a decrease in that magnitude"').some(p => p.url === url("/en/articles/a-hint/")));
+});
+
+test("DISSECTION OF THE THEORY OF RELATIVITY is searchable by title and supplied text in both languages", () => {
+  assert.equal(search(pages, "ПРЕПАРАЦИЯ ТЕОРИИ ОТНОСИТЕЛЬНОСТИ")[0].url, url("/articles/dissection-of-the-theory-of-relativity/"));
+  assert.ok(search(pages, '"его мультипликацией"').some(p => p.url === url("/articles/dissection-of-the-theory-of-relativity/")));
+  assert.equal(search(english, "DISSECTION OF THE THEORY OF RELATIVITY")[0].url, url("/en/articles/dissection-of-the-theory-of-relativity/"));
+  assert.ok(search(english, '"its multiplication"').some(p => p.url === url("/en/articles/dissection-of-the-theory-of-relativity/")));
 });
 
 test("quoted phrases, unordered AND terms, partial matches and empty queries", () => {

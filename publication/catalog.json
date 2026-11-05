@@ -143,6 +143,10 @@
     {
       "ru": "/articles/a-hint/",
       "en": "/en/articles/a-hint/"
+    },
+    {
+      "ru": "/articles/dissection-of-the-theory-of-relativity/",
+      "en": "/en/articles/dissection-of-the-theory-of-relativity/"
     }
   ],
   "pages": [
@@ -1237,6 +1241,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/dissection-of-the-theory-of-relativity/",
+      "title": "ПРЕПАРАЦИЯ ТЕОРИИ ОТНОСИТЕЛЬНОСТИ — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/dissection-of-the-theory-of-relativity/",
+      "title": "DISSECTION OF THE THEORY OF RELATIVITY — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1474,6 +1494,10 @@
       },
       {
         "path": "/articles/a-hint/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/dissection-of-the-theory-of-relativity/",
         "type": "article"
       }
     ],
