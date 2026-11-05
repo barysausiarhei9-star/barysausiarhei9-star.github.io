@@ -506,4 +506,14 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/eureka/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/eureka/" />
   </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/preface-to-a-non-bestseller/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/preface-to-a-non-bestseller/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/preface-to-a-non-bestseller/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/preface-to-a-non-bestseller/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/preface-to-a-non-bestseller/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/preface-to-a-non-bestseller/" />
+  </url>
 </urlset>

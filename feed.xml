@@ -599,5 +599,17 @@
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/eureka/</guid>
       <dc:language>en</dc:language>
     </item>
+    <item>
+      <title>Предисловие к бесцеллеру — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/preface-to-a-non-bestseller/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/preface-to-a-non-bestseller/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>PREFACE TO A NON-BESTSELLER — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/preface-to-a-non-bestseller/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/preface-to-a-non-bestseller/</guid>
+      <dc:language>en</dc:language>
+    </item>
   </channel>
 </rss>

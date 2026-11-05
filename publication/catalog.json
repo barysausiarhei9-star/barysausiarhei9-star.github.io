@@ -135,6 +135,10 @@
     {
       "ru": "/articles/eureka/",
       "en": "/en/articles/eureka/"
+    },
+    {
+      "ru": "/articles/preface-to-a-non-bestseller/",
+      "en": "/en/articles/preface-to-a-non-bestseller/"
     }
   ],
   "pages": [
@@ -1197,6 +1201,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/preface-to-a-non-bestseller/",
+      "title": "Предисловие к бесцеллеру — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/preface-to-a-non-bestseller/",
+      "title": "PREFACE TO A NON-BESTSELLER — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1426,6 +1446,10 @@
       },
       {
         "path": "/articles/eureka/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/preface-to-a-non-bestseller/",
         "type": "article"
       }
     ],
