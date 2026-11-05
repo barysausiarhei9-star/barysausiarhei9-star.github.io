@@ -496,4 +496,14 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/twins-without-a-paradox/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/twins-without-a-paradox/" />
   </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/eureka/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/eureka/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/eureka/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/eureka/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/eureka/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/eureka/" />
+  </url>
 </urlset>

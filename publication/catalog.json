@@ -131,6 +131,10 @@
     {
       "ru": "/articles/twins-without-a-paradox/",
       "en": "/en/articles/twins-without-a-paradox/"
+    },
+    {
+      "ru": "/articles/eureka/",
+      "en": "/en/articles/eureka/"
     }
   ],
   "pages": [
@@ -1177,6 +1181,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/eureka/",
+      "title": "ЭВРИКА — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/eureka/",
+      "title": "EUREKA — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1402,6 +1422,10 @@
       },
       {
         "path": "/articles/twins-without-a-paradox/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/eureka/",
         "type": "article"
       }
     ],

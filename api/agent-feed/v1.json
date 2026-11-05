@@ -1169,6 +1169,24 @@
       "title": "TWINS WITHOUT A PARADOX — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/eureka/",
+      "canonical_url": "https://schrodingercat.org/articles/eureka/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ЭВРИКА — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/eureka/",
+      "canonical_url": "https://schrodingercat.org/en/articles/eureka/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "EUREKA — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
     }
   ]
 }
