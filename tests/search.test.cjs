@@ -8,7 +8,7 @@ const url = path => "https://schrodingercat.org" + path;
 const english = JSON.parse(readFileSync(join(__dirname, "../assets/search-index-en.json"), "utf8")).pages;
 
 test("English titles and available bodies are searchable with language isolation", () => {
-  assert.equal(english.length, 27);
+  assert.equal(english.length, 28);
   assert.equal(search(english, "THE FORMULA OF GOD")[0].url, url("/en/articles/the-formula-of-god/"));
   assert.ok(search(english, '"information possessing a binary code"').some(p =>
     p.url === url("/en/articles/the-formula-of-god/")));
@@ -32,6 +32,13 @@ test("Russian title, case, Cyrillic partial text, ё/е and title relevance", ()
   assert.ok(search(pages, "двоичн").some(p => p.url === url("/articles/formula-boga/")));
   assert.ok(search(pages, "ЖИЛ ДА БЫЛ ОДИН КОРОЛЬ").some(p => p.url === url("/poeziya/a-koronu/")));
   assert.deepEqual(search(pages, "ШРЁДИНГЕРА"), search(pages, "шредингера"));
+});
+
+test("A HINT is searchable by title and supplied text in both languages", () => {
+  assert.equal(search(pages, "Подсказка")[0].url, url("/articles/a-hint/"));
+  assert.ok(search(pages, '"координата этой точки МИНУС ОДИН"').some(p => p.url === url("/articles/a-hint/")));
+  assert.equal(search(english, "A HINT")[0].url, url("/en/articles/a-hint/"));
+  assert.ok(search(english, '"a decrease in that magnitude"').some(p => p.url === url("/en/articles/a-hint/")));
 });
 
 test("quoted phrases, unordered AND terms, partial matches and empty queries", () => {

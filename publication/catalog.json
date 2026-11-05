@@ -139,6 +139,10 @@
     {
       "ru": "/articles/preface-to-a-non-bestseller/",
       "en": "/en/articles/preface-to-a-non-bestseller/"
+    },
+    {
+      "ru": "/articles/a-hint/",
+      "en": "/en/articles/a-hint/"
     }
   ],
   "pages": [
@@ -1217,6 +1221,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/a-hint/",
+      "title": "Подсказка — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/a-hint/",
+      "title": "A HINT — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1450,6 +1470,10 @@
       },
       {
         "path": "/articles/preface-to-a-non-bestseller/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/a-hint/",
         "type": "article"
       }
     ],

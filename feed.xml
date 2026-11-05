@@ -611,5 +611,17 @@
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/preface-to-a-non-bestseller/</guid>
       <dc:language>en</dc:language>
     </item>
+    <item>
+      <title>Подсказка — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/a-hint/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/a-hint/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>A HINT — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/a-hint/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/a-hint/</guid>
+      <dc:language>en</dc:language>
+    </item>
   </channel>
 </rss>

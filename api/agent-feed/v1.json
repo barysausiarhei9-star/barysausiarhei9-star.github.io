@@ -1205,6 +1205,24 @@
       "title": "PREFACE TO A NON-BESTSELLER — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/a-hint/",
+      "canonical_url": "https://schrodingercat.org/articles/a-hint/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Подсказка — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/a-hint/",
+      "canonical_url": "https://schrodingercat.org/en/articles/a-hint/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "A HINT — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
     }
   ]
 }

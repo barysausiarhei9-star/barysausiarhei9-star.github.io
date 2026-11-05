@@ -516,4 +516,14 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/preface-to-a-non-bestseller/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/preface-to-a-non-bestseller/" />
   </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/a-hint/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/a-hint/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/a-hint/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/a-hint/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/a-hint/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/a-hint/" />
+  </url>
 </urlset>
