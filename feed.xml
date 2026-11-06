@@ -635,5 +635,17 @@
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/dissection-of-the-theory-of-relativity/</guid>
       <dc:language>en</dc:language>
     </item>
+    <item>
+      <title>Движение — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/movement/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/movement/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>MOVEMENT — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/movement/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/movement/</guid>
+      <dc:language>en</dc:language>
+    </item>
   </channel>
 </rss>

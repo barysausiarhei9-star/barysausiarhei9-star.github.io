@@ -147,6 +147,10 @@
     {
       "ru": "/articles/dissection-of-the-theory-of-relativity/",
       "en": "/en/articles/dissection-of-the-theory-of-relativity/"
+    },
+    {
+      "ru": "/articles/movement/",
+      "en": "/en/articles/movement/"
     }
   ],
   "pages": [
@@ -1257,6 +1261,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/movement/",
+      "title": "Движение — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/movement/",
+      "title": "MOVEMENT — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1498,6 +1518,10 @@
       },
       {
         "path": "/articles/dissection-of-the-theory-of-relativity/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/movement/",
         "type": "article"
       }
     ],

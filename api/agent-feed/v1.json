@@ -1241,6 +1241,24 @@
       "title": "DISSECTION OF THE THEORY OF RELATIVITY — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/movement/",
+      "canonical_url": "https://schrodingercat.org/articles/movement/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Движение — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/movement/",
+      "canonical_url": "https://schrodingercat.org/en/articles/movement/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "MOVEMENT — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
     }
   ]
 }
