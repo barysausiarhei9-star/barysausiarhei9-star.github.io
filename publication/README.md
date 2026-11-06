@@ -270,6 +270,21 @@ There is no runtime JavaScript, second publication registry or deployment-workfl
 change. Do not manually edit managed menus; edit the reviewed navigation contract,
 run `--write`, inspect the HTML-region diff and run read-only `--check`.
 
+## Cloudflare Web Analytics (P2.3)
+
+All registered public RU/EN pages include the supplied Cloudflare module beacon
+before `</body>`, using token `6c1d21ba580d43d59bf01f1b9c440f4f`.
+The Google site-verification response is excluded and remains unchanged.
+There are no new dependencies, cookies, or account/hosting configuration changes.
+
+The existing local `--write` command adds a missing beacon to registered authored
+pages while preserving surrounding bytes, and both generated works templates
+include it automatically. This extends the authored write scope described above
+to analytics insertion even for catalogs without navigation. `--check` reports
+missing analytics without writing; invalid, duplicate or inactive beacons fail
+before any write. Future pages must be registered and use the same publication
+write/check workflow. Existing valid beacons are left untouched.
+
 ## Pages deployment gate
 
 The existing Pages workflow installs the validator from

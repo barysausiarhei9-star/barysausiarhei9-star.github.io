@@ -23,6 +23,8 @@ from tools import generate_publication as generator
 
 BASELINE = "28b0ff50e92c7ca2a3f216c2dc38770c244a5d43"
 ROOT = generator.ROOT
+ANALYTICS_SCRIPT = [{"type": "module", "src": generator.BEACON_URL,
+                     "data-cf-beacon": '{"token":"' + generator.BEACON_TOKEN + '"}'}]
 
 
 def xml_semantics(data):
@@ -36,6 +38,32 @@ def snapshot(root):
     return {p.relative_to(root).as_posix(): (hashlib.sha256(p.read_bytes()).hexdigest(),
                                           p.stat().st_mtime_ns)
             for p in root.rglob("*") if p.is_file()}
+
+
+class AnalyticsTests(unittest.TestCase):
+    def test_insertion_preserves_bytes_and_is_idempotent(self):
+        for newline in (b"\n", b"\r\n"):
+            source = b'<html><body><main>Text &amp; links</main>' + newline + b'</body></html>'
+            expected = source.replace(b"</body>", generator.BEACON.replace(b"\n", newline) + b"</body>")
+            self.assertEqual(generator.with_analytics(source), expected)
+            self.assertEqual(generator.with_analytics(expected), expected)
+
+    def test_ambiguous_or_invalid_tracking_is_rejected(self):
+        for beacon in (generator.BEACON * 2,
+                       generator.BEACON.replace(generator.BEACON_TOKEN.encode(), b"wrong"),
+                       b"<!--" + generator.BEACON.split(b"\n")[1] + b"-->",
+                       b"<template>" + generator.BEACON + b"</template>"):
+            with self.subTest(beacon=beacon), self.assertRaises(generator.Invalid):
+                generator.with_analytics(b"<html><body>" + beacon + b"</body></html>")
+
+    def test_public_page_coverage(self):
+        catalog = generator.load_json(ROOT / "publication/catalog.json")
+        for page in catalog["pages"]:
+            name = page["path"].lstrip("/") + "index.html"
+            source = (ROOT / name).read_bytes()
+            with self.subTest(page=name):
+                self.assertEqual(source.count(generator.BEACON_URL.encode()), 1)
+                self.assertEqual(generator.with_analytics(source), source)
 
 
 class PublicationTests(unittest.TestCase):
@@ -67,6 +95,22 @@ class PublicationTests(unittest.TestCase):
     def save_catalog(self, catalog):
         (self.root / "publication/catalog.json").write_text(
             json.dumps(catalog, ensure_ascii=False), encoding="utf-8")
+
+    def test_analytics_check_repair_and_duplicate_preflight(self):
+        name = "en/search/index.html"
+        target = self.root / name
+        original = target.read_bytes()
+        target.write_bytes(original.replace(generator.BEACON, b""))
+        self.check_cli_rejects_without_writes(name)
+        before = snapshot(self.root)
+        self.assertEqual(generator.run(self.root, write=True), 0)
+        after = snapshot(self.root)
+        self.assertEqual({name for name in after if after[name] != before[name]}, {name})
+        self.assertEqual(target.read_bytes(), original)
+        target.write_bytes(original.replace(generator.BEACON, generator.BEACON * 2))
+        with self.assertRaisesRegex(generator.Invalid, "duplicate Cloudflare beacon"):
+            generator.run(self.root)
+        self.reject_without_writes()
 
     def reject_without_writes(self):
         before = snapshot(self.root)
@@ -121,6 +165,8 @@ class PublicationTests(unittest.TestCase):
                 page = self.new_publication(language, rss)
                 changed = {"sitemap.xml", "api/agent-feed/v1.json", own}
                 changed.update(generator.WORK_OUTPUTS)
+                new_html = page["url"].removeprefix(generator.SITE + "/") + "index.html"
+                changed.add(new_html)
                 if rss:
                     changed.add("feed.xml")
                 self.check_cli_rejects_without_writes(*changed)
@@ -129,6 +175,9 @@ class PublicationTests(unittest.TestCase):
                 self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
                 after = snapshot(self.root)
                 self.assertEqual({name for name in after if after[name] != before[name]}, changed)
+                source = (self.root / new_html).read_bytes()
+                self.assertEqual(source.count(generator.BEACON_URL.encode()), 1)
+                self.assertEqual(generator.with_analytics(source), source)
                 generated = {name: (self.root / name).read_bytes() for name in generator.OUTPUTS}
                 self.assertEqual(generated[other], original[other])
                 self.assertEqual(json.loads(generated[own])["pages"], sorted(
@@ -529,7 +578,7 @@ class PublicationTests(unittest.TestCase):
             self.assertEqual(len(html.matching("h1")), 1)
             self.assertEqual(len(html.matching("h2")), 4)
             self.assertEqual(len(html.matching("h3")), 52)
-            self.assertEqual(html.matching("script"), [])
+            self.assertEqual(html.matching("script"), ANALYTICS_SCRIPT)
             self.assertEqual(html.matching("html"), [{"lang": language}])
             primary = [attrs for i, (tag, attrs) in enumerate(html.tags)
                        if tag == "a" and html.tags[i - 1][0] == "h3"]
@@ -598,7 +647,7 @@ class PublicationTests(unittest.TestCase):
         self.save_catalog(catalog)
         source = generator.render(self.root)["works/index.html"].decode("utf-8")
         self.assertIn(encoded, source)
-        self.assertEqual(generator.PageHTML(source).matching("script"), [])
+        self.assertEqual(generator.PageHTML(source).matching("script"), ANALYTICS_SCRIPT)
         for route in generator.WORK_ROUTES.values():
             next(p for p in catalog["pages"] if p["path"] == route)["title"] = page["title"]
         _, _, groups = generator.prepare(self.root)
@@ -609,7 +658,7 @@ class PublicationTests(unittest.TestCase):
                 self.assertEqual([a["content"] for a in html.matching("meta")
                                   if a.get("property", a.get("name")) == key], [page["title"]])
             self.assertIn('content="' + encoded + '"', source)
-            self.assertEqual(html.matching("script"), [])
+            self.assertEqual(html.matching("script"), ANALYTICS_SCRIPT)
 
     def test_catalog_registration_is_explicit_and_fail_closed(self):
         def page(c):
@@ -785,7 +834,7 @@ class PublicationTests(unittest.TestCase):
                 self.assertEqual([h["id"] for h in html.matching("h2")],
                                  ["reading", "downloads", "listening", "site-icon"])
                 self.assertEqual(len(html.matching("summary")), 5)
-                self.assertFalse(html.matching("script"))
+                self.assertEqual(html.matching("script"), ANALYTICS_SCRIPT)
                 self.assertIn({"rel": "canonical", "href": generator.SITE + path}, html.matching("link"))
                 for locale, target in pair.items():
                     self.assertIn({"rel": "alternate", "hreflang": locale,

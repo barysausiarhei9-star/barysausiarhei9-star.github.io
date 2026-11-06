@@ -20,6 +20,12 @@ WORK_ROUTES = {"ru": "/works/", "en": "/en/works/"}
 WORK_OUTPUTS = tuple(path.lstrip("/") + "index.html" for path in WORK_ROUTES.values())
 NAV_START = b"<!-- site-nav:start -->"
 NAV_END = b"<!-- site-nav:end -->"
+BEACON_URL = "https://static.cloudflareinsights.com/beacon.min.js"
+BEACON_TOKEN = "6c1d21ba580d43d59bf01f1b9c440f4f"
+BEACON = ('<!-- Cloudflare Web Analytics -->\n'
+          f'<script type="module" src="{BEACON_URL}" '
+          f'data-cf-beacon=\'{{"token":"{BEACON_TOKEN}"}}\'></script>\n'
+          '<!-- End Cloudflare Web Analytics -->\n').encode("utf-8")
 SITE = "https://schrodingercat.org"
 SCHEMA_URL = SITE + "/api/agent-feed/v1.schema.json"
 VOID = set("area base br col embed hr img input link meta param source track wbr".split())
@@ -490,6 +496,37 @@ def replace_navigation_region(source, replacement):
     return source[:begin] + b"\n" + replacement + source[end:]
 
 
+class _AnalyticsHTML(PageHTML):
+    def handle_starttag(self, tag, attrs):
+        attributes = dict(attrs)
+        if tag == "script" and ("cloudflareinsights.com" in attributes.get("src", "") or
+                                "data-cf-beacon" in attributes):
+            parents = [name for name, _ in self.stack]
+            require("body" in parents and not {"template", "noscript"}.intersection(parents),
+                    "Cloudflare beacon must be active in body")
+        super().handle_starttag(tag, attrs)
+
+
+def with_analytics(source):
+    """Preserve page bytes; append the supplied beacon or reject ambiguous tracking."""
+    html = _AnalyticsHTML(source.decode("utf-8"))
+    scripts = [attrs for attrs in html.matching("script")
+               if "cloudflareinsights.com" in attrs.get("src", "") or "data-cf-beacon" in attrs]
+    if scripts:
+        require(len(scripts) == 1 and scripts[0] == {
+            "type": "module", "src": BEACON_URL,
+            "data-cf-beacon": json.dumps({"token": BEACON_TOKEN}, separators=(",", ":"))},
+            "invalid or duplicate Cloudflare beacon")
+        require(source.count(BEACON_URL.encode()) == 1, "ambiguous Cloudflare beacon")
+        return source
+    require(BEACON_URL.encode() not in source and b"data-cf-beacon" not in source,
+            "inactive or malformed Cloudflare beacon")
+    require(len(html.matching("body")) == 1 and source.count(b"</body>") == 1,
+            "analytics requires one body closing tag")
+    newline = b"\r\n" if b"\r\n" in source else b"\n"
+    return source.replace(b"</body>", BEACON.replace(b"\n", newline) + b"</body>")
+
+
 def registered_work_routes(catalog):
     """Only the explicitly registered RU/EN pair enables generated HTML."""
     pages = {p["path"]: p for p in catalog["pages"]}
@@ -612,7 +649,7 @@ def render_work_pages(catalog, alternates):
             lines.append('      </section>')
         lines.extend(['      </div>', '    </div>', '  </main>', '  <footer class="site-footer">',
                       f'    <div class="wrap">{brand}</div>', '  </footer>', '</body>', '</html>', ''])
-        output[route.lstrip("/") + "index.html"] = "\n".join(lines).encode("utf-8")
+        output[route.lstrip("/") + "index.html"] = with_analytics("\n".join(lines).encode("utf-8"))
     return output
 
 
@@ -756,9 +793,7 @@ def render(root=ROOT):
 
 
 def authored_navigation_plan(root, catalog):
-    """Plan only registered, existing authored files and their owned regions."""
-    if "navigation" not in catalog:
-        return {}
+    """Plan registered authored navigation and analytics, preserving other bytes."""
     generated = registered_work_routes(catalog)
     plan = {}
     for page in catalog["pages"]:
@@ -767,7 +802,10 @@ def authored_navigation_plan(root, catalog):
         name = page["path"].lstrip("/") + "index.html"
         source = local_file(root, name).read_bytes()
         try:
-            expected = replace_navigation_region(source, render_navigation(catalog, page["path"]))
+            expected = source
+            if "navigation" in catalog:
+                expected = replace_navigation_region(source, render_navigation(catalog, page["path"]))
+            expected = with_analytics(expected)
         except (Invalid, UnicodeError) as error:
             raise Invalid(name + ": " + str(error)) from error
         plan[name] = (source, expected)
@@ -800,13 +838,13 @@ def run(root=ROOT, write=False):
             if name in WORK_OUTPUTS:
                 targets[name].parent.mkdir(parents=True, exist_ok=True)
             targets[name].write_bytes(outputs[name])
-        print("PASS: validated; wrote " + str(len(different)) + " publication/navigation files")
+        print("PASS: validated; wrote " + str(len(different)) + " publication/navigation/analytics files")
         return 0
     if different:
         print("FAIL: publication outputs differ: " + ", ".join(different), file=sys.stderr)
         return 1
     print(f"PASS: catalog, HTML, resources and schema valid; {len(outputs) - len(authored)} generated outputs "
-          f"and {len(authored)} authored navigation regions match (read-only)")
+          f"and {len(authored)} authored navigation/analytics pages match (read-only)")
     return 0
 
 
