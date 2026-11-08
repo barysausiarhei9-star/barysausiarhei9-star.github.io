@@ -1295,6 +1295,24 @@
       "title": "Well, Would You Look at That! — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/piece-of-cybernetics/",
+      "canonical_url": "https://schrodingercat.org/articles/piece-of-cybernetics/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "КИБЕРНЕТИКИ КУСОК — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/piece-of-cybernetics/",
+      "canonical_url": "https://schrodingercat.org/en/articles/piece-of-cybernetics/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "A PIECE OF CYBERNETICS — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
     }
   ]
 }

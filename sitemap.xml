@@ -566,4 +566,14 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/eto-zh-nado/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/eto-zh-nado/" />
   </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/piece-of-cybernetics/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/piece-of-cybernetics/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/piece-of-cybernetics/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/piece-of-cybernetics/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/piece-of-cybernetics/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/piece-of-cybernetics/" />
+  </url>
 </urlset>

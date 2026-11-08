@@ -8,7 +8,7 @@ const url = path => "https://schrodingercat.org" + path;
 const english = JSON.parse(readFileSync(join(__dirname, "../assets/search-index-en.json"), "utf8")).pages;
 
 test("English titles and available bodies are searchable with language isolation", () => {
-  assert.equal(english.length, 32);
+  assert.equal(english.length, 33);
   assert.equal(search(english, "THE FORMULA OF GOD")[0].url, url("/en/articles/the-formula-of-god/"));
   assert.ok(search(english, '"information possessing a binary code"').some(p =>
     p.url === url("/en/articles/the-formula-of-god/")));
@@ -120,5 +120,17 @@ test("Well, Would You Look at That is searchable by title and closing text in bo
     const target = url(prefix + "/articles/eto-zh-nado/");
     assert.equal(search(index, title)[0].url, target);
     assert.ok(search(index, '"' + last + '"').some(p => p.url === target));
+  }
+});
+
+test("A Piece of Cybernetics is searchable by title, Ashby and closing text in both languages", () => {
+  for (const [index, prefix, title, ashby, last] of [
+    [pages, "", "КИБЕРНЕТИКИ КУСОК", "Р.Эшби", "для любого из перечисленных объектов"],
+    [english, "/en", "A PIECE OF CYBERNETICS", "R. Ashby", "in any of those places"]]) {
+    const target = url(prefix + "/articles/piece-of-cybernetics/");
+    assert.equal(search(index, title)[0].url, target);
+    for (const term of [ashby, last]) {
+      assert.ok(search(index, '"' + term + '"').some(p => p.url === target));
+    }
   }
 });

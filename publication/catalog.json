@@ -159,6 +159,10 @@
     {
       "ru": "/articles/eto-zh-nado/",
       "en": "/en/articles/eto-zh-nado/"
+    },
+    {
+      "ru": "/articles/piece-of-cybernetics/",
+      "en": "/en/articles/piece-of-cybernetics/"
     }
   ],
   "pages": [
@@ -1317,6 +1321,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/piece-of-cybernetics/",
+      "title": "КИБЕРНЕТИКИ КУСОК — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/piece-of-cybernetics/",
+      "title": "A PIECE OF CYBERNETICS — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1570,6 +1590,10 @@
       },
       {
         "path": "/articles/eto-zh-nado/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/piece-of-cybernetics/",
         "type": "article"
       }
     ],
