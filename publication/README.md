@@ -3,9 +3,53 @@
 `catalog.json` is the single reviewed metadata source for `sitemap.xml`,
 `api/agent-feed/v1.json`, `feed.xml`, `assets/search-index.json` and
 `assets/search-index-en.json`, plus the registered `/works/` and `/en/works/`
-HTML catalogs. The Pages workflow checks these same seven outputs and the owned
-primary-navigation regions on registered authored pages before artifact upload.
-All HTML outside those regions and the generated catalogs remains authored source.
+HTML catalogs and all RU/EN article listing pages. The Pages workflow checks
+these outputs and the owned primary-navigation regions on registered authored
+pages before artifact upload. HTML outside those regions and generated catalogs
+remains authored source.
+
+## Generated article listings
+
+Article order comes from `works.items` entries of type `article` under
+`/articles/`, matched to explicit RU/EN `alternate_groups`. Each member's
+`pages` record supplies `listing_card`: the reviewed HTML card, including its
+link, display label, optional description and presentation. This is intentionally
+separate from the document title. Existing cards have no descriptions; their
+labels, capitalization, entities and whitespace are preserved exactly.
+
+`templates/articles-ru.html` and `templates/articles-en.html` preserve the
+existing listing shell, descriptions, SEO/OG/Twitter fields, language switches,
+stylesheet, footer and Cloudflare beacon. Pagination and primary navigation
+are rendered deterministically. There are ten bilingual pairs per page, except
+the final page. `/articles/` and `/en/articles/` are page 1; subsequent routes
+use `page-N/`, without an upper limit.
+
+Register new article bodies, their translation group and their ordered work
+entry as usual, and provide both `listing_card` fragments. Do not hand-edit
+listing HTML. Listing page registrations and alternate groups are derived in
+memory when missing, using the same fields as the existing registrations;
+existing registrations retain their sitemap/Agent Feed position. The source
+catalog is never rewritten by the generator. Unpaired publications remain
+outside this bilingual listing, preserving existing publication behavior.
+
+`--write` validates all inputs and targets before creating missing listing
+directories or updating changed listing bytes and other publication outputs.
+Already matching files retain their bytes and modification times. `--check`
+(also the default) writes nothing and returns 1 for missing or stale listings,
+including incorrect cards, links, metadata, navigation or tracking. Invalid
+inputs also return 1. Obsolete listing files stop both modes with an explicit
+report; review them manually. Neither mode deletes files.
+
+Sitemap and Agent Feed include every derived listing route and reciprocal
+alternate. Listings remain excluded from RSS and search content. The 31-pair
+migration reproduces all eight existing listing files byte-for-byte, with no
+intentional differences; all other generated output bytes are unchanged.
+
+Focused boundary tests (temporary catalogs only):
+
+```powershell
+.venv\Scripts\python.exe -B -m unittest discover -s tests -p test_article_pagination.py
+```
 
 The catalog was seeded directly from the verified M1 artifacts at commit
 `28b0ff50e92c7ca2a3f216c2dc38770c244a5d43`. It preserves 59 ordered pages,

@@ -541,7 +541,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/bog-i-teoriya-sistem/\">\n            Бог и теория систем\n          </a>\n        </div>"
     },
     {
       "path": "/articles/formula-boga/",
@@ -549,7 +550,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/formula-boga/\">\n            Формула бога\n          </a>\n        </div>"
     },
     {
       "path": "/articles/formula-of-everything-and-other-nice-things/",
@@ -557,7 +559,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/formula-of-everything-and-other-nice-things/\">\n            Формула Всего и другие ништяки\n          </a>\n        </div>"
     },
     {
       "path": "/articles/kolchan-dlya-strel-vremeni/",
@@ -565,7 +568,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/kolchan-dlya-strel-vremeni/\">\n            Колчан для стрел времени\n          </a>\n        </div>"
     },
     {
       "path": "/articles/memorandum-koshki-shredingera/",
@@ -573,7 +577,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/memorandum-koshki-shredingera/\">\n            Меморандум кошки Шредингера\n          </a>\n        </div>"
     },
     {
       "path": "/articles/multiplicity-of-worlds/",
@@ -581,7 +586,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/multiplicity-of-worlds/\">\n            Множественность миров\n          </a>\n        </div>"
     },
     {
       "path": "/articles/prostoe-reshenie-paradoksa-bliznetsov/",
@@ -589,7 +595,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/prostoe-reshenie-paradoksa-bliznetsov/\">\n            Простое решение парадокса близнецов\n          </a>\n        </div>"
     },
     {
       "path": "/articles/tale-of-temporal-milestones/",
@@ -597,7 +604,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/tale-of-temporal-milestones/\">\n            Повесть временных вех\n          </a>\n        </div>"
     },
     {
       "path": "/articles/vector-of-time-in-the-machinery-of-the-universe/",
@@ -605,7 +613,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/vector-of-time-in-the-machinery-of-the-universe/\">\n            Вектор времени во вселенской машинерии\n          </a>\n        </div>"
     },
     {
       "path": "/articles/zakon-antipodov-nobelevskaya-lektsiya/",
@@ -613,7 +622,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/zakon-antipodov-nobelevskaya-lektsiya/\">\n            Закон антиподов (нобелевская лекция)\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/formula-of-everything-and-other-nice-things/",
@@ -621,7 +631,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/formula-of-everything-and-other-nice-things/\">\n            The Formula of Everything and Other Nice Things\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/god-and-systems-theory/",
@@ -629,7 +640,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/god-and-systems-theory/\">\n            God and Systems Theory\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/memorandum-koshki-shredingera/",
@@ -637,7 +649,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/memorandum-koshki-shredingera/\">\n            SCHR&Oslash;DINGER CAT'S MEMO\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/multiplicity-of-worlds/",
@@ -645,7 +658,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/multiplicity-of-worlds/\">\n            Multiplicity of Worlds\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/quiver-of-time-arrows/",
@@ -653,7 +667,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/quiver-of-time-arrows/\">\n            Quiver of Time Arrows\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/simple-solution-to-the-twin-paradox/",
@@ -661,7 +676,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/simple-solution-to-the-twin-paradox/\">\n            A Simple Solution to the Twin Paradox\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/tale-of-temporal-milestones/",
@@ -669,7 +685,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/tale-of-temporal-milestones/\">\n            A Tale of Temporal Milestones\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/the-formula-of-god/",
@@ -677,7 +694,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/the-formula-of-god/\">\n            The Formula of God\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/vector-of-time-in-the-machinery-of-the-universe/",
@@ -685,7 +703,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/vector-of-time-in-the-machinery-of-the-universe/\">\n            The Vector of Time in the Machinery of the Universe\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/zakon-antipodov-nobelevskaya-lektsiya/",
@@ -693,7 +712,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/zakon-antipodov-nobelevskaya-lektsiya/\">\n            The Law of Antipodes (Nobel Lecture)\n          </a>\n        </div>"
     },
     {
       "path": "/poeziya/a-khuli/",
@@ -1000,7 +1020,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/five-principles-of-the-universe/\">\n            ПЯТЬ ПРИНЦИПОВ МИРОЗДАНИЯ\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/five-principles-of-the-universe/",
@@ -1008,7 +1029,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/five-principles-of-the-universe/\">\n            FIVE PRINCIPLES OF THE UNIVERSE\n          </a>\n        </div>"
     },
     {
       "path": "/articles/page-2/",
@@ -1032,7 +1054,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/anti-universe/\">\n            Антивселенная - равноправный партнёр Вселенной в космосе\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/anti-universe/",
@@ -1040,7 +1063,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/anti-universe/\">\n            The Anti-Universe — an Equal Partner of the Universe in the Cosmos\n          </a>\n        </div>"
     },
     {
       "path": "/articles/paths-into-the-anti-world/",
@@ -1048,7 +1072,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/paths-into-the-anti-world/\">\n            ТРОПКИ ЕЩЕ В АНТИМИР НЕ ПРОТОПТАНЫ\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/paths-into-the-anti-world/",
@@ -1056,7 +1081,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/paths-into-the-anti-world/\">\n            Paths into the Anti-World Have Yet to Be Trodden\n          </a>\n        </div>"
     },
     {
       "path": "/articles/principle-of-causality/",
@@ -1064,7 +1090,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/principle-of-causality/\">\n            ПРИНЦИП ПРИЧИННОСТИ - ПРИЧИНА ПРИНЦИПИАЛЬНОСТИ\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/principle-of-causality/",
@@ -1072,7 +1099,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/principle-of-causality/\">\n            The Principle of Causality — a Reason to Stand on Principle\n          </a>\n        </div>"
     },
     {
       "path": "/articles/celestial-clock-face/",
@@ -1080,7 +1108,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/celestial-clock-face/\">\n            НЕБЕСНЫЙ ЦИФЕРБЛАТ\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/celestial-clock-face/",
@@ -1088,7 +1117,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/celestial-clock-face/\">\n            The Celestial Clock Face\n          </a>\n        </div>"
     },
     {
       "path": "/articles/secret-of-eternity/",
@@ -1096,7 +1126,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/secret-of-eternity/\">\n            СЕКРЕТ ВЕЧНОСТИ\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/secret-of-eternity/",
@@ -1104,7 +1135,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/secret-of-eternity/\">\n            The Secret of Eternity\n          </a>\n        </div>"
     },
     {
       "path": "/articles/monitoring-time-in-space/",
@@ -1112,7 +1144,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/monitoring-time-in-space/\">\n            МОНИТОРИНГ ВРЕМЕНИ В ПРОСТРАНСТВЕ\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/monitoring-time-in-space/",
@@ -1120,7 +1153,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/monitoring-time-in-space/\">\n            Monitoring Time in Space\n          </a>\n        </div>"
     },
     {
       "path": "/articles/paradigm-for-a-pair-of-diggers/",
@@ -1128,7 +1162,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/paradigm-for-a-pair-of-diggers/\">\n            ПАРАДИГМА ДЛЯ ПАРЫ \"ДИГГЕРОВ\"\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/paradigm-for-a-pair-of-diggers/",
@@ -1136,7 +1171,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/paradigm-for-a-pair-of-diggers/\">\n            A Paradigm for a Pair of “Diggers”\n          </a>\n        </div>"
     },
     {
       "path": "/articles/once-more-on-the-evolution-of-the-universe/",
@@ -1144,7 +1180,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/once-more-on-the-evolution-of-the-universe/\">\n            ЕЩЕ РАЗ ОБ ЭВОЛЮЦИИ ВСЕЛЕННОЙ\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/once-more-on-the-evolution-of-the-universe/",
@@ -1152,7 +1189,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/once-more-on-the-evolution-of-the-universe/\">\n            Once More on the Evolution of the Universe\n          </a>\n        </div>"
     },
     {
       "path": "/articles/lemniscate/",
@@ -1160,7 +1198,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/lemniscate/\">\n            Лемниската\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/lemniscate/",
@@ -1168,7 +1207,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/lemniscate/\">\n            The Lemniscate\n          </a>\n        </div>"
     },
     {
       "path": "/articles/page-3/",
@@ -1192,7 +1232,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/epilogue/\">\n            ЭПИЛОГ\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/epilogue/",
@@ -1200,7 +1241,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/epilogue/\">\n            EPILOGUE\n          </a>\n        </div>"
     },
     {
       "path": "/articles/twins-without-a-paradox/",
@@ -1208,7 +1250,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/twins-without-a-paradox/\">\n            БЛИЗНЕЦЫ БЕЗ ПАРАДОКСА\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/twins-without-a-paradox/",
@@ -1216,7 +1259,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/twins-without-a-paradox/\">\n            TWINS WITHOUT A PARADOX\n          </a>\n        </div>"
     },
     {
       "path": "/articles/eureka/",
@@ -1224,7 +1268,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/eureka/\">\n            ЭВРИКА\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/eureka/",
@@ -1232,7 +1277,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/eureka/\">\n            EUREKA\n          </a>\n        </div>"
     },
     {
       "path": "/articles/preface-to-a-non-bestseller/",
@@ -1240,7 +1286,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/preface-to-a-non-bestseller/\">\n            Предисловие к бесцеллеру\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/preface-to-a-non-bestseller/",
@@ -1248,7 +1295,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/preface-to-a-non-bestseller/\">\n            PREFACE TO A NON-BESTSELLER\n          </a>\n        </div>"
     },
     {
       "path": "/articles/a-hint/",
@@ -1256,7 +1304,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/a-hint/\">\n            Подсказка\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/a-hint/",
@@ -1264,7 +1313,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/a-hint/\">\n            A HINT\n          </a>\n        </div>"
     },
     {
       "path": "/articles/dissection-of-the-theory-of-relativity/",
@@ -1272,7 +1322,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/dissection-of-the-theory-of-relativity/\">\n            ПРЕПАРАЦИЯ ТЕОРИИ ОТНОСИТЕЛЬНОСТИ\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/dissection-of-the-theory-of-relativity/",
@@ -1280,7 +1331,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/dissection-of-the-theory-of-relativity/\">\n            DISSECTION OF THE THEORY OF RELATIVITY\n          </a>\n        </div>"
     },
     {
       "path": "/articles/movement/",
@@ -1288,7 +1340,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/movement/\">\n            Движение\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/movement/",
@@ -1296,7 +1349,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/movement/\">\n            MOVEMENT\n          </a>\n        </div>"
     },
     {
       "path": "/articles/meow/",
@@ -1304,7 +1358,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/meow/\">\n            Meow\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/meow/",
@@ -1312,7 +1367,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/meow/\">\n            Meow\n          </a>\n        </div>"
     },
     {
       "path": "/articles/eto-zh-nado/",
@@ -1320,7 +1376,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/eto-zh-nado/\">\n            Это ж надо!\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/eto-zh-nado/",
@@ -1328,7 +1385,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/eto-zh-nado/\">\n            Well, Would You Look at That!\n          </a>\n        </div>"
     },
     {
       "path": "/articles/piece-of-cybernetics/",
@@ -1336,7 +1394,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/piece-of-cybernetics/\">\n            КИБЕРНЕТИКИ КУСОК\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/piece-of-cybernetics/",
@@ -1344,7 +1403,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/piece-of-cybernetics/\">\n            A PIECE OF CYBERNETICS\n          </a>\n        </div>"
     },
     {
       "path": "/articles/tale-of-lost-time/",
@@ -1352,7 +1412,8 @@
       "language": "ru",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/tale-of-lost-time/\">\n            Сказка о потерянном времени\n          </a>\n        </div>"
     },
     {
       "path": "/articles/page-4/",
@@ -1368,7 +1429,8 @@
       "language": "en",
       "page_type": "content",
       "text_availability": "html_text",
-      "rss": true
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/tale-of-lost-time/\">\n            A TALE OF LOST TIME\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/page-4/",

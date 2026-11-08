@@ -653,6 +653,137 @@ def render_work_pages(catalog, alternates):
     return output
 
 
+def article_route(language, number):
+    return ("/en" if language == "en" else "") + "/articles/" + (
+        f"page-{number}/" if number > 1 else "")
+
+
+def is_article_listing(path):
+    return re.fullmatch(r"/(?:en/)?articles/(?:page-[1-9][0-9]*/)?", path) is not None
+
+
+def article_title(language, number):
+    label, brand = (("Статьи", "Кошка Шредингера") if language == "ru" else
+                    ("Articles", "Schrödinger’s Cat"))
+    middle = (" — " + ("Страница" if language == "ru" else "Page") + f" {number}") if number > 1 else ""
+    return label + middle + " — " + brand
+
+
+def article_pairs(catalog):
+    if "works" not in catalog:
+        return []
+    fields(catalog["works"], ("version", "items", "excluded_content"))
+    require(isinstance(catalog["works"]["items"], list), "works items must be an array")
+    pages = {p["path"]: p for p in catalog["pages"]}
+    require(isinstance(catalog["alternate_groups"], list), "alternate_groups must be an array")
+    for group in catalog["alternate_groups"]:
+        fields(group, ("ru", "en"))
+    groups = {g["ru"]: g for g in catalog["alternate_groups"]}
+    require(len(groups) == len(catalog["alternate_groups"]), "overlapping alternate groups")
+    pairs = []
+    for work in catalog.get("works", {}).get("items", []):
+        fields(work, ("path", "type"), ("parts",))
+        page_path(work["path"])
+        if work["type"] != "article" or not work["path"].startswith("/articles/"):
+            continue
+        path = work["path"]
+        if path not in groups and path in pages and "listing_card" not in pages[path]:
+            continue  # Unpaired publications remain outside the bilingual catalog.
+        require(path in groups, "article requires an explicit RU/EN pair: " + path)
+        pair = {}
+        for language in ("ru", "en"):
+            target = groups[path][language]
+            require(target in pages, "unregistered article: " + target)
+            page = pages[target]
+            require(page["language"] == language and page["page_type"] == "content",
+                    "invalid article language/type: " + target)
+            card = page.get("listing_card")
+            text(card)
+            html = PageHTML(card)
+            require(html.matching("div") == [{"class": "item"}] and
+                    html.matching("a") == [{"href": target}] and
+                    not html.matching("script"), "invalid listing_card: " + target)
+            pair[language] = page
+        pairs.append(pair)
+    return pairs
+
+
+def article_catalog(catalog):
+    """Derive listing registrations, preserving existing output order where possible."""
+    paths = [page["path"] for page in catalog["pages"]]
+    require(len(set(paths)) == len(paths), "duplicate page path")
+    pairs = article_pairs(catalog)
+    if not pairs:
+        return catalog
+    count = (len(pairs) + 9) // 10
+    expected = {article_route(lang, n): {
+        "path": article_route(lang, n), "title": article_title(lang, n),
+        "language": lang, "page_type": "section_index", "text_availability": "html_text", "rss": False}
+        for n in range(1, count + 1) for lang in ("ru", "en")}
+    pages = []
+    for page in catalog["pages"]:
+        if is_article_listing(page["path"]):
+            if page["path"] not in expected:
+                continue
+            require(page == expected[page["path"]], "article listing registration mismatch: " + page["path"])
+            expected.pop(page["path"])
+        pages.append(page)
+    pages.extend(expected.values())
+    # Retain current alternate-group order; append automatically needed pairs.
+    needed = [{lang: article_route(lang, n) for lang in ("ru", "en")} for n in range(1, count + 1)]
+    groups = []
+    for group in catalog["alternate_groups"]:
+        if any(is_article_listing(p) for p in group.values()):
+            match = re.fullmatch(r"/articles/(?:page-([2-9]|[1-9][0-9]+)/)?", group["ru"])
+            require(match is not None and group["en"] == "/en" + group["ru"],
+                    "invalid article listing alternate group")
+            if group in needed:
+                groups.append(group)
+                needed.remove(group)
+        else:
+            groups.append(group)
+    return dict(catalog, pages=pages, alternate_groups=groups + needed)
+
+
+def render_article_pages(root, catalog):
+    pairs = article_pairs(catalog)
+    if not pairs:
+        return {}
+    count = (len(pairs) + 9) // 10
+    output = {}
+    for language in ("ru", "en"):
+        template = local_file(root, f"publication/templates/articles-{language}.html").read_text(encoding="utf-8")
+        label = "Страница" if language == "ru" else "Page"
+        for n in range(1, count + 1):
+            route = article_route(language, n)
+            lines = ['        <nav class="pagination" aria-label="' + (
+                "Навигация по страницам статей" if language == "ru" else "Articles pagination") + '">']
+            if n > 1:
+                lines.append(f'          <a class="back" href="{article_route(language, n-1)}" rel="prev">' +
+                             ("← Предыдущая" if language == "ru" else "← Previous") + '</a>')
+            for number in range(1, count + 1):
+                lines.append(f'          <strong aria-current="page">{label} {number}</strong>' if number == n else
+                             f'          <a class="back" href="{article_route(language, number)}" aria-label="{label} {number}">{number}</a>')
+            if n < count:
+                lines.append(f'          <a class="back" href="{article_route(language, n+1)}" rel="next">' +
+                             ("Следующая →" if language == "ru" else "Next →") + '</a>')
+            lines.append('        </nav>')
+            values = {"title": escape(article_title(language, n)),
+                      "ru_route": article_route("ru", n), "en_route": article_route("en", n),
+                      "pagination": "\n".join(lines),
+                      "cards": "\n\n".join(pair[language]["listing_card"] for pair in pairs[(n-1)*10:n*10])}
+            source = re.sub(r"\{\{([a-z_]+)\}\}", lambda m: values[m[1]], template)
+            require("{{" not in source, "unresolved article template placeholder")
+            data = source.encode("utf-8")
+            if "navigation" in catalog:
+                data = replace_navigation_region(data, render_navigation(catalog, route))
+            elif n > 1:
+                data = data.replace(b'aria-current="page">' + ("Статьи" if language == "ru" else "Articles").encode(),
+                                    b'aria-current="location">' + ("Статьи" if language == "ru" else "Articles").encode())
+            output[route.lstrip("/") + "index.html"] = with_analytics(data)
+    return output
+
+
 def prepare(root):
     # Import on demand so a missing validator cannot silently skip validation.
     from jsonschema import Draft202012Validator
@@ -672,10 +803,12 @@ def prepare(root):
             "RSS channel URLs mismatch")
     pages = catalog["pages"]
     require(isinstance(pages, list) and pages, "pages must be a nonempty ordered array")
+    catalog = article_catalog(catalog)
+    pages = catalog["pages"]
     entries, paths, ids, html_pages = [], set(), set(), {}
     for page in pages:
         fields(page, ("path", "title", "language", "page_type", "text_availability", "rss"),
-               ("resources",))
+               ("resources", "listing_card"))
         path = page_path(page["path"])
         require(path not in paths, "duplicate page path: " + path)
         paths.add(path)
@@ -695,7 +828,11 @@ def prepare(root):
         if not any(part.startswith(".") for part in relative.parts):
             html_paths.add("/" if relative.parent == Path(".")
                            else "/" + relative.parent.as_posix() + "/")
-    generated_routes = registered_work_routes(catalog)
+    listing_outputs = render_article_pages(root, catalog)
+    listing_routes = {"/" + name.removesuffix("index.html") for name in listing_outputs}
+    obsolete = sorted(path for path in html_paths - listing_routes if is_article_listing(path)) if listing_routes else []
+    require(not obsolete, "obsolete article listing pages (review manually; never deleted): " + repr(obsolete))
+    generated_routes = registered_work_routes(catalog) | listing_routes
     require(paths - generated_routes == html_paths - generated_routes,
             "catalog must cover every existing public index.html route")
     schema = load_json(root / "api/agent-feed/v1.schema.json")
@@ -729,7 +866,7 @@ def prepare(root):
             alternates[path] = group
     validate_works(catalog, html_pages, alternates)
     validate_navigation(catalog)
-    for name, data in render_work_pages(catalog, alternates).items():
+    for name, data in (render_work_pages(catalog, alternates) | listing_outputs).items():
         path = "/" + name.removesuffix("index.html")
         html_pages[path] = validate_html(root, by_path[path], data.decode("utf-8"))
     for path, group in alternates.items():
@@ -784,17 +921,19 @@ def _render_outputs(root, catalog, feed, alternates):
     outputs["assets/search-index.json"] = render_search(root, catalog)
     outputs["assets/search-index-en.json"] = render_search(root, catalog, "en")
     outputs.update(render_work_pages(catalog, alternates))
+    outputs.update(render_article_pages(root, catalog))
     return outputs
 
 
 def render(root=ROOT):
-    """Return the seven derived outputs; authored navigation is planned by run."""
+    """Return derived outputs, including listings; authored navigation is planned by run."""
     return _render_outputs(root, *prepare(root))
 
 
 def authored_navigation_plan(root, catalog):
     """Plan registered authored navigation and analytics, preserving other bytes."""
-    generated = registered_work_routes(catalog)
+    generated = registered_work_routes(catalog) | ({p["path"] for p in catalog["pages"]
+        if is_article_listing(p["path"])} if article_pairs(catalog) else set())
     plan = {}
     for page in catalog["pages"]:
         if page["path"] in generated:
@@ -820,7 +959,9 @@ def run(root=ROOT, write=False):
     outputs.update({name: expected for name, (_, expected) in authored.items()})
     targets = {name: local_file(root, name) for name in OUTPUTS}
     for name in outputs.keys() - targets.keys():
-        require(name in WORK_OUTPUTS or name in authored, "unauthorized publication output")
+        require(name in WORK_OUTPUTS or name in authored or
+                is_article_listing("/" + name.removesuffix("index.html")),
+                "unauthorized publication output")
         target = local_file(root, name) if name in authored else root / name
         require(target.resolve() == root.resolve() / name, "generated output alias: " + name)
         require(not target.exists() or target.is_file(), "generated output is not a file: " + name)
@@ -835,7 +976,7 @@ def run(root=ROOT, write=False):
                  if not targets[name].is_file() or targets[name].read_bytes() != data]
     if write:
         for name in different:
-            if name in WORK_OUTPUTS:
+            if name not in authored:
                 targets[name].parent.mkdir(parents=True, exist_ok=True)
             targets[name].write_bytes(outputs[name])
         print("PASS: validated; wrote " + str(len(different)) + " publication/navigation/analytics files")

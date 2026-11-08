@@ -82,7 +82,8 @@ class PublicationTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         files = {"publication/catalog.json", "api/agent-feed/v1.schema.json",
                  "tools/generate_publication.py", "tools/search_index.py",
-                 *generator.OUTPUTS, *self.pdfs}
+                 *generator.OUTPUTS, *self.pdfs,
+                 "publication/templates/articles-ru.html", "publication/templates/articles-en.html"}
         for page in self.catalog["pages"]:
             files.add(page["path"].lstrip("/") + "index.html")
             files.update(r["url"].removeprefix(generator.SITE + "/")
@@ -265,7 +266,7 @@ class PublicationTests(unittest.TestCase):
                           "/articles/tale-of-lost-time/", "/en/articles/tale-of-lost-time/",
                           "/articles/page-4/", "/en/articles/page-4/")}
         for name, data in outputs.items():
-            if name in ("assets/search-index.json", "assets/search-index-en.json", *generator.WORK_OUTPUTS):
+            if name in ("assets/search-index.json", "assets/search-index-en.json", *generator.WORK_OUTPUTS) or generator.is_article_listing("/" + name.removesuffix("index.html")):
                 continue  # New derived output has its own extraction and coverage tests.
             original = subprocess.check_output(["git", "show", BASELINE + ":" + name], cwd=ROOT)
             if name.endswith(".json"):
@@ -659,7 +660,8 @@ class PublicationTests(unittest.TestCase):
         expected_order = [w["path"] for kind in ("book", "novel", "poem", "article")
                           for w in catalog["works"]["items"] if w["type"] == kind]
         outputs = generator.render(self.root)
-        self.assertEqual(set(outputs), set(generator.OUTPUTS + generator.WORK_OUTPUTS))
+        self.assertEqual(set(outputs), (set(generator.OUTPUTS + generator.WORK_OUTPUTS) |
+                          set(generator.render_article_pages(self.root, generator.article_catalog(self.catalog)))))
         self.assertEqual(generator.render_work_pages(catalog, groups),
                          {name: outputs[name] for name in generator.WORK_OUTPUTS})
         for language, route in generator.WORK_ROUTES.items():
@@ -872,6 +874,8 @@ class PublicationTests(unittest.TestCase):
         for name, data in original.items():
             (self.root / name).write_bytes(data)
         legacy.pop("works")
+        original = {name: data for name, data in original.items()
+                    if not generator.is_article_listing("/" + name.removesuffix("index.html"))}
         self.save_catalog(legacy)
         before = snapshot(self.root)
         self.assertEqual(generator.render(self.root), original)
@@ -891,7 +895,7 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(prepared["works"]["items"], catalog["works"]["items"])
         updated = generator.render(self.root)
         self.assertEqual({name for name in original if original[name] != updated[name]},
-                         set(generator.WORK_OUTPUTS))
+                         (set(generator.WORK_OUTPUTS) | set(generator.render_article_pages(self.root, prepared))))
 
     def test_navigation_contract_and_renderer_are_shared_by_all_pages(self):
         catalog, _, _ = generator.prepare(self.root)
@@ -922,10 +926,11 @@ class PublicationTests(unittest.TestCase):
             self.assertEqual(generator.run(self.root, write=True), 0)
             self.assertEqual({call.args[1] for call in renderer.call_args_list},
                              {p["path"] for p in catalog["pages"]})
-        self.assertEqual(replacer.call_count, 142)
+        self.assertEqual(replacer.call_count, 150)
         self.assertEqual(snapshot(self.root), before)
         outputs = generator.render(self.root)
-        self.assertEqual(set(outputs), set(generator.OUTPUTS + generator.WORK_OUTPUTS))
+        self.assertEqual(set(outputs), (set(generator.OUTPUTS + generator.WORK_OUTPUTS) |
+                          set(generator.render_article_pages(self.root, generator.article_catalog(self.catalog)))))
         for name, data in outputs.items():
             self.assertEqual(data, (self.root / name).read_bytes(), name)
 
@@ -1426,7 +1431,8 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(generator.run(self.root, write=True), 0)
         first = snapshot(self.root)
         self.assertLessEqual({name for name in first if first[name] != before[name]},
-                             set(generator.OUTPUTS + generator.WORK_OUTPUTS))
+                             (set(generator.OUTPUTS + generator.WORK_OUTPUTS) |
+                          set(generator.render_article_pages(self.root, generator.article_catalog(self.catalog)))))
         self.assertEqual(generator.render(self.root), generator.render(self.root))
         self.assertEqual(generator.run(self.root, write=True), 0)
         self.assertEqual(snapshot(self.root), first)
@@ -1443,7 +1449,7 @@ class PublicationTests(unittest.TestCase):
             "unknown field": lambda c: c.update(autopublish=True),
             "site": lambda c: c.update(site_url="https://example.org"),
             "empty pages": lambda c: c.update(pages=[]),
-            "missing page": lambda c: c["pages"].pop(),
+            "missing page": lambda c: c["pages"].pop(0),
             "duplicate page": lambda c: c["pages"].append(c["pages"][0]),
             "traversal": lambda c: c["pages"][0].update(path="/../"),
             "encoded traversal": lambda c: c["pages"][0].update(path="/%2e%2e/"),
