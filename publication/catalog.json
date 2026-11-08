@@ -163,6 +163,14 @@
     {
       "ru": "/articles/piece-of-cybernetics/",
       "en": "/en/articles/piece-of-cybernetics/"
+    },
+    {
+      "ru": "/articles/tale-of-lost-time/",
+      "en": "/en/articles/tale-of-lost-time/"
+    },
+    {
+      "ru": "/articles/page-4/",
+      "en": "/en/articles/page-4/"
     }
   ],
   "pages": [
@@ -1337,6 +1345,38 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/tale-of-lost-time/",
+      "title": "Сказка о потерянном времени — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/articles/page-4/",
+      "title": "Статьи — Страница 4 — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
+    },
+    {
+      "path": "/en/articles/tale-of-lost-time/",
+      "title": "A TALE OF LOST TIME — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/page-4/",
+      "title": "Articles — Page 4 — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "section_index",
+      "text_availability": "html_text",
+      "rss": false
     }
   ],
   "works": {
@@ -1594,6 +1634,10 @@
       },
       {
         "path": "/articles/piece-of-cybernetics/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/tale-of-lost-time/",
         "type": "article"
       }
     ],

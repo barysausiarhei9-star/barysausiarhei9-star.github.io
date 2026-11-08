@@ -683,5 +683,17 @@
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/piece-of-cybernetics/</guid>
       <dc:language>en</dc:language>
     </item>
+    <item>
+      <title>Сказка о потерянном времени — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/tale-of-lost-time/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/tale-of-lost-time/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>A TALE OF LOST TIME — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/tale-of-lost-time/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/tale-of-lost-time/</guid>
+      <dc:language>en</dc:language>
+    </item>
   </channel>
 </rss>

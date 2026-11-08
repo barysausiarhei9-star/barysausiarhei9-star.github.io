@@ -8,7 +8,7 @@ const url = path => "https://schrodingercat.org" + path;
 const english = JSON.parse(readFileSync(join(__dirname, "../assets/search-index-en.json"), "utf8")).pages;
 
 test("English titles and available bodies are searchable with language isolation", () => {
-  assert.equal(english.length, 33);
+  assert.equal(english.length, 34);
   assert.equal(search(english, "THE FORMULA OF GOD")[0].url, url("/en/articles/the-formula-of-god/"));
   assert.ok(search(english, '"information possessing a binary code"').some(p =>
     p.url === url("/en/articles/the-formula-of-god/")));
@@ -130,6 +130,18 @@ test("A Piece of Cybernetics is searchable by title, Ashby and closing text in b
     const target = url(prefix + "/articles/piece-of-cybernetics/");
     assert.equal(search(index, title)[0].url, target);
     for (const term of [ashby, last]) {
+      assert.ok(search(index, '"' + term + '"').some(p => p.url === target));
+    }
+  }
+});
+
+test("A Tale of Lost Time is searchable by title and all four paragraphs in both languages", () => {
+  for (const [index, prefix, title, terms] of [
+    [pages, "", "Сказка о потерянном времени", ["бОльшей скорости", "исследователи антиводорода", "барьером скоростей", "ад инфинито"]],
+    [english, "/en", "A TALE OF LOST TIME", ["at a higher speed", "Researchers studying antihydrogen", "barrier of speed", "ad infinitum"]]]) {
+    const target = url(prefix + "/articles/tale-of-lost-time/");
+    assert.equal(search(index, title)[0].url, target);
+    for (const term of terms) {
       assert.ok(search(index, '"' + term + '"').some(p => p.url === target));
     }
   }
