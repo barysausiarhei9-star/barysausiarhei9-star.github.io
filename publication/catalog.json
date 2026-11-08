@@ -151,6 +151,10 @@
     {
       "ru": "/articles/movement/",
       "en": "/en/articles/movement/"
+    },
+    {
+      "ru": "/articles/meow/",
+      "en": "/en/articles/meow/"
     }
   ],
   "pages": [
@@ -1277,6 +1281,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/meow/",
+      "title": "Meow — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/meow/",
+      "title": "Meow — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1522,6 +1542,10 @@
       },
       {
         "path": "/articles/movement/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/meow/",
         "type": "article"
       }
     ],

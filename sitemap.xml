@@ -546,4 +546,14 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/movement/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/movement/" />
   </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/meow/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/meow/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/meow/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/meow/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/meow/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/meow/" />
+  </url>
 </urlset>

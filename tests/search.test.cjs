@@ -8,7 +8,7 @@ const url = path => "https://schrodingercat.org" + path;
 const english = JSON.parse(readFileSync(join(__dirname, "../assets/search-index-en.json"), "utf8")).pages;
 
 test("English titles and available bodies are searchable with language isolation", () => {
-  assert.equal(english.length, 30);
+  assert.equal(english.length, 31);
   assert.equal(search(english, "THE FORMULA OF GOD")[0].url, url("/en/articles/the-formula-of-god/"));
   assert.ok(search(english, '"information possessing a binary code"').some(p =>
     p.url === url("/en/articles/the-formula-of-god/")));
@@ -53,6 +53,16 @@ test("MOVEMENT is searchable by title and final paragraph in both languages", ()
   assert.ok(search(pages, '"антиводород исследовал"').some(p => p.url === url("/articles/movement/")));
   assert.equal(search(english, "MOVEMENT")[0].url, url("/en/articles/movement/"));
   assert.ok(search(english, '"who have studied antihydrogen"').some(p => p.url === url("/en/articles/movement/")));
+});
+
+test("Meow is searchable by title, formula and final sentence in both languages", () => {
+  for (const [index, prefix, last] of [[pages, "", "На этом, пожалуй, остановлюсь"],
+    [english, "/en", "I think I shall stop here"]]) {
+    const target = url(prefix + "/articles/meow/");
+    assert.equal(search(index, "Meow")[0].url, target);
+    assert.ok(search(index, '"mc2 + (i2)mc2"').some(p => p.url === target));
+    assert.ok(search(index, '"' + last + '"').some(p => p.url === target));
+  }
 });
 
 test("quoted phrases, unordered AND terms, partial matches and empty queries", () => {

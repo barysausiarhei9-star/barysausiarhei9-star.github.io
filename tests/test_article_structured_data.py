@@ -22,7 +22,7 @@ class ArticleStructuredDataTests(unittest.TestCase):
         catalog = generator.load_json(generator.ROOT / "publication/catalog.json")
         pages = {page["path"]: page for page in catalog["pages"]}
         articles = [work for work in catalog["works"]["items"] if work["type"] == "article"]
-        self.assertEqual(len(articles), 27)
+        self.assertEqual(len(articles), 28)
         names = {"ru": "Елена Березина", "en": "Elena Berezina"}
         site_names = {"ru": "Кошка Шрёдингера", "en": "Schrödinger’s Cat"}
         visited = set()
@@ -79,7 +79,7 @@ class ArticleStructuredDataTests(unittest.TestCase):
                     # The non-rendering data block belongs in the document head.
                     head = source.split("</head>", 1)[0]
                     self.assertIn('<script type="application/ld+json">', head)
-        self.assertEqual(len(visited), 54)
+        self.assertEqual(len(visited), 56)
 
 
 if __name__ == "__main__":

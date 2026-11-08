@@ -647,5 +647,17 @@
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/movement/</guid>
       <dc:language>en</dc:language>
     </item>
+    <item>
+      <title>Meow — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/meow/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/meow/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>Meow — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/meow/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/meow/</guid>
+      <dc:language>en</dc:language>
+    </item>
   </channel>
 </rss>
