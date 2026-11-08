@@ -155,6 +155,10 @@
     {
       "ru": "/articles/meow/",
       "en": "/en/articles/meow/"
+    },
+    {
+      "ru": "/articles/eto-zh-nado/",
+      "en": "/en/articles/eto-zh-nado/"
     }
   ],
   "pages": [
@@ -1297,6 +1301,22 @@
       "page_type": "content",
       "text_availability": "html_text",
       "rss": true
+    },
+    {
+      "path": "/articles/eto-zh-nado/",
+      "title": "Это ж надо! — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
+    },
+    {
+      "path": "/en/articles/eto-zh-nado/",
+      "title": "Well, Would You Look at That! — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true
     }
   ],
   "works": {
@@ -1546,6 +1566,10 @@
       },
       {
         "path": "/articles/meow/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/eto-zh-nado/",
         "type": "article"
       }
     ],

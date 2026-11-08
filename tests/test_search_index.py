@@ -75,9 +75,19 @@ class SearchIndexTests(unittest.TestCase):
             self.assertIn("13.", page["text"])
             self.assertNotIn("11.", page["text"])
 
+    def test_eto_zh_nado_is_searchable_in_both_languages(self):
+        for language, prefix, title, first, last in (
+                ("ru", "", "Это ж надо!", "В космосе единственные", "вне зависимости от вашего на этот счет мнения."),
+                ("en", "/en", "Well, Would You Look at That!", "In the cosmos", "regardless of what you may think about it.")):
+            pages = json.loads(render_search(generator.ROOT, self.catalog, language))["pages"]
+            page = next(p for p in pages if p["url"] == generator.SITE + prefix + "/articles/eto-zh-nado/")
+            self.assertIn(title, page["title"])
+            self.assertTrue(page["text"].startswith(first))
+            self.assertIn(last, page["text"])
+
     def test_inventory_and_no_duplicate_bodies(self):
         by_url = {p["url"]: p for p in self.pages}
-        self.assertEqual(len(by_url), 85)
+        self.assertEqual(len(by_url), 86)
         catalog = {generator.SITE + p["path"]: p for p in self.catalog["pages"]}
         for url, page in by_url.items():
             with self.subTest(url=url):
@@ -102,7 +112,7 @@ class SearchIndexTests(unittest.TestCase):
     def test_published_english_content_is_excluded(self):
         english = {generator.SITE + p["path"] for p in self.catalog["pages"]
                    if p["language"] == "en" and p["page_type"] == "content"}
-        self.assertEqual(len(english), 31)  # Includes reader help, the companion atlas and all article translations.
+        self.assertEqual(len(english), 32)  # Includes reader help, the companion atlas and all article translations.
         self.assertEqual({p["language"] for p in self.pages}, {"ru"})
         self.assertTrue(english.isdisjoint(p["url"] for p in self.pages))
 
@@ -111,7 +121,7 @@ class SearchIndexTests(unittest.TestCase):
         pages = json.loads(data)["pages"]
         expected = {generator.SITE + p["path"] for p in self.catalog["pages"]
                     if p["language"] == "en" and p["page_type"] == "content"}
-        self.assertEqual(len(pages), 31)
+        self.assertEqual(len(pages), 32)
         self.assertEqual({p["url"] for p in pages}, expected)
         self.assertEqual({p["language"] for p in pages}, {"en"})
         self.assertTrue(all(p["text"] for p in pages))

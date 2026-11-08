@@ -556,4 +556,14 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/meow/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/meow/" />
   </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/eto-zh-nado/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/eto-zh-nado/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/eto-zh-nado/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/eto-zh-nado/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/eto-zh-nado/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/eto-zh-nado/" />
+  </url>
 </urlset>

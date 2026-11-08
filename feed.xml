@@ -659,5 +659,17 @@
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/meow/</guid>
       <dc:language>en</dc:language>
     </item>
+    <item>
+      <title>Это ж надо! — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/eto-zh-nado/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/eto-zh-nado/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>Well, Would You Look at That! — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/eto-zh-nado/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/eto-zh-nado/</guid>
+      <dc:language>en</dc:language>
+    </item>
   </channel>
 </rss>

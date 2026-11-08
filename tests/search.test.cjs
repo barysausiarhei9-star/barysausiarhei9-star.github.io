@@ -8,7 +8,7 @@ const url = path => "https://schrodingercat.org" + path;
 const english = JSON.parse(readFileSync(join(__dirname, "../assets/search-index-en.json"), "utf8")).pages;
 
 test("English titles and available bodies are searchable with language isolation", () => {
-  assert.equal(english.length, 31);
+  assert.equal(english.length, 32);
   assert.equal(search(english, "THE FORMULA OF GOD")[0].url, url("/en/articles/the-formula-of-god/"));
   assert.ok(search(english, '"information possessing a binary code"').some(p =>
     p.url === url("/en/articles/the-formula-of-god/")));
@@ -111,4 +111,14 @@ test("brief snippets centered on matches and literal escaping through textConten
   assert.ok(snippet("начало ".repeat(100) + "уникальный" + " конец".repeat(100), "уникальный").includes("уникальный"));
   assert.ok(snippet("слово ".repeat(1000), "слово").length <= 222);
   assert.match(snippet("", "текст"), /изображением/);
+});
+
+test("Well, Would You Look at That is searchable by title and closing text in both languages", () => {
+  for (const [index, prefix, title, last] of [
+    [pages, "", "Это ж надо!", "вне зависимости от вашего на этот счет мнения"],
+    [english, "/en", "Well, Would You Look at That!", "regardless of what you may think about it"]]) {
+    const target = url(prefix + "/articles/eto-zh-nado/");
+    assert.equal(search(index, title)[0].url, target);
+    assert.ok(search(index, '"' + last + '"').some(p => p.url === target));
+  }
 });
