@@ -169,6 +169,10 @@
       "en": "/en/articles/tale-of-lost-time/"
     },
     {
+      "ru": "/articles/a-cage-for-god/",
+      "en": "/en/articles/a-cage-for-god/"
+    },
+    {
       "ru": "/articles/page-4/",
       "en": "/en/articles/page-4/"
     }
@@ -1416,6 +1420,15 @@
       "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/tale-of-lost-time/\">\n            Сказка о потерянном времени\n          </a>\n        </div>"
     },
     {
+      "path": "/articles/a-cage-for-god/",
+      "title": "КЛЕТКА ДЛЯ БОГА — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/a-cage-for-god/\">\n            КЛЕТКА ДЛЯ БОГА\n          </a>\n        </div>"
+    },
+    {
       "path": "/articles/page-4/",
       "title": "Статьи — Страница 4 — Кошка Шредингера",
       "language": "ru",
@@ -1431,6 +1444,15 @@
       "text_availability": "html_text",
       "rss": true,
       "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/tale-of-lost-time/\">\n            A TALE OF LOST TIME\n          </a>\n        </div>"
+    },
+    {
+      "path": "/en/articles/a-cage-for-god/",
+      "title": "A CAGE FOR GOD — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/a-cage-for-god/\">\n            A CAGE FOR GOD\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/page-4/",
@@ -1700,6 +1722,10 @@
       },
       {
         "path": "/articles/tale-of-lost-time/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/a-cage-for-god/",
         "type": "article"
       }
     ],

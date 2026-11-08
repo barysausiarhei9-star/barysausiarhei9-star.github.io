@@ -41,11 +41,11 @@ class LostTimeTests(unittest.TestCase):
             self.assertEqual(entry["text"], SearchText("<main>" + body + "</main>").text +
                              (" Оригинал на русском: Samlib." if language == "ru" else " Russian original: Samlib."))
 
-    def test_30_to_31_boundary_preserves_order_and_adds_one_item_on_page_four(self):
+    def test_lost_time_order_and_page_four_are_preserved(self):
         catalog, _, groups = generator.prepare(generator.ROOT)
         works = [w["path"] for w in catalog["works"]["items"] if w["type"] == "article"]
-        self.assertEqual(len(works), 31)
-        self.assertEqual(works[-2:], ["/articles/piece-of-cybernetics/", "/articles/tale-of-lost-time/"])
+        self.assertEqual(len(works), 32)
+        self.assertEqual(works[-3:-1], ["/articles/piece-of-cybernetics/", "/articles/tale-of-lost-time/"])
         sitemap = ET.fromstring((generator.ROOT / "sitemap.xml").read_bytes())
         urls = {n.text for n in sitemap.findall("{*}url/{*}loc")}
         for language, base in (("ru", "/articles/"), ("en", "/en/articles/")):

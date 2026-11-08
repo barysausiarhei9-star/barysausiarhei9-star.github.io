@@ -58,7 +58,7 @@ class ArticlePaginationTests(unittest.TestCase):
             return g.run(root, write=write)
 
     def test_boundaries_order_navigation_sitemap_and_idempotence(self):
-        for count in (1, 10, 11, 20, 21, 30, 31, 40, 41, 50, 51, 60, 61, 70, 71):
+        for count in (1, 10, 11, 20, 21, 30, 31, 32, 40, 41, 50, 51, 60, 61, 70, 71):
             with self.subTest(count=count), tempfile.TemporaryDirectory() as directory:
                 root = Path(directory)
                 catalog = self.fixture(root, count)
@@ -164,15 +164,17 @@ class ArticlePaginationTests(unittest.TestCase):
                         self.quiet_run(root, True)
                     self.assertEqual(before, {p: p.read_bytes() for p in before})
 
-    def test_existing_listings_and_unrelated_outputs_match_baseline_bytes(self):
+    def test_first_three_listings_match_baseline_and_all_outputs_are_fresh(self):
         outputs = g.render()
         for name, data in outputs.items():
             self.assertEqual(data, (g.ROOT / name).read_bytes(), name)
+            if not g.is_article_listing("/" + name.removesuffix("index.html")) or "/page-4/" in "/" + name:
+                continue  # Article #15 preservation tests cover changed discovery outputs and page four.
             baseline = subprocess.check_output(
                 ['git', 'show', 'b457e388af8cd0936d2521fb43a9809c0c6786c4:' + name], cwd=g.ROOT)
             self.assertEqual(data, baseline, name)
         pairs = g.article_pairs(g.load_json(g.ROOT / 'publication/catalog.json'))
-        self.assertEqual(len(pairs), 31)
+        self.assertEqual(len(pairs), 32)
         for lang in ('ru', 'en'):
             actual = []
             for n in range(1, 5):

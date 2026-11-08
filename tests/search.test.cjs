@@ -7,8 +7,19 @@ const { pages } = JSON.parse(readFileSync(join(__dirname, "../assets/search-inde
 const url = path => "https://schrodingercat.org" + path;
 const english = JSON.parse(readFileSync(join(__dirname, "../assets/search-index-en.json"), "utf8")).pages;
 
+test("A Cage for God is searchable by title and final declaration in both languages", () => {
+  for (const [index, prefix, title, declaration] of [
+    [pages, "", "КЛЕТКА ДЛЯ БОГА", "СОЗДАТЕЛЬ ЕСТЬ ВСЕ СУЩЕЕ"],
+    [english, "en/", "A CAGE FOR GOD", "THE CREATOR IS ALL THAT EXISTS"]
+  ]) {
+    const expected = url("/" + prefix + "articles/a-cage-for-god/");
+    assert.ok(search(index, title).some(p => p.url === expected));
+    assert.ok(search(index, '"' + declaration + '"').some(p => p.url === expected));
+  }
+});
+
 test("English titles and available bodies are searchable with language isolation", () => {
-  assert.equal(english.length, 34);
+  assert.equal(english.length, 35);
   assert.equal(search(english, "THE FORMULA OF GOD")[0].url, url("/en/articles/the-formula-of-god/"));
   assert.ok(search(english, '"information possessing a binary code"').some(p =>
     p.url === url("/en/articles/the-formula-of-god/")));
