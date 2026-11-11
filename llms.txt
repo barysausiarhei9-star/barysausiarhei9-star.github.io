@@ -1,6 +1,6 @@
 # Кошка Шрёдингера / Schrödinger’s Cat
 
-> A Russian/English literary and philosophical website by Elena Berezina, with articles in both languages, Russian poetry, and Russian-language books.
+> A Russian/English literary and philosophical website by Elena Berezina, with articles in both languages, Russian poetry and prose, and the Patchwork book in Russian and English.
 
 Discussions of physics, time, cosmology, and philosophy present the author's reflections and hypotheses, not established scientific conclusions. Language availability differs by work, as noted below. This file is a guide to published content and does not grant permission for AI indexing or training.
 
@@ -30,7 +30,7 @@ Discussions of physics, time, cosmology, and philosophy present the author's ref
 - [Schrödinger’s Cat](https://schrodingercat.org/en/): English homepage.
 - [Poetry](https://schrodingercat.org/en/poetry/): English availability page linking to Russian poems; English poetry translations are not available on this site.
 - [Prose](https://schrodingercat.org/en/prose/): English availability page linking to the Russian prose and «Переборщ»; no English novel translation is available.
-- [Book](https://schrodingercat.org/en/book/): English availability page linking to the Russian-language collection and its PDF; no English book translation is available.
+- [Schrödinger’s Cat on a Theory of Everything, Patchwork-Style](https://schrodingercat.org/en/book/): English translation of Elena Berezina’s book, available to read in the browser and download as PDF or EPUB.
 - [About](https://schrodingercat.org/en/about/): About text in English.
 
 ## Site indexes
