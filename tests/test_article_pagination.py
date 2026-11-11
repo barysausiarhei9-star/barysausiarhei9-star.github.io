@@ -169,12 +169,12 @@ class ArticlePaginationTests(unittest.TestCase):
         for name, data in outputs.items():
             self.assertEqual(data, (g.ROOT / name).read_bytes(), name)
             if not g.is_article_listing("/" + name.removesuffix("index.html")) or "/page-4/" in "/" + name:
-                continue  # Article #15 preservation tests cover changed discovery outputs and page four.
+                continue  # Article preservation tests cover changed discovery outputs and page four.
             baseline = subprocess.check_output(
                 ['git', 'show', 'b457e388af8cd0936d2521fb43a9809c0c6786c4:' + name], cwd=g.ROOT)
             self.assertEqual(data, baseline, name)
         pairs = g.article_pairs(g.load_json(g.ROOT / 'publication/catalog.json'))
-        self.assertEqual(len(pairs), 32)
+        self.assertEqual(len(pairs), 33)
         for lang in ('ru', 'en'):
             actual = []
             for n in range(1, 5):

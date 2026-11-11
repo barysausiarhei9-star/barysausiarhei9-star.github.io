@@ -696,6 +696,12 @@
       <dc:language>ru</dc:language>
     </item>
     <item>
+      <title>Бык Альбинос — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/the-albino-bull/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/the-albino-bull/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
       <title>A TALE OF LOST TIME — Schrödinger’s Cat</title>
       <link>https://schrodingercat.org/en/articles/tale-of-lost-time/</link>
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/tale-of-lost-time/</guid>
@@ -705,6 +711,12 @@
       <title>A CAGE FOR GOD — Schrödinger’s Cat</title>
       <link>https://schrodingercat.org/en/articles/a-cage-for-god/</link>
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/a-cage-for-god/</guid>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>The Albino Bull — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/the-albino-bull/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/the-albino-bull/</guid>
       <dc:language>en</dc:language>
     </item>
   </channel>

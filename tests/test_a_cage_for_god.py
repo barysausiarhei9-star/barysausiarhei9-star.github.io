@@ -14,7 +14,8 @@ class CageForGodTests(unittest.TestCase):
         def old(name):
             return subprocess.check_output(['git', 'show', baseline + ':' + name], cwd=g.ROOT)
         def is_new(path):
-            return path.endswith('/articles/a-cage-for-god/')
+            # Article #15 and the subsequent #16 are absent from this baseline.
+            return path.endswith(('/articles/a-cage-for-god/', '/articles/the-albino-bull/'))
         catalog = g.load_json(g.ROOT / 'publication/catalog.json')
         previous = json.loads(old('publication/catalog.json'))
         catalog['pages'] = [p for p in catalog['pages'] if not is_new(p['path'])]
@@ -23,7 +24,12 @@ class CageForGodTests(unittest.TestCase):
         self.assertEqual(catalog, previous)
         authored = [p['path'].lstrip('/') + 'index.html' for p in previous['pages']
                     if not g.is_article_listing(p['path']) and p['path'] not in ('/works/', '/en/works/')]
-        self.assertEqual(subprocess.check_output(['git', 'diff', baseline, '--', *authored], cwd=g.ROOT), b'')
+        # The English book edition changed these two pages after the baseline.
+        # Pin their complete committed diff; keep every other historical page frozen.
+        book_correction = '2ab2a13304a9143a34859be1c17a5facbb31de9a'
+        expected_diff = subprocess.check_output(
+            ['git', 'diff', baseline, book_correction, '--', 'en/book/index.html', 'en/index.html'], cwd=g.ROOT)
+        self.assertEqual(subprocess.check_output(['git', 'diff', baseline, '--', *authored], cwd=g.ROOT), expected_diff)
         for name, key in [('api/agent-feed/v1.json', 'entries'), ('assets/search-index.json', 'pages'), ('assets/search-index-en.json', 'pages')]:
             current = json.loads((g.ROOT / name).read_bytes())
             current[key] = [p for p in current[key] if not is_new(p.get('url', p.get('id', ''))) ]
@@ -31,7 +37,7 @@ class CageForGodTests(unittest.TestCase):
         for prefix in ('', 'en/'):
             name = prefix + 'articles/page-4/index.html'
             source = (g.ROOT / name).read_text(encoding='utf-8')
-            source = re.sub(r'\n        <div class="item">\n          <a href="/' + prefix + r'articles/a-cage-for-god/">.*?</div>\n', '', source, flags=re.S)
+            source = re.sub(r'\n        <div class="item">\n          <a href="/' + prefix + r'articles/(?:a-cage-for-god|the-albino-bull)/">.*?</div>\n', '', source, flags=re.S)
             self.assertEqual(source, old(name).decode(), name)
 
     def test_exact_text_and_source_label(self):
@@ -44,7 +50,8 @@ class CageForGodTests(unittest.TestCase):
             self.assertEqual([p.lstrip().split(".")[0] for p in paragraphs], ["1", "2", "3"])
             self.assertEqual(len(paragraphs[-1].splitlines()), 2)
             self.assertIn('href="https://samlib.ru/b/berezina_e_l/rktnrflkz.shtml">Samlib</a>', source)
-            self.assertIn("независимо не подтверждены" if lang == "ru" else "not independently verified", source)
+            label = "Оригинал на русском: " if lang == "ru" else "Russian original: "
+            self.assertIn('<div class="note">' + label + '<a href="https://samlib.ru/b/berezina_e_l/rktnrflkz.shtml">Samlib</a>.</div>', source)
             self.assertIn('class="back" href="/' + prefix + 'articles/page-4/"', source)
             page = g.PageHTML(source)
             metadata = {a.get("name", a.get("property")): a.get("content") for a in page.matching("meta")}

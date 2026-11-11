@@ -18,8 +18,19 @@ test("A Cage for God is searchable by title and final declaration in both langua
   }
 });
 
+test("The Albino Bull is searchable by title and each paragraph in both languages", () => {
+  for (const [index, prefix, title, phrases] of [
+    [pages, "", "Бык Альбинос", ["Фотонам требуется некоторое время", "невидимками живут античастицы", "новый цикл становления миров-антиподов"]],
+    [english, "en/", "The Albino Bull", ["Photons require a certain amount of time", "antiparticles exist invisibly", "formation of the universe and its antiworld counterpart"]]
+  ]) {
+    const expected = url("/" + prefix + "articles/the-albino-bull/");
+    assert.equal(search(index, title)[0].url, expected);
+    for (const phrase of phrases) assert.ok(search(index, '"' + phrase + '"').some(p => p.url === expected));
+  }
+});
+
 test("English titles and available bodies are searchable with language isolation", () => {
-  assert.equal(english.length, 35);
+  assert.equal(english.length, 36);
   assert.equal(search(english, "THE FORMULA OF GOD")[0].url, url("/en/articles/the-formula-of-god/"));
   assert.ok(search(english, '"information possessing a binary code"').some(p =>
     p.url === url("/en/articles/the-formula-of-god/")));

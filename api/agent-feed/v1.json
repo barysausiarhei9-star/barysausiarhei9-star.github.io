@@ -1333,6 +1333,15 @@
       "text_availability": "html_text"
     },
     {
+      "id": "https://schrodingercat.org/articles/the-albino-bull/",
+      "canonical_url": "https://schrodingercat.org/articles/the-albino-bull/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Бык Альбинос — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
       "id": "https://schrodingercat.org/articles/page-4/",
       "canonical_url": "https://schrodingercat.org/articles/page-4/",
       "language": "ru",
@@ -1356,6 +1365,15 @@
       "language": "en",
       "content_type": "text/html",
       "title": "A CAGE FOR GOD — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/the-albino-bull/",
+      "canonical_url": "https://schrodingercat.org/en/articles/the-albino-bull/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "The Albino Bull — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
     },
