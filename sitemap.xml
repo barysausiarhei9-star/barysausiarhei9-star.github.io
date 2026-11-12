@@ -592,6 +592,11 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/the-albino-bull/" />
   </url>
   <url>
+    <loc>https://schrodingercat.org/articles/time-zones-of-the-universe/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/time-zones-of-the-universe/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/time-zones-of-the-universe/" />
+  </url>
+  <url>
     <loc>https://schrodingercat.org/articles/page-4/</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/page-4/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/page-4/" />
@@ -610,6 +615,11 @@
     <loc>https://schrodingercat.org/en/articles/the-albino-bull/</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/the-albino-bull/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/the-albino-bull/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/time-zones-of-the-universe/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/time-zones-of-the-universe/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/time-zones-of-the-universe/" />
   </url>
   <url>
     <loc>https://schrodingercat.org/en/articles/page-4/</loc>

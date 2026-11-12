@@ -177,6 +177,10 @@
       "en": "/en/articles/the-albino-bull/"
     },
     {
+      "ru": "/articles/time-zones-of-the-universe/",
+      "en": "/en/articles/time-zones-of-the-universe/"
+    },
+    {
       "ru": "/articles/page-4/",
       "en": "/en/articles/page-4/"
     }
@@ -1442,6 +1446,15 @@
       "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/the-albino-bull/\">\n            Бык Альбинос\n          </a>\n        </div>"
     },
     {
+      "path": "/articles/time-zones-of-the-universe/",
+      "title": "Часовые пояса Вселенной — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/time-zones-of-the-universe/\">\n            Часовые пояса Вселенной\n          </a>\n        </div>"
+    },
+    {
       "path": "/articles/page-4/",
       "title": "Статьи — Страница 4 — Кошка Шредингера",
       "language": "ru",
@@ -1475,6 +1488,15 @@
       "text_availability": "html_text",
       "rss": true,
       "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/the-albino-bull/\">\n            The Albino Bull\n          </a>\n        </div>"
+    },
+    {
+      "path": "/en/articles/time-zones-of-the-universe/",
+      "title": "Time Zones of the Universe — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/time-zones-of-the-universe/\">\n            Time Zones of the Universe\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/page-4/",
@@ -1752,6 +1774,10 @@
       },
       {
         "path": "/articles/the-albino-bull/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/time-zones-of-the-universe/",
         "type": "article"
       }
     ],

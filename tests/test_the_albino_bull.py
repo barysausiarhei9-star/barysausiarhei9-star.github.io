@@ -51,7 +51,8 @@ class AlbinoBullTests(unittest.TestCase):
             return subprocess.check_output(["git", "show", baseline + ":" + name], cwd=g.ROOT)
 
         def is_new(path):
-            return path.endswith("/articles/the-albino-bull/")
+            # Articles #16 and #17 are absent from this baseline.
+            return path.endswith(("/articles/the-albino-bull/", "/articles/time-zones-of-the-universe/"))
 
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         previous = json.loads(old("publication/catalog.json"))
@@ -71,7 +72,7 @@ class AlbinoBullTests(unittest.TestCase):
             name = prefix + "articles/page-4/index.html"
             source = (g.ROOT / name).read_text(encoding="utf-8")
             source = re.sub(r'\n        <div class="item">\n          <a href="/' + prefix +
-                            r'articles/the-albino-bull/">.*?</div>\n', "", source, flags=re.S)
+                            r'articles/(?:the-albino-bull|time-zones-of-the-universe)/">.*?</div>\n', "", source, flags=re.S)
             self.assertEqual(source, old(name).decode(), name)
 
 

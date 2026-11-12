@@ -44,8 +44,8 @@ class LostTimeTests(unittest.TestCase):
     def test_lost_time_order_and_page_four_are_preserved(self):
         catalog, _, groups = generator.prepare(generator.ROOT)
         works = [w["path"] for w in catalog["works"]["items"] if w["type"] == "article"]
-        self.assertEqual(len(works), 33)
-        self.assertEqual(works[-4:-2], ["/articles/piece-of-cybernetics/", "/articles/tale-of-lost-time/"])
+        self.assertEqual(len(works), 34)
+        self.assertEqual(works[29:31], ["/articles/piece-of-cybernetics/", "/articles/tale-of-lost-time/"])
         sitemap = ET.fromstring((generator.ROOT / "sitemap.xml").read_bytes())
         urls = {n.text for n in sitemap.findall("{*}url/{*}loc")}
         for language, base in (("ru", "/articles/"), ("en", "/en/articles/")):

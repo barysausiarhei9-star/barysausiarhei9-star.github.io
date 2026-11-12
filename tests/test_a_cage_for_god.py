@@ -14,8 +14,8 @@ class CageForGodTests(unittest.TestCase):
         def old(name):
             return subprocess.check_output(['git', 'show', baseline + ':' + name], cwd=g.ROOT)
         def is_new(path):
-            # Article #15 and the subsequent #16 are absent from this baseline.
-            return path.endswith(('/articles/a-cage-for-god/', '/articles/the-albino-bull/'))
+            # Articles #15, #16 and #17 are absent from this baseline.
+            return path.endswith(('/articles/a-cage-for-god/', '/articles/the-albino-bull/', '/articles/time-zones-of-the-universe/'))
         catalog = g.load_json(g.ROOT / 'publication/catalog.json')
         previous = json.loads(old('publication/catalog.json'))
         catalog['pages'] = [p for p in catalog['pages'] if not is_new(p['path'])]
@@ -37,7 +37,7 @@ class CageForGodTests(unittest.TestCase):
         for prefix in ('', 'en/'):
             name = prefix + 'articles/page-4/index.html'
             source = (g.ROOT / name).read_text(encoding='utf-8')
-            source = re.sub(r'\n        <div class="item">\n          <a href="/' + prefix + r'articles/(?:a-cage-for-god|the-albino-bull)/">.*?</div>\n', '', source, flags=re.S)
+            source = re.sub(r'\n        <div class="item">\n          <a href="/' + prefix + r'articles/(?:a-cage-for-god|the-albino-bull|time-zones-of-the-universe)/">.*?</div>\n', '', source, flags=re.S)
             self.assertEqual(source, old(name).decode(), name)
 
     def test_exact_text_and_source_label(self):
