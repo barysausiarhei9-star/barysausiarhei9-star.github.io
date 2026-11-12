@@ -708,6 +708,12 @@
       <dc:language>ru</dc:language>
     </item>
     <item>
+      <title>Несомненно — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/undoubtedly/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/undoubtedly/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
       <title>A TALE OF LOST TIME — Schrödinger’s Cat</title>
       <link>https://schrodingercat.org/en/articles/tale-of-lost-time/</link>
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/tale-of-lost-time/</guid>
@@ -729,6 +735,12 @@
       <title>Time Zones of the Universe — Schrödinger’s Cat</title>
       <link>https://schrodingercat.org/en/articles/time-zones-of-the-universe/</link>
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/time-zones-of-the-universe/</guid>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Undoubtedly — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/undoubtedly/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/undoubtedly/</guid>
       <dc:language>en</dc:language>
     </item>
   </channel>

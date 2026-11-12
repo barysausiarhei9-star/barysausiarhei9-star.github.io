@@ -71,7 +71,7 @@ class TimeZonesTests(unittest.TestCase):
             return subprocess.check_output(["git", "show", baseline + ":" + name], cwd=g.ROOT)
 
         def is_new(path):
-            return path.endswith("/articles/time-zones-of-the-universe/")
+            return path.endswith(("/articles/time-zones-of-the-universe/", "/articles/undoubtedly/"))
 
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         previous = json.loads(old("publication/catalog.json"))
@@ -91,7 +91,7 @@ class TimeZonesTests(unittest.TestCase):
             name = prefix + "articles/page-4/index.html"
             source = (g.ROOT / name).read_text(encoding="utf-8")
             source = re.sub(r'\n        <div class="item">\n          <a href="/' + prefix +
-                            r'articles/time-zones-of-the-universe/">.*?</div>\n', "", source, flags=re.S)
+                            r'articles/(?:time-zones-of-the-universe|undoubtedly)/">.*?</div>\n', "", source, flags=re.S)
             self.assertEqual(source, old(name).decode(), name)
 
 

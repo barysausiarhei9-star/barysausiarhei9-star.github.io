@@ -174,7 +174,7 @@ class ArticlePaginationTests(unittest.TestCase):
                 ['git', 'show', 'b457e388af8cd0936d2521fb43a9809c0c6786c4:' + name], cwd=g.ROOT)
             self.assertEqual(data, baseline, name)
         pairs = g.article_pairs(g.load_json(g.ROOT / 'publication/catalog.json'))
-        self.assertEqual(len(pairs), 34)
+        self.assertEqual(len(pairs), 35)
         for lang in ('ru', 'en'):
             actual = []
             for n in range(1, 5):

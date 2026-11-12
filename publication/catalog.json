@@ -181,6 +181,10 @@
       "en": "/en/articles/time-zones-of-the-universe/"
     },
     {
+      "ru": "/articles/undoubtedly/",
+      "en": "/en/articles/undoubtedly/"
+    },
+    {
       "ru": "/articles/page-4/",
       "en": "/en/articles/page-4/"
     }
@@ -1455,6 +1459,15 @@
       "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/time-zones-of-the-universe/\">\n            Часовые пояса Вселенной\n          </a>\n        </div>"
     },
     {
+      "path": "/articles/undoubtedly/",
+      "title": "Несомненно — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/undoubtedly/\">\n            Несомненно\n          </a>\n        </div>"
+    },
+    {
       "path": "/articles/page-4/",
       "title": "Статьи — Страница 4 — Кошка Шредингера",
       "language": "ru",
@@ -1497,6 +1510,15 @@
       "text_availability": "html_text",
       "rss": true,
       "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/time-zones-of-the-universe/\">\n            Time Zones of the Universe\n          </a>\n        </div>"
+    },
+    {
+      "path": "/en/articles/undoubtedly/",
+      "title": "Undoubtedly — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/undoubtedly/\">\n            Undoubtedly\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/page-4/",
@@ -1778,6 +1800,10 @@
       },
       {
         "path": "/articles/time-zones-of-the-universe/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/undoubtedly/",
         "type": "article"
       }
     ],

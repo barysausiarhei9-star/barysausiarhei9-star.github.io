@@ -1351,6 +1351,15 @@
       "text_availability": "html_text"
     },
     {
+      "id": "https://schrodingercat.org/articles/undoubtedly/",
+      "canonical_url": "https://schrodingercat.org/articles/undoubtedly/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Несомненно — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
       "id": "https://schrodingercat.org/articles/page-4/",
       "canonical_url": "https://schrodingercat.org/articles/page-4/",
       "language": "ru",
@@ -1392,6 +1401,15 @@
       "language": "en",
       "content_type": "text/html",
       "title": "Time Zones of the Universe — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/undoubtedly/",
+      "canonical_url": "https://schrodingercat.org/en/articles/undoubtedly/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "Undoubtedly — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
     },
