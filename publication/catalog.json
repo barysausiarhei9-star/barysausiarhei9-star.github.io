@@ -193,6 +193,10 @@
       "en": "/en/articles/epatazhka/"
     },
     {
+      "ru": "/articles/in-another-dimension/",
+      "en": "/en/articles/in-another-dimension/"
+    },
+    {
       "ru": "/articles/page-4/",
       "en": "/en/articles/page-4/"
     }
@@ -1494,6 +1498,15 @@
       "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/epatazhka/\">\n            ЭПАТАЖКА\n          </a>\n        </div>"
     },
     {
+      "path": "/articles/in-another-dimension/",
+      "title": "В ДРУГОМ ИЗМЕРЕНИИ — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/in-another-dimension/\">\n            В ДРУГОМ ИЗМЕРЕНИИ\n          </a>\n        </div>"
+    },
+    {
       "path": "/articles/page-4/",
       "title": "Статьи — Страница 4 — Кошка Шредингера",
       "language": "ru",
@@ -1563,6 +1576,15 @@
       "text_availability": "html_text",
       "rss": true,
       "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/epatazhka/\">\n            Épatage\n          </a>\n        </div>"
+    },
+    {
+      "path": "/en/articles/in-another-dimension/",
+      "title": "In Another Dimension — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/in-another-dimension/\">\n            In Another Dimension\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/page-4/",
@@ -1856,6 +1878,10 @@
       },
       {
         "path": "/articles/epatazhka/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/in-another-dimension/",
         "type": "article"
       }
     ],

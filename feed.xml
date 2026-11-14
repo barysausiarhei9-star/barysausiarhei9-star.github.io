@@ -726,6 +726,12 @@
       <dc:language>ru</dc:language>
     </item>
     <item>
+      <title>В ДРУГОМ ИЗМЕРЕНИИ — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/in-another-dimension/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/in-another-dimension/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
       <title>A TALE OF LOST TIME — Schrödinger’s Cat</title>
       <link>https://schrodingercat.org/en/articles/tale-of-lost-time/</link>
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/tale-of-lost-time/</guid>
@@ -765,6 +771,12 @@
       <title>Épatage — Schrödinger’s Cat</title>
       <link>https://schrodingercat.org/en/articles/epatazhka/</link>
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/epatazhka/</guid>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>In Another Dimension — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/in-another-dimension/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/in-another-dimension/</guid>
       <dc:language>en</dc:language>
     </item>
   </channel>

@@ -1378,6 +1378,15 @@
       "text_availability": "html_text"
     },
     {
+      "id": "https://schrodingercat.org/articles/in-another-dimension/",
+      "canonical_url": "https://schrodingercat.org/articles/in-another-dimension/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "В ДРУГОМ ИЗМЕРЕНИИ — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
       "id": "https://schrodingercat.org/articles/page-4/",
       "canonical_url": "https://schrodingercat.org/articles/page-4/",
       "language": "ru",
@@ -1446,6 +1455,15 @@
       "language": "en",
       "content_type": "text/html",
       "title": "Épatage — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/in-another-dimension/",
+      "canonical_url": "https://schrodingercat.org/en/articles/in-another-dimension/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "In Another Dimension — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
     },
