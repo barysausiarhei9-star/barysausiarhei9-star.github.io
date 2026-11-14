@@ -1360,6 +1360,15 @@
       "text_availability": "html_text"
     },
     {
+      "id": "https://schrodingercat.org/articles/the-creators-lot/",
+      "canonical_url": "https://schrodingercat.org/articles/the-creators-lot/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ЖРЕБИЙ КРИЭЙТОРА — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
       "id": "https://schrodingercat.org/articles/page-4/",
       "canonical_url": "https://schrodingercat.org/articles/page-4/",
       "language": "ru",
@@ -1410,6 +1419,15 @@
       "language": "en",
       "content_type": "text/html",
       "title": "Undoubtedly — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/the-creators-lot/",
+      "canonical_url": "https://schrodingercat.org/en/articles/the-creators-lot/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "THE CREATOR’S LOT — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
     },

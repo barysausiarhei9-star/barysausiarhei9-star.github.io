@@ -185,6 +185,10 @@
       "en": "/en/articles/undoubtedly/"
     },
     {
+      "ru": "/articles/the-creators-lot/",
+      "en": "/en/articles/the-creators-lot/"
+    },
+    {
       "ru": "/articles/page-4/",
       "en": "/en/articles/page-4/"
     }
@@ -1468,6 +1472,15 @@
       "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/undoubtedly/\">\n            Несомненно\n          </a>\n        </div>"
     },
     {
+      "path": "/articles/the-creators-lot/",
+      "title": "ЖРЕБИЙ КРИЭЙТОРА — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/the-creators-lot/\">\n            ЖРЕБИЙ КРИЭЙТОРА\n          </a>\n        </div>"
+    },
+    {
       "path": "/articles/page-4/",
       "title": "Статьи — Страница 4 — Кошка Шредингера",
       "language": "ru",
@@ -1519,6 +1532,15 @@
       "text_availability": "html_text",
       "rss": true,
       "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/undoubtedly/\">\n            Undoubtedly\n          </a>\n        </div>"
+    },
+    {
+      "path": "/en/articles/the-creators-lot/",
+      "title": "THE CREATOR’S LOT — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/the-creators-lot/\">\n            THE CREATOR’S LOT\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/page-4/",
@@ -1804,6 +1826,10 @@
       },
       {
         "path": "/articles/undoubtedly/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/the-creators-lot/",
         "type": "article"
       }
     ],
