@@ -1369,6 +1369,15 @@
       "text_availability": "html_text"
     },
     {
+      "id": "https://schrodingercat.org/articles/epatazhka/",
+      "canonical_url": "https://schrodingercat.org/articles/epatazhka/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ЭПАТАЖКА — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
       "id": "https://schrodingercat.org/articles/page-4/",
       "canonical_url": "https://schrodingercat.org/articles/page-4/",
       "language": "ru",
@@ -1428,6 +1437,15 @@
       "language": "en",
       "content_type": "text/html",
       "title": "THE CREATOR’S LOT — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/epatazhka/",
+      "canonical_url": "https://schrodingercat.org/en/articles/epatazhka/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "Épatage — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
     },

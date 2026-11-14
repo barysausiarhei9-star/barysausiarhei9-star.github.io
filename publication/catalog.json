@@ -189,6 +189,10 @@
       "en": "/en/articles/the-creators-lot/"
     },
     {
+      "ru": "/articles/epatazhka/",
+      "en": "/en/articles/epatazhka/"
+    },
+    {
       "ru": "/articles/page-4/",
       "en": "/en/articles/page-4/"
     }
@@ -1481,6 +1485,15 @@
       "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/the-creators-lot/\">\n            ЖРЕБИЙ КРИЭЙТОРА\n          </a>\n        </div>"
     },
     {
+      "path": "/articles/epatazhka/",
+      "title": "ЭПАТАЖКА — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/epatazhka/\">\n            ЭПАТАЖКА\n          </a>\n        </div>"
+    },
+    {
       "path": "/articles/page-4/",
       "title": "Статьи — Страница 4 — Кошка Шредингера",
       "language": "ru",
@@ -1541,6 +1554,15 @@
       "text_availability": "html_text",
       "rss": true,
       "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/the-creators-lot/\">\n            THE CREATOR’S LOT\n          </a>\n        </div>"
+    },
+    {
+      "path": "/en/articles/epatazhka/",
+      "title": "Épatage — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/epatazhka/\">\n            Épatage\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/page-4/",
@@ -1830,6 +1852,10 @@
       },
       {
         "path": "/articles/the-creators-lot/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/epatazhka/",
         "type": "article"
       }
     ],

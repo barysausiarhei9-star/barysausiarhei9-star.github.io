@@ -607,6 +607,11 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/the-creators-lot/" />
   </url>
   <url>
+    <loc>https://schrodingercat.org/articles/epatazhka/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/epatazhka/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/epatazhka/" />
+  </url>
+  <url>
     <loc>https://schrodingercat.org/articles/page-4/</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/page-4/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/page-4/" />
@@ -640,6 +645,11 @@
     <loc>https://schrodingercat.org/en/articles/the-creators-lot/</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/the-creators-lot/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/the-creators-lot/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/epatazhka/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/epatazhka/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/epatazhka/" />
   </url>
   <url>
     <loc>https://schrodingercat.org/en/articles/page-4/</loc>

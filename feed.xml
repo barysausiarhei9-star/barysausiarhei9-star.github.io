@@ -720,6 +720,12 @@
       <dc:language>ru</dc:language>
     </item>
     <item>
+      <title>ЭПАТАЖКА — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/epatazhka/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/epatazhka/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
       <title>A TALE OF LOST TIME — Schrödinger’s Cat</title>
       <link>https://schrodingercat.org/en/articles/tale-of-lost-time/</link>
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/tale-of-lost-time/</guid>
@@ -753,6 +759,12 @@
       <title>THE CREATOR’S LOT — Schrödinger’s Cat</title>
       <link>https://schrodingercat.org/en/articles/the-creators-lot/</link>
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/the-creators-lot/</guid>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Épatage — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/epatazhka/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/epatazhka/</guid>
       <dc:language>en</dc:language>
     </item>
   </channel>
