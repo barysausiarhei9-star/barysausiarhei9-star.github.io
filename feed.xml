@@ -827,5 +827,17 @@
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/idee-fixe-on-the-multiverse/</guid>
       <dc:language>en</dc:language>
     </item>
+    <item>
+      <title>О ВСЕВОЗМОЖНЫХ "ЗАГАДКАХ" — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/on-all-kinds-of-mysteries/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/on-all-kinds-of-mysteries/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>ON ALL KINDS OF “MYSTERIES” — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/on-all-kinds-of-mysteries/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/on-all-kinds-of-mysteries/</guid>
+      <dc:language>en</dc:language>
+    </item>
   </channel>
 </rss>

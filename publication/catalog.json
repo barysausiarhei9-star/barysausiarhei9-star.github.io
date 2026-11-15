@@ -215,6 +215,10 @@
     {
       "ru": "/articles/idee-fixe-on-the-multiverse/",
       "en": "/en/articles/idee-fixe-on-the-multiverse/"
+    },
+    {
+      "ru": "/articles/on-all-kinds-of-mysteries/",
+      "en": "/en/articles/on-all-kinds-of-mysteries/"
     }
   ],
   "pages": [
@@ -1681,6 +1685,24 @@
       "text_availability": "html_text",
       "rss": true,
       "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/idee-fixe-on-the-multiverse/\">\n            Idée Fixe on the Multiverse\n          </a>\n        </div>"
+    },
+    {
+      "path": "/articles/on-all-kinds-of-mysteries/",
+      "title": "О ВСЕВОЗМОЖНЫХ \"ЗАГАДКАХ\" — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/on-all-kinds-of-mysteries/\">\n            О всевозможных \"загадках\"\n          </a>\n        </div>"
+    },
+    {
+      "path": "/en/articles/on-all-kinds-of-mysteries/",
+      "title": "ON ALL KINDS OF “MYSTERIES” — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/on-all-kinds-of-mysteries/\">\n            On All Kinds of ‘Mysteries’\n          </a>\n        </div>"
     }
   ],
   "works": {
@@ -1986,6 +2008,10 @@
       },
       {
         "path": "/articles/idee-fixe-on-the-multiverse/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/on-all-kinds-of-mysteries/",
         "type": "article"
       }
     ],
