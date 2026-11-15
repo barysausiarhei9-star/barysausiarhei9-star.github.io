@@ -115,8 +115,8 @@ class InAnotherDimensionTests(unittest.TestCase):
     def test_exact_text_metadata_and_discovery(self):
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         articles = [w["path"] for w in catalog["works"]["items"] if w["type"] == "article"]
-        self.assertEqual(articles[-2:], ["/articles/epatazhka/", "/articles/in-another-dimension/"])
-        self.assertEqual(len(articles), 38)
+        self.assertEqual(articles[-3:-1], ["/articles/epatazhka/", "/articles/in-another-dimension/"])
+        self.assertEqual(len(articles), 39)
         for language, prefix, title in (("ru", "", "В ДРУГОМ ИЗМЕРЕНИИ"), ("en", "en/", "In Another Dimension")):
             route = "/" + prefix + "articles/in-another-dimension/"
             source = (g.ROOT / route.lstrip("/") / "index.html").read_text(encoding="utf-8")
@@ -155,7 +155,7 @@ class InAnotherDimensionTests(unittest.TestCase):
             return subprocess.check_output(["git", "show", baseline + ":" + name], cwd=g.ROOT)
 
         def is_new(path):
-            return path.endswith("/articles/in-another-dimension/")
+            return path.endswith(("/articles/in-another-dimension/", "/articles/the-path-of-progress/"))
 
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         previous = json.loads(old("publication/catalog.json"))
@@ -175,7 +175,7 @@ class InAnotherDimensionTests(unittest.TestCase):
             name = prefix + "articles/page-4/index.html"
             source = (g.ROOT / name).read_text(encoding="utf-8")
             source = re.sub(r'\n        <div class="item">\n          <a href="/' + prefix +
-                            r'articles/in-another-dimension/">.*?</div>\n', "", source, flags=re.S)
+                            r'articles/(?:in-another-dimension|the-path-of-progress)/">.*?</div>\n', "", source, flags=re.S)
             self.assertEqual(source, old(name).decode(), name)
 
 

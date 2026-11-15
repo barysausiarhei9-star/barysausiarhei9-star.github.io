@@ -1387,6 +1387,15 @@
       "text_availability": "html_text"
     },
     {
+      "id": "https://schrodingercat.org/articles/the-path-of-progress/",
+      "canonical_url": "https://schrodingercat.org/articles/the-path-of-progress/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Путь прогресса — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
       "id": "https://schrodingercat.org/articles/page-4/",
       "canonical_url": "https://schrodingercat.org/articles/page-4/",
       "language": "ru",
@@ -1464,6 +1473,15 @@
       "language": "en",
       "content_type": "text/html",
       "title": "In Another Dimension — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/the-path-of-progress/",
+      "canonical_url": "https://schrodingercat.org/en/articles/the-path-of-progress/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "The Path of Progress — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
     },

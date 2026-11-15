@@ -197,6 +197,10 @@
       "en": "/en/articles/in-another-dimension/"
     },
     {
+      "ru": "/articles/the-path-of-progress/",
+      "en": "/en/articles/the-path-of-progress/"
+    },
+    {
       "ru": "/articles/page-4/",
       "en": "/en/articles/page-4/"
     }
@@ -1507,6 +1511,15 @@
       "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/in-another-dimension/\">\n            В ДРУГОМ ИЗМЕРЕНИИ\n          </a>\n        </div>"
     },
     {
+      "path": "/articles/the-path-of-progress/",
+      "title": "Путь прогресса — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/the-path-of-progress/\">\n            Путь прогресса\n          </a>\n        </div>"
+    },
+    {
       "path": "/articles/page-4/",
       "title": "Статьи — Страница 4 — Кошка Шредингера",
       "language": "ru",
@@ -1585,6 +1598,15 @@
       "text_availability": "html_text",
       "rss": true,
       "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/in-another-dimension/\">\n            In Another Dimension\n          </a>\n        </div>"
+    },
+    {
+      "path": "/en/articles/the-path-of-progress/",
+      "title": "The Path of Progress — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/the-path-of-progress/\">\n            The Path of Progress\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/page-4/",
@@ -1882,6 +1904,10 @@
       },
       {
         "path": "/articles/in-another-dimension/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/the-path-of-progress/",
         "type": "article"
       }
     ],

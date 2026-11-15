@@ -31,7 +31,7 @@ class CreatorsLotTests(unittest.TestCase):
         }
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         articles = [w["path"] for w in catalog["works"]["items"] if w["type"] == "article"]
-        self.assertEqual(articles[-4:-2], ["/articles/undoubtedly/", "/articles/the-creators-lot/"])
+        self.assertEqual(articles[-5:-3], ["/articles/undoubtedly/", "/articles/the-creators-lot/"])
         for language, prefix in (("ru", ""), ("en", "en/")):
             route = "/" + prefix + "articles/the-creators-lot/"
             source = (g.ROOT / route.lstrip("/") / "index.html").read_text(encoding="utf-8")
@@ -84,7 +84,7 @@ class CreatorsLotTests(unittest.TestCase):
             return subprocess.check_output(["git", "show", baseline + ":" + name], cwd=g.ROOT)
 
         def is_new(path):
-            return path.endswith(("/articles/the-creators-lot/", "/articles/epatazhka/", "/articles/in-another-dimension/"))
+            return path.endswith(("/articles/the-creators-lot/", "/articles/epatazhka/", "/articles/in-another-dimension/", "/articles/the-path-of-progress/"))
 
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         previous = json.loads(old("publication/catalog.json"))
@@ -104,7 +104,7 @@ class CreatorsLotTests(unittest.TestCase):
             name = prefix + "articles/page-4/index.html"
             source = (g.ROOT / name).read_text(encoding="utf-8")
             source = re.sub(r'\n        <div class="item">\n          <a href="/' + prefix +
-                            r'articles/(?:the-creators-lot|epatazhka|in-another-dimension)/">.*?</div>\n', "", source, flags=re.S)
+                            r'articles/(?:the-creators-lot|epatazhka|in-another-dimension|the-path-of-progress)/">.*?</div>\n', "", source, flags=re.S)
             self.assertEqual(source, old(name).decode(), name)
 
 

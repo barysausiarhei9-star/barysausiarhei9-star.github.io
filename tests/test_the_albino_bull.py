@@ -52,7 +52,7 @@ class AlbinoBullTests(unittest.TestCase):
 
         def is_new(path):
             # Articles #16–#21 are absent from this baseline.
-            return path.endswith(("/articles/the-albino-bull/", "/articles/time-zones-of-the-universe/", "/articles/undoubtedly/", "/articles/the-creators-lot/", "/articles/epatazhka/", "/articles/in-another-dimension/"))
+            return path.endswith(("/articles/the-albino-bull/", "/articles/time-zones-of-the-universe/", "/articles/undoubtedly/", "/articles/the-creators-lot/", "/articles/epatazhka/", "/articles/in-another-dimension/", "/articles/the-path-of-progress/"))
 
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         previous = json.loads(old("publication/catalog.json"))
@@ -72,7 +72,7 @@ class AlbinoBullTests(unittest.TestCase):
             name = prefix + "articles/page-4/index.html"
             source = (g.ROOT / name).read_text(encoding="utf-8")
             source = re.sub(r'\n        <div class="item">\n          <a href="/' + prefix +
-                            r'articles/(?:the-albino-bull|time-zones-of-the-universe|undoubtedly|the-creators-lot|epatazhka|in-another-dimension)/">.*?</div>\n', "", source, flags=re.S)
+                            r'articles/(?:the-albino-bull|time-zones-of-the-universe|undoubtedly|the-creators-lot|epatazhka|in-another-dimension|the-path-of-progress)/">.*?</div>\n', "", source, flags=re.S)
             self.assertEqual(source, old(name).decode(), name)
 
 

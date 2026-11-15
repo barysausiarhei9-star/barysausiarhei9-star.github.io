@@ -617,6 +617,11 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/in-another-dimension/" />
   </url>
   <url>
+    <loc>https://schrodingercat.org/articles/the-path-of-progress/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/the-path-of-progress/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/the-path-of-progress/" />
+  </url>
+  <url>
     <loc>https://schrodingercat.org/articles/page-4/</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/page-4/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/page-4/" />
@@ -660,6 +665,11 @@
     <loc>https://schrodingercat.org/en/articles/in-another-dimension/</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/in-another-dimension/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/in-another-dimension/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/the-path-of-progress/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/the-path-of-progress/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/the-path-of-progress/" />
   </url>
   <url>
     <loc>https://schrodingercat.org/en/articles/page-4/</loc>
