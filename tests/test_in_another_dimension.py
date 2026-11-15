@@ -116,7 +116,7 @@ class InAnotherDimensionTests(unittest.TestCase):
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         articles = [w["path"] for w in catalog["works"]["items"] if w["type"] == "article"]
         self.assertEqual(articles[-4:-2], ["/articles/epatazhka/", "/articles/in-another-dimension/"])
-        self.assertEqual(len(articles), 40)
+        self.assertEqual(len(articles), 41)
         for language, prefix, title in (("ru", "", "В ДРУГОМ ИЗМЕРЕНИИ"), ("en", "en/", "In Another Dimension")):
             route = "/" + prefix + "articles/in-another-dimension/"
             source = (g.ROOT / route.lstrip("/") / "index.html").read_text(encoding="utf-8")
@@ -155,7 +155,7 @@ class InAnotherDimensionTests(unittest.TestCase):
             return subprocess.check_output(["git", "show", baseline + ":" + name], cwd=g.ROOT)
 
         def is_new(path):
-            return path.endswith(("/articles/in-another-dimension/", "/articles/the-path-of-progress/", "/articles/negative-time/"))
+            return path.endswith(("/articles/in-another-dimension/", "/articles/the-path-of-progress/", "/articles/negative-time/", "/articles/no-problems/", "/articles/page-5/"))
 
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         previous = json.loads(old("publication/catalog.json"))
@@ -165,18 +165,28 @@ class InAnotherDimensionTests(unittest.TestCase):
         self.assertEqual(catalog, previous)
         authored = [p["path"].lstrip("/") + "index.html" for p in previous["pages"]
                     if not g.is_article_listing(p["path"]) and p["path"] not in ("/works/", "/en/works/")]
-        self.assertEqual(subprocess.check_output(["git", "diff", baseline, "--", *authored], cwd=g.ROOT), b"")
+        for name in authored:
+            expected = old(name).decode().replace("\r\n", "\n")
+            if name.endswith("articles/piece-of-cybernetics/index.html"):
+                prefix = "/en/" if name.startswith("en/") else "/"
+                expected = expected.replace('class="back" href="' + prefix + 'articles/page-3/"',
+                                            'class="back" href="' + prefix + 'articles/page-4/"')
+            self.assertEqual((g.ROOT / name).read_text(encoding="utf8"), expected, name)
         for name, key in (("api/agent-feed/v1.json", "entries"), ("assets/search-index.json", "pages"),
                           ("assets/search-index-en.json", "pages")):
             current = json.loads((g.ROOT / name).read_bytes())
             current[key] = [p for p in current[key] if not is_new(p.get("url", p.get("id", "")))]
             self.assertEqual(current, json.loads(old(name)), name)
-        for prefix in ("", "en/"):
-            name = prefix + "articles/page-4/index.html"
-            source = (g.ROOT / name).read_text(encoding="utf-8")
-            source = re.sub(r'\n        <div class="item">\n          <a href="/' + prefix +
-                            r'articles/(?:in-another-dimension|the-path-of-progress|negative-time)/">.*?</div>\n', "", source, flags=re.S)
-            self.assertEqual(source, old(name).decode(), name)
+        current_catalog = g.load_json(g.ROOT / "publication/catalog.json")
+        for name, expected in g.render_article_pages(g.ROOT, g.article_catalog(current_catalog)).items():
+            self.assertEqual((g.ROOT / name).read_bytes(), expected, name)
+        for name, expected in g.render_article_pages(g.ROOT, g.article_catalog(catalog)).items():
+            self.assertEqual(expected, old(name), name)
+        for language in ("ru", "en"):
+            counts = [(g.ROOT / (g.article_route(language, number).lstrip("/") + "index.html"))
+                      .read_text(encoding="utf8").count('<div class="item">')
+                      for number in range(1, 6)]
+            self.assertEqual(counts, [10, 10, 10, 10, 1])
 
 
 if __name__ == "__main__":

@@ -164,20 +164,24 @@ class ArticlePaginationTests(unittest.TestCase):
                         self.quiet_run(root, True)
                     self.assertEqual(before, {p: p.read_bytes() for p in before})
 
-    def test_first_three_listings_match_baseline_and_all_outputs_are_fresh(self):
+    def test_listing_shells_match_baseline_and_all_outputs_are_fresh(self):
         outputs = g.render()
         for name, data in outputs.items():
             self.assertEqual(data, (g.ROOT / name).read_bytes(), name)
-            if not g.is_article_listing("/" + name.removesuffix("index.html")) or "/page-4/" in "/" + name:
-                continue  # Article preservation tests cover changed discovery outputs and page four.
+            if not g.is_article_listing("/" + name.removesuffix("index.html")) or "/page-5/" in "/" + name:
+                continue  # New page five has no historical shell to compare.
             baseline = subprocess.check_output(
                 ['git', 'show', 'b457e388af8cd0936d2521fb43a9809c0c6786c4:' + name], cwd=g.ROOT)
-            self.assertEqual(data, baseline, name)
+            def shell(value):
+                value = re.sub(rb'<nav class="pagination"[^>]*>.*?</nav>', b"", value, flags=re.S)
+                value = re.sub(rb'<div class="item">.*?</div>', b"", value, flags=re.S)
+                return re.sub(rb"\s+", b" ", value)
+            self.assertEqual(shell(data), shell(baseline), name)
         pairs = g.article_pairs(g.load_json(g.ROOT / 'publication/catalog.json'))
-        self.assertEqual(len(pairs), 40)
+        self.assertEqual(len(pairs), 41)
         for lang in ('ru', 'en'):
             actual = []
-            for n in range(1, 5):
+            for n in range(1, 6):
                 data = outputs[g.article_route(lang, n).lstrip('/')+'index.html'].decode()
                 actual.extend(re.search(r'href="([^"]+)"', card)[1]
                               for card in re.findall(r'<div class="item">.*?</div>', data, re.S))

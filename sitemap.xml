@@ -507,6 +507,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/eureka/" />
   </url>
   <url>
+    <loc>https://schrodingercat.org/articles/no-problems/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/no-problems/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/no-problems/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/no-problems/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/no-problems/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/no-problems/" />
+  </url>
+  <url>
     <loc>https://schrodingercat.org/articles/preface-to-a-non-bestseller/</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/preface-to-a-non-bestseller/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/preface-to-a-non-bestseller/" />
@@ -685,5 +695,15 @@
     <loc>https://schrodingercat.org/en/articles/page-4/</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/page-4/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/page-4/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/page-5/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/page-5/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/page-5/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/page-5/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/page-5/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/page-5/" />
   </url>
 </urlset>

@@ -75,12 +75,12 @@ class PathOfProgressTests(unittest.TestCase):
             return subprocess.check_output(["git", "show", BASELINE + ":" + name], cwd=g.ROOT)
 
         def is_new(path):
-            return path.endswith(("/articles/" + SLUG + "/", "/articles/negative-time/"))
+            return path.endswith(("/articles/" + SLUG + "/", "/articles/negative-time/", "/articles/no-problems/", "/articles/page-5/"))
 
         previous = json.loads(old("publication/catalog.json"))
         current = g.load_json(g.ROOT / "publication/catalog.json")
         articles = [w["path"] for w in current["works"]["items"] if w["type"] == "article"]
-        self.assertEqual(len(articles), 40)
+        self.assertEqual(len(articles), 41)
         self.assertEqual(articles[-3:], ["/articles/in-another-dimension/", "/articles/" + SLUG + "/", "/articles/negative-time/"])
         for key, field in (("pages", "path"), ("alternate_groups", "ru")):
             current[key] = [p for p in current[key] if not is_new(p[field])]
@@ -90,7 +90,12 @@ class PathOfProgressTests(unittest.TestCase):
             if g.is_article_listing(p["path"]) or p["path"] in ("/works/", "/en/works/"):
                 continue
             name = p["path"].lstrip("/") + "index.html"
-            self.assertEqual((g.ROOT / name).read_text(encoding="utf8"), old(name).decode().replace("\r\n", "\n"), name)
+            expected = old(name).decode().replace("\r\n", "\n")
+            if p["path"].endswith("/piece-of-cybernetics/"):
+                expected = expected.replace('class="back" href="' + p["path"].split("articles/")[0] +
+                                            'articles/page-3/"', 'class="back" href="' +
+                                            p["path"].split("articles/")[0] + 'articles/page-4/"')
+            self.assertEqual((g.ROOT / name).read_text(encoding="utf8"), expected, name)
         for name, key in (("api/agent-feed/v1.json", "entries"), ("assets/search-index.json", "pages"), ("assets/search-index-en.json", "pages")):
             data = json.loads((g.ROOT / name).read_bytes())
             data[key] = [p for p in data[key] if not is_new(p.get("url", p.get("id", "")))]
@@ -106,16 +111,16 @@ class PathOfProgressTests(unittest.TestCase):
                 return (node.tag, sorted(node.attrib.items()), (node.text or "").strip(),
                         [semantics(child) for child in node])
             self.assertEqual(semantics(tree), semantics(ET.fromstring(old(name))), name)
-        for prefix in ("", "en/"):
-            counts = []
-            for number in range(1, 5):
-                name = prefix + "articles/" + (f"page-{number}/" if number > 1 else "") + "index.html"
-                source = (g.ROOT / name).read_text(encoding="utf8")
-                counts.append(source.count('<div class="item">'))
-                if number == 4:
-                    source = re.sub(r'\n        <div class="item">\n          <a href="/' + prefix + r'articles/(?:the-path-of-progress|negative-time)/">.*?</div>\n', "", source, flags=re.S)
-                self.assertEqual(source, old(name).decode(), name)
-            self.assertEqual(counts, [10, 10, 10, 10])
+        current_catalog = g.load_json(g.ROOT / "publication/catalog.json")
+        for name, expected in g.render_article_pages(g.ROOT, g.article_catalog(current_catalog)).items():
+            self.assertEqual((g.ROOT / name).read_bytes(), expected, name)
+        for name, expected in g.render_article_pages(g.ROOT, g.article_catalog(current)).items():
+            self.assertEqual(expected, old(name), name)
+        for language in ("ru", "en"):
+            counts = [(g.ROOT / (g.article_route(language, number).lstrip("/") + "index.html"))
+                      .read_text(encoding="utf8").count('<div class="item">')
+                      for number in range(1, 6)]
+            self.assertEqual(counts, [10, 10, 10, 10, 1])
 
 
 if __name__ == "__main__":
