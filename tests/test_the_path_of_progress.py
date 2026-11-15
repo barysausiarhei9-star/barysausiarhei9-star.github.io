@@ -75,13 +75,13 @@ class PathOfProgressTests(unittest.TestCase):
             return subprocess.check_output(["git", "show", BASELINE + ":" + name], cwd=g.ROOT)
 
         def is_new(path):
-            return path.endswith("/articles/" + SLUG + "/")
+            return path.endswith(("/articles/" + SLUG + "/", "/articles/negative-time/"))
 
         previous = json.loads(old("publication/catalog.json"))
         current = g.load_json(g.ROOT / "publication/catalog.json")
         articles = [w["path"] for w in current["works"]["items"] if w["type"] == "article"]
-        self.assertEqual(len(articles), 39)
-        self.assertEqual(articles[-2:], ["/articles/in-another-dimension/", "/articles/" + SLUG + "/"])
+        self.assertEqual(len(articles), 40)
+        self.assertEqual(articles[-3:], ["/articles/in-another-dimension/", "/articles/" + SLUG + "/", "/articles/negative-time/"])
         for key, field in (("pages", "path"), ("alternate_groups", "ru")):
             current[key] = [p for p in current[key] if not is_new(p[field])]
         current["works"]["items"] = [p for p in current["works"]["items"] if not is_new(p["path"])]
@@ -113,9 +113,9 @@ class PathOfProgressTests(unittest.TestCase):
                 source = (g.ROOT / name).read_text(encoding="utf8")
                 counts.append(source.count('<div class="item">'))
                 if number == 4:
-                    source = re.sub(r'\n        <div class="item">\n          <a href="/' + prefix + r'articles/the-path-of-progress/">.*?</div>\n', "", source, flags=re.S)
+                    source = re.sub(r'\n        <div class="item">\n          <a href="/' + prefix + r'articles/(?:the-path-of-progress|negative-time)/">.*?</div>\n', "", source, flags=re.S)
                 self.assertEqual(source, old(name).decode(), name)
-            self.assertEqual(counts, [10, 10, 10, 9])
+            self.assertEqual(counts, [10, 10, 10, 10])
 
 
 if __name__ == "__main__":

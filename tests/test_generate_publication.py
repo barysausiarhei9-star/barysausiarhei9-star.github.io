@@ -272,6 +272,7 @@ class PublicationTests(unittest.TestCase):
                           "/articles/epatazhka/", "/en/articles/epatazhka/",
                           "/articles/in-another-dimension/", "/en/articles/in-another-dimension/",
                           "/articles/the-path-of-progress/", "/en/articles/the-path-of-progress/",
+                          "/articles/negative-time/", "/en/articles/negative-time/",
                           "/articles/page-4/", "/en/articles/page-4/")}
         for name, data in outputs.items():
             if name in ("assets/search-index.json", "assets/search-index-en.json", *generator.WORK_OUTPUTS) or generator.is_article_listing("/" + name.removesuffix("index.html")):
@@ -298,13 +299,13 @@ class PublicationTests(unittest.TestCase):
                         parent.remove(child)
                 self.assertEqual(xml_semantics(ET.tostring(current)), xml_semantics(original))
         catalog, feed, groups = generator.prepare(self.root)
-        self.assertEqual(len(feed["entries"]), 160)
-        self.assertEqual(sum(p["rss"] for p in catalog["pages"]), 131)
+        self.assertEqual(len(feed["entries"]), 162)
+        self.assertEqual(sum(p["rss"] for p in catalog["pages"]), 133)
         novel = [p for p in catalog["pages"] if p["path"].startswith("/proza/pereborsh/")]
         self.assertEqual(len(novel), 29)
         self.assertEqual(sum(p["page_type"] == "content" and p["rss"] for p in novel), 28)
-        self.assertEqual(len(catalog["alternate_groups"]), 49)
-        self.assertEqual(len(groups), 98)
+        self.assertEqual(len(catalog["alternate_groups"]), 50)
+        self.assertEqual(len(groups), 100)
         self.assertEqual(sum(len(p.get("resources", [])) for p in catalog["pages"]), 6)
         self.assertEqual(sum(p["page_type"] == "placeholder" for p in catalog["pages"]), 0)
         for path in ("/proza/", "/en/book/", "/en/prose/", "/en/poetry/"):
@@ -318,10 +319,10 @@ class PublicationTests(unittest.TestCase):
         works = catalog["works"]
         self.assertEqual(catalog["format_version"], 1)
         self.assertEqual(works["version"], 1)
-        self.assertEqual(len(works["items"]), 65)
+        self.assertEqual(len(works["items"]), 66)
         self.assertEqual({kind: sum(w["type"] == kind for w in works["items"])
                           for kind in ("book", "novel", "poem", "article")},
-                         {"book": 1, "novel": 1, "poem": 24, "article": 39})
+                         {"book": 1, "novel": 1, "poem": 24, "article": 40})
         novel = next(w for w in works["items"] if w["type"] == "novel")
         self.assertEqual(novel["path"], "/proza/pereborsh/")
         self.assertEqual(novel["parts"], ["/proza/pereborsh/vstuplenie/"] +
@@ -332,7 +333,7 @@ class PublicationTests(unittest.TestCase):
                           "/en/articles/quiver-of-time-arrows/atlas/"])
         variants = {p for w in works["items"]
                     for p in groups.get(w["path"], {"own": w["path"]}).values()}
-        self.assertEqual(len(variants), 104)
+        self.assertEqual(len(variants), 106)
         self.assertNotIn("/en/book/", variants)
         self.assertNotIn("/en/prose/", variants)
         self.assertNotIn("/en/poetry/", variants)
@@ -561,7 +562,7 @@ class PublicationTests(unittest.TestCase):
         catalog, _, groups = generator.prepare(self.root)
         pages = {p["path"]: p for p in catalog["pages"]}
         articles = [w["path"] for w in catalog["works"]["items"] if w["type"] == "article"]
-        self.assertEqual(len(articles), 39)
+        self.assertEqual(len(articles), 40)
         pair = {"ru": "/articles/page-2/", "en": "/en/articles/page-2/"}
         self.assertEqual(groups[pair["ru"]], pair)
         for language, base in (("ru", "/articles/"), ("en", "/en/articles/")):
@@ -576,7 +577,7 @@ class PublicationTests(unittest.TestCase):
                 self.assertEqual((page["language"], page["page_type"], page["text_availability"], page["rss"]),
                                  (language, "section_index", "html_text", False))
                 items = re.findall(r'<div class="item">\s*<a href="([^"]+)"', source)
-                self.assertEqual(len(items), 10 if number < 4 else 9)
+                self.assertEqual(len(items), 10)
                 listed.extend(items)
                 self.assertEqual([a["href"] for a in html.matching("link") if a.get("rel") == "canonical"],
                                  [generator.SITE + route])
@@ -609,6 +610,7 @@ class PublicationTests(unittest.TestCase):
                     self.assertNotIn(generator.SITE + route, urls)
             self.assertEqual(set(listed), expected)
             self.assertEqual(len(listed), len(set(listed)))
+            self.assertEqual(listed.pop(), base + "negative-time/")
             self.assertEqual(listed.pop(), base + "the-path-of-progress/")
             self.assertEqual(listed.pop(), base + "in-another-dimension/")
             self.assertEqual(listed.pop(), base + "epatazhka/")
@@ -709,10 +711,10 @@ class PublicationTests(unittest.TestCase):
                               if a.get("rel") == "canonical"], [generator.SITE + route])
             rows = [a["data-work-path"] for a in html.matching("div") if "data-work-path" in a]
             self.assertEqual(rows, expected_order)
-            self.assertEqual(len(set(rows)), 65)
+            self.assertEqual(len(set(rows)), 66)
             self.assertEqual(len(html.matching("h1")), 1)
             self.assertEqual(len(html.matching("h2")), 4)
-            self.assertEqual(len(html.matching("h3")), 65)
+            self.assertEqual(len(html.matching("h3")), 66)
             self.assertEqual(html.matching("script"), ANALYTICS_SCRIPT)
             self.assertEqual(html.matching("html"), [{"lang": language}])
             primary = [attrs for i, (tag, attrs) in enumerate(html.tags)
@@ -731,7 +733,7 @@ class PublicationTests(unittest.TestCase):
                 self.assertEqual((a["lang"], a["hreflang"]),
                                  (pages[a["href"]]["language"], pages[a["href"]]["language"]))
             translations = [a for a in html.matching("a") if "data-translation" in a]
-            self.assertEqual(len(translations), 39)
+            self.assertEqual(len(translations), 40)
             self.assertTrue(all("lang" not in a for a in translations))
             self.assertTrue(all(a["class"] == "work-language-link" for a in translations))
             for work_path, a in zip([p for p in expected_order if p in groups], translations):
@@ -742,10 +744,10 @@ class PublicationTests(unittest.TestCase):
             self.assertNotIn('class="footer-note"', source)
             if language == "en":
                 self.assertEqual(source.count("<span>Russian only</span>"), 26)
-                self.assertEqual(source.count("<span>English</span>"), 39)
+                self.assertEqual(source.count("<span>English</span>"), 40)
                 self.assertIn('“Russian only” marks untranslated originals.', source)
             else:
-                self.assertEqual(source.count("<span>На русском</span>"), 65)
+                self.assertEqual(source.count("<span>На русском</span>"), 66)
                 self.assertIn("Русские оригиналы и доступные переводы", source)
 
     def test_catalog_display_titles_strip_only_terminal_site_branding(self):
@@ -942,7 +944,7 @@ class PublicationTests(unittest.TestCase):
             self.assertEqual(generator.run(self.root, write=True), 0)
             self.assertEqual({call.args[1] for call in renderer.call_args_list},
                              {p["path"] for p in catalog["pages"]})
-            self.assertEqual(replacer.call_count, 166)
+            self.assertEqual(replacer.call_count, 168)
         self.assertEqual(snapshot(self.root), before)
         outputs = generator.render(self.root)
         self.assertEqual(set(outputs), (set(generator.OUTPUTS + generator.WORK_OUTPUTS) |
@@ -1393,7 +1395,7 @@ class PublicationTests(unittest.TestCase):
         catalog["works"]["items"].append({"path": roots["ru"], "type": "novel", "parts": [parts["ru"]]})
         self.save_catalog(catalog)
         prepared, _, groups = generator.prepare(self.root)
-        self.assertEqual(len(prepared["works"]["items"]), 66)
+        self.assertEqual(len(prepared["works"]["items"]), 67)
         self.assertEqual(groups[parts["ru"]], parts)
         for missing, message in ((roots, "part language has no parent"),
                                  (parts, "part has no matching parent-language")):

@@ -43,8 +43,8 @@ class EpatazhkaTests(unittest.TestCase):
     def test_exact_text_metadata_and_discovery(self):
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         articles = [w["path"] for w in catalog["works"]["items"] if w["type"] == "article"]
-        self.assertEqual(articles[-4:-2], ["/articles/the-creators-lot/", "/articles/epatazhka/"])
-        self.assertEqual(len(articles), 39)
+        self.assertEqual(articles[-5:-3], ["/articles/the-creators-lot/", "/articles/epatazhka/"])
+        self.assertEqual(len(articles), 40)
         for language, prefix, title in (("ru", "", "ЭПАТАЖКА"), ("en", "en/", "Épatage")):
             route = "/" + prefix + "articles/epatazhka/"
             source = (g.ROOT / route.lstrip("/") / "index.html").read_text(encoding="utf-8")
@@ -82,7 +82,7 @@ class EpatazhkaTests(unittest.TestCase):
             return subprocess.check_output(["git", "show", baseline + ":" + name], cwd=g.ROOT)
 
         def is_new(path):
-            return path.endswith(("/articles/epatazhka/", "/articles/in-another-dimension/", "/articles/the-path-of-progress/"))
+            return path.endswith(("/articles/epatazhka/", "/articles/in-another-dimension/", "/articles/the-path-of-progress/", "/articles/negative-time/"))
 
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         previous = json.loads(old("publication/catalog.json"))
@@ -102,7 +102,7 @@ class EpatazhkaTests(unittest.TestCase):
             name = prefix + "articles/page-4/index.html"
             source = (g.ROOT / name).read_text(encoding="utf-8")
             source = re.sub(r'\n        <div class="item">\n          <a href="/' + prefix +
-                            r'articles/(?:epatazhka|in-another-dimension|the-path-of-progress)/">.*?</div>\n', "", source, flags=re.S)
+                            r'articles/(?:epatazhka|in-another-dimension|the-path-of-progress|negative-time)/">.*?</div>\n', "", source, flags=re.S)
             self.assertEqual(source, old(name).decode(), name)
 
 

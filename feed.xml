@@ -738,6 +738,12 @@
       <dc:language>ru</dc:language>
     </item>
     <item>
+      <title>Отрицательное время — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/negative-time/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/negative-time/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
       <title>A TALE OF LOST TIME — Schrödinger’s Cat</title>
       <link>https://schrodingercat.org/en/articles/tale-of-lost-time/</link>
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/tale-of-lost-time/</guid>
@@ -789,6 +795,12 @@
       <title>The Path of Progress — Schrödinger’s Cat</title>
       <link>https://schrodingercat.org/en/articles/the-path-of-progress/</link>
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/the-path-of-progress/</guid>
+      <dc:language>en</dc:language>
+    </item>
+    <item>
+      <title>Negative Time — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/negative-time/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/negative-time/</guid>
       <dc:language>en</dc:language>
     </item>
   </channel>

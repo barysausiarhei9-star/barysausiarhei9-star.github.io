@@ -201,6 +201,10 @@
       "en": "/en/articles/the-path-of-progress/"
     },
     {
+      "ru": "/articles/negative-time/",
+      "en": "/en/articles/negative-time/"
+    },
+    {
       "ru": "/articles/page-4/",
       "en": "/en/articles/page-4/"
     }
@@ -1520,6 +1524,15 @@
       "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/the-path-of-progress/\">\n            Путь прогресса\n          </a>\n        </div>"
     },
     {
+      "path": "/articles/negative-time/",
+      "title": "Отрицательное время — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/negative-time/\">\n            Отрицательное время\n          </a>\n        </div>"
+    },
+    {
       "path": "/articles/page-4/",
       "title": "Статьи — Страница 4 — Кошка Шредингера",
       "language": "ru",
@@ -1607,6 +1620,15 @@
       "text_availability": "html_text",
       "rss": true,
       "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/the-path-of-progress/\">\n            The Path of Progress\n          </a>\n        </div>"
+    },
+    {
+      "path": "/en/articles/negative-time/",
+      "title": "Negative Time — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/negative-time/\">\n            Negative Time\n          </a>\n        </div>"
     },
     {
       "path": "/en/articles/page-4/",
@@ -1908,6 +1930,10 @@
       },
       {
         "path": "/articles/the-path-of-progress/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/negative-time/",
         "type": "article"
       }
     ],

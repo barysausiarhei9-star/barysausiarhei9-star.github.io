@@ -1396,6 +1396,15 @@
       "text_availability": "html_text"
     },
     {
+      "id": "https://schrodingercat.org/articles/negative-time/",
+      "canonical_url": "https://schrodingercat.org/articles/negative-time/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "Отрицательное время — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
       "id": "https://schrodingercat.org/articles/page-4/",
       "canonical_url": "https://schrodingercat.org/articles/page-4/",
       "language": "ru",
@@ -1482,6 +1491,15 @@
       "language": "en",
       "content_type": "text/html",
       "title": "The Path of Progress — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/negative-time/",
+      "canonical_url": "https://schrodingercat.org/en/articles/negative-time/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "Negative Time — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
     },

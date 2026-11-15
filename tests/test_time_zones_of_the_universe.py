@@ -71,7 +71,7 @@ class TimeZonesTests(unittest.TestCase):
             return subprocess.check_output(["git", "show", baseline + ":" + name], cwd=g.ROOT)
 
         def is_new(path):
-            return path.endswith(("/articles/time-zones-of-the-universe/", "/articles/undoubtedly/", "/articles/the-creators-lot/", "/articles/epatazhka/", "/articles/in-another-dimension/", "/articles/the-path-of-progress/"))
+            return path.endswith(("/articles/time-zones-of-the-universe/", "/articles/undoubtedly/", "/articles/the-creators-lot/", "/articles/epatazhka/", "/articles/in-another-dimension/", "/articles/the-path-of-progress/", "/articles/negative-time/"))
 
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         previous = json.loads(old("publication/catalog.json"))
@@ -91,7 +91,7 @@ class TimeZonesTests(unittest.TestCase):
             name = prefix + "articles/page-4/index.html"
             source = (g.ROOT / name).read_text(encoding="utf-8")
             source = re.sub(r'\n        <div class="item">\n          <a href="/' + prefix +
-                            r'articles/(?:time-zones-of-the-universe|undoubtedly|the-creators-lot|epatazhka|in-another-dimension|the-path-of-progress)/">.*?</div>\n', "", source, flags=re.S)
+                            r'articles/(?:time-zones-of-the-universe|undoubtedly|the-creators-lot|epatazhka|in-another-dimension|the-path-of-progress|negative-time)/">.*?</div>\n', "", source, flags=re.S)
             self.assertEqual(source, old(name).decode(), name)
 
 
