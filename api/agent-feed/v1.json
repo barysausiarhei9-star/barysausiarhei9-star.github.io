@@ -1531,6 +1531,24 @@
       "text_availability": "html_text"
     },
     {
+      "id": "https://schrodingercat.org/articles/idee-fixe-on-the-multiverse/",
+      "canonical_url": "https://schrodingercat.org/articles/idee-fixe-on-the-multiverse/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "ИДЕФРИКС О МУЛЬТИВЕРСЕ — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/idee-fixe-on-the-multiverse/",
+      "canonical_url": "https://schrodingercat.org/en/articles/idee-fixe-on-the-multiverse/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "IDÉE FIXE ON THE MULTIVERSE — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
       "id": "https://schrodingercat.org/articles/page-5/",
       "canonical_url": "https://schrodingercat.org/articles/page-5/",
       "language": "ru",

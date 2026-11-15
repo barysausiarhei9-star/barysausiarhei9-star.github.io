@@ -211,6 +211,10 @@
     {
       "ru": "/articles/page-4/",
       "en": "/en/articles/page-4/"
+    },
+    {
+      "ru": "/articles/idee-fixe-on-the-multiverse/",
+      "en": "/en/articles/idee-fixe-on-the-multiverse/"
     }
   ],
   "pages": [
@@ -1659,6 +1663,24 @@
       "page_type": "section_index",
       "text_availability": "html_text",
       "rss": false
+    },
+    {
+      "path": "/articles/idee-fixe-on-the-multiverse/",
+      "title": "ИДЕФРИКС О МУЛЬТИВЕРСЕ — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/idee-fixe-on-the-multiverse/\">\n            Идефрикс о мультиверсе\n          </a>\n        </div>"
+    },
+    {
+      "path": "/en/articles/idee-fixe-on-the-multiverse/",
+      "title": "IDÉE FIXE ON THE MULTIVERSE — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/idee-fixe-on-the-multiverse/\">\n            Idée Fixe on the Multiverse\n          </a>\n        </div>"
     }
   ],
   "works": {
@@ -1960,6 +1982,10 @@
       },
       {
         "path": "/articles/no-problems/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/idee-fixe-on-the-multiverse/",
         "type": "article"
       }
     ],

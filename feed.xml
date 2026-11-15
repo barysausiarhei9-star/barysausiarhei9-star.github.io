@@ -815,5 +815,17 @@
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/no-problems/</guid>
       <dc:language>en</dc:language>
     </item>
+    <item>
+      <title>ИДЕФРИКС О МУЛЬТИВЕРСЕ — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/idee-fixe-on-the-multiverse/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/idee-fixe-on-the-multiverse/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>IDÉE FIXE ON THE MULTIVERSE — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/idee-fixe-on-the-multiverse/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/idee-fixe-on-the-multiverse/</guid>
+      <dc:language>en</dc:language>
+    </item>
   </channel>
 </rss>

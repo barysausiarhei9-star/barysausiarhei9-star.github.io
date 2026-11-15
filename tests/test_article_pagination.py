@@ -178,7 +178,7 @@ class ArticlePaginationTests(unittest.TestCase):
                 return re.sub(rb"\s+", b" ", value)
             self.assertEqual(shell(data), shell(baseline), name)
         pairs = g.article_pairs(g.load_json(g.ROOT / 'publication/catalog.json'))
-        self.assertEqual(len(pairs), 41)
+        self.assertEqual(len(pairs), 42)
         for lang in ('ru', 'en'):
             actual = []
             for n in range(1, 6):
