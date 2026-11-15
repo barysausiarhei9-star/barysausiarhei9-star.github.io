@@ -81,7 +81,7 @@ class PathOfProgressTests(unittest.TestCase):
         current = g.load_json(g.ROOT / "publication/catalog.json")
         articles = [w["path"] for w in current["works"]["items"] if w["type"] == "article"]
         self.assertEqual(len(articles), 41)
-        self.assertEqual(articles[-3:], ["/articles/in-another-dimension/", "/articles/" + SLUG + "/", "/articles/negative-time/"])
+        self.assertEqual(articles[-4:-1], ["/articles/in-another-dimension/", "/articles/" + SLUG + "/", "/articles/negative-time/"])
         for key, field in (("pages", "path"), ("alternate_groups", "ru")):
             current[key] = [p for p in current[key] if not is_new(p[field])]
         current["works"]["items"] = [p for p in current["works"]["items"] if not is_new(p["path"])]
@@ -91,10 +91,6 @@ class PathOfProgressTests(unittest.TestCase):
                 continue
             name = p["path"].lstrip("/") + "index.html"
             expected = old(name).decode().replace("\r\n", "\n")
-            if p["path"].endswith("/piece-of-cybernetics/"):
-                expected = expected.replace('class="back" href="' + p["path"].split("articles/")[0] +
-                                            'articles/page-3/"', 'class="back" href="' +
-                                            p["path"].split("articles/")[0] + 'articles/page-4/"')
             self.assertEqual((g.ROOT / name).read_text(encoding="utf8"), expected, name)
         for name, key in (("api/agent-feed/v1.json", "entries"), ("assets/search-index.json", "pages"), ("assets/search-index-en.json", "pages")):
             data = json.loads((g.ROOT / name).read_bytes())

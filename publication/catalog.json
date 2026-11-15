@@ -137,10 +137,6 @@
       "en": "/en/articles/eureka/"
     },
     {
-      "ru": "/articles/no-problems/",
-      "en": "/en/articles/no-problems/"
-    },
-    {
       "ru": "/articles/preface-to-a-non-bestseller/",
       "en": "/en/articles/preface-to-a-non-bestseller/"
     },
@@ -207,6 +203,10 @@
     {
       "ru": "/articles/negative-time/",
       "en": "/en/articles/negative-time/"
+    },
+    {
+      "ru": "/articles/no-problems/",
+      "en": "/en/articles/no-problems/"
     },
     {
       "ru": "/articles/page-4/",
@@ -1321,24 +1321,6 @@
       "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/eureka/\">\n            EUREKA\n          </a>\n        </div>"
     },
     {
-      "path": "/articles/no-problems/",
-      "title": "БЕЗ ПРОБЛЕМ! — Кошка Шредингера",
-      "language": "ru",
-      "page_type": "content",
-      "text_availability": "html_text",
-      "rss": true,
-      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/no-problems/\">\n            БЕЗ ПРОБЛЕМ!\n          </a>\n        </div>"
-    },
-    {
-      "path": "/en/articles/no-problems/",
-      "title": "NO PROBLEMS! — Schrödinger’s Cat",
-      "language": "en",
-      "page_type": "content",
-      "text_availability": "html_text",
-      "rss": true,
-      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/no-problems/\">\n            NO PROBLEMS!\n          </a>\n        </div>"
-    },
-    {
       "path": "/articles/preface-to-a-non-bestseller/",
       "title": "Предисловие к бесцеллеру — Кошка Шредингера",
       "language": "ru",
@@ -1653,6 +1635,24 @@
       "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/negative-time/\">\n            Negative Time\n          </a>\n        </div>"
     },
     {
+      "path": "/articles/no-problems/",
+      "title": "БЕЗ ПРОБЛЕМ! — Кошка Шредингера",
+      "language": "ru",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/articles/no-problems/\">\n            БЕЗ ПРОБЛЕМ!\n          </a>\n        </div>"
+    },
+    {
+      "path": "/en/articles/no-problems/",
+      "title": "NO PROBLEMS! — Schrödinger’s Cat",
+      "language": "en",
+      "page_type": "content",
+      "text_availability": "html_text",
+      "rss": true,
+      "listing_card": "        <div class=\"item\">\n          <a href=\"/en/articles/no-problems/\">\n            NO PROBLEMS!\n          </a>\n        </div>"
+    },
+    {
       "path": "/en/articles/page-4/",
       "title": "Articles — Page 4 — Schrödinger’s Cat",
       "language": "en",
@@ -1891,10 +1891,6 @@
         "type": "article"
       },
       {
-        "path": "/articles/no-problems/",
-        "type": "article"
-      },
-      {
         "path": "/articles/preface-to-a-non-bestseller/",
         "type": "article"
       },
@@ -1960,6 +1956,10 @@
       },
       {
         "path": "/articles/negative-time/",
+        "type": "article"
+      },
+      {
+        "path": "/articles/no-problems/",
         "type": "article"
       }
     ],

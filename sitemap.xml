@@ -507,16 +507,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/eureka/" />
   </url>
   <url>
-    <loc>https://schrodingercat.org/articles/no-problems/</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/no-problems/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/no-problems/" />
-  </url>
-  <url>
-    <loc>https://schrodingercat.org/en/articles/no-problems/</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/no-problems/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/no-problems/" />
-  </url>
-  <url>
     <loc>https://schrodingercat.org/articles/preface-to-a-non-bestseller/</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/preface-to-a-non-bestseller/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/preface-to-a-non-bestseller/" />
@@ -690,6 +680,16 @@
     <loc>https://schrodingercat.org/en/articles/negative-time/</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/negative-time/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/negative-time/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/articles/no-problems/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/no-problems/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/no-problems/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/no-problems/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/no-problems/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/no-problems/" />
   </url>
   <url>
     <loc>https://schrodingercat.org/en/articles/page-4/</loc>

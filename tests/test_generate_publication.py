@@ -394,7 +394,7 @@ class PublicationTests(unittest.TestCase):
             self.assertEqual(hashlib.sha256("\n\n".join(blocks).encode()).hexdigest(), digest)
             self.assertEqual(body.count("<strong>"), 1)
             self.assertIn('href="https://samlib.ru/b/berezina_e_l/tbyfzcenm.shtml"', source)
-            self.assertIn('<a class="back" href="/' + prefix + 'articles/page-3/"', source)
+            self.assertIn('<a class="back" href="/' + prefix + 'articles/page-5/"', source)
 
     def test_preface_preserves_supplied_text_and_source(self):
         for language, count, digest in (
@@ -510,7 +510,7 @@ class PublicationTests(unittest.TestCase):
             self.assertIn("Р.Эшби" if language == "ru" else "R. Ashby", text)
             self.assertIn("    Надо помнить" if language == "ru" else "    We must remember", text)
             self.assertIn('href="https://samlib.ru/b/berezina_e_l/rbthytnbr.shtml"', source)
-            self.assertIn('<a class="back" href="/' + prefix + 'articles/page-4/"', source)
+            self.assertIn('<a class="back" href="/' + prefix + 'articles/page-3/"', source)
             html = generator.PageHTML(source)
             self.assertEqual(html.matching("script")[-1], ANALYTICS_SCRIPT[0])
             self.assertEqual(source.count(generator.BEACON_URL), 1)
@@ -628,6 +628,7 @@ class PublicationTests(unittest.TestCase):
                     self.assertNotIn(generator.SITE + route, urls)
             self.assertEqual(set(listed), expected)
             self.assertEqual(len(listed), len(set(listed)))
+            self.assertEqual(listed.pop(), base + "no-problems/")
             self.assertEqual(listed.pop(), base + "negative-time/")
             self.assertEqual(listed.pop(), base + "the-path-of-progress/")
             self.assertEqual(listed.pop(), base + "in-another-dimension/")
@@ -645,7 +646,6 @@ class PublicationTests(unittest.TestCase):
             self.assertEqual(listed.pop(), base + "dissection-of-the-theory-of-relativity/")
             self.assertEqual(listed.pop(), base + "a-hint/")
             self.assertEqual(listed.pop(), base + "preface-to-a-non-bestseller/")
-            self.assertEqual(listed.pop(), base + "no-problems/")
             self.assertEqual(listed.pop(), base + "eureka/")
             self.assertEqual(listed.pop(), base + "twins-without-a-paradox/")
             self.assertEqual(listed.pop(), base + "epilogue/")

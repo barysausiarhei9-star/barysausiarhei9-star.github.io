@@ -1189,24 +1189,6 @@
       "text_availability": "html_text"
     },
     {
-      "id": "https://schrodingercat.org/articles/no-problems/",
-      "canonical_url": "https://schrodingercat.org/articles/no-problems/",
-      "language": "ru",
-      "content_type": "text/html",
-      "title": "БЕЗ ПРОБЛЕМ! — Кошка Шредингера",
-      "page_type": "content",
-      "text_availability": "html_text"
-    },
-    {
-      "id": "https://schrodingercat.org/en/articles/no-problems/",
-      "canonical_url": "https://schrodingercat.org/en/articles/no-problems/",
-      "language": "en",
-      "content_type": "text/html",
-      "title": "NO PROBLEMS! — Schrödinger’s Cat",
-      "page_type": "content",
-      "text_availability": "html_text"
-    },
-    {
       "id": "https://schrodingercat.org/articles/preface-to-a-non-bestseller/",
       "canonical_url": "https://schrodingercat.org/articles/preface-to-a-non-bestseller/",
       "language": "ru",
@@ -1518,6 +1500,24 @@
       "language": "en",
       "content_type": "text/html",
       "title": "Negative Time — Schrödinger’s Cat",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/articles/no-problems/",
+      "canonical_url": "https://schrodingercat.org/articles/no-problems/",
+      "language": "ru",
+      "content_type": "text/html",
+      "title": "БЕЗ ПРОБЛЕМ! — Кошка Шредингера",
+      "page_type": "content",
+      "text_availability": "html_text"
+    },
+    {
+      "id": "https://schrodingercat.org/en/articles/no-problems/",
+      "canonical_url": "https://schrodingercat.org/en/articles/no-problems/",
+      "language": "en",
+      "content_type": "text/html",
+      "title": "NO PROBLEMS! — Schrödinger’s Cat",
       "page_type": "content",
       "text_availability": "html_text"
     },

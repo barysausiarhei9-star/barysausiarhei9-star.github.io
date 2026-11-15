@@ -31,7 +31,7 @@ class CreatorsLotTests(unittest.TestCase):
         }
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         articles = [w["path"] for w in catalog["works"]["items"] if w["type"] == "article"]
-        self.assertEqual(articles[-6:-4], ["/articles/undoubtedly/", "/articles/the-creators-lot/"])
+        self.assertEqual(articles[-7:-5], ["/articles/undoubtedly/", "/articles/the-creators-lot/"])
         for language, prefix in (("ru", ""), ("en", "en/")):
             route = "/" + prefix + "articles/the-creators-lot/"
             source = (g.ROOT / route.lstrip("/") / "index.html").read_text(encoding="utf-8")

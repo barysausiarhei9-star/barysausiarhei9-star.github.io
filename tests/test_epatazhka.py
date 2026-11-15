@@ -43,7 +43,7 @@ class EpatazhkaTests(unittest.TestCase):
     def test_exact_text_metadata_and_discovery(self):
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         articles = [w["path"] for w in catalog["works"]["items"] if w["type"] == "article"]
-        self.assertEqual(articles[-5:-3], ["/articles/the-creators-lot/", "/articles/epatazhka/"])
+        self.assertEqual(articles[-6:-4], ["/articles/the-creators-lot/", "/articles/epatazhka/"])
         self.assertEqual(len(articles), 41)
         for language, prefix, title in (("ru", "", "ЭПАТАЖКА"), ("en", "en/", "Épatage")):
             route = "/" + prefix + "articles/epatazhka/"
@@ -94,10 +94,6 @@ class EpatazhkaTests(unittest.TestCase):
                     if not g.is_article_listing(p["path"]) and p["path"] not in ("/works/", "/en/works/")]
         for name in authored:
             expected = old(name).decode().replace("\r\n", "\n")
-            if name.endswith("articles/piece-of-cybernetics/index.html"):
-                prefix = "/en/" if name.startswith("en/") else "/"
-                expected = expected.replace('class="back" href="' + prefix + 'articles/page-3/"',
-                                            'class="back" href="' + prefix + 'articles/page-4/"')
             self.assertEqual((g.ROOT / name).read_text(encoding="utf8"), expected, name)
         for name, key in (("api/agent-feed/v1.json", "entries"), ("assets/search-index.json", "pages"),
                           ("assets/search-index-en.json", "pages")):
