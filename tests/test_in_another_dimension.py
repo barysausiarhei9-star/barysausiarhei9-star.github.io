@@ -115,8 +115,9 @@ class InAnotherDimensionTests(unittest.TestCase):
     def test_exact_text_metadata_and_discovery(self):
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         articles = [w["path"] for w in catalog["works"]["items"] if w["type"] == "article"]
-        self.assertEqual(articles[-5:-3], ["/articles/epatazhka/", "/articles/in-another-dimension/"])
-        self.assertEqual(len(articles), 41)
+        start = articles.index("/articles/epatazhka/")
+        self.assertEqual(articles[start:start+2], ["/articles/epatazhka/", "/articles/in-another-dimension/"])
+        self.assertEqual(len(articles), 44)
         for language, prefix, title in (("ru", "", "В ДРУГОМ ИЗМЕРЕНИИ"), ("en", "en/", "In Another Dimension")):
             route = "/" + prefix + "articles/in-another-dimension/"
             source = (g.ROOT / route.lstrip("/") / "index.html").read_text(encoding="utf-8")
@@ -155,7 +156,7 @@ class InAnotherDimensionTests(unittest.TestCase):
             return subprocess.check_output(["git", "show", baseline + ":" + name], cwd=g.ROOT)
 
         def is_new(path):
-            return path.endswith(("/articles/in-another-dimension/", "/articles/the-path-of-progress/", "/articles/negative-time/", "/articles/no-problems/", "/articles/page-5/"))
+            return path.endswith(("/articles/in-another-dimension/", "/articles/the-path-of-progress/", "/articles/negative-time/", "/articles/no-problems/", "/articles/page-5/", "/articles/idee-fixe-on-the-multiverse/", "/articles/on-all-kinds-of-mysteries/", "/articles/the-music-of-time/"))
 
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         previous = json.loads(old("publication/catalog.json"))
@@ -182,7 +183,7 @@ class InAnotherDimensionTests(unittest.TestCase):
             counts = [(g.ROOT / (g.article_route(language, number).lstrip("/") + "index.html"))
                       .read_text(encoding="utf8").count('<div class="item">')
                       for number in range(1, 6)]
-            self.assertEqual(counts, [10, 10, 10, 10, 1])
+            self.assertEqual(counts, [10, 10, 10, 10, 4])
 
 
 if __name__ == "__main__":

@@ -717,6 +717,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/on-all-kinds-of-mysteries/" />
   </url>
   <url>
+    <loc>https://schrodingercat.org/articles/the-music-of-time/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/the-music-of-time/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/the-music-of-time/" />
+  </url>
+  <url>
+    <loc>https://schrodingercat.org/en/articles/the-music-of-time/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/the-music-of-time/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/the-music-of-time/" />
+  </url>
+  <url>
     <loc>https://schrodingercat.org/articles/page-5/</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://schrodingercat.org/articles/page-5/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://schrodingercat.org/en/articles/page-5/" />

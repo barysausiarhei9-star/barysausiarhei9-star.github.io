@@ -37,10 +37,11 @@ class IdeeFixeTests(unittest.TestCase):
         previous = json.loads(subprocess.check_output(
             ["git", "show", baseline + ":publication/catalog.json"], cwd=g.ROOT))
         current = g.load_json(g.ROOT / "publication/catalog.json")
-        suffix = "/articles/idee-fixe-on-the-multiverse/"
+        suffixes = ("/articles/idee-fixe-on-the-multiverse/",
+                    "/articles/on-all-kinds-of-mysteries/", "/articles/the-music-of-time/")
         for key, field in (("pages", "path"), ("alternate_groups", "ru")):
-            current[key] = [p for p in current[key] if not p[field].endswith(suffix)]
-        current["works"]["items"] = [w for w in current["works"]["items"] if not w["path"].endswith(suffix)]
+            current[key] = [p for p in current[key] if not p[field].endswith(suffixes)]
+        current["works"]["items"] = [w for w in current["works"]["items"] if not w["path"].endswith(suffixes)]
         self.assertEqual(current, previous)
         authored = [p["path"].lstrip("/") + "index.html" for p in previous["pages"]
                     if not g.is_article_listing(p["path"]) and p["path"] not in ("/works/", "/en/works/")]

@@ -31,7 +31,8 @@ class CreatorsLotTests(unittest.TestCase):
         }
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         articles = [w["path"] for w in catalog["works"]["items"] if w["type"] == "article"]
-        self.assertEqual(articles[-7:-5], ["/articles/undoubtedly/", "/articles/the-creators-lot/"])
+        start = articles.index("/articles/undoubtedly/")
+        self.assertEqual(articles[start:start+2], ["/articles/undoubtedly/", "/articles/the-creators-lot/"])
         for language, prefix in (("ru", ""), ("en", "en/")):
             route = "/" + prefix + "articles/the-creators-lot/"
             source = (g.ROOT / route.lstrip("/") / "index.html").read_text(encoding="utf-8")
@@ -84,7 +85,7 @@ class CreatorsLotTests(unittest.TestCase):
             return subprocess.check_output(["git", "show", baseline + ":" + name], cwd=g.ROOT)
 
         def is_new(path):
-            return path.endswith(("/articles/the-creators-lot/", "/articles/epatazhka/", "/articles/in-another-dimension/", "/articles/the-path-of-progress/", "/articles/negative-time/"))
+            return path.endswith(("/articles/the-creators-lot/", "/articles/epatazhka/", "/articles/in-another-dimension/", "/articles/the-path-of-progress/", "/articles/negative-time/", "/articles/no-problems/", "/articles/idee-fixe-on-the-multiverse/", "/articles/on-all-kinds-of-mysteries/", "/articles/the-music-of-time/", "/articles/page-5/"))
 
         catalog = g.load_json(g.ROOT / "publication/catalog.json")
         previous = json.loads(old("publication/catalog.json"))
@@ -100,12 +101,12 @@ class CreatorsLotTests(unittest.TestCase):
             current = json.loads((g.ROOT / name).read_bytes())
             current[key] = [p for p in current[key] if not is_new(p.get("url", p.get("id", "")))]
             self.assertEqual(current, json.loads(old(name)), name)
-        for prefix in ("", "en/"):
-            name = prefix + "articles/page-4/index.html"
-            source = (g.ROOT / name).read_text(encoding="utf-8")
-            source = re.sub(r'\n        <div class="item">\n          <a href="/' + prefix +
-                            r'articles/(?:the-creators-lot|epatazhka|in-another-dimension|the-path-of-progress|negative-time)/">.*?</div>\n', "", source, flags=re.S)
-            self.assertEqual(source, old(name).decode(), name)
+        # Validate today's listings, then reconstruct the historical listing bytes.
+        for name, expected in g.render_article_pages(g.ROOT, g.article_catalog(
+                g.load_json(g.ROOT / "publication/catalog.json"))).items():
+            self.assertEqual((g.ROOT / name).read_bytes(), expected, name)
+        for name, expected in g.render_article_pages(g.ROOT, g.article_catalog(catalog)).items():
+            self.assertEqual(expected, old(name), name)
 
 
 if __name__ == "__main__":

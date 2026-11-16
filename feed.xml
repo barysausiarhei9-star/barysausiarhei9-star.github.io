@@ -839,5 +839,17 @@
       <guid isPermaLink="true">https://schrodingercat.org/en/articles/on-all-kinds-of-mysteries/</guid>
       <dc:language>en</dc:language>
     </item>
+    <item>
+      <title>МУЗЫКА ВРЕМЕНИ: КРЕЩЕНДО И ДИМИНУЭНДО — Кошка Шредингера</title>
+      <link>https://schrodingercat.org/articles/the-music-of-time/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/articles/the-music-of-time/</guid>
+      <dc:language>ru</dc:language>
+    </item>
+    <item>
+      <title>THE MUSIC OF TIME: CRESCENDO AND DIMINUENDO — Schrödinger’s Cat</title>
+      <link>https://schrodingercat.org/en/articles/the-music-of-time/</link>
+      <guid isPermaLink="true">https://schrodingercat.org/en/articles/the-music-of-time/</guid>
+      <dc:language>en</dc:language>
+    </item>
   </channel>
 </rss>

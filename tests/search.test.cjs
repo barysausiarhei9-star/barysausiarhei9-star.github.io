@@ -30,7 +30,7 @@ test("The Albino Bull is searchable by title and each paragraph in both language
 });
 
 test("English titles and available bodies are searchable with language isolation", () => {
-  assert.equal(english.length, 46);
+  assert.equal(english.length, 47);
   assert.equal(search(english, "THE FORMULA OF GOD")[0].url, url("/en/articles/the-formula-of-god/"));
   assert.ok(search(english, '"information possessing a binary code"').some(p =>
     p.url === url("/en/articles/the-formula-of-god/")));

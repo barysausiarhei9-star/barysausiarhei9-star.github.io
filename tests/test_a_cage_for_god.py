@@ -14,8 +14,8 @@ class CageForGodTests(unittest.TestCase):
         def old(name):
             return subprocess.check_output(['git', 'show', baseline + ':' + name], cwd=g.ROOT)
         def is_new(path):
-            # Articles #15–#21 are absent from this baseline.
-            return path.endswith(('/articles/a-cage-for-god/', '/articles/the-albino-bull/', '/articles/time-zones-of-the-universe/', '/articles/undoubtedly/', '/articles/the-creators-lot/', '/articles/epatazhka/', '/articles/in-another-dimension/', '/articles/the-path-of-progress/', '/articles/negative-time/'))
+            # Articles #15 through #27 and page 5 postdate this baseline.
+            return path.endswith(('/articles/a-cage-for-god/', '/articles/the-albino-bull/', '/articles/time-zones-of-the-universe/', '/articles/undoubtedly/', '/articles/the-creators-lot/', '/articles/epatazhka/', '/articles/in-another-dimension/', '/articles/the-path-of-progress/', '/articles/negative-time/', '/articles/no-problems/', '/articles/idee-fixe-on-the-multiverse/', '/articles/on-all-kinds-of-mysteries/', '/articles/the-music-of-time/', '/articles/page-5/'))
         catalog = g.load_json(g.ROOT / 'publication/catalog.json')
         previous = json.loads(old('publication/catalog.json'))
         catalog['pages'] = [p for p in catalog['pages'] if not is_new(p['path'])]
@@ -34,11 +34,12 @@ class CageForGodTests(unittest.TestCase):
             current = json.loads((g.ROOT / name).read_bytes())
             current[key] = [p for p in current[key] if not is_new(p.get('url', p.get('id', ''))) ]
             self.assertEqual(current, json.loads(old(name)), name)
-        for prefix in ('', 'en/'):
-            name = prefix + 'articles/page-4/index.html'
-            source = (g.ROOT / name).read_text(encoding='utf-8')
-            source = re.sub(r'\n        <div class="item">\n          <a href="/' + prefix + r'articles/(?:a-cage-for-god|the-albino-bull|time-zones-of-the-universe|undoubtedly|the-creators-lot|epatazhka|in-another-dimension|the-path-of-progress|negative-time)/">.*?</div>\n', '', source, flags=re.S)
-            self.assertEqual(source, old(name).decode(), name)
+        # Validate today's listings, then reconstruct the historical listing bytes.
+        for name, expected in g.render_article_pages(g.ROOT, g.article_catalog(
+                g.load_json(g.ROOT / "publication/catalog.json"))).items():
+            self.assertEqual((g.ROOT / name).read_bytes(), expected, name)
+        for name, expected in g.render_article_pages(g.ROOT, g.article_catalog(catalog)).items():
+            self.assertEqual(expected, old(name), name)
 
     def test_exact_text_and_source_label(self):
         for lang, prefix in (("ru", ""), ("en", "en/")):
